@@ -91,11 +91,12 @@
     return self;
 }
 
+/**========================定   位==============================*/
 #pragma mark － 定位
 -(void)locationWithLocationBlock:(LocationBlock)locationBlock{
     
     if (![CLLocationManager locationServicesEnabled]) {
-        NSLog(@"定位服务当前可能尚未打开，请设置打开！");
+        DLog(@"---> 定位服务当前可能尚未打开，请设置打开！");
         return;
     }
     
@@ -117,10 +118,11 @@
     [self.locationManager stopUpdatingLocation];
 }
 - (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error{
-    NSLog(@"错误 %@",error);
+    DLog(@"---> 错误(code ＝ 0 ,没有打开定位功能) %@",error);
     //停止定位
     [self.locationManager stopUpdatingLocation];
 }
+/**========================搜  索==============================*/
 #pragma mark - 搜索
 -(void)onReGeocodeSearchDoneWithRequest:(id)request
                                andBlock:(OnReGeocodeSearchBlock)onReGeocodeSearchBlock{
@@ -148,7 +150,7 @@
     }
     else
     {
-        NSLog(@"unsupported request");
+        DLog(@"unsupported request");
         return;
     }
     
@@ -198,7 +200,7 @@
 }
 
 
-//************************************************************************//
+//***************************创 建 热 力 图******************************//
 
 #pragma mark - 创建热力图
 -(void)creatHotMapWittMapView:(MAMapView *)mapView{
@@ -254,7 +256,7 @@
 
 }
 
-//************************************************************************//
+/**==========================添 加 大 头 针================================*/
 
 #pragma mark - 添加大头针
 +(void)addPointAnnocationWithMap:(MAMapView *)mapView
@@ -272,7 +274,7 @@
     
 }
 
-#pragma mark - 绘制路径
+/**==========================绘 制 路 径=====================================*/
 #define RoutePlanningPaddingEdge MATCHSIZE(80)
 #pragma mark - 绘制驾车路径
 -(void)showRouteWithMap:(MAMapView *)mapView
@@ -374,7 +376,7 @@ andDestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinat
 {
     if (overlays.count == 0)
     {
-        NSLog(@"%s: 无效的参数.", __func__);
+        DLog(@"%s: 无效的参数.", __func__);
         return MAMapRectZero;
     }
     
@@ -396,7 +398,7 @@ andDestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinat
 {
     if (mapRects == NULL || count == 0)
     {
-        NSLog(@"%s: 无效的参数.", __func__);
+        DLog(@"%s: 无效的参数.", __func__);
         return MAMapRectZero;
     }
     

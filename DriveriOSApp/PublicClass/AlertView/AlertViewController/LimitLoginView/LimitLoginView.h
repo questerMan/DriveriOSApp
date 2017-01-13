@@ -8,6 +8,6 @@
 
 #import "ViewController.h"
 
-@interface LimitLoginView : ViewController
+@interface LimitLoginView : UIViewController
 
 @end

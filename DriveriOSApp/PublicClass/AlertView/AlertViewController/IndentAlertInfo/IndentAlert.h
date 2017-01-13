@@ -13,6 +13,7 @@
 /** 关闭alertView */
 -(void)closeAlertView;
 @end
+
 @interface IndentAlert : UIViewController
 
 @property (nonatomic, weak) id <IndentAlertDelegate> delegate;

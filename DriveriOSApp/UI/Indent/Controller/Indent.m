@@ -187,8 +187,7 @@
     //等单页面导航页跳转
     [self pusToNavigationMap];
     
-    //取消驾车路径
-//    [self clearRoute];
+ 
 }
 
 #pragma mark - 等单页面跳转到搜索框

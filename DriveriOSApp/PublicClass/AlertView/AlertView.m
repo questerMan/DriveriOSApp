@@ -13,8 +13,10 @@
 #import "LoadAlert.h"
 #import "IndentAlert.h"
 #import "LoginView.h"
+#import "DeleteIndentAlert.h"
 
-@interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate>
+
+@interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate>
 
 @property (nonatomic,strong) UIView *bgView;
 
@@ -33,6 +35,8 @@
 @property (nonatomic, strong) IndentAlert *indentAlert;
 
 @property (nonatomic, strong) LoginView *loginAlert;
+
+@property (nonatomic, strong) DeleteIndentAlert *deleteIndentAlert;
 @end
 
 @implementation AlertView
@@ -82,6 +86,14 @@
     return _loginAlert;
 }
 
+-(DeleteIndentAlert *)deleteIndentAlert{
+    if(!_deleteIndentAlert){
+        _deleteIndentAlert = [[DeleteIndentAlert alloc] init];
+        _deleteIndentAlert.delegate = self;
+    }
+    return _deleteIndentAlert;
+}
+
 //直接调用该方法一般用于固定 view 的展示
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
     
@@ -126,6 +138,11 @@
                 [self isCloseWithTap:YES];
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
 
+                break;
+            case AlertViewTypeDeleteIndentAlert:
+                
+                [self isCloseWithTap:NO];
+                
                 break;
             default:
                 break;
@@ -241,7 +258,17 @@
         [self initAlertViewWithViewController:self.loginAlert];
         self.alertView.frame = CGRectMake(MATCHSIZE(110), MATCHSIZE(600), SCREEN_W - MATCHSIZE(220), MATCHSIZE(530));
 
+    }else if (_addAlertViewType == AlertViewTypeDeleteIndentAlert){
+        [self initAlertViewWithViewController:self.deleteIndentAlert];
+        
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(MATCHSIZE(18));
+            make.top.equalTo(self).offset(MATCHSIZE(45));
+            make.right.equalTo(self).offset(-MATCHSIZE(18));
+            make.bottom.equalTo(self).offset(-MATCHSIZE(60));
+        }];
     }
+    
     
 }
 #pragma mark - 只显示文字
@@ -263,7 +290,7 @@
     }
 }
 
-#pragma mark - phoneAlert/IndentAlertDelegate代理
+#pragma mark - phoneAlert/IndentAlertDelegate/DeleteIndentAlert代理
 -(void)closeAlertView{
     [self alertViewClose];
 }

@@ -171,7 +171,7 @@
    //测试**********
     if (indexPath.row == 5) {
         
-        AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeIndentAlert];
+        AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeDeleteIndentAlert];
         [alert alertViewShow];
         
     }
