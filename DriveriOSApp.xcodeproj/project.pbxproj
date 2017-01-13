@@ -21,6 +21,7 @@
 		822891491DEDBDD4001F6E57 /* Pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 822891431DEDBDD4001F6E57 /* Pause@2x.png */; };
 		8228914A1DEDBDD4001F6E57 /* Right.png in Resources */ = {isa = PBXBuildFile; fileRef = 822891441DEDBDD4001F6E57 /* Right.png */; };
 		8228914B1DEDBDD4001F6E57 /* Updata@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 822891451DEDBDD4001F6E57 /* Updata@2x.png */; };
+		823C31CF1E28A63700D6CAE6 /* RoutPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 823C31CE1E28A63700D6CAE6 /* RoutPointAnnotation.m */; };
 		824152181DF5038500FAB385 /* FactoryClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 824152171DF5038500FAB385 /* FactoryClass.m */; };
 		8241521C1DF5192800FAB385 /* AMNavigationMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8241521B1DF5192800FAB385 /* AMNavigationMap.m */; };
 		824F5EAE1E077B99004B33EE /* driver_car@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F5EAD1E077B99004B33EE /* driver_car@2x.png */; };
@@ -299,6 +300,8 @@
 		822891431DEDBDD4001F6E57 /* Pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pause@2x.png"; sourceTree = "<group>"; };
 		822891441DEDBDD4001F6E57 /* Right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Right.png; sourceTree = "<group>"; };
 		822891451DEDBDD4001F6E57 /* Updata@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Updata@2x.png"; sourceTree = "<group>"; };
+		823C31CD1E28A63700D6CAE6 /* RoutPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoutPointAnnotation.h; sourceTree = "<group>"; };
+		823C31CE1E28A63700D6CAE6 /* RoutPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutPointAnnotation.m; sourceTree = "<group>"; };
 		824152161DF5038500FAB385 /* FactoryClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FactoryClass.h; sourceTree = "<group>"; };
 		824152171DF5038500FAB385 /* FactoryClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FactoryClass.m; sourceTree = "<group>"; };
 		8241521A1DF5192800FAB385 /* AMNavigationMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMNavigationMap.h; sourceTree = "<group>"; };
@@ -839,6 +842,15 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		823C31CC1E28A5CF00D6CAE6 /* RoutPointAnnotation */ = {
+			isa = PBXGroup;
+			children = (
+				823C31CD1E28A63700D6CAE6 /* RoutPointAnnotation.h */,
+				823C31CE1E28A63700D6CAE6 /* RoutPointAnnotation.m */,
+			);
+			name = RoutPointAnnotation;
+			sourceTree = "<group>";
+		};
 		824152151DF5038500FAB385 /* FactoryClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -900,6 +912,7 @@
 		827193851DF0629300327ACB /* AMMap */ = {
 			isa = PBXGroup;
 			children = (
+				823C31CC1E28A5CF00D6CAE6 /* RoutPointAnnotation */,
 				82620A681E1CEE9000219C5D /* UserPionAnnotationView */,
 				827193861DF0629300327ACB /* AMMapView.h */,
 				827193871DF0629300327ACB /* AMMapView.m */,
@@ -2540,6 +2553,7 @@
 				82AF40601DE92477001F0066 /* NSString+Valid.m in Sources */,
 				82AF40581DE92477001F0066 /* PSTGridLayoutSection.m in Sources */,
 				82A9DF731DFD278300B495FD /* MyIndentModel.m in Sources */,
+				823C31CF1E28A63700D6CAE6 /* RoutPointAnnotation.m in Sources */,
 				82AF40741DE92477001F0066 /* EaseMessageCell.m in Sources */,
 				82620A6B1E1CEEEF00219C5D /* UserCalloutView.m in Sources */,
 				82AF405C1DE92477001F0066 /* EaseMessageModel.m in Sources */,

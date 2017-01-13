@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface AMMapView : UIView
+//地图
+@property (nonatomic, strong) MAMapView *mapView;
 
 @property (nonatomic, assign) CLLocationCoordinate2D currentLocationCoordinate2D;
 
@@ -19,14 +21,14 @@
  * @param destinationCoordinat 终点经纬度
  * @param strategy             行驶道路规划
  */
--(void)showRouteWithStartCoordinate:(CLLocationCoordinate2D)startCoordinate
-           andDestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinat
-                        andStrategy:(NSInteger)strategy;
+//-(void)showRouteWithStartCoordinate:(CLLocationCoordinate2D)startCoordinate
+//           andDestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinat
+//                        andStrategy:(NSInteger)strategy;
 /**
  *     移除地图上的行驶绘制路线
  */
 
--(void)clearRoute;
+//-(void)clearRoute;
 
 
 @end

@@ -20,6 +20,20 @@
 //大头针
 @property (retain, nonatomic) MAPointAnnotation *pointAnnotation;
 
+@property (nonatomic, strong) LXObjManage *objManage;
+
+//地图
+@property (nonatomic, strong) MAMapView *mapView;
+
+/** 起点大头针 */
+@property (retain, nonatomic) RoutPointAnnotation *startAnnotation;
+
+/** 终点大头针 */
+@property (retain, nonatomic) RoutPointAnnotation *endAnnotation;
+
+@property (nonatomic,retain) NSArray *pathPolylines;
+
+
 @end
 
 @implementation AMPublicTools
@@ -43,6 +57,19 @@
     return _pointAnnotation;
 }
 
+-(MAPointAnnotation *)startAnnotation{
+    if (!_startAnnotation) {
+        _startAnnotation = [[RoutPointAnnotation alloc] init];
+    }
+    return _startAnnotation;
+}
+
+-(MAPointAnnotation *)endAnnotation{
+    if (!_endAnnotation) {
+        _endAnnotation = [[RoutPointAnnotation alloc] init];
+    }
+    return _endAnnotation;
+}
 
 /** 单例 */
 + (AMPublicTools *)shareInstance{
@@ -54,6 +81,14 @@
         
     });
     return shareTools;
+}
+
+-(instancetype)init{
+    if (self = [super init]) {
+        _search  = [[AMapSearchAPI alloc] init];
+        _search.delegate = self;
+    }
+    return self;
 }
 
 #pragma mark － 定位
@@ -89,11 +124,6 @@
 #pragma mark - 搜索
 -(void)onReGeocodeSearchDoneWithRequest:(id)request
                                andBlock:(OnReGeocodeSearchBlock)onReGeocodeSearchBlock{
-    if(_search == nil) {
-        self.search = [[AMapSearchAPI alloc] init];
-    }
-    
-    self.search.delegate = self;
     
     //发起逆地理编码
     if ([request isKindOfClass:[AMapPOIKeywordsSearchRequest class]])
@@ -241,4 +271,197 @@
     [mapView selectAnnotation:pointAnnotation animated:YES];
     
 }
+
+#pragma mark - 绘制路径
+#define RoutePlanningPaddingEdge MATCHSIZE(80)
+#pragma mark - 绘制驾车路径
+-(void)showRouteWithMap:(MAMapView *)mapView
+        StartCoordinate:(CLLocationCoordinate2D)startCoordinate
+andDestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinat
+            andStrategy:(NSInteger)strategy
+                  block:(void(^)())block{
+    
+    self.mapView = mapView;
+    
+    AMapDrivingRouteSearchRequest *navi = [[AMapDrivingRouteSearchRequest alloc] init];
+    
+    navi.requireExtension = YES;
+    navi.strategy = strategy;//!< 驾车导航策略([default = 0]) 0-速度优先（时间）；1-费用优先（不走收费路段的最快道路）；2-距离优先；3-不走快速路；4-结合实时交通（躲避拥堵）；5-多策略（同时使用速度优先、费用优先、距离优先三个策略）；6-不走高速；7-不走高速且避免收费；8-躲避收费和拥堵；9-不走高速且躲避收费和拥堵
+    
+    /* 出发点. */
+    navi.origin = [AMapGeoPoint locationWithLatitude:startCoordinate.latitude longitude:startCoordinate.longitude];
+    /* 目的地. */
+    navi.destination = [AMapGeoPoint locationWithLatitude:destinationCoordinat.latitude longitude:destinationCoordinat.longitude];
+    
+    [self onReGeocodeSearchDoneWithRequest:navi andBlock:^(id request, id response, NSError *error) {
+        AMapRouteSearchResponse *newRespone = (AMapRouteSearchResponse *)response;
+        
+        AMapPath *path = newRespone.route.paths[0]; //选择一条路径
+        AMapStep *step = path.steps[0]; //这个路径上的导航路段数组
+        NSLog(@"step.polyline %@",step.polyline);   //此路段坐标点字符串
+        
+        if (newRespone.count > 0)
+        {
+            //移除地图原本的遮盖
+            [mapView removeOverlays:_pathPolylines];
+            _pathPolylines = nil;
+            // 只显⽰示第⼀条 规划的路径
+            _pathPolylines = [self polylinesForPath:newRespone.route.paths[0]];
+            NSLog(@"%@",newRespone.route.paths[0]);
+            //添加新的遮盖，然后会触发代理方法进行绘制
+            [mapView addOverlays:_pathPolylines];
+            
+
+            //展示路径
+            [mapView setVisibleMapRect:[self mapRectForOverlays:self.pathPolylines] edgePadding:UIEdgeInsetsMake(RoutePlanningPaddingEdge, RoutePlanningPaddingEdge, RoutePlanningPaddingEdge, RoutePlanningPaddingEdge) animated:YES];
+
+        }
+    }];
+    
+    //显示终点和起点大头针
+    [self addAnnotationWithMap:mapView StartCoordinate:startCoordinate andEndCoordinate:destinationCoordinat];
+}
+
+#pragma mark - 添加终点和起点大头针
+-(void)addAnnotationWithMap:(MAMapView *)mapView
+            StartCoordinate:(CLLocationCoordinate2D)startCoordinate
+           andEndCoordinate:(CLLocationCoordinate2D)endCoordinat{
+    self.startAnnotation.coordinate = startCoordinate;
+    self.startAnnotation.title = @"star";
+    [mapView addAnnotation:self.startAnnotation];
+    //自动显示气泡信息
+    [mapView selectAnnotation:self.startAnnotation animated:YES];
+    
+    self.endAnnotation.coordinate = endCoordinat;
+    self.endAnnotation.title = @"end";
+    [mapView addAnnotation:self.endAnnotation];
+    //自动显示气泡信息
+    [mapView selectAnnotation:self.endAnnotation animated:YES];
+}
+#pragma mark - 移除地图上的行驶绘制路线
+-(void)clearRouteWithBlock:(void(^)())block{
+
+    [self.mapView removeOverlays:_pathPolylines];
+    //移除终点和起点大头针
+    [self.mapView removeAnnotation:self.startAnnotation];
+    [self.mapView removeAnnotation:self.endAnnotation];
+    
+}
+
+//路线解析
+- (NSArray *)polylinesForPath:(AMapPath *)path
+{
+    if (path == nil || path.steps.count == 0)
+    {
+        return nil;
+    }
+    NSMutableArray *polylines = [NSMutableArray array];
+    [path.steps enumerateObjectsUsingBlock:^(AMapStep *step, NSUInteger idx, BOOL *stop) {
+        NSUInteger count = 0;
+        CLLocationCoordinate2D *coordinates = [self coordinatesForString:step.polyline
+                                                         coordinateCount:&count
+                                                              parseToken:@";"];
+        
+        MAPolyline *polyline = [MAPolyline polylineWithCoordinates:coordinates count:count];
+        
+        [polylines addObject:polyline];
+        free(coordinates), coordinates = NULL;
+    }];
+    return polylines;
+}
+
+- (MAMapRect)mapRectForOverlays:(NSArray *)overlays
+{
+    if (overlays.count == 0)
+    {
+        NSLog(@"%s: 无效的参数.", __func__);
+        return MAMapRectZero;
+    }
+    
+    MAMapRect mapRect;
+    
+    MAMapRect *buffer = (MAMapRect*)malloc(overlays.count * sizeof(MAMapRect));
+    
+    [overlays enumerateObjectsUsingBlock:^(id<MAOverlay> obj, NSUInteger idx, BOOL *stop) {
+        buffer[idx] = [obj boundingMapRect];
+    }];
+    
+    mapRect = [self mapRectUnion:buffer count:overlays.count];
+    
+    free(buffer), buffer = NULL;
+    
+    return mapRect;
+}
+-(MAMapRect)mapRectUnion:(MAMapRect *)mapRects count:(NSUInteger)count
+{
+    if (mapRects == NULL || count == 0)
+    {
+        NSLog(@"%s: 无效的参数.", __func__);
+        return MAMapRectZero;
+    }
+    
+    MAMapRect unionMapRect = mapRects[0];
+    
+    for (int i = 1; i < count; i++)
+    {
+        unionMapRect = [self unionMapRect1:unionMapRect mapRect2:mapRects[i]];
+    }
+    
+    return unionMapRect;
+}
+-(MAMapRect)unionMapRect1:(MAMapRect)mapRect1 mapRect2:(MAMapRect)mapRect2
+{
+    CGRect rect1 = CGRectMake(mapRect1.origin.x, mapRect1.origin.y, mapRect1.size.width, mapRect1.size.height);
+    CGRect rect2 = CGRectMake(mapRect2.origin.x, mapRect2.origin.y, mapRect2.size.width, mapRect2.size.height);
+    
+    CGRect unionRect = CGRectUnion(rect1, rect2);
+    
+    return MAMapRectMake(unionRect.origin.x, unionRect.origin.y, unionRect.size.width, unionRect.size.height);
+}
+
+
+//解析经纬度
+- (CLLocationCoordinate2D *)coordinatesForString:(NSString *)string
+                                 coordinateCount:(NSUInteger *)coordinateCount
+                                      parseToken:(NSString *)token
+{
+    if (string == nil)
+    {
+        return NULL;
+    }
+    
+    if (token == nil)
+    {
+        token = @",";
+    }
+    
+    NSString *str = @"";
+    if (![token isEqualToString:@","])
+    {
+        str = [string stringByReplacingOccurrencesOfString:token withString:@","];
+    }
+    
+    else
+    {
+        str = [NSString stringWithString:string];
+    }
+    
+    NSArray *components = [str componentsSeparatedByString:@","];
+    NSUInteger count = [components count] / 2;
+    if (coordinateCount != NULL)
+    {
+        *coordinateCount = count;
+    }
+    CLLocationCoordinate2D *coordinates = (CLLocationCoordinate2D*)malloc(count * sizeof(CLLocationCoordinate2D));
+    
+    for (int i = 0; i < count; i++)
+    {
+        coordinates[i].longitude = [[components objectAtIndex:2 * i]     doubleValue];
+        coordinates[i].latitude  = [[components objectAtIndex:2 * i + 1] doubleValue];
+    }
+    
+    return coordinates;
+}
+
+
 @end

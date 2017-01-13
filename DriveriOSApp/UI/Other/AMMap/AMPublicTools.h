@@ -21,6 +21,8 @@ typedef void (^OnReGeocodeSearchBlock) (id request, id response, NSError *error)
  *  @return 返回一个工具对象🔧
  */
 + (AMPublicTools *)shareInstance;
+//地图
+
 
 //定位
 @property (nonatomic, copy) LocationBlock locationBlock;
@@ -57,4 +59,25 @@ typedef void (^OnReGeocodeSearchBlock) (id request, id response, NSError *error)
  */
 +(void)addPointAnnocationWithMap:(MAMapView *)mapView
                       Coordinate:(CLLocationCoordinate2D)coordinate;
+/**
+ *   绘制路径
+ * @param mapView  当前地图
+ * @param startCoordinate  起点经纬度
+ * @param destinationCoordinat  终点经纬度
+ * @param strategy  驾车导航策略
+ * @param block  想要处理的事务代码快
+ *
+ */
+-(void)showRouteWithMap:(MAMapView *)mapView
+        StartCoordinate:(CLLocationCoordinate2D)startCoordinate
+andDestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinat
+            andStrategy:(NSInteger)strategy
+                  block:(void(^)())block;
+/**
+ *   清除路径
+ * @param block  想要处理的事务代码快
+ *
+ */
+-(void)clearRouteWithBlock:(void(^)())block;
+
 @end

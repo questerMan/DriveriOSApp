@@ -22,8 +22,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 #import "UserAnnotationView.h"
 
 @interface AMMapView()<MAMapViewDelegate,AMapSearchDelegate,LXObjManagerDelegate>
-//地图
-@property (nonatomic, strong) MAMapView *mapView;
 
 @property (nonatomic, strong) AMPublicTools *tool;
 //大头针
@@ -203,6 +201,8 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
     
 }
 
+/**
+
 #pragma mark - 绘制驾车路径
 -(void)showRouteWithStartCoordinate:(CLLocationCoordinate2D)startCoordinate
            andDestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinat
@@ -216,18 +216,20 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
     navi.requireExtension = YES;
     navi.strategy = strategy;//!< 驾车导航策略([default = 0]) 0-速度优先（时间）；1-费用优先（不走收费路段的最快道路）；2-距离优先；3-不走快速路；4-结合实时交通（躲避拥堵）；5-多策略（同时使用速度优先、费用优先、距离优先三个策略）；6-不走高速；7-不走高速且避免收费；8-躲避收费和拥堵；9-不走高速且躲避收费和拥堵
     
-    /* 出发点. */
+     出发点. 
     navi.origin = [AMapGeoPoint locationWithLatitude:startCoordinate.latitude longitude:startCoordinate.longitude];
-    /* 目的地. */
+     目的地. 
     navi.destination = [AMapGeoPoint locationWithLatitude:destinationCoordinat.latitude longitude:destinationCoordinat.longitude];
     
     [self.search AMapDrivingRouteSearch:navi];
     
-    //显示终点和起点大头针
+    显示终点和起点大头针
     [self addAnnotationWithStartCoordinate:startCoordinate andEndCoordinate:destinationCoordinat];
 
     
 }
+
+
 #pragma mark - 添加终点和起点大头针
 -(void)addAnnotationWithStartCoordinate:(CLLocationCoordinate2D)startCoordinate
                andEndCoordinate:(CLLocationCoordinate2D)endCoordinat{
@@ -408,7 +410,7 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
     
     return coordinates;
 }
-
+*/
 
 //创建地图
 -(void)creatMap{
@@ -556,8 +558,8 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
  */
 - (void)mapView:(MAMapView *)mapView mapDidMoveByUser:(BOOL)wasUserAction{
     
-    //测试显示附近司机
-    [self updatingDrivers];
+//    //测试显示附近司机
+//    [self updatingDrivers];
     
 //    //热力图
 //    static dispatch_once_t onceToken;
@@ -657,22 +659,23 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
         
     }
     
-    if ([annotation isKindOfClass:[MAPointAnnotation class]])
+    if ([annotation isKindOfClass:[RoutPointAnnotation class]])
     {
+
         static NSString *reuseIndetifier = @"annotationReuseIndetifier";
         MAAnnotationView *annotationView = (MAAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
         if (annotationView == nil)
-        {//真机调试这里有可能出错
+        {
             annotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation
                                                           reuseIdentifier:reuseIndetifier];
         }
         /* 起点. */
-        if ([[annotation title] isEqualToString:(NSString*)RoutePlanningViewControllerStartTitle])
+        if ([[annotation title] isEqualToString:@"star"])
         {
             annotationView.image = [UIImage imageNamed:@"start"];
         }
         /* 终点. */
-        else if([[annotation title] isEqualToString:(NSString*)RoutePlanningViewControllerEndTitle])
+        else if([[annotation title] isEqualToString:@"end"])
         {
             annotationView.image = [UIImage imageNamed:@"end"];
         }

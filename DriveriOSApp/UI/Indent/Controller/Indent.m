@@ -188,7 +188,7 @@
     [self pusToNavigationMap];
     
     //取消驾车路径
-    [self clearRoute];
+//    [self clearRoute];
 }
 
 #pragma mark - 等单页面跳转到搜索框
@@ -216,7 +216,11 @@
                 strongSelf.indentTool.startNavigation.hidden = NO;
                 strongSelf.indentTool.cancelBtn.hidden = NO;
                 //绘制路径（全屏全图路径）
-                [self.map showRouteWithStartCoordinate:self.map.currentLocationCoordinate2D andDestinationCoordinate:CLLocationCoordinate2DMake([model.latitude floatValue], [model.longitude floatValue]) andStrategy:5];
+//                [self.map showRouteWithStartCoordinate:self.map.currentLocationCoordinate2D andDestinationCoordinate:CLLocationCoordinate2DMake([model.latitude floatValue], [model.longitude floatValue]) andStrategy:5];
+                AMPublicTools *amTool = [AMPublicTools shareInstance];
+                [amTool showRouteWithMap:self.map.mapView StartCoordinate:self.map.currentLocationCoordinate2D andDestinationCoordinate:CLLocationCoordinate2DMake([model.latitude floatValue], [model.longitude floatValue]) andStrategy:5 block:^{
+                    
+                }];
                 
             }
             
@@ -249,14 +253,14 @@
     }];
 }
 #pragma mark - 移除驾车路径
--(void)clearRoute{
-    [self.indentTool clearRouteWithBlock:^{
-        //移除路径
-        [self.map clearRoute];
-        //取消按钮消失
-        self.indentTool.cancelBtn.hidden = YES;
-    }];
-}
+//-(void)clearRoute{
+//    [self.indentTool clearRouteWithBlock:^{
+//        //移除路径
+//        [self.map clearRoute];
+//        //取消按钮消失
+//        self.indentTool.cancelBtn.hidden = YES;
+//    }];
+//}
 
 
 
