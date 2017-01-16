@@ -22,7 +22,9 @@
 @property (nonatomic, strong) UILabel *lable;
 
 @property (nonatomic, assign) BOOL isSelectItem;//默认第一次加载选中第一个cell为YES来改变Lable文本颜色
-@property (nonatomic, strong) UILabel *countLabel;
+@property (nonatomic, strong) UILabel *countLabel;//订单数量信息
+
+@property (nonatomic, strong) UIImageView *indentStateIMG;//上下拉状态提示
 
 @property (nonatomic, strong) TabModel *model;
 

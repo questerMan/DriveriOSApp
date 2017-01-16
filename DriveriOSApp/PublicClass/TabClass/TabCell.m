@@ -32,12 +32,16 @@
     self.isSelectItem = NO;
     
     self.countLabel = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(20) textColor:[UIColor redColor] numberOfLine:1 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor whiteColor]];
-    self.countLabel.frame = CGRectMake(SELF_W - MATCHSIZE(35), 0, MATCHSIZE(35), MATCHSIZE(35));
+    self.countLabel.frame = CGRectMake(SELF_W - MATCHSIZE(30), 0, MATCHSIZE(30), MATCHSIZE(30));
     self.countLabel.layer.cornerRadius = self.countLabel.frame.size.height/2;
     self.countLabel.layer.masksToBounds = YES;
     self.countLabel.hidden = YES;
     [self addSubview:self.countLabel];
     
+    self.indentStateIMG = [[UIImageView alloc] initWithFrame:CGRectMake(SELF_W - MATCHSIZE(30), MATCHSIZE(35), MATCHSIZE(30), MATCHSIZE(30))];
+    self.indentStateIMG.image = [UIImage imageNamed:@"indent_up"];
+    self.indentStateIMG.hidden = YES;
+    [self addSubview:self.indentStateIMG];
     
 }
 
@@ -55,12 +59,14 @@
     }
     
     if(model.indentCount != nil){
-        if ([model.type isEqualToString:@"2"]) {
+        if (![model.type isEqualToString:@"0"] || ![model.type isEqualToString:@"1"]) {
             self.countLabel.text = model.indentCount;
             if ([model.indentCount intValue] > 0) {
                 self.countLabel.hidden = NO;
+                self.indentStateIMG.hidden = NO;
             }else{
                 self.countLabel.hidden = YES;
+                self.indentStateIMG.hidden = YES;
             }
         }
     }

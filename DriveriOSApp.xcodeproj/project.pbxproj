@@ -73,6 +73,8 @@
 		827320BF1E2713410040AC2B /* loginBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 827320BE1E2713410040AC2B /* loginBG.png */; };
 		827320C31E2726F50040AC2B /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 827320C21E2726F50040AC2B /* logo.png */; };
 		827320C91E27817F0040AC2B /* IndentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 827320C81E27817F0040AC2B /* IndentData.m */; };
+		8274A3E21E2C6BA8005A5B3A /* indent_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8274A3E01E2C6BA8005A5B3A /* indent_down@2x.png */; };
+		8274A3E31E2C6BA8005A5B3A /* indent_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8274A3E11E2C6BA8005A5B3A /* indent_up@2x.png */; };
 		82771A331E1F44F400541BA6 /* NSObject+NSLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 82771A321E1F44F400541BA6 /* NSObject+NSLog.m */; };
 		827C3C011DEB396D002B64D0 /* LeftMainHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 827C3C001DEB396D002B64D0 /* LeftMainHeadView.m */; };
 		827C3C031DEB3B74002B64D0 /* userIMG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 827C3C021DEB3B74002B64D0 /* userIMG@2x.png */; };
@@ -396,6 +398,8 @@
 		827320C21E2726F50040AC2B /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		827320C71E27817F0040AC2B /* IndentData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndentData.h; sourceTree = "<group>"; };
 		827320C81E27817F0040AC2B /* IndentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndentData.m; sourceTree = "<group>"; };
+		8274A3E01E2C6BA8005A5B3A /* indent_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indent_down@2x.png"; sourceTree = "<group>"; };
+		8274A3E11E2C6BA8005A5B3A /* indent_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indent_up@2x.png"; sourceTree = "<group>"; };
 		82771A311E1F44F400541BA6 /* NSObject+NSLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NSLog.h"; sourceTree = "<group>"; };
 		82771A321E1F44F400541BA6 /* NSObject+NSLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSLog.m"; sourceTree = "<group>"; };
 		827C3BFF1DEB396D002B64D0 /* LeftMainHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMainHeadView.h; sourceTree = "<group>"; };
@@ -1907,6 +1911,8 @@
 		82AF40921DE92C43001F0066 /* TemporaryIMG */ = {
 			isa = PBXGroup;
 			children = (
+				8274A3E01E2C6BA8005A5B3A /* indent_down@2x.png */,
+				8274A3E11E2C6BA8005A5B3A /* indent_up@2x.png */,
 				827320BE1E2713410040AC2B /* loginBG.png */,
 				827CA10B1E1DD54100F908C2 /* timeAnno.png */,
 				827320C21E2726F50040AC2B /* logo.png */,
@@ -2392,6 +2398,7 @@
 				82E7CCE71E0231820072E874 /* usersIMG@2x.png in Resources */,
 				82AF40871DE92477001F0066 /* EaseUIResource.bundle in Resources */,
 				8228914A1DEDBDD4001F6E57 /* Right.png in Resources */,
+				8274A3E21E2C6BA8005A5B3A /* indent_down@2x.png in Resources */,
 				82E465F71DE90B9F00432E88 /* Assets.xcassets in Resources */,
 				82E7CCED1E02806E0072E874 /* iPhone@2x.png in Resources */,
 				8260F69B1DF8526800B4EB79 /* phone@2x.png in Resources */,
@@ -2402,6 +2409,7 @@
 				822891471DEDBDD4001F6E57 /* Deletes@2x.png in Resources */,
 				82D4B0141DEBC4A100FDA730 /* back@2x.png in Resources */,
 				822891491DEDBDD4001F6E57 /* Pause@2x.png in Resources */,
+				8274A3E31E2C6BA8005A5B3A /* indent_up@2x.png in Resources */,
 				8259F9251E09030A003E6350 /* guide@2x.png in Resources */,
 				82E7CCEB1E023F1F0072E874 /* not_eye@2x.png in Resources */,
 				82AF409B1DE93468001F0066 /* chat@2x.png in Resources */,
