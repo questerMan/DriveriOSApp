@@ -75,6 +75,9 @@
 		827320C91E27817F0040AC2B /* IndentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 827320C81E27817F0040AC2B /* IndentData.m */; };
 		8274A3E21E2C6BA8005A5B3A /* indent_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8274A3E01E2C6BA8005A5B3A /* indent_down@2x.png */; };
 		8274A3E31E2C6BA8005A5B3A /* indent_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8274A3E11E2C6BA8005A5B3A /* indent_up@2x.png */; };
+		8274A3E51E2C727F005A5B3A /* limitLogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8274A3E41E2C727F005A5B3A /* limitLogin@2x.png */; };
+		8274A3E71E2CA135005A5B3A /* IndentData.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 8274A3E61E2CA135005A5B3A /* IndentData.geojson */; };
+		8274A3ED1E2CB5BF005A5B3A /* ItemIndentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8274A3EC1E2CB5BF005A5B3A /* ItemIndentModel.m */; };
 		82771A331E1F44F400541BA6 /* NSObject+NSLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 82771A321E1F44F400541BA6 /* NSObject+NSLog.m */; };
 		827C3C011DEB396D002B64D0 /* LeftMainHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 827C3C001DEB396D002B64D0 /* LeftMainHeadView.m */; };
 		827C3C031DEB3B74002B64D0 /* userIMG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 827C3C021DEB3B74002B64D0 /* userIMG@2x.png */; };
@@ -90,7 +93,7 @@
 		828D7ECB1DFE5309004F1BA5 /* SetupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 828D7ECA1DFE5309004F1BA5 /* SetupCell.m */; };
 		828D7ED21DFE910C004F1BA5 /* DriverGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = 828D7ED11DFE910C004F1BA5 /* DriverGuide.m */; };
 		829546041E238591009D9C62 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 829546031E238591009D9C62 /* LoginView.m */; };
-		829546071E2385A7009D9C62 /* LimitLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 829546061E2385A7009D9C62 /* LimitLoginView.m */; };
+		829546071E2385A7009D9C62 /* LimitLoginAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 829546061E2385A7009D9C62 /* LimitLoginAlert.m */; };
 		8295460A1E23897F009D9C62 /* PublicTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 829546091E23897F009D9C62 /* PublicTools.m */; };
 		8297EC991E0A83A100D59413 /* guides@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8297EC981E0A83A100D59413 /* guides@2x.png */; };
 		82A9DF691DFD218000B495FD /* LeftMenuRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9DF681DFD218000B495FD /* LeftMenuRoot.m */; };
@@ -400,6 +403,10 @@
 		827320C81E27817F0040AC2B /* IndentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndentData.m; sourceTree = "<group>"; };
 		8274A3E01E2C6BA8005A5B3A /* indent_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indent_down@2x.png"; sourceTree = "<group>"; };
 		8274A3E11E2C6BA8005A5B3A /* indent_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indent_up@2x.png"; sourceTree = "<group>"; };
+		8274A3E41E2C727F005A5B3A /* limitLogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "limitLogin@2x.png"; sourceTree = "<group>"; };
+		8274A3E61E2CA135005A5B3A /* IndentData.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = IndentData.geojson; sourceTree = "<group>"; };
+		8274A3EB1E2CB5BF005A5B3A /* ItemIndentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemIndentModel.h; sourceTree = "<group>"; };
+		8274A3EC1E2CB5BF005A5B3A /* ItemIndentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemIndentModel.m; sourceTree = "<group>"; };
 		82771A311E1F44F400541BA6 /* NSObject+NSLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NSLog.h"; sourceTree = "<group>"; };
 		82771A321E1F44F400541BA6 /* NSObject+NSLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSLog.m"; sourceTree = "<group>"; };
 		827C3BFF1DEB396D002B64D0 /* LeftMainHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMainHeadView.h; sourceTree = "<group>"; };
@@ -427,8 +434,8 @@
 		8292BD7A1E10F85300F78E89 /* LimitDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitDataClass.h; sourceTree = "<group>"; };
 		829546021E238591009D9C62 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		829546031E238591009D9C62 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
-		829546051E2385A7009D9C62 /* LimitLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitLoginView.h; sourceTree = "<group>"; };
-		829546061E2385A7009D9C62 /* LimitLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitLoginView.m; sourceTree = "<group>"; };
+		829546051E2385A7009D9C62 /* LimitLoginAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitLoginAlert.h; sourceTree = "<group>"; };
+		829546061E2385A7009D9C62 /* LimitLoginAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitLoginAlert.m; sourceTree = "<group>"; };
 		829546081E23897F009D9C62 /* PublicTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicTools.h; sourceTree = "<group>"; };
 		829546091E23897F009D9C62 /* PublicTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicTools.m; sourceTree = "<group>"; };
 		8297EC981E0A83A100D59413 /* guides@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guides@2x.png"; sourceTree = "<group>"; };
@@ -1218,8 +1225,8 @@
 		829546001E238591009D9C62 /* LimitLoginView */ = {
 			isa = PBXGroup;
 			children = (
-				829546051E2385A7009D9C62 /* LimitLoginView.h */,
-				829546061E2385A7009D9C62 /* LimitLoginView.m */,
+				829546051E2385A7009D9C62 /* LimitLoginAlert.h */,
+				829546061E2385A7009D9C62 /* LimitLoginAlert.m */,
 			);
 			path = LimitLoginView;
 			sourceTree = "<group>";
@@ -1364,6 +1371,9 @@
 			children = (
 				827320C71E27817F0040AC2B /* IndentData.h */,
 				827320C81E27817F0040AC2B /* IndentData.m */,
+				8274A3E61E2CA135005A5B3A /* IndentData.geojson */,
+				8274A3EB1E2CB5BF005A5B3A /* ItemIndentModel.h */,
+				8274A3EC1E2CB5BF005A5B3A /* ItemIndentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1911,6 +1921,7 @@
 		82AF40921DE92C43001F0066 /* TemporaryIMG */ = {
 			isa = PBXGroup;
 			children = (
+				8274A3E41E2C727F005A5B3A /* limitLogin@2x.png */,
 				8274A3E01E2C6BA8005A5B3A /* indent_down@2x.png */,
 				8274A3E11E2C6BA8005A5B3A /* indent_up@2x.png */,
 				827320BE1E2713410040AC2B /* loginBG.png */,
@@ -2433,7 +2444,9 @@
 				827193A11DF0633A00327ACB /* Star.png in Resources */,
 				82AF409C1DE93468001F0066 /* chat@3x.png in Resources */,
 				82AF40591DE92477001F0066 /* MWPhotoBrowser.bundle in Resources */,
+				8274A3E51E2C727F005A5B3A /* limitLogin@2x.png in Resources */,
 				827193ED1DF06E6B00327ACB /* MJRefresh.bundle in Resources */,
+				8274A3E71E2CA135005A5B3A /* IndentData.geojson in Resources */,
 				822891461DEDBDD4001F6E57 /* Bottom@2x.png in Resources */,
 				82620A671E1CEC8800219C5D /* map60.png in Resources */,
 				82AF40A21DE93A91001F0066 /* car@2x.png in Resources */,
@@ -2555,6 +2568,7 @@
 				82AF40151DE92477001F0066 /* EMCDDeviceManager+Microphone.m in Sources */,
 				827193F01DF06E6B00327ACB /* UIScrollView+MJRefresh.m in Sources */,
 				827193EB1DF06E6B00327ACB /* MJRefreshNormalHeader.m in Sources */,
+				8274A3ED1E2CB5BF005A5B3A /* ItemIndentModel.m in Sources */,
 				82AF40771DE92477001F0066 /* EaseBubbleView+Gif.m in Sources */,
 				82AF40681DE92477001F0066 /* EaseEmotionEscape.m in Sources */,
 				82AF407A1DE92477001F0066 /* EaseBubbleView+Text.m in Sources */,
@@ -2625,7 +2639,7 @@
 				82AF40511DE92477001F0066 /* PSTCollectionViewFlowLayout.m in Sources */,
 				827193E11DF06E6B00327ACB /* MJRefreshComponent.m in Sources */,
 				821ADD761DF80D8C00BB0CF8 /* ReservationCell.m in Sources */,
-				829546071E2385A7009D9C62 /* LimitLoginView.m in Sources */,
+				829546071E2385A7009D9C62 /* LimitLoginAlert.m in Sources */,
 				82AF40531DE92477001F0066 /* PSTCollectionViewLayout.m in Sources */,
 				82620A711E1CF01F00219C5D /* UserPointAnnotation.m in Sources */,
 				82AF404C1DE92477001F0066 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,

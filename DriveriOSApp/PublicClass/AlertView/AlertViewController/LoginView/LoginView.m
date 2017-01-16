@@ -157,7 +157,6 @@
     [self.view addSubview:self.lookPassWordBtn];
     [[self.lookPassWordBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         
-
         [self showHint:@"忘记密码"];
         
     }];

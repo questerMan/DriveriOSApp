@@ -122,6 +122,7 @@
 
 }
 
+
 -(void)creatCollectionView{
     
     [self addSubview:self.collectionView];

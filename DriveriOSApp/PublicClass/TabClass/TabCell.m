@@ -59,17 +59,28 @@
     }
     
     if(model.indentCount != nil){
-        if (![model.type isEqualToString:@"0"] || ![model.type isEqualToString:@"1"]) {
-            self.countLabel.text = model.indentCount;
-            if ([model.indentCount intValue] > 0) {
+        if ([model.indentCount intValue] > 0) {
+            
+            if ([model.type intValue] == 2 || [model.type intValue] == 3 || [model.type intValue] == 4) {
+                self.countLabel.text = model.indentCount;
                 self.countLabel.hidden = NO;
                 self.indentStateIMG.hidden = NO;
-            }else{
-                self.countLabel.hidden = YES;
-                self.indentStateIMG.hidden = YES;
+                
+                if(model.indentState.intValue == 0){
+                    self.indentStateIMG.image = [UIImage imageNamed:@"indent_up"];
+                }else{
+                    self.indentStateIMG.image = [UIImage imageNamed:@"indent_down"];
+                }
+                
             }
+            
+        }else{
+            self.countLabel.hidden = YES;
+            self.indentStateIMG.hidden = YES;
         }
     }
+    
+    
     
 }
 

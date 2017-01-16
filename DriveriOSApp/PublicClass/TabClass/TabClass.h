@@ -20,5 +20,4 @@ typedef void (^TabClassBlock) (NSString *type);
 /** 获取tab数据 */
 -(void)getTabTitleDataWithArray:(NSMutableArray *)arrayData;
 
-
 @end

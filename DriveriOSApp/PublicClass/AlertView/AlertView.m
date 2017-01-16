@@ -14,9 +14,10 @@
 #import "IndentAlert.h"
 #import "LoginView.h"
 #import "DeleteIndentAlert.h"
+#import "LimitLoginAlert.h"
 
 
-@interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate>
+@interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate,LimitLoginAlertDelegate>
 
 @property (nonatomic,strong) UIView *bgView;
 
@@ -37,6 +38,8 @@
 @property (nonatomic, strong) LoginView *loginAlert;
 
 @property (nonatomic, strong) DeleteIndentAlert *deleteIndentAlert;
+
+@property (nonatomic, strong) LimitLoginAlert *limitLoginAlert;
 @end
 
 @implementation AlertView
@@ -94,6 +97,14 @@
     return _deleteIndentAlert;
 }
 
+-(LimitLoginAlert *)limitLoginAlert{
+    if (!_limitLoginAlert) {
+        _limitLoginAlert = [[LimitLoginAlert alloc] init];
+        _limitLoginAlert.delegate = self;
+    }
+    return _limitLoginAlert;
+}
+
 //直接调用该方法一般用于固定 view 的展示
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
     
@@ -140,6 +151,11 @@
 
                 break;
             case AlertViewTypeDeleteIndentAlert:
+                
+                [self isCloseWithTap:NO];
+                
+                break;
+            case AlertViewTypeLimitLoginAlert:
                 
                 [self isCloseWithTap:NO];
                 
@@ -267,6 +283,10 @@
             make.right.equalTo(self).offset(-MATCHSIZE(18));
             make.bottom.equalTo(self).offset(-MATCHSIZE(60));
         }];
+        
+    }else if (_addAlertViewType == AlertViewTypeLimitLoginAlert){
+        [self initAlertViewWithViewController:self.limitLoginAlert];
+        self.alertView.frame = CGRectMake(MATCHSIZE(130), MATCHSIZE(400), SCREEN_W - MATCHSIZE(260), MATCHSIZE(370));
     }
     
     

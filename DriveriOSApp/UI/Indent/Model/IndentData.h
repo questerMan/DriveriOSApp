@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface IndentData : NSObject
+@property (nonatomic, copy) NSString *Uid;
 
 @property (nonatomic, copy) NSString *name;
 

@@ -23,6 +23,8 @@
         _tableView.dataSource = self;
         _tableView.hidden = YES;
         _tableView.y = -(SCREEN_H - MATCHSIZE(90+44));
+        _tableView.backgroundColor = [UIColor clearColor];
+
     }
     return _tableView;
 }
@@ -237,7 +239,6 @@
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = MATCHSIZE(310);
-    self.tableView.backgroundColor = [UIColor clearColor];
     [indent.view addSubview:self.tableView];
     
     

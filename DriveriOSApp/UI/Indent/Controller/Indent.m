@@ -9,7 +9,8 @@
 
 
 #import "Indent.h"
-
+#import "IndentData.h"
+#import "ItemIndentModel.h"
 
 @interface Indent ()
 /** 等单 */
@@ -69,7 +70,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-        
+    
     [self creatNAC];
     
 }
@@ -105,16 +106,16 @@
     
     //打开左侧栏
     [self setNavigationBarItem];
-
+    
 }
 #pragma mark - 右上角聊天按钮
 -(void)rightItemOnclick:(UIBarButtonItem *)itemBtn{
     
     
-//    Setup *setup = [[Setup alloc] init];
-//    [self.navigationController pushViewController:setup animated:YES];
+    //    Setup *setup = [[Setup alloc] init];
+    //    [self.navigationController pushViewController:setup animated:YES];
     [self.navigationController popViewControllerAnimated:YES];
-
+    
 }
 
 -(void)creatAMMap{
@@ -135,24 +136,37 @@
     self.indentTool.seachTextF.text = nil;
     self.indentTool.startNavigation.hidden = YES;
     self.indentTool.cancelBtn.hidden = YES;
-
+    
 }
 #pragma mark - 获取tab数据
 -(NSMutableArray *)getTabDataWithCount:(NSString *)count{
-    //测试＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
     
-    NSArray *data = @[@{@"0":@"等单"},@{@"1":@"即时单"},@{@"2":@"预约单"},@{@"3":@"接机"},@{@"4":@"送机"},@{@"5":@"抢单"},@{@"6":@"还可添加"}];
-    NSMutableArray *arrData = [NSMutableArray array];
-    for (NSDictionary *title in data) {
-        TabModel *model = [[TabModel alloc] init];
-        model.title = [title allValues][0];
-        model.type = [title allKeys][0];
-        if([model.type intValue] == 2){
-            model.indentCount = count;
+    NSError*error;
+    //获取文件路径
+    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"IndentData"ofType:@"geojson"];
+    
+    //根据文件路径读取数据
+    NSData *datas = [[NSData alloc]initWithContentsOfFile:filePath];
+    
+    //解读json数据
+    NSArray *arrData = [NSJSONSerialization JSONObjectWithData:datas options:NSJSONReadingMutableContainers error:&error];
+    
+    NSMutableArray *arrDatas = [NSMutableArray array];
+    
+    for (NSDictionary *dict in arrData) {
+        TabModel *modelTab = [TabModel new];
+        modelTab.title = dict[@"name"];
+        modelTab.type = dict[@"type"];
+        NSArray *arr = [dict objectForKey:@"indentArr"];
+        if(arr.count > 0){
+            modelTab.indentCount = [NSString stringWithFormat:@"%ld",arr.count];
         }
-        [arrData addObject:model];
+
+
+        [arrDatas addObject:modelTab];
     }
-    return arrData;
+    
+    return arrDatas;
 }
 
 -(void)creatTab{
@@ -187,13 +201,14 @@
     //等单页面导航页跳转
     [self pusToNavigationMap];
     
- 
+    
+    
 }
 
 #pragma mark - 等单页面跳转到搜索框
 -(void)pusToSearchView{
     __weak typeof(self) weakSelf = self;
-   
+    
     [self.indentTool pusToSearchWithSearchBlock:^{
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         
@@ -215,7 +230,7 @@
                 strongSelf.indentTool.startNavigation.hidden = NO;
                 strongSelf.indentTool.cancelBtn.hidden = NO;
                 //绘制路径（全屏全图路径）
-//                [self.map showRouteWithStartCoordinate:self.map.currentLocationCoordinate2D andDestinationCoordinate:CLLocationCoordinate2DMake([model.latitude floatValue], [model.longitude floatValue]) andStrategy:5];
+                //                [self.map showRouteWithStartCoordinate:self.map.currentLocationCoordinate2D andDestinationCoordinate:CLLocationCoordinate2DMake([model.latitude floatValue], [model.longitude floatValue]) andStrategy:5];
                 AMPublicTools *amTool = [AMPublicTools shareInstance];
                 [amTool showRouteWithMap:self.map.mapView StartCoordinate:self.map.currentLocationCoordinate2D andDestinationCoordinate:CLLocationCoordinate2DMake([model.latitude floatValue], [model.longitude floatValue]) andStrategy:5 block:^{
                     
@@ -235,13 +250,13 @@
     
     [self.indentTool pusToNavigationMapWithNavigationMapBlock:^{
         __strong __typeof(weakSelf)strongSelf = weakSelf;
-
+        
         AMNavigationMap *navigationMap = [[AMNavigationMap alloc] init];
         
         navigationMap.startLocatoin = [AMapNaviPoint locationWithLatitude:strongSelf.map.userLocation.coordinate.latitude longitude:strongSelf.map.userLocation.coordinate.longitude]; //获取当前定位
         
         navigationMap.destinationPoint = strongSelf.destinationPoint;
-
+        
         if (navigationMap.startLocatoin != nil && navigationMap.description != nil) {
             [strongSelf.navigationController pushViewController:navigationMap animated:YES];
         }else{
