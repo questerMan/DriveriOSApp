@@ -13,6 +13,9 @@ static NSTimeInterval acceptIndentCount;
 
 @interface IndentPublicViewTools()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) NetWorkingManage *netWorkingManage;
+
+@property (nonatomic, weak) NSTimer* acceptIndentTimer;
+
 @end
 
 @implementation IndentPublicViewTools
