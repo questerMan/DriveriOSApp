@@ -104,7 +104,7 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
         UIImage *image = [UIImage imageNamed:@"map60"];
         _centerLocationIMG = [[UIImageView alloc] initWithImage:image];
         _centerLocationIMG.center = self.mapView.center;
-        _centerLocationIMG.y -= MATCHSIZE(50);
+        _centerLocationIMG.y -= MATCHSIZE(150);
     }
     return _centerLocationIMG;
 }

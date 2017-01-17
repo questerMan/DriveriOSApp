@@ -75,7 +75,8 @@ static NSTimeInterval acceptIndentCount;
 }
 -(UIButton *)acceptIndentBtn{
     if (!_acceptIndentBtn) {
-        _acceptIndentBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40),SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*2), MATCHSIZE(60)) Title:@"接单" backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
+        _acceptIndentBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40),SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*2), MATCHSIZE(60)) Title:@"接单" backGround:[UIColor whiteColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
+        [_acceptIndentBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _acceptIndentBtn.hidden = YES;
     }
     return _acceptIndentBtn;
@@ -238,12 +239,11 @@ static NSTimeInterval acceptIndentCount;
     
     [[self.acceptIndentBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         
-        //        [self showLoadAndHint:@"接单"];
-        //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //            [self hideHud];
-        //        });
+        
         [self presentOrderReceiving];
     }];
+    //获取即时单数据
+    [self getstantIndentData];
     
 }
 
@@ -320,7 +320,7 @@ static NSTimeInterval acceptIndentCount;
 -(void)addReservationIndentWithIndent:(UIViewController *)indent{
     
     //获取预约单table数据
-    [self getData];
+    [self getReservationData];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = MATCHSIZE(310);
@@ -416,10 +416,16 @@ static NSTimeInterval acceptIndentCount;
             break;
     }
 }
-
--(void)getData{
+//获取预约单table数据
+-(void)getReservationData{
     [self.netWorkingManage getReservationIndentWithBlock:^(NSArray *array) {
         [self.arrayData addObjectsFromArray:array];
+    }];
+}
+//获取即时单数据
+-(void)getstantIndentData{
+    [self.netWorkingManage getInstantIndentWithBlock:^(NSArray *array) {
+        self.instantHeadView.model = array[0];
     }];
 }
 

@@ -38,7 +38,7 @@
     [self addSubview:self.countLabel];
     [self.countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(0);
-        make.top.equalTo(self.contentView).offset(0);
+        make.top.equalTo(self.contentView).offset(2);
         make.width.offset(MATCHSIZE(30));
         make.height.offset(MATCHSIZE(30));
     }];
@@ -49,7 +49,7 @@
     [self addSubview:self.indentStateIMG];
     [self.indentStateIMG mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView).offset(0);
-        make.bottom.equalTo(self.contentView).offset(0);
+        make.bottom.equalTo(self.contentView).offset(-2);
         make.width.offset(MATCHSIZE(30));
         make.height.offset(MATCHSIZE(30));
     }];

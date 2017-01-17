@@ -20,44 +20,51 @@
 }
 
 -(void)creatUI{
-    self.backgroundColor = [UIColor grayColor];
+    self.backgroundColor = [UIColor whiteColor];
     
     self.startIMG = [[UIImageView alloc] initWithFrame:CGRectMake(MATCHSIZE(20), MATCHSIZE(20), MATCHSIZE(40), MATCHSIZE(40))];
-    self.startIMG.image = [UIImage imageNamed:@"item"];
+    self.startIMG.image = [UIImage imageNamed:@"start"];
     [self addSubview:self.startIMG];
     
     UILabel *startLable = [[UILabel alloc] initWithFrame:CGRectMake(MATCHSIZE(80), MATCHSIZE(20), MATCHSIZE(120), MATCHSIZE(40))];
     startLable.textAlignment = NSTextAlignmentLeft;
     startLable.text = @"出发地:";
     startLable.font = FontDefault;
-    startLable.textColor = [UIColor whiteColor];
+    startLable.textColor = [UIColor blackColor];
     [self addSubview:startLable];
     
     self.endIMG = [[UIImageView alloc] initWithFrame:CGRectMake(MATCHSIZE(20), MATCHSIZE(80), MATCHSIZE(40), MATCHSIZE(40))];
-    self.endIMG.image = [UIImage imageNamed:@"item"];
+    self.endIMG.image = [UIImage imageNamed:@"end"];
     [self addSubview:self.endIMG];
     
     UILabel *endLable = [[UILabel alloc] initWithFrame:CGRectMake(MATCHSIZE(80), MATCHSIZE(80), MATCHSIZE(120), MATCHSIZE(40))];
     endLable.textAlignment = NSTextAlignmentLeft;
     endLable.text = @"目的地:";
     endLable.font = FontDefault;
-    endLable.textColor = [UIColor whiteColor];
+    endLable.textColor = [UIColor blackColor];
     [self addSubview:endLable];
     
     
     self.startAddress = [[UILabel alloc] initWithFrame:CGRectMake(MATCHSIZE(210), MATCHSIZE(20),SELF_W - MATCHSIZE(200), MATCHSIZE(40))];
     self.startAddress.textAlignment = NSTextAlignmentLeft;
-    self.startAddress.text = @"广州荔湾区中山七路";//测试＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+    self.startAddress.text = @"";
     self.startAddress.font = FontDefault;
-    self.startAddress.textColor = [UIColor whiteColor];
+    self.startAddress.textColor = [UIColor blackColor];
     [self addSubview:self.startAddress];
     
     self.endAddress = [[UILabel alloc] initWithFrame:CGRectMake(MATCHSIZE(210), MATCHSIZE(80),SELF_W - MATCHSIZE(200), MATCHSIZE(40))];
     self.endAddress.textAlignment = NSTextAlignmentLeft;
-    self.endAddress.text = @"广州荔湾区中山八路";//测试＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+    self.endAddress.text = @"";
     self.endAddress.font = FontDefault;
-    self.endAddress.textColor = [UIColor whiteColor];
+    self.endAddress.textColor = [UIColor blackColor];
     [self addSubview:self.endAddress];
 }
 
+-(void)setModel:(IndentData *)model{
+    _model = model;
+    
+    self.startAddress.text = model.startName;
+    
+    self.endAddress.text = model.endName;
+}
 @end

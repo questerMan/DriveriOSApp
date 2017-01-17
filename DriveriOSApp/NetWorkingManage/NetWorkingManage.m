@@ -92,7 +92,7 @@
     for (NSDictionary *dict in arrData) {
         NSArray *arr = dict[@"indentArr"];
         if ([dict[@"name"] isEqualToString:@"即时单"] && arr.count > 0) {
-            for (NSDictionary *dict in dict[@"indentArr"]) {
+            for (NSDictionary *dict in arr) {
                 IndentData *model = [IndentData new];
                 [model setValuesForKeysWithDictionary:dict];
                 [arrDatas addObject:model];

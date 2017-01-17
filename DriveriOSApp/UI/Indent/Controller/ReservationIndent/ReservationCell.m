@@ -104,7 +104,7 @@
     [self.bgView addSubview:self.callBtn];
     
     /** 订单状态标签 */
-    self.satus = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(30) textColor:[UIColor whiteColor] numberOfLine:1 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor blackColor]];
+    self.satus = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(30) textColor:[UIColor whiteColor] numberOfLine:1 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor grayColor]];
     self.satus.frame = CGRectMake(SCREEN_W - MATCHSIZE(170), MATCHSIZE(200), MATCHSIZE(140), MATCHSIZE(80));
     [self.bgView addSubview:self.satus];
 }

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IndentData.h"
 
 @interface InstantHeadView : UIView
 
@@ -22,5 +23,6 @@
 /** 目的地 */
 @property (nonatomic, strong) UILabel *endAddress;
 
+@property (nonatomic, strong) IndentData *model;
 
 @end
