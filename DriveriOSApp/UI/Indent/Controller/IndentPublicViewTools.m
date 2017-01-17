@@ -7,8 +7,8 @@
 //
 
 #import "IndentPublicViewTools.h"
-
-
+//#import "LXQRefuseIndentViewController.h"
+#import "AlertView.h"
 
 @interface IndentPublicViewTools()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) NetWorkingManage *netWorkingManage;
@@ -143,7 +143,7 @@
         if(_clearRouteBlock){
             _clearRouteBlock();
         }
-        
+        self.indentController.map.MapIndentState = MapIndentStateWait;
     }];
     
     //如果seachTextF有值时显示导航按钮
@@ -321,6 +321,8 @@
             //显示
             [self addInstantIndentWithIndent:indent];
             [self showInstantIndentAllView];
+            //非正确监听位置
+            self.indentController.map.MapIndentState = MapIndentStateWaitingList;
             //隐藏
             [self hideReservationIndentAllView];
             [self hideWaitIndentAllView];

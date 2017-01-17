@@ -28,8 +28,6 @@
 
 @property (nonatomic, strong) AMPublicTools *amTool;
 
-@property (nonatomic, strong) AMMapView *map;
-
 @property (nonatomic, strong) AMapNaviPoint *startLocatoin;
 
 @property (nonatomic, strong) AMapNaviPoint *destinationPoint;
@@ -52,6 +50,7 @@
 -(IndentPublicViewTools *)indentTool{
     if (!_indentTool) {
         _indentTool = [IndentPublicViewTools shareInstance];
+        _indentTool.indentController = self;
     }
     return _indentTool;
 }
@@ -243,7 +242,7 @@
                 [amTool showRouteWithMap:self.map.mapView StartCoordinate:self.map.currentLocationCoordinate2D andDestinationCoordinate:CLLocationCoordinate2DMake([model.latitude floatValue], [model.longitude floatValue]) andStrategy:5 block:^{
                     
                 }];
-                
+                self.map.MapIndentState = MapIndentStateWaitNavigation;
             }
             
         }];
