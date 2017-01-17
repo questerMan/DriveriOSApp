@@ -199,11 +199,12 @@ static NSTimeInterval acceptIndentCount;
     if (_searchBlock != nil) {
         _searchBlock();
     }
-    
 }
+
 -(void)pusToSearchWithSearchBlock:(IndentPublicViewToolsPusToSearchBlock)searchBlock{
     _searchBlock = searchBlock;
 }
+
 -(void)clearRouteWithBlock:(IndentPublicViewToolsPusOfClearRouteBlock)clearRouteBlock{
     _clearRouteBlock = clearRouteBlock;
 }
@@ -211,21 +212,21 @@ static NSTimeInterval acceptIndentCount;
 -(void)pusToNavigationMapWithNavigationMapBlock:(IndentPublicViewToolsPusToNavigationMapBlock) navigationMapBlock{
     _navigationMapBlock = navigationMapBlock;
 }
+
 #pragma mark - 隐藏等单页面的view
 -(void)hideWaitIndentAllView{
     
     self.seachTextF.hidden = YES;
     self.startNavigation.hidden = YES;
     self.cancelBtn.hidden = YES;
-    
 }
+
 #pragma mark - 显示等单页面的view
 -(void)showWaitIndentAllView{
     
     self.seachTextF.hidden = NO;
     
 }
-
 
 #pragma mark - 即时单
 -(void)addInstantIndentWithIndent:(UIViewController *)indent{
@@ -319,11 +320,17 @@ static NSTimeInterval acceptIndentCount;
     
 }
 
-#pragma mark - 预约单
--(void)addReservationIndentWithIndent:(UIViewController *)indent{
+#pragma mark - 预约单/即时单接单状态
+-(void)addReservationIndentWithIndent:(UIViewController *)indent isInstantIndent:(BOOL)isInstantIndent{
     
-    //获取预约单table数据
-    [self getData];
+    if (isInstantIndent) {
+        [self getInstantData];
+    }
+    else
+    {
+        //获取预约单table数据
+        [self getData];
+    }
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = MATCHSIZE(310);
@@ -332,6 +339,12 @@ static NSTimeInterval acceptIndentCount;
 
 -(void)getData{
     [self.netWorkingManage getReservationIndentWithBlock:^(NSArray *array) {
+        [self.arrayData addObjectsFromArray:array];
+    }];
+}
+
+- (void)getInstantData{
+    [self.netWorkingManage getInstantIndentWithBlock:^(NSArray *array) {
         [self.arrayData addObjectsFromArray:array];
     }];
 }
@@ -354,11 +367,18 @@ static NSTimeInterval acceptIndentCount;
     cell.model = self.arrayData[indexPath.row];
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [self showHint:@"页面未搭建完成"];
-
+//  [self showHint:@"页面未搭建完成"];
+    IndentData* data = self.arrayData[indexPath.row];
+    [self.arrayData removeAllObjects];
+    [self.arrayData addObject:data];
+    [tableView reloadData];
 }
+
+- (void)start
+
 #pragma mark - 隐藏预约单页面的view
 -(void)hideReservationIndentAllView{
     
@@ -409,12 +429,22 @@ static NSTimeInterval acceptIndentCount;
             break;
         case 2:
             //显示
-            [self addReservationIndentWithIndent:indent];
+            [self addReservationIndentWithIndent:indent isInstantIndent:NO];
             [self showReservationIndentAllView];
             //隐藏
             [self hideWaitIndentAllView];
             [self hideInstantIndentAllView];
             break;
+        
+            //已接单
+        case 53:
+//            显示
+            [self addReservationIndentWithIndent:indent isInstantIndent:YES];
+            [self showReservationIndentAllView];
+            
+            //隐藏
+            [self hideWaitIndentAllView];
+            [self hideInstantIndentAllView];
             
         default:
             [self hideWaitIndentAllView];
