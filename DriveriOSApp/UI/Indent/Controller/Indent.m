@@ -208,7 +208,7 @@
     //等单页面导航页跳转
     [self pusToNavigationMap];
     
-    
+    [self clearRoute];
     
 }
 
@@ -270,18 +270,18 @@
             [strongSelf showHint:@"导航信息有误！"];
         }
         
-        
     }];
 }
 #pragma mark - 移除驾车路径
-//-(void)clearRoute{
-//    [self.indentTool clearRouteWithBlock:^{
-//        //移除路径
-//        [self.map clearRoute];
-//        //取消按钮消失
-//        self.indentTool.cancelBtn.hidden = YES;
-//    }];
-//}
+-(void)clearRoute{
+    [self.indentTool clearRouteWithBlock:^{
+        //移除路径
+    AMPublicTools *amTool = [AMPublicTools shareInstance];
+        [amTool clearRouteWithBlock:^{
+            
+        }];
+    }];
+}
 
 
 

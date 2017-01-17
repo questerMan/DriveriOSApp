@@ -137,7 +137,6 @@ static NSTimeInterval acceptIndentCount;
     
     [indent.view addSubview:self.seachTextF];
     
-    [self.startNavigation addTarget:self action:@selector(pushNavigation:) forControlEvents:UIControlEventTouchUpInside];
     //创建导航按钮
     [indent.view addSubview:self.startNavigation];
     
@@ -147,28 +146,28 @@ static NSTimeInterval acceptIndentCount;
     [self buttonOfIndent];
 
 }
-//开始导航 点击事件
--(void)pushNavigation:(UIButton *)btn{
-    
-    if (_navigationMapBlock) {
-        _navigationMapBlock();
-    }
-    
-}
+
 -(void)buttonOfIndent{
     //开始导航 点击事件
-//    [[self.startNavigation rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-//
-//    }];
+    [[self.startNavigation rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        
+        if (_navigationMapBlock) {
+            _navigationMapBlock();
+        }
+        
+    }];
     
     //取消按钮 点击事件
     [[self.cancelBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        self.startNavigation.hidden = YES;
+       
         self.seachTextF.text = @"";
         if(_clearRouteBlock){
             _clearRouteBlock();
         }
         self.indentController.map.MapIndentState = MapIndentStateWait;
+        
+        self.startNavigation.hidden = YES;
+        self.cancelBtn.hidden = YES;
     }];
     
     //如果seachTextF有值时显示导航按钮
