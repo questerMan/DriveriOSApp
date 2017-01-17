@@ -249,7 +249,7 @@ static NSTimeInterval acceptIndentCount;
 
 - (void)presentRefuseIndent
 {
-    AlertView* alertV = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeDeleteIndentAlert];
+    AlertView* alertV = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeIndentRefuseAlert];
     [alertV alertViewShow];
     
     [self.acceptIndentTimer invalidate];
