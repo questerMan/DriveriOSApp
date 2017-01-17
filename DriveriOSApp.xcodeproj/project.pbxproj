@@ -15,7 +15,6 @@
 		820555C41E00D33D0095BB47 /* ChangeNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C31E00D33D0095BB47 /* ChangeNumber.m */; };
 		820555C81E0139BA0095BB47 /* IndentAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C71E0139BA0095BB47 /* IndentAlert.m */; };
 		821ADD761DF80D8C00BB0CF8 /* ReservationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 821ADD751DF80D8B00BB0CF8 /* ReservationCell.m */; };
-		821ADD791DF8124C00BB0CF8 /* ReservationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 821ADD781DF8124C00BB0CF8 /* ReservationModel.m */; };
 		821B7C951DEEA98B006DFBF8 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 821B7C941DEEA98B006DFBF8 /* location@2x.png */; };
 		8228913E1DEDB802001F6E57 /* MAHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8228913A1DEDB802001F6E57 /* MAHeaderView.m */; };
 		8228913F1DEDB802001F6E57 /* OfflineDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8228913D1DEDB802001F6E57 /* OfflineDetailViewController.m */; };
@@ -100,6 +99,7 @@
 		829546071E2385A7009D9C62 /* LimitLoginAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 829546061E2385A7009D9C62 /* LimitLoginAlert.m */; };
 		8295460A1E23897F009D9C62 /* PublicTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 829546091E23897F009D9C62 /* PublicTools.m */; };
 		8297EC991E0A83A100D59413 /* guides@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8297EC981E0A83A100D59413 /* guides@2x.png */; };
+		82999EBC1E2DB0B100193FE1 /* NetWorkingManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 82999EBB1E2DB0B100193FE1 /* NetWorkingManage.m */; };
 		82A9DF691DFD218000B495FD /* LeftMenuRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9DF681DFD218000B495FD /* LeftMenuRoot.m */; };
 		82A9DF701DFD228E00B495FD /* MyIndent.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9DF6F1DFD228E00B495FD /* MyIndent.m */; };
 		82A9DF731DFD278300B495FD /* MyIndentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9DF721DFD278300B495FD /* MyIndentModel.m */; };
@@ -233,7 +233,6 @@
 		82DBFAB51DFFA75B00CBE7C3 /* LoadAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DBFAB41DFFA75B00CBE7C3 /* LoadAlert.m */; };
 		82E11E7E1DED2C6400FED9C0 /* Indent.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E11E6B1DED2C6400FED9C0 /* Indent.m */; };
 		82E11E7F1DED2C6400FED9C0 /* InstantHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E11E6E1DED2C6400FED9C0 /* InstantHeadView.m */; };
-		82E11E811DED2C6400FED9C0 /* ClientOfReservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E11E731DED2C6400FED9C0 /* ClientOfReservation.m */; };
 		82E11E841DED2C6400FED9C0 /* Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E11E7A1DED2C6400FED9C0 /* Setup.m */; };
 		82E11E921DED354900FED9C0 /* TabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E11E8F1DED354900FED9C0 /* TabCell.m */; };
 		82E11E931DED354900FED9C0 /* TabClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E11E911DED354900FED9C0 /* TabClass.m */; };
@@ -305,8 +304,6 @@
 		820555C71E0139BA0095BB47 /* IndentAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndentAlert.m; sourceTree = "<group>"; };
 		821ADD741DF80D8B00BB0CF8 /* ReservationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationCell.h; sourceTree = "<group>"; };
 		821ADD751DF80D8B00BB0CF8 /* ReservationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationCell.m; sourceTree = "<group>"; };
-		821ADD771DF8124C00BB0CF8 /* ReservationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationModel.h; sourceTree = "<group>"; };
-		821ADD781DF8124C00BB0CF8 /* ReservationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationModel.m; sourceTree = "<group>"; };
 		821B7C941DEEA98B006DFBF8 /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
 		822891391DEDB802001F6E57 /* MAHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAHeaderView.h; sourceTree = "<group>"; };
 		8228913A1DEDB802001F6E57 /* MAHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAHeaderView.m; sourceTree = "<group>"; };
@@ -450,6 +447,8 @@
 		829546081E23897F009D9C62 /* PublicTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicTools.h; sourceTree = "<group>"; };
 		829546091E23897F009D9C62 /* PublicTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicTools.m; sourceTree = "<group>"; };
 		8297EC981E0A83A100D59413 /* guides@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guides@2x.png"; sourceTree = "<group>"; };
+		82999EBA1E2DB0B100193FE1 /* NetWorkingManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkingManage.h; sourceTree = "<group>"; };
+		82999EBB1E2DB0B100193FE1 /* NetWorkingManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkingManage.m; sourceTree = "<group>"; };
 		82A9DF671DFD218000B495FD /* LeftMenuRoot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuRoot.h; sourceTree = "<group>"; };
 		82A9DF681DFD218000B495FD /* LeftMenuRoot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuRoot.m; sourceTree = "<group>"; };
 		82A9DF6E1DFD228E00B495FD /* MyIndent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyIndent.h; sourceTree = "<group>"; };
@@ -714,8 +713,6 @@
 		82E11E6B1DED2C6400FED9C0 /* Indent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Indent.m; sourceTree = "<group>"; };
 		82E11E6D1DED2C6400FED9C0 /* InstantHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstantHeadView.h; sourceTree = "<group>"; };
 		82E11E6E1DED2C6400FED9C0 /* InstantHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstantHeadView.m; sourceTree = "<group>"; };
-		82E11E721DED2C6400FED9C0 /* ClientOfReservation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientOfReservation.h; sourceTree = "<group>"; };
-		82E11E731DED2C6400FED9C0 /* ClientOfReservation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientOfReservation.m; sourceTree = "<group>"; };
 		82E11E791DED2C6400FED9C0 /* Setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setup.h; sourceTree = "<group>"; };
 		82E11E7A1DED2C6400FED9C0 /* Setup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setup.m; sourceTree = "<group>"; };
 		82E11E8E1DED354900FED9C0 /* TabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabCell.h; sourceTree = "<group>"; };
@@ -1332,6 +1329,8 @@
 				828BF64B1DF118C3004D6946 /* NativeData.h */,
 				828BF64C1DF118C3004D6946 /* NativeData.m */,
 				8292BD7A1E10F85300F78E89 /* LimitDataClass.h */,
+				82999EBA1E2DB0B100193FE1 /* NetWorkingManage.h */,
+				82999EBB1E2DB0B100193FE1 /* NetWorkingManage.m */,
 			);
 			path = NetWorkingManage;
 			sourceTree = "<group>";
@@ -2114,12 +2113,8 @@
 		82E11E711DED2C6400FED9C0 /* ReservationIndent */ = {
 			isa = PBXGroup;
 			children = (
-				82E11E721DED2C6400FED9C0 /* ClientOfReservation.h */,
-				82E11E731DED2C6400FED9C0 /* ClientOfReservation.m */,
 				821ADD741DF80D8B00BB0CF8 /* ReservationCell.h */,
 				821ADD751DF80D8B00BB0CF8 /* ReservationCell.m */,
-				821ADD771DF8124C00BB0CF8 /* ReservationModel.h */,
-				821ADD781DF8124C00BB0CF8 /* ReservationModel.m */,
 			);
 			path = ReservationIndent;
 			sourceTree = "<group>";
@@ -2600,6 +2595,7 @@
 				82AF40851DE92477001F0066 /* EaseRecordView.m in Sources */,
 				82AF40541DE92477001F0066 /* PSTCollectionViewUpdateItem.m in Sources */,
 				82AF403D1DE92477001F0066 /* EMSDWebImageCompat.m in Sources */,
+				82999EBC1E2DB0B100193FE1 /* NetWorkingManage.m in Sources */,
 				8241521C1DF5192800FAB385 /* AMNavigationMap.m in Sources */,
 				827193EE1DF06E6B00327ACB /* MJRefreshConst.m in Sources */,
 				82AF40621DE92477001F0066 /* UIViewController+HUD.m in Sources */,
@@ -2663,7 +2659,6 @@
 				828D7EBE1DFE3063004F1BA5 /* NotifyModel.m in Sources */,
 				82AF40381DE92477001F0066 /* MWTapDetectingImageView.m in Sources */,
 				82AF40371DE92477001F0066 /* MWPhotoBrowser.m in Sources */,
-				821ADD791DF8124C00BB0CF8 /* ReservationModel.m in Sources */,
 				82AF407C1DE92477001F0066 /* EaseBubbleView+Voice.m in Sources */,
 				82AF406F1DE92477001F0066 /* EaseUsersListViewController.m in Sources */,
 				8228913F1DEDB802001F6E57 /* OfflineDetailViewController.m in Sources */,
@@ -2716,7 +2711,6 @@
 				82AF403E1DE92477001F0066 /* EMSDWebImageDecoder.m in Sources */,
 				82AF40571DE92477001F0066 /* PSTGridLayoutRow.m in Sources */,
 				82A9DF691DFD218000B495FD /* LeftMenuRoot.m in Sources */,
-				82E11E811DED2C6400FED9C0 /* ClientOfReservation.m in Sources */,
 				827193AB1DF0688600327ACB /* AMLocationModel.m in Sources */,
 				82F76A331DFA5F8A007B50CE /* UIControl+BtnOnclickNum.m in Sources */,
 				82AF40431DE92477001F0066 /* MKAnnotationView+EMWebCache.m in Sources */,

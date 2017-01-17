@@ -63,7 +63,11 @@
     return cell;
 }
 
-
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    
+    self.view.frame = CGRectMake(MATCHSIZE(0), MATCHSIZE(0), SCREEN_W - MATCHSIZE(36), SCREEN_H - MATCHSIZE(105));
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -119,6 +123,7 @@
 -(void)creatTableView{
     self.tableView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
+    
 }
 
 @end

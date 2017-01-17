@@ -109,6 +109,25 @@
     [self.bgView addSubview:self.satus];
 }
 
+-(void)setModel:(IndentData *)model{
+    
+    _model = model;
+    
+    [self.headIMG sd_setImageWithURL:[NSURL URLWithString:model.headIMG] placeholderImage:[UIImage imageNamed:@"userIMG"]];
+
+    self.number.text = model.number;
+    
+    self.name.text = model.name;
+    
+    self.satus.text = model.satus;
+    
+    self.tCarLab.text = model.startName;
+    
+    self.bCarLab.text = model.endName;
+    
+    self.timeLab.text = model.time;
+    
+}
 
 
 @end
