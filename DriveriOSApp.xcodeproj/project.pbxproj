@@ -10,6 +10,7 @@
 		048C885A1E2DC76E006A58E2 /* LXQRefuseIndentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048C88591E2DC76E006A58E2 /* LXQRefuseIndentViewController.m */; };
 		048C885D1E2DC786006A58E2 /* LXQTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048C885C1E2DC786006A58E2 /* LXQTableViewCell.m */; };
 		048C88611E2DC888006A58E2 /* LXQRefuseIndentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 048C88601E2DC888006A58E2 /* LXQRefuseIndentItem.m */; };
+		048C88631E2DCFD2006A58E2 /* why.png in Resources */ = {isa = PBXBuildFile; fileRef = 048C88621E2DCFD2006A58E2 /* why.png */; };
 		820555C11E00D30C0095BB47 /* PhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C01E00D30C0095BB47 /* PhoneNumber.m */; };
 		820555C41E00D33D0095BB47 /* ChangeNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C31E00D33D0095BB47 /* ChangeNumber.m */; };
 		820555C81E0139BA0095BB47 /* IndentAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C71E0139BA0095BB47 /* IndentAlert.m */; };
@@ -293,6 +294,7 @@
 		048C885C1E2DC786006A58E2 /* LXQTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQTableViewCell.m; sourceTree = "<group>"; };
 		048C885F1E2DC888006A58E2 /* LXQRefuseIndentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQRefuseIndentItem.h; sourceTree = "<group>"; };
 		048C88601E2DC888006A58E2 /* LXQRefuseIndentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQRefuseIndentItem.m; sourceTree = "<group>"; };
+		048C88621E2DCFD2006A58E2 /* why.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = why.png; sourceTree = "<group>"; };
 		21F1B86AACBB7CF6E723DB76 /* Pods_DriveriOSApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveriOSApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58D53EB037267918395C1400 /* Pods-DriveriOSApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveriOSApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DriveriOSApp/Pods-DriveriOSApp.debug.xcconfig"; sourceTree = "<group>"; };
 		820555BF1E00D30C0095BB47 /* PhoneNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneNumber.h; sourceTree = "<group>"; };
@@ -1959,6 +1961,7 @@
 		82AF40921DE92C43001F0066 /* TemporaryIMG */ = {
 			isa = PBXGroup;
 			children = (
+				048C88621E2DCFD2006A58E2 /* why.png */,
 				8274A3E41E2C727F005A5B3A /* limitLogin@2x.png */,
 				8274A3E01E2C6BA8005A5B3A /* indent_down@2x.png */,
 				8274A3E11E2C6BA8005A5B3A /* indent_up@2x.png */,
@@ -2448,6 +2451,7 @@
 				82E7CCE71E0231820072E874 /* usersIMG@2x.png in Resources */,
 				82AF40871DE92477001F0066 /* EaseUIResource.bundle in Resources */,
 				8228914A1DEDBDD4001F6E57 /* Right.png in Resources */,
+				048C88631E2DCFD2006A58E2 /* why.png in Resources */,
 				8274A3E21E2C6BA8005A5B3A /* indent_down@2x.png in Resources */,
 				82E465F71DE90B9F00432E88 /* Assets.xcassets in Resources */,
 				82E7CCED1E02806E0072E874 /* iPhone@2x.png in Resources */,
