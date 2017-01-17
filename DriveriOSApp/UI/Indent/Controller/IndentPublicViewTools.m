@@ -251,11 +251,7 @@
     
 }
 
--(void)getData{
-    [self.netWorkingManage getReservationIndentWithBlock:^(NSArray *array) {
-        [self.arrayData addObjectsFromArray:array];
-    }];
-}
+
 #pragma mark - 预约单tableView代理方法
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -344,5 +340,10 @@
     }
 }
 
+-(void)getData{
+    [self.netWorkingManage getReservationIndentWithBlock:^(NSArray *array) {
+        [self.arrayData addObjectsFromArray:array];
+    }];
+}
 
 @end
