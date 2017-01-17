@@ -377,7 +377,7 @@ static NSTimeInterval acceptIndentCount;
     [tableView reloadData];
 }
 
-- (void)start
+
 
 #pragma mark - 隐藏预约单页面的view
 -(void)hideReservationIndentAllView{
