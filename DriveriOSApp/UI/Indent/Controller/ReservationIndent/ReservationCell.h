@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "IndentData.h"
 @interface ReservationCell : UITableViewCell
 
 /** 头像图标 */
@@ -39,5 +39,5 @@
 /** 订单状态标签 */
 @property (nonatomic, strong) UILabel *satus;
 
-
+@property (nonatomic, strong) IndentData *model;
 @end

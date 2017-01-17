@@ -11,7 +11,7 @@
 
 
 @interface IndentPublicViewTools()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
-
+@property (nonatomic, strong) NetWorkingManage *netWorkingManage;
 @end
 
 @implementation IndentPublicViewTools
@@ -87,6 +87,12 @@
         _instantHeadView.hidden = YES;
     }
     return _instantHeadView;
+}
+-(NetWorkingManage *)netWorkingManage{
+    if (!_netWorkingManage) {
+        _netWorkingManage = [NetWorkingManage shareInstance];
+    }
+    return _netWorkingManage;
 }
 
 /** 单例 */
@@ -228,7 +234,6 @@
         self.instantHeadView.hidden = NO;
         
         self.acceptIndentBtn.hidden = NO;
-
         
     }];
     
@@ -237,17 +242,24 @@
 #pragma mark - 预约单
 -(void)addReservationIndentWithIndent:(UIViewController *)indent{
     
+    //获取预约单table数据
+    [self getData];
+    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = MATCHSIZE(310);
     [indent.view addSubview:self.tableView];
     
-    
-    
+}
+
+-(void)getData{
+    [self.netWorkingManage getReservationIndentWithBlock:^(NSArray *array) {
+        [self.arrayData addObjectsFromArray:array];
+    }];
 }
 #pragma mark - 预约单tableView代理方法
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.arrayData.count+2;
+    return self.arrayData.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -259,7 +271,7 @@
         cell = [[ReservationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     
-    
+    cell.model = self.arrayData[indexPath.row];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
