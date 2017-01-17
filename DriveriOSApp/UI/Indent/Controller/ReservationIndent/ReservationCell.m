@@ -29,8 +29,8 @@
 
 -(void)creatUI{
     /** 背景 */
-    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(MATCHSIZE(10), MATCHSIZE(0), SCREEN_W - MATCHSIZE(20), MATCHSIZE(300))];
-    self.bgView.backgroundColor = [UIColor grayColor];
+    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(MATCHSIZE(10), MATCHSIZE(10), SCREEN_W - MATCHSIZE(20), MATCHSIZE(300))];
+    self.bgView.backgroundColor = [UIColor whiteColor];
     self.bgView.layer.cornerRadius = MATCHSIZE(8);
     self.bgView.layer.masksToBounds = YES;
     [self addSubview:self.bgView];

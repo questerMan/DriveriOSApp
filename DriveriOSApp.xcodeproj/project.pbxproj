@@ -99,6 +99,7 @@
 		8295460A1E23897F009D9C62 /* PublicTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 829546091E23897F009D9C62 /* PublicTools.m */; };
 		8297EC991E0A83A100D59413 /* guides@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8297EC981E0A83A100D59413 /* guides@2x.png */; };
 		82999EBC1E2DB0B100193FE1 /* NetWorkingManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 82999EBB1E2DB0B100193FE1 /* NetWorkingManage.m */; };
+		82999EBF1E2E046500193FE1 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 82999EBE1E2E046500193FE1 /* UIColor+Hex.m */; };
 		82A9DF691DFD218000B495FD /* LeftMenuRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9DF681DFD218000B495FD /* LeftMenuRoot.m */; };
 		82A9DF701DFD228E00B495FD /* MyIndent.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9DF6F1DFD228E00B495FD /* MyIndent.m */; };
 		82A9DF731DFD278300B495FD /* MyIndentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9DF721DFD278300B495FD /* MyIndentModel.m */; };
@@ -447,6 +448,8 @@
 		8297EC981E0A83A100D59413 /* guides@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guides@2x.png"; sourceTree = "<group>"; };
 		82999EBA1E2DB0B100193FE1 /* NetWorkingManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkingManage.h; sourceTree = "<group>"; };
 		82999EBB1E2DB0B100193FE1 /* NetWorkingManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkingManage.m; sourceTree = "<group>"; };
+		82999EBD1E2E046500193FE1 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		82999EBE1E2E046500193FE1 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		82A9DF671DFD218000B495FD /* LeftMenuRoot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuRoot.h; sourceTree = "<group>"; };
 		82A9DF681DFD218000B495FD /* LeftMenuRoot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuRoot.m; sourceTree = "<group>"; };
 		82A9DF6E1DFD228E00B495FD /* MyIndent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyIndent.h; sourceTree = "<group>"; };
@@ -1050,6 +1053,8 @@
 				82DBFAAA1DFFA59200CBE7C3 /* UIButton+Time.m */,
 				82771A311E1F44F400541BA6 /* NSObject+NSLog.h */,
 				82771A321E1F44F400541BA6 /* NSObject+NSLog.m */,
+				82999EBD1E2E046500193FE1 /* UIColor+Hex.h */,
+				82999EBE1E2E046500193FE1 /* UIColor+Hex.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -2704,6 +2709,7 @@
 				82AF40191DE92477001F0066 /* amrFileCodec.mm in Sources */,
 				82AF403F1DE92477001F0066 /* EMSDWebImageDownloader.m in Sources */,
 				82AF40701DE92477001F0066 /* EaseViewController.m in Sources */,
+				82999EBF1E2E046500193FE1 /* UIColor+Hex.m in Sources */,
 				82AF403E1DE92477001F0066 /* EMSDWebImageDecoder.m in Sources */,
 				82AF40571DE92477001F0066 /* PSTGridLayoutRow.m in Sources */,
 				82A9DF691DFD218000B495FD /* LeftMenuRoot.m in Sources */,

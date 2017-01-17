@@ -64,7 +64,7 @@
 
 -(AMMapView *)map{
     if (!_map) {
-        _map = [[AMMapView alloc] initWithFrame:CGRectMake(0, MATCHSIZE(80), SCREEN_W, VIEW_H - MATCHSIZE(80) - MATCHSIZE(130))];
+        _map = [[AMMapView alloc] initWithFrame:self.view.bounds];
     }
     return _map;
 }
@@ -82,6 +82,12 @@
     
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    //状态栏变白
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
+}
+
 /**
  *  创建导航栏
  */
@@ -89,17 +95,23 @@
     
     self.title = @"丽新专车";
     
+    //状态栏变黑
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    //去掉导航栏下划线
+    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+    
     //不透明
     self.navigationController.navigationBar.translucent = NO;
     
     //背景颜色
-    [self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
     
     //显示的颜色
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     
     //导航栏字体颜色
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColorFromRGB(@"#ff6d00")}];
     
     //左上角菜单按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"菜单"] style:UIBarButtonItemStylePlain target:self action:@selector(leftItemOnclick:)];
@@ -129,12 +141,21 @@
     
     [self.view addSubview:self.map];
     
+    [self.map mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(0);
+        make.right.equalTo(self.view).offset(0);
+        make.bottom.equalTo(self.view).offset(0);
+        make.top.equalTo(self.view).offset(MATCHSIZE(80));
+    }];
+    
 }
 
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor grayColor];
     
     [self creatAMMap];//先建立地图以免把其他view覆盖掉
     
@@ -179,7 +200,7 @@
 -(void)creatTab{
     
     
-    TabClass *tabClass = [[TabClass alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, MATCHSIZE(60))];
+    TabClass *tabClass = [[TabClass alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, MATCHSIZE(80))];
     //获取tab数据
     NSMutableArray *arrData = [self getTabDataWithCount:@"2"];
     [tabClass getTabTitleDataWithArray:arrData];

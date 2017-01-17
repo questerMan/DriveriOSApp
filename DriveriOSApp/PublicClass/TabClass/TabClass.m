@@ -32,15 +32,15 @@
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];//设置其布局方向
         flowLayout.minimumInteritemSpacing = 0;
         flowLayout.minimumLineSpacing = 0;
-        flowLayout.sectionInset = UIEdgeInsetsMake( 5,0,5,0);//设置其边界
+        flowLayout.sectionInset = UIEdgeInsetsMake( 0,0,0,0);//设置其边界
         //确定水平方向
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, collection_W, collection_H+10) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, collection_W, collection_H) collectionViewLayout:flowLayout];
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.backgroundColor = [UIColor blackColor];
+        _collectionView.backgroundColor = [UIColor whiteColor];
         //注册collectionView cell
         [_collectionView registerClass:[TabCell class] forCellWithReuseIdentifier:@"cellID"];
     }
@@ -85,6 +85,7 @@
     TabCell *cell = (TabCell *)[collectionView cellForItemAtIndexPath:indexPath];
     cell.lable.textColor = TAB_SELECT_TEXTCOLOR;
     cell.lable.backgroundColor = TAB_SELECT_BG;
+    cell.countLabel.backgroundColor = TAB_SELECT_TEXTCOLOR;
     
     TabModel *model = self.arrayData[indexPath.row];
     
@@ -92,7 +93,6 @@
         _Block(model.type);
     }
     
-    //    NSLog(@"%s",__FUNCTION__);
 }
 
 
@@ -103,7 +103,7 @@
         
         cell.lable.textColor = TAB_NOTSELECT_TEXTCOLOR;
         cell.lable.backgroundColor = TAB_NOTSELECT_BG;
-        
+        cell.countLabel.backgroundColor = [UIColor grayColor];
     }
     
 }
