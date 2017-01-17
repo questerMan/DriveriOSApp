@@ -15,7 +15,7 @@
 #import "LoginView.h"
 #import "DeleteIndentAlert.h"
 #import "LimitLoginAlert.h"
-
+#import "LXQRefuseIndentViewController.h"
 
 @interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate,LimitLoginAlertDelegate>
 
@@ -40,6 +40,8 @@
 @property (nonatomic, strong) DeleteIndentAlert *deleteIndentAlert;
 
 @property (nonatomic, strong) LimitLoginAlert *limitLoginAlert;
+
+@property (nonatomic, strong) LXQRefuseIndentViewController *indentRefuseAlert;
 @end
 
 @implementation AlertView
@@ -103,6 +105,18 @@
         _limitLoginAlert.delegate = self;
     }
     return _limitLoginAlert;
+}
+
+-(LXQRefuseIndentViewController *)indentRefuseAlert
+{
+    if (!_indentRefuseAlert) {
+        _indentRefuseAlert = [[LXQRefuseIndentViewController alloc] init];
+        __weak typeof(self) weakSelf = self;
+        _indentRefuseAlert.closeAlert = ^(){
+            [weakSelf closeAlertView];
+        };
+    }
+    return _indentRefuseAlert;
 }
 
 //直接调用该方法一般用于固定 view 的展示
@@ -287,6 +301,10 @@
     }else if (_addAlertViewType == AlertViewTypeLimitLoginAlert){
         [self initAlertViewWithViewController:self.limitLoginAlert];
         self.alertView.frame = CGRectMake(MATCHSIZE(130), MATCHSIZE(400), SCREEN_W - MATCHSIZE(260), MATCHSIZE(370));
+    }else if (_addAlertViewType == AlertViewTypeIndentRefuseAlert){
+        
+        [self initAlertViewWithViewController:self.indentRefuseAlert];
+        self.alertView.frame = CGRectMake(MATCHSIZE(20), MATCHSIZE(40), SCREEN_W - MATCHSIZE(40),SCREEN_H - MATCHSIZE(90));
     }
     
     

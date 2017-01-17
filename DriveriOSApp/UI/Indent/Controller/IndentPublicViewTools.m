@@ -7,8 +7,9 @@
 //
 
 #import "IndentPublicViewTools.h"
-//#import "LXQRefuseIndentViewController.h"
+#import "DeleteIndentAlert.h"
 #import "AlertView.h"
+static NSTimeInterval acceptIndentCount;
 
 @interface IndentPublicViewTools()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) NetWorkingManage *netWorkingManage;
@@ -94,6 +95,27 @@
     }
     return _netWorkingManage;
 }
+
+- (NSTimer *)acceptIndentTimer
+{
+    if (_acceptIndentTimer == nil) {
+        NSTimer* timer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+            [self.acceptIndentBtn setTitle:[NSString stringWithFormat:@"接单(%.0f)",acceptIndentCount] forState:UIControlStateNormal];
+            if (acceptIndentCount > 0) {
+                acceptIndentCount --;
+            }
+            else
+            {
+                [self.acceptIndentBtn setTitle:@"接单" forState:UIControlStateNormal];
+                [self presentRefuseIndent];
+            }
+        }];
+        self.acceptIndentTimer = timer;
+        return timer;
+    }
+    return _acceptIndentTimer;
+}
+
 
 /** 单例 */
 + (IndentPublicViewTools *)shareInstance{
@@ -209,13 +231,64 @@
     
     [indent.view addSubview:self.acceptIndentBtn];
     
+    acceptIndentCount = 10;
+    
+    [self.acceptIndentTimer fire];
+    
     [[self.acceptIndentBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         
-        [self showHint:@"接单"];
-        
+        //        [self showLoadAndHint:@"接单"];
+        //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //            [self hideHud];
+        //        });
+        [self presentOrderReceiving];
     }];
     
 }
+
+- (void)presentOrderReceiving{
+    UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:nil message:@"接单成功!正在拨打乘客的电话，请检查车上服务用品，尽快前往上车点" preferredStyle:UIAlertControllerStyleAlert];
+    [[self getCurrentVC] presentViewController:alertVc animated:YES completion:nil];
+}
+
+- (void)presentRefuseIndent
+{
+    AlertView* alertV = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeIndentRefuseAlert];
+    [alertV alertViewShow];
+    
+    [self.acceptIndentTimer invalidate];
+}
+
+//获取当前可视控制器
+- (UIViewController *)getCurrentVC
+{
+    UIViewController *result = nil;
+    
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    
+    UIView *frontView = [[window subviews] objectAtIndex:0];
+    id nextResponder = [frontView nextResponder];
+    
+    if ([nextResponder isKindOfClass:[UIViewController class]])
+        result = nextResponder;
+    else
+        result = window.rootViewController;
+    
+    return result;
+}
+
 #pragma mark - 隐藏即时单页面的view
 -(void)hideInstantIndentAllView{
 
