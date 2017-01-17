@@ -8,6 +8,7 @@
 
 #import "IndentPublicViewTools.h"
 #import "DeleteIndentAlert.h"
+#import "PublicTool.h"
 #import "AlertView.h"
 static NSTimeInterval acceptIndentCount;
 
@@ -238,8 +239,8 @@ static NSTimeInterval acceptIndentCount;
         //            [self hideHud];
         //        });
         [self presentOrderReceiving];
+        [PublicTool callPhoneWithPhoneNum:@"02000000000"];
     }];
-    
 }
 
 - (void)presentOrderReceiving{
