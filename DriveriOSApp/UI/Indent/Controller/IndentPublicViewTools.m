@@ -328,10 +328,13 @@ static NSTimeInterval acceptIndentCount;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = MATCHSIZE(310);
     [indent.view addSubview:self.tableView];
-    
-
 }
 
+-(void)getData{
+    [self.netWorkingManage getReservationIndentWithBlock:^(NSArray *array) {
+        [self.arrayData addObjectsFromArray:array];
+    }];
+}
 
 #pragma mark - 预约单tableView代理方法
 
