@@ -36,6 +36,8 @@
 
 @property (nonatomic, strong) AMPublicTools *tool;
 
+@property (nonatomic, strong) NSMutableArray *arrryData;
+
 @end
 
 @implementation Indent
@@ -68,6 +70,12 @@
     return _map;
 }
 
+-(NSMutableArray *)arrryData{
+    if (!_arrryData) {
+        _arrryData = [NSMutableArray array];
+    }
+    return _arrryData;
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
