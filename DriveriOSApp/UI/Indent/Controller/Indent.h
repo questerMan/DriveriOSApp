@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-
+#import "AMMapView.h"
 
 
 @interface Indent : UIViewController
 
-
+@property (nonatomic, strong) AMMapView *map;
 
 @end

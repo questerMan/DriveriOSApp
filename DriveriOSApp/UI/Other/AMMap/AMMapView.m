@@ -6,6 +6,7 @@
 //  Copyright © 2016年 陆遗坤. All rights reserved.
 //
 
+
 static const NSString *RoutePlanningViewControllerStartTitle       = @"起点";
 static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 
@@ -120,6 +121,11 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
         _userPointAnnotation = [[UserPointAnnotation alloc] init];
     }
     return _userPointAnnotation;
+}
+
+- (void)setMapIndentState:(MapIndentState)MapIndentState
+{
+    _MapIndentState = MapIndentState;
 }
 
 -(LXObjManage *)objManage{

@@ -6,6 +6,19 @@
 //  Copyright © 2016年 陆遗坤. All rights reserved.
 //
 
+typedef enum MapIndentState{
+    MapIndentStateWait = 0,
+    MapIndentStateWaitNavigation = 1,
+    MapIndentStateWaitingList = 2,
+    MapIndentStateHaveIndent = 3,
+    MapIndentStateGetToPoint = 4,
+    MapIndentStateWaitingPassengers = 5,
+    MapIndentStateGoToDestination = 6,
+    MapIndentStateForSettlement = 7,
+    MapIndentStateForGathering = 8
+}MapIndentState;
+
+
 #import <UIKit/UIKit.h>
 
 @interface AMMapView : UIView
@@ -15,6 +28,9 @@
 @property (nonatomic, assign) CLLocationCoordinate2D currentLocationCoordinate2D;
 
 @property (nonatomic, assign) MAUserLocation *userLocation;
+
+//** 地图订单状态 */
+@property (nonatomic, assign) MapIndentState MapIndentState;
 /**
  *                             绘制驾车路径
  * @param startCoordinate      起点经纬度
