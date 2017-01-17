@@ -122,7 +122,10 @@
         [self.headIMGBtn setImage:image forState:UIControlStateNormal];
     }
     
+    
+    
     [self.view addSubview:self.headIMGBtn];
+    
     
     @weakify(self);
 
