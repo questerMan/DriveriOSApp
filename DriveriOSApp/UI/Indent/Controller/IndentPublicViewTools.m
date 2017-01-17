@@ -248,7 +248,10 @@ static NSTimeInterval acceptIndentCount;
 
 - (void)presentOrderReceiving{
     UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:nil message:@"接单成功!正在拨打乘客的电话，请检查车上服务用品，尽快前往上车点" preferredStyle:UIAlertControllerStyleAlert];
-    [[self getCurrentVC] presentViewController:alertVc animated:YES completion:nil];
+    [self.indentController presentViewController:alertVc animated:YES completion:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [alertVc dismissFromViewController:self.indentController andAnimated:YES];
+    });
 }
 
 - (void)presentRefuseIndent
