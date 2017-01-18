@@ -18,6 +18,7 @@
     }
     return self;
 }
+
 -(void)creatUI{
     
     self.lable = [[UILabel alloc] init];
@@ -53,12 +54,13 @@
         make.width.offset(MATCHSIZE(30));
         make.height.offset(MATCHSIZE(30));
     }];
+    
 }
 
 
 -(void)setModel:(TabModel *)model{
     _model = model;
-    
+        
     self.lable.text = model.title;
     
     if (self.isSelectItem == YES) {
@@ -92,7 +94,8 @@
     }
     
     
-    
+
 }
+
 
 @end

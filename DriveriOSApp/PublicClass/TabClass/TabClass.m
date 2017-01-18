@@ -5,6 +5,7 @@
 //  Created by lixin on 16/11/29.
 //  Copyright © 2016年 陆遗坤. All rights reserved.
 //
+
 #define collection_H self.frame.size.height
 #define collection_W SCREEN_W
 
@@ -78,6 +79,13 @@
     
     return cell;
 }
+
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    TabModel *model = self.arrayData[indexPath.row];
+    return model.size;
+}
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [self changeAllCellTextColor];
@@ -108,6 +116,7 @@
     
 }
 
+
 -(void)didSelectTabWithBlock:(TabClassBlock)block{
     _Block = block;
 }
@@ -117,6 +126,7 @@
 
     //获取数据
     self.arrayData = arrayData;
+    
     //刷行
     [self.collectionView reloadData];
 

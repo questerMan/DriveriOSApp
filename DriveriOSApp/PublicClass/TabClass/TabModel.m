@@ -10,6 +10,10 @@
 
 @implementation TabModel
 
-
+-(void)setTitle:(NSString *)title{
+    _title = title;
+    CGFloat witld = [PublicTool lengthofStr:title AndSystemFontOfSize:MATCHSIZE(36)] + MATCHSIZE(10)*3 + MATCHSIZE(30);
+    _size = CGSizeMake(witld, MATCHSIZE(80));
+}
 
 @end

@@ -18,5 +18,8 @@
 
 // 从默认(showHint:)显示的位置再往上(下)yOffset
 - (void)showHint:(NSString *)hint yOffset:(float)yOffset;
-
+//显示或者隐藏下滑黑线 YES:显示 NO:隐藏
+-(void)useMethodToFindBlackLineAndHindWithFlag:(BOOL)flag;
+//改变状态了颜色 YES:黑色  NO:白色
+-(void)changeStatusBarStyleWithFlag:(BOOL)flag;
 @end

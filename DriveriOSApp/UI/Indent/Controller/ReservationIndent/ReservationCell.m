@@ -92,7 +92,7 @@
     [self.bgView addSubview:self.timeText];
     
     /** 打电话按钮 */
-    self.callBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(500), MATCHSIZE(20), MATCHSIZE(60), MATCHSIZE(60)) image:[UIImage imageNamed:@"phone"]];
+    self.callBtn = [FactoryClass buttonWithFrame:CGRectMake(SCREEN_W - MATCHSIZE(170), MATCHSIZE(20), MATCHSIZE(60), MATCHSIZE(60)) image:[UIImage imageNamed:@"phone"]];
     
     //打电话
     [[self.callBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
@@ -125,7 +125,7 @@
     
     self.bCarText.text = model.endName;
     
-    self.timeLab.text = model.time;
+    self.timeText.text = model.time;
     
 }
 

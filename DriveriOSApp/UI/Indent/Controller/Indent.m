@@ -83,8 +83,18 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
+ 
+    [self useMethodToFindBlackLineAndHindWithFlag:NO];
+    
+    //背景颜色
+    [self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
+    
+    //显示的颜色
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
     //状态栏变白
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self changeStatusBarStyleWithFlag:NO];
+
 
 }
 
@@ -96,10 +106,9 @@
     self.title = @"丽新专车";
     
     //状态栏变黑
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    [self changeStatusBarStyleWithFlag:YES];
     //去掉导航栏下划线
-    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+    [self useMethodToFindBlackLineAndHindWithFlag:YES];
     
     //不透明
     self.navigationController.navigationBar.translucent = NO;
@@ -298,9 +307,7 @@
     [self.indentTool clearRouteWithBlock:^{
         //移除路径
     AMPublicTools *amTool = [AMPublicTools shareInstance];
-        [amTool clearRouteWithBlock:^{
-            
-        }];
+        [amTool clearRouteWithBlock:nil];
     }];
 }
 

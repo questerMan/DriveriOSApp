@@ -99,6 +99,8 @@ static NSTimeInterval acceptIndentCount;
     return _netWorkingManage;
 }
 
+
+
 - (NSTimer *)acceptIndentTimer
 {
     if (_acceptIndentTimer == nil) {
@@ -232,7 +234,7 @@ static NSTimeInterval acceptIndentCount;
     [indent.view addSubview:self.instantHeadView];
     
     [indent.view addSubview:self.acceptIndentBtn];
-    
+        
     acceptIndentCount = 10;
     
     [self.acceptIndentTimer fire];

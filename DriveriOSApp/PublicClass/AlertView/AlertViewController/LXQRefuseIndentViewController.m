@@ -103,6 +103,7 @@ static NSString* ID = @"refuseIndent";
     tableView.dataSource = self;
     tableView.delegate = self;
     [tableView registerClass:[LXQTableViewCell class] forCellReuseIdentifier:ID];
+    tableView.rowHeight = MATCHSIZE(100);
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.showsVerticalScrollIndicator = NO;
     tableView.scrollEnabled = NO;
