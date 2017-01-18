@@ -7,6 +7,7 @@
 //
 
 #import "IndentPublicViewTools.h"
+#import "AMMapView.h"
 #import "DeleteIndentAlert.h"
 #import "PublicTool.h"
 #import "AlertView.h"
@@ -325,6 +326,7 @@ static NSTimeInterval acceptIndentCount;
     
     if (isInstantIndent) {
         [self getInstantData];
+        [self.tableView reloadData];
     }
     else
     {
@@ -369,15 +371,12 @@ static NSTimeInterval acceptIndentCount;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-//  [self showHint:@"页面未搭建完成"];
+    //[self showHint:@"页面未搭建完成"];
     IndentData* data = self.arrayData[indexPath.row];
     [self.arrayData removeAllObjects];
     [self.arrayData addObject:data];
     [tableView reloadData];
 }
-
-
 
 #pragma mark - 隐藏预约单页面的view
 -(void)hideReservationIndentAllView{
@@ -390,6 +389,7 @@ static NSTimeInterval acceptIndentCount;
 
     }];
 }
+
 #pragma mark - 显示预约单页面的view
 -(void)showReservationIndentAllView{
 
@@ -397,7 +397,6 @@ static NSTimeInterval acceptIndentCount;
     
     [UIView animateWithDuration:0.8 animations:^{
         self.tableView.y = MATCHSIZE(90);
-
     } completion:^(BOOL finished) {
         
     }];
@@ -435,16 +434,6 @@ static NSTimeInterval acceptIndentCount;
             [self hideWaitIndentAllView];
             [self hideInstantIndentAllView];
             break;
-        
-            //已接单
-        case 53:
-//            显示
-            [self addReservationIndentWithIndent:indent isInstantIndent:YES];
-            [self showReservationIndentAllView];
-            
-            //隐藏
-            [self hideWaitIndentAllView];
-            [self hideInstantIndentAllView];
             
         default:
             [self hideWaitIndentAllView];
@@ -454,5 +443,26 @@ static NSTimeInterval acceptIndentCount;
     }
 }
 
+- (void)changeMapStateWithMapIndentState: (MapIndentState)mapIndentState{
+    
+    [self implementAllMethodWithIndent:99 andIndent:self.indentController];
+    
+    switch (mapIndentState) {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        //已接单
+        case 3:
+            //显示
+            [self addReservationIndentWithIndent:_indentController isInstantIndent:YES];
+            [self showReservationIndentAllView];
+            break;
+        default:
+            break;
+    }
+}
 
 @end
