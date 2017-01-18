@@ -229,7 +229,7 @@ static NSTimeInterval acceptIndentCount;
 
 
 #pragma mark - 即时单
--(void)addInstantIndentWithIndent:(UIViewController *)indent{
+-(void)addInstantIndentWithIndent:(UIViewController *)indent {
     
     [indent.view addSubview:self.instantHeadView];
     
@@ -319,15 +319,18 @@ static NSTimeInterval acceptIndentCount;
 }
 
 #pragma mark - 预约单
--(void)addReservationIndentWithIndent:(UIViewController *)indent{
+-(void)addReservationIndentWithIndent:(UIViewController *)indent isInstantIndent:(BOOL)isInstantIndent{
     
-    //获取预约单table数据
-    [self getReservationData];
+    if (isInstantIndent) {
+        [self getstantIndentData];
+    }else{
+        //获取预约单table数据
+        [self getReservationData];
+    }
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = MATCHSIZE(310);
     [indent.view addSubview:self.tableView];
-    
 }
 
 
@@ -404,7 +407,7 @@ static NSTimeInterval acceptIndentCount;
             break;
         case 2:
             //显示
-            [self addReservationIndentWithIndent:indent];
+            [self addReservationIndentWithIndent:indent isInstantIndent:NO];
             [self showReservationIndentAllView];
             //隐藏
             [self hideWaitIndentAllView];
@@ -429,6 +432,28 @@ static NSTimeInterval acceptIndentCount;
     [self.netWorkingManage getInstantIndentWithBlock:^(NSArray *array) {
         self.instantHeadView.model = array[0];
     }];
+}
+
+- (void)changeMapStateWithMapIndentState: (MapIndentState)mapIndentState{
+    
+    [self implementAllMethodWithIndent:99 andIndent:self.indentController];
+    
+    switch (mapIndentState) {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+            //已接单
+        case 3:
+            //显示
+            [self addReservationIndentWithIndent:_indentController isInstantIndent:YES];
+            [self showReservationIndentAllView];
+            break;
+        default:
+            break;
+    }
 }
 
 @end
