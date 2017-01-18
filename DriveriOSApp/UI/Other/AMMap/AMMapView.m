@@ -103,8 +103,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
     if (!_centerLocationIMG) {
         UIImage *image = [UIImage imageNamed:@"map60"];
         _centerLocationIMG = [[UIImageView alloc] initWithImage:image];
-        _centerLocationIMG.center = self.mapView.center;
-        _centerLocationIMG.y -= MATCHSIZE(150);
     }
     return _centerLocationIMG;
 }
@@ -209,6 +207,12 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 
 -(void)creatCenterLocationIMG{
     [self.mapView addSubview:self.centerLocationIMG];
+    
+    [self.centerLocationIMG mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.offset(0);
+        make.centerY.offset(MATCHSIZE(-50));
+
+    }];
 }
 
 -(void)creatLocationBtn{
