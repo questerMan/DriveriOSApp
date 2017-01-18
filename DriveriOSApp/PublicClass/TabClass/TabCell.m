@@ -44,7 +44,7 @@
     }];
     
     self.indentStateIMG = [[UIImageView alloc] init];
-    self.indentStateIMG.image = [UIImage imageNamed:@"indent_up"];
+    self.indentStateIMG.image = [UIImage imageNamed:@"up"];
     self.indentStateIMG.hidden = YES;
     [self addSubview:self.indentStateIMG];
     [self.indentStateIMG mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -78,7 +78,7 @@
                 self.indentStateIMG.hidden = NO;
                 
                 if(model.indentState.intValue == 0){
-                    self.indentStateIMG.image = [UIImage imageNamed:@"indent_up"];
+                    self.indentStateIMG.image = [UIImage imageNamed:@"up"];
                 }else{
                     self.indentStateIMG.image = [UIImage imageNamed:@"indent_down"];
                 }

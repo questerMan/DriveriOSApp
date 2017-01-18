@@ -31,7 +31,6 @@
 		824F5EAE1E077B99004B33EE /* driver_car@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F5EAD1E077B99004B33EE /* driver_car@2x.png */; };
 		8259F9251E09030A003E6350 /* guide@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8259F9241E09030A003E6350 /* guide@2x.png */; };
 		825F20651DF585A5001800B3 /* TabModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 825F20641DF585A5001800B3 /* TabModel.m */; };
-		8260F69B1DF8526800B4EB79 /* phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8260F69A1DF8526800B4EB79 /* phone@2x.png */; };
 		82620A5D1E1C9C4700219C5D /* CustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82620A581E1C9C4700219C5D /* CustomCalloutView.m */; };
 		82620A5E1E1C9C4700219C5D /* DriverAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82620A5A1E1C9C4700219C5D /* DriverAnnotationView.m */; };
 		82620A5F1E1C9C4700219C5D /* DriverPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 82620A5C1E1C9C4700219C5D /* DriverPointAnnotation.m */; };
@@ -328,7 +327,6 @@
 		8259F9241E09030A003E6350 /* guide@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide@2x.png"; sourceTree = "<group>"; };
 		825F20631DF585A5001800B3 /* TabModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabModel.h; sourceTree = "<group>"; };
 		825F20641DF585A5001800B3 /* TabModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabModel.m; sourceTree = "<group>"; };
-		8260F69A1DF8526800B4EB79 /* phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone@2x.png"; sourceTree = "<group>"; };
 		82620A571E1C9C4700219C5D /* CustomCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCalloutView.h; sourceTree = "<group>"; };
 		82620A581E1C9C4700219C5D /* CustomCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCalloutView.m; sourceTree = "<group>"; };
 		82620A591E1C9C4700219C5D /* DriverAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriverAnnotationView.h; sourceTree = "<group>"; };
@@ -1980,7 +1978,6 @@
 				82E7CCE41E0230350072E874 /* pwdIMG@2x.png */,
 				826E7B191DF9B33400CB3AFE /* end@2x.png */,
 				826E7B1A1DF9B33400CB3AFE /* start@2x.png */,
-				8260F69A1DF8526800B4EB79 /* phone@2x.png */,
 				828778BC1DF5C3DF00DCADBF /* history@2x.png */,
 				828BF64E1DF15A37004D6946 /* centerLocation@2x.png */,
 				821B7C941DEEA98B006DFBF8 /* location@2x.png */,
@@ -2451,7 +2448,6 @@
 				8274A3E21E2C6BA8005A5B3A /* indent_down@2x.png in Resources */,
 				82E465F71DE90B9F00432E88 /* Assets.xcassets in Resources */,
 				82E7CCED1E02806E0072E874 /* iPhone@2x.png in Resources */,
-				8260F69B1DF8526800B4EB79 /* phone@2x.png in Resources */,
 				82AF40BA1DE9404D001F0066 /* set@2x.png in Resources */,
 				826E7B1C1DF9B33400CB3AFE /* start@2x.png in Resources */,
 				826E7B1B1DF9B33400CB3AFE /* end@2x.png in Resources */,
