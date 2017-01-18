@@ -36,9 +36,18 @@
 
 @property (nonatomic, strong) NSMutableArray *arrryData;
 
+@property (nonatomic, strong) NetWorkingManage *netManage;
+
 @end
 
 @implementation Indent
+
+-(NetWorkingManage *)netManage{
+    if (!_netManage) {
+        _netManage = [NetWorkingManage shareInstance];
+    }
+    return _netManage;
+}
 
 -(AMPublicTools *)tool{
     if (!_tool) {
@@ -176,7 +185,7 @@
     
 }
 #pragma mark - 获取tab数据
--(NSMutableArray *)getTabDataWithCount:(NSString *)count{
+-(NSMutableArray *)getTabData{
     
     NSError*error;
     //获取文件路径
@@ -211,19 +220,20 @@
     
     TabClass *tabClass = [[TabClass alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, MATCHSIZE(80))];
     //获取tab数据
-    NSMutableArray *arrData = [self getTabDataWithCount:@"2"];
-    [tabClass getTabTitleDataWithArray:arrData];
-    
-    //显示第一个tab(获取第一个tab的type)
-    TabModel *mode = arrData[0];
-    int type = [mode.type intValue];
-    //默认显示第一个tab（等单）的view
-    [self.indentTool implementAllMethodWithIndent:type andIndent:self];
-    
-    [self.view addSubview:tabClass];
-    
-    
     __weak typeof(self) weakSelf = self;
+    [self.netManage getTabDataWithBlock:^(NSArray *array) {
+            [tabClass getTabTitleDataWithArray:array];
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        if(array.count > 0){
+            //显示第一个tab(获取第一个tab的type)
+            TabModel *mode = array[0];
+            int type = [mode.type intValue];
+            //默认显示第一个tab（等单）的view
+            [strongSelf.indentTool implementAllMethodWithIndent:type andIndent:self];
+        }
+    }];
+
+    [self.view addSubview:tabClass];
     
     [tabClass didSelectTabWithBlock:^(NSString *type) {
         

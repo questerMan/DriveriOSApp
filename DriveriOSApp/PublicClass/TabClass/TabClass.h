@@ -18,6 +18,6 @@ typedef void (^TabClassBlock) (NSString *type);
 -(void)didSelectTabWithBlock:(TabClassBlock)block;
 
 /** 获取tab数据 */
--(void)getTabTitleDataWithArray:(NSMutableArray *)arrayData;
+-(void)getTabTitleDataWithArray:(NSArray *)arrayData;
 
 @end

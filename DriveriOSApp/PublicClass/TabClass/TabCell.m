@@ -33,34 +33,44 @@
     self.isSelectItem = NO;
     
     self.countLabel = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(20) textColor:[UIColor whiteColor] numberOfLine:1 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor grayColor]];
-    self.countLabel.layer.cornerRadius = MATCHSIZE(15);
+    self.countLabel.layer.cornerRadius = MATCHSIZE(10);
     self.countLabel.layer.masksToBounds = YES;
     self.countLabel.hidden = YES;
     [self addSubview:self.countLabel];
-    [self.countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView).offset(0);
-        make.top.equalTo(self.contentView).offset(2);
-        make.width.offset(MATCHSIZE(30));
-        make.height.offset(MATCHSIZE(30));
-    }];
+    
     
     self.indentStateIMG = [[UIImageView alloc] init];
     self.indentStateIMG.image = [UIImage imageNamed:@"up"];
     self.indentStateIMG.hidden = YES;
     [self addSubview:self.indentStateIMG];
-    [self.indentStateIMG mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView).offset(0);
-        make.bottom.equalTo(self.contentView).offset(-2);
-        make.width.offset(MATCHSIZE(30));
-        make.height.offset(MATCHSIZE(30));
-    }];
+    
     
 }
 
 
 -(void)setModel:(TabModel *)model{
     _model = model;
-        
+    
+    [self.lable mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(MATCHSIZE(40));
+        make.top.equalTo(self.contentView).offset(0);
+        make.bottom.equalTo(self.contentView).offset(0);
+        make.width.offset(model.witld+MATCHSIZE(1));
+    }];
+    
+    [self.countLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(model.witld+MATCHSIZE(40));
+        make.top.equalTo(self.contentView).offset(8);
+        make.width.offset(MATCHSIZE(20));
+        make.height.offset(MATCHSIZE(20));
+    }];
+    
+    [self.indentStateIMG mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.contentView).offset(MATCHSIZE(-40));
+        make.centerY.offset(0);
+        make.width.offset(MATCHSIZE(20));
+        make.height.offset(MATCHSIZE(10));
+    }];
     self.lable.text = model.title;
     
     if (self.isSelectItem == YES) {
@@ -70,7 +80,7 @@
         self.lable.textColor = TAB_SELECT_TEXTCOLOR;
 
     }
-    
+    //在预约单、接机单、送机单有状态标注
     if(model.indentCount != nil){
         if ([model.indentCount intValue] > 0) {
             

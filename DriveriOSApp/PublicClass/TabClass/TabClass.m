@@ -122,10 +122,10 @@
 }
 
 #pragma mark - 获取tab数据
--(void)getTabTitleDataWithArray:(NSMutableArray *)arrayData{
+-(void)getTabTitleDataWithArray:(NSArray *)arrayData{
 
     //获取数据
-    self.arrayData = arrayData;
+    self.arrayData = [NSMutableArray arrayWithArray:arrayData];
     
     //刷行
     [self.collectionView reloadData];

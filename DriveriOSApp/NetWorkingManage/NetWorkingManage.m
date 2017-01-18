@@ -71,6 +71,19 @@
         TabModel *modelTab = [TabModel new];
         modelTab.title = dict[@"name"];
         modelTab.type = dict[@"type"];
+        modelTab.witld = [PublicTool lengthofStr:dict[@"name"]AndSystemFontOfSize:MATCHSIZE(36)];
+        if ([modelTab.type intValue] == 2 || [modelTab.type intValue] == 3 || [modelTab.type intValue] == 4) {
+            
+            CGFloat witlds = modelTab.witld + MATCHSIZE(40)*2+ MATCHSIZE(40);
+            modelTab.size = CGSizeMake(witlds, MATCHSIZE(80));
+            
+        }else{
+            
+            CGFloat witlds = modelTab.witld + MATCHSIZE(40)*2;
+            modelTab.size = CGSizeMake(witlds, MATCHSIZE(80));
+            
+        }
+
         NSArray *arr = [dict objectForKey:@"indentArr"];
         if(arr.count > 0){
             modelTab.indentCount = [NSString stringWithFormat:@"%ld",arr.count];
