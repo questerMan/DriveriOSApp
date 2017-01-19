@@ -60,8 +60,7 @@
 
 //=======缓存=======
 #define UserDefault [NSUserDefaults  standardUserDefaults]
-//=======默认字体=======
-#define FontDefault [UIFont systemFontOfSize:MATCHSIZE(30)]
+
 //=======YYCache=======
 #define CACHE_DATA @"CACHEDATA"
 //=======搜索历史记录=======

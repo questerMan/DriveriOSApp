@@ -239,9 +239,18 @@
 }
 #pragma mark - 保存搜索历史纪录
 -(void)saveSearchHistory{
+    //为空的不保存
     if (self.searchBar.text.length == 0 || self.searchBar.text == nil) {
         return;
     }
+    //相同的不保存
+    NSArray *array = [NSMutableArray arrayWithArray:[CacheClass getUserSearchHistory]];
+    for (NSString *str in array) {
+        if ([self.searchBar.text isEqualToString:str]) {
+            return;
+        }
+    }
+    
     NSArray *historyArray = [CacheClass getUserSearchHistory];
     NSMutableArray *arrHistory = [NSMutableArray arrayWithArray:historyArray];
     [arrHistory insertObject:self.searchBar.text atIndex:0];

@@ -17,6 +17,9 @@
 @property (nonatomic, copy) NSString *indentCount;
 //上下拉状态（0：向上（上拉）； 1:向下（下拉））
 @property (nonatomic, copy) NSString *indentState;
+
+@property (nonatomic, assign) CGFloat witld;
+
 //计算cell的大小
 @property (nonatomic, assign) CGSize size;
 

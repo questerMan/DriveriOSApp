@@ -5,6 +5,8 @@
 //  Created by lixin on 16/11/28.
 //  Copyright © 2016年 陆遗坤. All rights reserved.
 //
+//=======默认字体=======
+#define FontDefault [UIFont systemFontOfSize:MATCHSIZE(28)]
 
 #import "InstantHeadView.h"
 
@@ -20,7 +22,10 @@
 }
 
 -(void)creatUI{
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = UIColorFromRGB(@"#ffffff");
+    self.layer.borderWidth = MATCHSIZE(1.5);
+    self.layer.borderColor = UIColorFromRGB(@"#cccccc").CGColor;
+    
     
     self.startIMG = [[UIImageView alloc] initWithFrame:CGRectMake(MATCHSIZE(20), MATCHSIZE(20), MATCHSIZE(40), MATCHSIZE(40))];
     self.startIMG.image = [UIImage imageNamed:@"start"];
@@ -66,5 +71,7 @@
     self.startAddress.text = model.startName;
     
     self.endAddress.text = model.endName;
+    
+    
 }
 @end
