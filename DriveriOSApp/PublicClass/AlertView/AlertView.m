@@ -15,7 +15,6 @@
 #import "LoginView.h"
 #import "DeleteIndentAlert.h"
 #import "LimitLoginAlert.h"
-#import "LXQRefuseIndentViewController.h"
 
 @interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate,LimitLoginAlertDelegate>
 
@@ -41,7 +40,6 @@
 
 @property (nonatomic, strong) LimitLoginAlert *limitLoginAlert;
 
-@property (nonatomic, strong) LXQRefuseIndentViewController *indentRefuseAlert;
 @end
 
 @implementation AlertView
@@ -107,17 +105,7 @@
     return _limitLoginAlert;
 }
 
--(LXQRefuseIndentViewController *)indentRefuseAlert
-{
-    if (!_indentRefuseAlert) {
-        _indentRefuseAlert = [[LXQRefuseIndentViewController alloc] init];
-        __weak typeof(self) weakSelf = self;
-        _indentRefuseAlert.closeAlert = ^(){
-            [weakSelf closeAlertView];
-        };
-    }
-    return _indentRefuseAlert;
-}
+
 
 //直接调用该方法一般用于固定 view 的展示
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
@@ -229,6 +217,14 @@
     self.alertView.userInteractionEnabled = YES;
     
     [self.alertView addSubview:controller.view];
+    
+    [controller.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(0);
+        make.bottom.offset(0);
+        make.left.offset(0);
+        make.right.offset(0);
+    }];
+    
     [self addSubview:self.alertView];
     
     [UIView animateWithDuration:0.5 animations:^{
@@ -298,13 +294,10 @@
             make.bottom.equalTo(self).offset(-MATCHSIZE(60));
         }];
         
+       
     }else if (_addAlertViewType == AlertViewTypeLimitLoginAlert){
         [self initAlertViewWithViewController:self.limitLoginAlert];
         self.alertView.frame = CGRectMake(MATCHSIZE(130), MATCHSIZE(400), SCREEN_W - MATCHSIZE(260), MATCHSIZE(370));
-    }else if (_addAlertViewType == AlertViewTypeIndentRefuseAlert){
-        
-        [self initAlertViewWithViewController:self.indentRefuseAlert];
-        self.alertView.frame = CGRectMake(MATCHSIZE(20), MATCHSIZE(40), SCREEN_W - MATCHSIZE(40),SCREEN_H - MATCHSIZE(90));
     }
     
     

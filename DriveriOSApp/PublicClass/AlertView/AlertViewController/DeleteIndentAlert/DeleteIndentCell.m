@@ -27,9 +27,9 @@
     line.frame = CGRectMake(MATCHSIZE(0), MATCHSIZE(98), SELF_W, MATCHSIZE(2));
     [self addSubview:line];
     
-    self.titleLab = [FactoryClass labelWithText:nil fontSize:MATCHSIZE(30) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor clearColor]];
+    self.titleLab = [FactoryClass labelWithText:nil fontSize:MATCHSIZE(35) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor clearColor]];
     self.textLabel.textColor = [UIColor blackColor];
-    self.titleLab.frame = CGRectMake(MATCHSIZE(0), MATCHSIZE(0), SELF_W, MATCHSIZE(98));
+    self.titleLab.frame = CGRectMake(MATCHSIZE(0), MATCHSIZE(0), SCREEN_W - MATCHSIZE(136), MATCHSIZE(98));
     [self addSubview:self.titleLab];
     
 }

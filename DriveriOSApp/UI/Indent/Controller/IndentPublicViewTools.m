@@ -298,7 +298,7 @@ static BOOL timeFlag = NO;
 
 - (void)presentRefuseIndent
 {
-    AlertView* alertV = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeIndentRefuseAlert];
+    AlertView* alertV = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeDeleteIndentAlert];
     [alertV alertViewShow];
     
     [self.acceptIndentTimer invalidate];
