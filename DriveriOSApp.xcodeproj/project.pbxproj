@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040F79B61E2F5C2300C8F227 /* LXQRecevingIndentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */; };
 		048C885A1E2DC76E006A58E2 /* LXQRefuseIndentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048C88591E2DC76E006A58E2 /* LXQRefuseIndentViewController.m */; };
 		048C885D1E2DC786006A58E2 /* LXQTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048C885C1E2DC786006A58E2 /* LXQTableViewCell.m */; };
 		048C88611E2DC888006A58E2 /* LXQRefuseIndentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 048C88601E2DC888006A58E2 /* LXQRefuseIndentItem.m */; };
@@ -286,6 +287,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		040F79B41E2F5C2300C8F227 /* LXQRecevingIndentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQRecevingIndentView.h; path = DriveriOSApp/UI/Indent/LXQRecevingIndentView.h; sourceTree = SOURCE_ROOT; };
+		040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQRecevingIndentView.m; path = DriveriOSApp/UI/Indent/LXQRecevingIndentView.m; sourceTree = SOURCE_ROOT; };
 		048C88581E2DC76E006A58E2 /* LXQRefuseIndentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQRefuseIndentViewController.h; sourceTree = "<group>"; };
 		048C88591E2DC76E006A58E2 /* LXQRefuseIndentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQRefuseIndentViewController.m; sourceTree = "<group>"; };
 		048C885B1E2DC786006A58E2 /* LXQTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQTableViewCell.h; sourceTree = "<group>"; };
@@ -1421,6 +1424,8 @@
 		82AF3EC41DE91354001F0066 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				040F79B41E2F5C2300C8F227 /* LXQRecevingIndentView.h */,
+				040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2715,6 +2720,7 @@
 				8295460A1E23897F009D9C62 /* PublicTools.m in Sources */,
 				82E6F15D1DF69AA60099A7CE /* PublicTool.m in Sources */,
 				82AF40401DE92477001F0066 /* EMSDWebImageDownloaderOperation.m in Sources */,
+				040F79B61E2F5C2300C8F227 /* LXQRecevingIndentView.m in Sources */,
 				82AF40351DE92477001F0066 /* MWGridViewController.m in Sources */,
 				82AF403B1DE92477001F0066 /* DACircularProgressView.m in Sources */,
 				82AF40361DE92477001F0066 /* MWPhoto.m in Sources */,

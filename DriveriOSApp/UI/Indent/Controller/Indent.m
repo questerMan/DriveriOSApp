@@ -279,8 +279,8 @@
         
         [strongSelf.navigationController pushViewController:amSearch animated:YES];
     }];
-    
 }
+
 #pragma mark - 等单页面导航页跳转
 -(void)pusToNavigationMap{
     __weak typeof(self) weakSelf = self;
@@ -299,9 +299,9 @@
         }else{
             [strongSelf showHint:@"导航信息有误！"];
         }
-        
     }];
 }
+
 #pragma mark - 移除驾车路径
 -(void)clearRoute{
     [self.indentTool clearRouteWithBlock:^{

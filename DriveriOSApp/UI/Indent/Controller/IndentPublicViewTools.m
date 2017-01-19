@@ -9,12 +9,17 @@
 #import "IndentPublicViewTools.h"
 #import "DeleteIndentAlert.h"
 #import "AlertView.h"
+#import "LXQRecevingIndentView.h"
 static NSTimeInterval acceptIndentCount;
 
 @interface IndentPublicViewTools()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) NetWorkingManage *netWorkingManage;
 
 @property (nonatomic, weak) NSTimer* acceptIndentTimer;
+
+@property (nonatomic, weak) UIButton* determinedBtn;
+
+@property (nonatomic, weak) LXQRecevingIndentView* recevingIndentView;
 
 @end
 
@@ -92,6 +97,7 @@ static NSTimeInterval acceptIndentCount;
     }
     return _instantHeadView;
 }
+
 -(NetWorkingManage *)netWorkingManage{
     if (!_netWorkingManage) {
         _netWorkingManage = [NetWorkingManage shareInstance];
@@ -121,6 +127,18 @@ static NSTimeInterval acceptIndentCount;
     return _acceptIndentTimer;
 }
 
+- (LXQRecevingIndentView *)recevingIndentView
+{
+    if (!_recevingIndentView) {
+        LXQRecevingIndentView* recevingView = [[LXQRecevingIndentView alloc] initWithFrame:CGRectMake(MATCHSIZE(20), MATCHSIZE(90), SCREEN_W - MATCHSIZE(40), MATCHSIZE(240))];
+        recevingView.layer.cornerRadius = MATCHSIZE(8);
+        recevingView.layer.masksToBounds = YES;
+        recevingView.hidden = YES;
+        [self.indentController.view addSubview:recevingView];
+        _recevingIndentView = recevingView;
+    }
+    return _recevingIndentView;
+}
 
 /** 单例 */
 + (IndentPublicViewTools *)shareInstance{
@@ -132,7 +150,6 @@ static NSTimeInterval acceptIndentCount;
     });
     return shareTools;
 }
-
 
 #pragma mark - 等单
 -(void)addWaitIndentWithIndent:(UIViewController *)indent{
@@ -146,7 +163,6 @@ static NSTimeInterval acceptIndentCount;
     [indent.view addSubview:self.cancelBtn];
     
     [self buttonOfIndent];
-
 }
 
 -(void)buttonOfIndent{
@@ -170,6 +186,7 @@ static NSTimeInterval acceptIndentCount;
         
         self.startNavigation.hidden = YES;
         self.cancelBtn.hidden = YES;
+        
     }];
     
     //如果seachTextF有值时显示导航按钮
@@ -212,14 +229,15 @@ static NSTimeInterval acceptIndentCount;
 -(void)pusToNavigationMapWithNavigationMapBlock:(IndentPublicViewToolsPusToNavigationMapBlock) navigationMapBlock{
     _navigationMapBlock = navigationMapBlock;
 }
+
 #pragma mark - 隐藏等单页面的view
 -(void)hideWaitIndentAllView{
     
     self.seachTextF.hidden = YES;
     self.startNavigation.hidden = YES;
     self.cancelBtn.hidden = YES;
-    
 }
+
 #pragma mark - 显示等单页面的view
 -(void)showWaitIndentAllView{
     
@@ -240,8 +258,6 @@ static NSTimeInterval acceptIndentCount;
     [self.acceptIndentTimer fire];
     
     [[self.acceptIndentBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        
-        
         [self presentOrderReceiving];
     }];
     //获取即时单数据
@@ -251,10 +267,13 @@ static NSTimeInterval acceptIndentCount;
 
 - (void)presentOrderReceiving{
     UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:nil message:@"接单成功!正在拨打乘客的电话，请检查车上服务用品，尽快前往上车点" preferredStyle:UIAlertControllerStyleAlert];
+    [self.acceptIndentTimer invalidate];
     [self.indentController presentViewController:alertVc animated:YES completion:nil];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [alertVc dismissFromViewController:self.indentController andAnimated:YES];
+        [self changeMapStateWithMapIndentState:MapIndentStateHaveIndent];
     });
+    
 }
 
 - (void)presentRefuseIndent
@@ -315,24 +334,21 @@ static NSTimeInterval acceptIndentCount;
         self.acceptIndentBtn.hidden = NO;
         
     }];
-    
 }
 
 #pragma mark - 预约单
--(void)addReservationIndentWithIndent:(UIViewController *)indent isInstantIndent:(BOOL)isInstantIndent{
+-(void)addReservationIndentWithIndent:(UIViewController *)indent{
     
-    if (isInstantIndent) {
-        [self getstantIndentData];
-    }else{
-        //获取预约单table数据
-        [self getReservationData];
-    }
+
+    //获取预约单table数据
+    [self getReservationData];
+    
+    [self.tableView reloadData];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = MATCHSIZE(310);
     [indent.view addSubview:self.tableView];
 }
-
 
 #pragma mark - 预约单tableView代理方法
 
@@ -352,11 +368,16 @@ static NSTimeInterval acceptIndentCount;
     cell.model = self.arrayData[indexPath.row];
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [self showHint:@"页面未搭建完成"];
-
+//    IndentData* data = self.arrayData[indexPath.row];
+//    [self.arrayData removeAllObjects];
+//    [self.arrayData addObject:data];
+//    [tableView reloadData];
 }
+
 #pragma mark - 隐藏预约单页面的view
 -(void)hideReservationIndentAllView{
     
@@ -368,6 +389,7 @@ static NSTimeInterval acceptIndentCount;
 
     }];
 }
+
 #pragma mark - 显示预约单页面的view
 -(void)showReservationIndentAllView{
 
@@ -383,6 +405,8 @@ static NSTimeInterval acceptIndentCount;
 
 #pragma mark - tab点击显示相应的View
 -(void)implementAllMethodWithIndent:(int)type andIndent:(UIViewController *)indent{
+    
+    [self hideMapStateChange];
     // 点击取消第一响应
     [self.seachTextF resignFirstResponder];
     
@@ -407,7 +431,7 @@ static NSTimeInterval acceptIndentCount;
             break;
         case 2:
             //显示
-            [self addReservationIndentWithIndent:indent isInstantIndent:NO];
+            [self addReservationIndentWithIndent:indent];
             [self showReservationIndentAllView];
             //隐藏
             [self hideWaitIndentAllView];
@@ -415,45 +439,80 @@ static NSTimeInterval acceptIndentCount;
             break;
             
         default:
-            [self hideWaitIndentAllView];
-            [self hideInstantIndentAllView];
-            [self hideReservationIndentAllView];
+            [self hideIndentClass];
             break;
     }
 }
+
 //获取预约单table数据
 -(void)getReservationData{
     [self.netWorkingManage getReservationIndentWithBlock:^(NSArray *array) {
+        [self.arrayData removeAllObjects];
         [self.arrayData addObjectsFromArray:array];
     }];
 }
+
 //获取即时单数据
 -(void)getstantIndentData{
     [self.netWorkingManage getInstantIndentWithBlock:^(NSArray *array) {
         self.instantHeadView.model = array[0];
+//        [self.arrayData addObject:array[0]];
+        self.recevingIndentView.model = array[0];
     }];
 }
 
 - (void)changeMapStateWithMapIndentState: (MapIndentState)mapIndentState{
     
-    [self implementAllMethodWithIndent:99 andIndent:self.indentController];
+    [self hideIndentClass];
     
     switch (mapIndentState) {
-        case 0:
+        case MapIndentStateWait:
+            [self hideRecevingIndentView];
             break;
-        case 1:
+        case MapIndentStateWaitNavigation:
+            [self hideRecevingIndentView];
             break;
-        case 2:
+        case MapIndentStateWaitingList:
+            [self hideRecevingIndentView];
             break;
             //已接单
-        case 3:
-            //显示
-            [self addReservationIndentWithIndent:_indentController isInstantIndent:YES];
-            [self showReservationIndentAllView];
+        case MapIndentStateHaveIndent:
+            [self showRecevingIndentView];
             break;
         default:
+            [self hideMapStateChange];
             break;
     }
+}
+
+- (void)showRecevingIndentView{
+    
+    self.recevingIndentView.hidden = NO;
+    [UIView animateWithDuration:0.8 animations:^{
+        self.recevingIndentView.y = MATCHSIZE(90);
+    }];
+}
+
+- (void)hideRecevingIndentView{
+    [UIView animateWithDuration:0.8 animations:^{
+        self.recevingIndentView.y = 0;
+    }completion:^(BOOL finished) {
+        self.recevingIndentView.hidden = YES;
+    }];
+}
+
+- (void)hideMapStateChange{
+    [self hideRecevingIndentView];
+}
+
+- (void)hideIndentClass{
+    [self hideWaitIndentAllView];
+    [self hideInstantIndentAllView];
+    [self hideReservationIndentAllView];
+}
+
+- (void)setNavigationBtnAndDetermineBtn{
+    
 }
 
 @end
