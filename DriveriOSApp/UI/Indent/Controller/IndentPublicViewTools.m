@@ -18,6 +18,9 @@ static NSTimeInterval acceptIndentCount;
 
 @end
 
+//标志Yes已经点击接单按钮在此过程中保持接单倒计时定时器不会中断而重启  yes定时器启动 NO定时器关闭
+static BOOL timeFlag = NO;
+
 @implementation IndentPublicViewTools
 
 -(UITableView *)tableView{
@@ -75,8 +78,8 @@ static NSTimeInterval acceptIndentCount;
 }
 -(UIButton *)acceptIndentBtn{
     if (!_acceptIndentBtn) {
-        _acceptIndentBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40),SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*2), MATCHSIZE(60)) Title:@"接单" backGround:[UIColor whiteColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
-        [_acceptIndentBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        _acceptIndentBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40),SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*2), MATCHSIZE(60)) Title:@"接单" backGround:UIColorFromRGB(@"#ff6d00") tintColor:UIColorFromRGB(@"#ff6d00") cornerRadius:MATCHSIZE(40)];
+        [_acceptIndentBtn setTitleColor:UIColorFromRGB(@"#ffffff") forState:UIControlStateNormal];
         _acceptIndentBtn.hidden = YES;
     }
     return _acceptIndentBtn;
@@ -85,7 +88,7 @@ static NSTimeInterval acceptIndentCount;
 
 -(InstantHeadView *)instantHeadView{
     if (!_instantHeadView) {
-        _instantHeadView = [[InstantHeadView alloc] initWithFrame:CGRectMake(MATCHSIZE(20), MATCHSIZE(90), SCREEN_W - MATCHSIZE(40), MATCHSIZE(140))];
+        _instantHeadView = [[InstantHeadView alloc] initWithFrame:CGRectMake(MATCHSIZE(20), MATCHSIZE(90), SCREEN_W - MATCHSIZE(40), MATCHSIZE(136))];
         _instantHeadView.layer.cornerRadius = MATCHSIZE(8);
         _instantHeadView.layer.masksToBounds = YES;
         _instantHeadView.hidden = YES;
@@ -104,8 +107,10 @@ static NSTimeInterval acceptIndentCount;
 - (NSTimer *)acceptIndentTimer
 {
     if (_acceptIndentTimer == nil) {
+        
         NSTimer* timer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
-            [self.acceptIndentBtn setTitle:[NSString stringWithFormat:@"接单(%.0f)",acceptIndentCount] forState:UIControlStateNormal];
+
+            [self.acceptIndentBtn setTitle:[NSString stringWithFormat:@"接单 %.0fs",acceptIndentCount] forState:UIControlStateNormal];
             if (acceptIndentCount > 0) {
                 acceptIndentCount --;
             }
@@ -240,9 +245,19 @@ static NSTimeInterval acceptIndentCount;
     [self.acceptIndentTimer fire];
     
     [[self.acceptIndentBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        
-        
         [self presentOrderReceiving];
+        //按钮状态显示“接单”
+        [self.acceptIndentBtn setTitle:@"接单" forState:UIControlStateNormal];
+        //取消定时器
+        [self.acceptIndentTimer invalidate];
+        self.acceptIndentTimer = nil;
+    }];
+    
+    [self.acceptIndentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(indent.view).offset(0);
+        make.bottom.equalTo(indent.view).offset(MATCHSIZE(-75));
+        make.width.offset(MATCHSIZE(600));
+        make.height.offset(MATCHSIZE(80));
     }];
     //获取即时单数据
     [self getstantIndentData];
@@ -263,6 +278,7 @@ static NSTimeInterval acceptIndentCount;
     [alertV alertViewShow];
     
     [self.acceptIndentTimer invalidate];
+    self.acceptIndentTimer = nil;
 }
 
 //获取当前可视控制器
