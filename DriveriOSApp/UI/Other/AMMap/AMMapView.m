@@ -628,9 +628,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 - (void)searchReGeocodeWithCoordinate:(CLLocationCoordinate2D)coordinate
 {
 
-   
-    
-
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         
         // 处理耗时操作的代码块...
