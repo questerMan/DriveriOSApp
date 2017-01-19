@@ -115,7 +115,7 @@ static NSString* ID = @"refuseIndent";
 - (UIView *)tableFootView{
     UIView* view = [[UIView alloc] init];
     view.backgroundColor = [UIColor whiteColor];
-    view.frame = CGRectMake(0, 0, 0, MATCHSIZE(150));
+    view.frame = CGRectMake(0, 0, 0, MATCHSIZE(210));
     UIButton* tableFootViewBtn = [UIButton buttonWithType:0];
     [tableFootViewBtn setTitle:@"提交" forState:UIControlStateNormal];
     tableFootViewBtn.backgroundColor = [UIColor lightGrayColor];

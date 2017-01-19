@@ -66,7 +66,6 @@
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     
-    self.view.frame = CGRectMake(MATCHSIZE(0), MATCHSIZE(0), SCREEN_W - MATCHSIZE(36), SCREEN_H - MATCHSIZE(105));
 }
 
 - (void)viewDidLoad {
@@ -88,23 +87,50 @@
 
 -(void)creatUI{
     //页面顶部图像
-    self.headIMG = [FactoryClass imageViewWithFrame:CGRectMake(MATCHSIZE(300), MATCHSIZE(40), VIEW_W - MATCHSIZE(620), MATCHSIZE(80)) Image:[UIImage imageNamed:@"usersIMG"]];
+    self.headIMG = [FactoryClass imageViewWithFrame:CGRectMake(MATCHSIZE(300), MATCHSIZE(40), VIEW_W - MATCHSIZE(620), MATCHSIZE(80)) Image:[UIImage imageNamed:@"item"]];
     [self.view addSubview:self.headIMG];
+    
+    [self.headIMG mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view).offset(0);
+        make.top.equalTo(self.view).offset(MATCHSIZE(40));
+        make.width.offset(MATCHSIZE(78));
+        make.height.offset(MATCHSIZE(78));
+    }];
+    
     //页面头部大标题
     UILabel *titleLab = [FactoryClass labelWithText:@"为什么改派单" fontSize:MATCHSIZE(40) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor clearColor]];
     titleLab.font = [UIFont boldSystemFontOfSize:MATCHSIZE(40)];
-    titleLab.frame = CGRectMake(MATCHSIZE(0), MATCHSIZE(140), VIEW_W, MATCHSIZE(45));
     [self.view addSubview:titleLab];
-    
+    [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view).offset(0);
+        make.top.equalTo(self.headIMG.mas_bottom).offset(MATCHSIZE(35));
+        make.width.offset(VIEW_W);
+        make.height.offset(MATCHSIZE(45));
+    }];
+
     //创建表格视图
     [self creatTableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(MATCHSIZE(50));
+        make.right.equalTo(self.view).offset(MATCHSIZE(-50));
+        make.bottom.equalTo(self.view).offset(MATCHSIZE(-38));
+        make.top.equalTo(titleLab.mas_bottom).offset(MATCHSIZE(25));
+    }];
+    
     //创建提交按钮
     UIButton *submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [submitBtn setBackgroundColor:[UIColor grayColor]];
-    [submitBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [submitBtn setBackgroundColor:[UIColor lightGrayColor]];
+    [submitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [submitBtn setTitle:@"提交" forState:UIControlStateNormal];
-    submitBtn.frame = CGRectMake(MATCHSIZE(150), MATCHSIZE(850), self.tableView.frame.size.width - MATCHSIZE(300), MATCHSIZE(80));
+    submitBtn.layer.cornerRadius = MATCHSIZE(8);
+    submitBtn.layer.masksToBounds = YES;
     [self.tableView addSubview:submitBtn];
+    [submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.offset(0);
+        make.top.equalTo(self.tableView).offset(MATCHSIZE(850));
+        make.width.offset(MATCHSIZE(300));
+        make.height.offset(MATCHSIZE(80));
+    }];
     //提交按钮的点击事件
     [[submitBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         
