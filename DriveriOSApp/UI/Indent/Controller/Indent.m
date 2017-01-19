@@ -103,8 +103,6 @@
     
     //状态栏变白
     [self changeStatusBarStyleWithFlag:NO];
-
-
 }
 
 /**

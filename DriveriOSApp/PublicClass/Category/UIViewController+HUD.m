@@ -89,7 +89,7 @@ static const void *HttpRequestHUDKey = &HttpRequestHUDKey;
     return nil;
 }
 //改变状态了颜色 YES:黑色  NO:白色
--(void)changeStatusBarStyleWithFlag:(BOOL)flag{
+- (void)changeStatusBarStyleWithFlag:(BOOL)flag{
     if (flag == YES) {
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     }else{
