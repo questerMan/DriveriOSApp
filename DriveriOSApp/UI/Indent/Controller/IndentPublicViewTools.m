@@ -273,6 +273,9 @@ static NSTimeInterval acceptIndentCount;
         [alertVc dismissFromViewController:self.indentController andAnimated:YES];
         [self changeMapStateWithMapIndentState:MapIndentStateHaveIndent];
     });
+}
+
+- (void)showRouteBetweenSelfAndUser{
     
 }
 
