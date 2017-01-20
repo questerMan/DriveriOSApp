@@ -36,9 +36,9 @@
     self.titleLab = [FactoryClass labelWithText:@"您有个即时单，请立即查看，要赶紧去赚大款咯..." fontSize:MATCHSIZE(26) textColor:UIColorFromRGB(@"#333333") numberOfLine:2 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor clearColor]];
     [self.view addSubview:self.titleLab];
     [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(MATCHSIZE(25));
+        make.top.equalTo(self.titleIMG.mas_bottom).offset(MATCHSIZE(25));
         make.bottom.equalTo(self.view).offset(MATCHSIZE(-50));
-        make.left.equalTo(self.titleIMG).offset(MATCHSIZE(34));
+        make.left.equalTo(self.view).offset(MATCHSIZE(34));
         make.right.equalTo(self.view).offset(MATCHSIZE(-34));
     }];
 }
