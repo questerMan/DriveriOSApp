@@ -16,7 +16,7 @@
 #import "DeleteIndentAlert.h"
 #import "LimitLoginAlert.h"
 #import "InstantIndentCommingAlert.h"
-
+#import "IndentSucceedAlert.h"
 @interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate,LimitLoginAlertDelegate>
 
 @property (nonatomic,strong) UIView *bgView;
@@ -42,6 +42,8 @@
 @property (nonatomic, strong) LimitLoginAlert *limitLoginAlert;
 
 @property (nonatomic, strong) InstantIndentCommingAlert *instantIndentCommingAlert;
+
+@property (nonatomic, strong) IndentSucceedAlert *indentSucceedAlert;
 
 @end
 
@@ -115,6 +117,12 @@
     return _instantIndentCommingAlert;
 }
 
+-(IndentSucceedAlert *)indentSucceedAlert{
+    if (!_indentSucceedAlert) {
+        _indentSucceedAlert = [[IndentSucceedAlert alloc] init];
+    }
+    return _indentSucceedAlert;
+}
 //直接调用该方法一般用于固定 view 的展示
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
     
@@ -177,6 +185,12 @@
                 
                 break;
                 
+            case AlertViewTypeIndentSucceedAlert:
+                
+                [self isCloseWithTap:YES];
+                [self isCreatTimerWithTimeInterval:3];
+                
+                break;
             default:
                 break;
         }
@@ -320,6 +334,14 @@
             make.right.equalTo(self).offset(MATCHSIZE(-200));
             make.centerY.offset(0);
             make.height.offset(MATCHSIZE(250));
+        }];
+    }else if (_addAlertViewType == AlertViewTypeIndentSucceedAlert){
+        [self initAlertViewWithViewController:self.indentSucceedAlert];
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(MATCHSIZE(174));
+            make.right.equalTo(self).offset(MATCHSIZE(-174));
+            make.centerY.offset(0);
+            make.height.offset(MATCHSIZE(300));
         }];
     }
     

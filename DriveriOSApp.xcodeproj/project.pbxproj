@@ -232,6 +232,7 @@
 		82DFD9521E31A12A00B2F2ED /* LXQRefuseIndentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DFD94E1E31A12A00B2F2ED /* LXQRefuseIndentViewController.m */; };
 		82DFD9531E31A12A00B2F2ED /* LXQTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DFD9501E31A12A00B2F2ED /* LXQTableViewCell.m */; };
 		82DFD9571E31A13900B2F2ED /* InstantIndentCommingAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DFD9561E31A13900B2F2ED /* InstantIndentCommingAlert.m */; };
+		82DFD95B1E31BCAC00B2F2ED /* IndentSucceedAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DFD95A1E31BCAC00B2F2ED /* IndentSucceedAlert.m */; };
 		82E11E7E1DED2C6400FED9C0 /* Indent.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E11E6B1DED2C6400FED9C0 /* Indent.m */; };
 		82E11E7F1DED2C6400FED9C0 /* InstantHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E11E6E1DED2C6400FED9C0 /* InstantHeadView.m */; };
 		82E11E841DED2C6400FED9C0 /* Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E11E7A1DED2C6400FED9C0 /* Setup.m */; };
@@ -714,6 +715,8 @@
 		82DFD9501E31A12A00B2F2ED /* LXQTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQTableViewCell.m; sourceTree = "<group>"; };
 		82DFD9551E31A13900B2F2ED /* InstantIndentCommingAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstantIndentCommingAlert.h; sourceTree = "<group>"; };
 		82DFD9561E31A13900B2F2ED /* InstantIndentCommingAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstantIndentCommingAlert.m; sourceTree = "<group>"; };
+		82DFD9591E31BCAC00B2F2ED /* IndentSucceedAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndentSucceedAlert.h; sourceTree = "<group>"; };
+		82DFD95A1E31BCAC00B2F2ED /* IndentSucceedAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndentSucceedAlert.m; sourceTree = "<group>"; };
 		82E11E6A1DED2C6400FED9C0 /* Indent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Indent.h; sourceTree = "<group>"; };
 		82E11E6B1DED2C6400FED9C0 /* Indent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Indent.m; sourceTree = "<group>"; };
 		82E11E6D1DED2C6400FED9C0 /* InstantHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstantHeadView.h; sourceTree = "<group>"; };
@@ -2030,6 +2033,7 @@
 		82D4B01F1DEBCDB500FDA730 /* AlertViewController */ = {
 			isa = PBXGroup;
 			children = (
+				82DFD9581E31BC9600B2F2ED /* IndentSucceedAlert */,
 				82DFD9541E31A13900B2F2ED /* InstantIndentCommingAlert */,
 				82DFD94A1E31A12A00B2F2ED /* LXQRefuseIndentAlert */,
 				823C31D01E28C04F00D6CAE6 /* DeleteIndentAlert */,
@@ -2085,6 +2089,15 @@
 				82DFD9561E31A13900B2F2ED /* InstantIndentCommingAlert.m */,
 			);
 			path = InstantIndentCommingAlert;
+			sourceTree = "<group>";
+		};
+		82DFD9581E31BC9600B2F2ED /* IndentSucceedAlert */ = {
+			isa = PBXGroup;
+			children = (
+				82DFD9591E31BCAC00B2F2ED /* IndentSucceedAlert.h */,
+				82DFD95A1E31BCAC00B2F2ED /* IndentSucceedAlert.m */,
+			);
+			path = IndentSucceedAlert;
 			sourceTree = "<group>";
 		};
 		82E11E691DED2C6400FED9C0 /* Controller */ = {
@@ -2759,6 +2772,7 @@
 				82AF407D1DE92477001F0066 /* EaseBubbleView.m in Sources */,
 				82AF40551DE92477001F0066 /* PSTGridLayoutInfo.m in Sources */,
 				8271938F1DF0629300327ACB /* AMMapView.m in Sources */,
+				82DFD95B1E31BCAC00B2F2ED /* IndentSucceedAlert.m in Sources */,
 				82AF40481DE92477001F0066 /* UIImage+EMWebP.m in Sources */,
 				82EAADBE1E08DF4100BE8434 /* LXRoute.m in Sources */,
 			);
