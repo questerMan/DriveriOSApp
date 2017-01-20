@@ -24,7 +24,7 @@ static NSTimeInterval acceptIndentCount;
 @end
 
 //标志Yes已经点击接单按钮在此过程中保持接单倒计时定时器不会中断而重启  yes定时器启动 NO定时器关闭
-static BOOL timeFlag = NO;
+//static BOOL timeFlag = NO;
 
 @implementation IndentPublicViewTools
 

@@ -15,6 +15,7 @@
 #import "LoginView.h"
 #import "DeleteIndentAlert.h"
 #import "LimitLoginAlert.h"
+#import "InstantIndentCommingAlert.h"
 
 @interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate,LimitLoginAlertDelegate>
 
@@ -39,6 +40,8 @@
 @property (nonatomic, strong) DeleteIndentAlert *deleteIndentAlert;
 
 @property (nonatomic, strong) LimitLoginAlert *limitLoginAlert;
+
+@property (nonatomic, strong) InstantIndentCommingAlert *instantIndentCommingAlert;
 
 @end
 
@@ -105,7 +108,12 @@
     return _limitLoginAlert;
 }
 
-
+-(InstantIndentCommingAlert *)instantIndentCommingAlert{
+    if (!_instantIndentCommingAlert) {
+        _instantIndentCommingAlert = [[InstantIndentCommingAlert alloc] init];
+    }
+    return _instantIndentCommingAlert;
+}
 
 //直接调用该方法一般用于固定 view 的展示
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
@@ -162,6 +170,13 @@
                 [self isCloseWithTap:NO];
                 
                 break;
+            case AlertViewTypeInstantIndentCommingAlert:
+                
+                [self isCloseWithTap:YES];
+                [self isCreatTimerWithTimeInterval:3];
+                
+                break;
+                
             default:
                 break;
         }
@@ -298,6 +313,14 @@
     }else if (_addAlertViewType == AlertViewTypeLimitLoginAlert){
         [self initAlertViewWithViewController:self.limitLoginAlert];
         self.alertView.frame = CGRectMake(MATCHSIZE(130), MATCHSIZE(400), SCREEN_W - MATCHSIZE(260), MATCHSIZE(370));
+    }else if (_addAlertViewType == AlertViewTypeInstantIndentCommingAlert){
+        [self initAlertViewWithViewController:self.instantIndentCommingAlert];
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(MATCHSIZE(200));
+            make.right.equalTo(self).offset(MATCHSIZE(-200));
+            make.centerY.offset(0);
+            make.height.offset(MATCHSIZE(250));
+        }];
     }
     
     

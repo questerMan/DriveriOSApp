@@ -275,7 +275,6 @@
                 strongSelf.indentTool.startNavigation.hidden = NO;
                 strongSelf.indentTool.cancelBtn.hidden = NO;
                 //绘制路径（全屏全图路径）
-                //[self.map showRouteWithStartCoordinate:self.map.currentLocationCoordinate2D andDestinationCoordinate:CLLocationCoordinate2DMake([model.latitude floatValue], [model.longitude floatValue]) andStrategy:5];
                 AMPublicTools *amTool = [AMPublicTools shareInstance];
                 [amTool showRouteWithMap:self.map.mapView StartCoordinate:self.map.currentLocationCoordinate2D andDestinationCoordinate:CLLocationCoordinate2DMake([model.latitude floatValue], [model.longitude floatValue]) andStrategy:5 block:^{
                 }];
