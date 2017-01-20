@@ -33,7 +33,11 @@
         make.width.offset(MATCHSIZE(80));
     }];
     
-    self.titleLab = [FactoryClass labelWithText:@"您有个即时单，请立即查看，要赶紧去赚大款咯..." fontSize:MATCHSIZE(26) textColor:UIColorFromRGB(@"#333333") numberOfLine:2 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor clearColor]];
+    
+   
+
+    
+    self.titleLab = [FactoryClass labelWithText:nil fontSize:MATCHSIZE(26) textColor:UIColorFromRGB(@"#333333") numberOfLine:2 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor clearColor]];
     [self.view addSubview:self.titleLab];
     [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleIMG.mas_bottom).offset(MATCHSIZE(25));
@@ -41,11 +45,19 @@
         make.left.equalTo(self.view).offset(MATCHSIZE(34));
         make.right.equalTo(self.view).offset(MATCHSIZE(-34));
     }];
+    
+    NSString *firstStr = @"您有个";
+    NSString *indentName = @"即时单";
+    NSString *strText = [NSString stringWithFormat:@"您有个%@，请立即查看，要赶紧去赚大款咯...",indentName];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:strText];
+    
+    [str addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(@"#ff6d00") range:NSMakeRange([firstStr length],[indentName length])];
+    [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:MATCHSIZE(26)] range:NSMakeRange([firstStr length],[indentName length])];
+    self.titleLab.attributedText = str;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 
-}
+
+
 
 /*
 #pragma mark - Navigation
