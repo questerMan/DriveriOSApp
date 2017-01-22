@@ -32,7 +32,8 @@ typedef enum {
 
 -(void)alertViewShow;
 
--(void)alertViewClose;
+-(void)alertViewCloseWithBlock:(void (^) ())block;
+
 /** 只显示文字 */
 -(void)alertViewShowTitle:(NSString *)title
                 textColor:(UIColor *)textColor;
