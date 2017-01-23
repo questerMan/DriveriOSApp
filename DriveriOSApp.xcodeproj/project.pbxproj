@@ -39,6 +39,7 @@
 		8268A50C1DF7007F00293A75 /* NSObject+EasyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8268A50B1DF7007F00293A75 /* NSObject+EasyModel.m */; };
 		826E7B1B1DF9B33400CB3AFE /* end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 826E7B191DF9B33400CB3AFE /* end@2x.png */; };
 		826E7B1C1DF9B33400CB3AFE /* start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 826E7B1A1DF9B33400CB3AFE /* start@2x.png */; };
+		827015741E35A0AC00030C2F /* EmergencyRescueAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 827015731E35A0AC00030C2F /* EmergencyRescueAlert.m */; };
 		8271938F1DF0629300327ACB /* AMMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 827193871DF0629300327ACB /* AMMapView.m */; };
 		827193901DF0629300327ACB /* AMPublicTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 827193891DF0629300327ACB /* AMPublicTools.m */; };
 		827193911DF0629300327ACB /* AMSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 8271938C1DF0629300327ACB /* AMSearch.m */; };
@@ -343,6 +344,8 @@
 		8268A50B1DF7007F00293A75 /* NSObject+EasyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+EasyModel.m"; sourceTree = "<group>"; };
 		826E7B191DF9B33400CB3AFE /* end@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "end@2x.png"; sourceTree = "<group>"; };
 		826E7B1A1DF9B33400CB3AFE /* start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start@2x.png"; sourceTree = "<group>"; };
+		827015721E35A0AC00030C2F /* EmergencyRescueAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmergencyRescueAlert.h; sourceTree = "<group>"; };
+		827015731E35A0AC00030C2F /* EmergencyRescueAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyRescueAlert.m; sourceTree = "<group>"; };
 		827193861DF0629300327ACB /* AMMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMapView.h; sourceTree = "<group>"; };
 		827193871DF0629300327ACB /* AMMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMapView.m; sourceTree = "<group>"; };
 		827193881DF0629300327ACB /* AMPublicTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPublicTools.h; sourceTree = "<group>"; };
@@ -945,6 +948,15 @@
 				82620A701E1CF01F00219C5D /* UserPointAnnotation.m */,
 			);
 			name = UserPionAnnotationView;
+			sourceTree = "<group>";
+		};
+		827015711E35A09E00030C2F /* EmergencyRescueAlert */ = {
+			isa = PBXGroup;
+			children = (
+				827015721E35A0AC00030C2F /* EmergencyRescueAlert.h */,
+				827015731E35A0AC00030C2F /* EmergencyRescueAlert.m */,
+			);
+			path = EmergencyRescueAlert;
 			sourceTree = "<group>";
 		};
 		827193841DF0629300327ACB /* Other */ = {
@@ -2033,6 +2045,7 @@
 		82D4B01F1DEBCDB500FDA730 /* AlertViewController */ = {
 			isa = PBXGroup;
 			children = (
+				827015711E35A09E00030C2F /* EmergencyRescueAlert */,
 				82DFD9581E31BC9600B2F2ED /* IndentSucceedAlert */,
 				82DFD9541E31A13900B2F2ED /* InstantIndentCommingAlert */,
 				82DFD94A1E31A12A00B2F2ED /* LXQRefuseIndentAlert */,
@@ -2760,6 +2773,7 @@
 				82AF40661DE92477001F0066 /* EaseEmoji.m in Sources */,
 				82E11E841DED2C6400FED9C0 /* Setup.m in Sources */,
 				827193911DF0629300327ACB /* AMSearch.m in Sources */,
+				827015741E35A0AC00030C2F /* EmergencyRescueAlert.m in Sources */,
 				827193E21DF06E6B00327ACB /* MJRefreshFooter.m in Sources */,
 				82D4B0281DEBCE9500FDA730 /* CenterAlertInfo.m in Sources */,
 				82AF405B1DE92477001F0066 /* EaseConversationModel.m in Sources */,

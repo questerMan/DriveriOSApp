@@ -563,9 +563,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
         }];
     }
    
-    
-    
-    
     self.userLocation = mapView.userLocation;
     
     self.currentLocationCoordinate2D = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
@@ -575,50 +572,53 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
         dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_async(globalQueue, ^{
             //子线程异步执行任务，防止主线程卡顿
-            CLLocationCoordinate2D coordinate2D = userLocation.coordinate;
-            [self saveLocationWithCoordinate2D:coordinate2D];
+            if (_search == nil) {
+                _search  = [[AMapSearchAPI alloc] init];
+                _search.delegate = self;
+            }
+            AMapReGeocodeSearchRequest *regeo = [[AMapReGeocodeSearchRequest alloc] init];
+            
+            regeo.location                    = [AMapGeoPoint locationWithLatitude:userLocation.coordinate.latitude longitude:userLocation.coordinate.longitude];
+            regeo.requireExtension            = YES;
+            
+            [_search AMapReGoecodeSearch:regeo];
         });
     }
     
 }
-#pragma mark - 保存数据到本地
--(void)saveLocationWithCoordinate2D:(CLLocationCoordinate2D)coordinate2D{
-    AMapReGeocodeSearchRequest *regeo = [[AMapReGeocodeSearchRequest alloc] init];
-    
-    regeo.location                    = [AMapGeoPoint locationWithLatitude:coordinate2D.latitude longitude:coordinate2D.longitude];
-    regeo.requireExtension            = YES;
-    
-    [self.tool onReGeocodeSearchDoneWithRequest:regeo andBlock:^(id request, id response, NSError *error) {
-        AMapReGeocodeSearchResponse *responseNew = (AMapReGeocodeSearchResponse *)response;
+
+#pragma mark -逆地理编码代理方法 －－ 保存数据到本地
+
+- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
+{
+    if (response.regeocode != nil) {
+        /*保存数据到本地*/
         
-        if (responseNew.regeocode != nil) {
-            
-            UsersClass *usersModel = [UsersClass userInfoShareInstance];
-            //省/直辖市
-            usersModel.province = responseNew.regeocode.addressComponent.province;
-            //市
-            usersModel.citycode = responseNew.regeocode.addressComponent.citycode;
-            //区
-            usersModel.district = responseNew.regeocode.addressComponent.district;
-            //乡镇街道
-            usersModel.town = responseNew.regeocode.addressComponent.township;
-            //街道＋门牌号
-            usersModel.address = [NSString stringWithFormat:@"%@%@",responseNew.regeocode.addressComponent.streetNumber.street,responseNew.regeocode.addressComponent.streetNumber.number];
-            //经度
-            usersModel.latitude = [NSString stringWithFormat:@"%f",coordinate2D.latitude];
-            //纬度
-            usersModel.longitude = [NSString stringWithFormat:@"%f",coordinate2D.longitude];
-            //方向
-            usersModel.direction = responseNew.regeocode.addressComponent.streetNumber.direction;
-            //模型转字典
-            NSDictionary *dict = [usersModel easy_modelInfo];
-            //保存字典信息
-            [CacheClass cacheFromYYCacheWithValue:dict AndKey:CACHE_DATA];
-            //            NSLog(@"字典信息 %@",dict);
-        }
-        
-    }];
+        UsersClass *usersModel = [UsersClass userInfoShareInstance];
+        //省/直辖市
+        usersModel.province = response.regeocode.addressComponent.province;
+        //市
+        usersModel.citycode = response.regeocode.addressComponent.citycode;
+        //区
+        usersModel.district = response.regeocode.addressComponent.district;
+        //乡镇街道
+        usersModel.town = response.regeocode.addressComponent.township;
+        //街道＋门牌号
+        usersModel.address = [NSString stringWithFormat:@"%@%@",response.regeocode.addressComponent.streetNumber.street,response.regeocode.addressComponent.streetNumber.number];
+        //经度
+        usersModel.latitude = [NSString stringWithFormat:@"%f",self.userLocation.coordinate.latitude];
+        //纬度
+        usersModel.longitude = [NSString stringWithFormat:@"%f",self.userLocation.coordinate.longitude];
+        //方向
+        usersModel.direction = response.regeocode.addressComponent.streetNumber.direction;
+        //模型转字典
+        NSDictionary *dict = [usersModel easy_modelInfo];
+        //保存字典信息
+        [CacheClass cacheFromYYCacheWithValue:dict AndKey:CACHE_DATA];
+        DLog(@"字典信息 %@",dict);
+    }
 }
+
 
 #pragma mark - 逆地理编码
 /**
@@ -674,9 +674,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 
 
 @end
-
-
-
 
 /**
  *origin：起点坐标，必设。

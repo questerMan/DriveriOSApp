@@ -13,7 +13,7 @@
 @interface AlertView : UIView
 
 typedef enum {
-  AlertViewTypeCenterAlertInfo,
+    AlertViewTypeCenterAlertInfo,
     AlertViewTypePhoneAlert,
     AlertViewTypeCodeAlert,
     AlertViewTypeLoadAlert,
@@ -26,7 +26,6 @@ typedef enum {
 }AlertViewType;
 
 @property (nonatomic, assign) AlertViewType addAlertViewType;
-
 
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType;
 

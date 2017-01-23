@@ -354,7 +354,7 @@
     if (_addAlertViewType == AlertViewTypeCenterAlertInfo) {
         
         [self initAlertViewWithViewController:self.centerAlertInfo];
-       
+        
         [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).offset(MATCHSIZE(120));
             make.top.equalTo(self).offset(MATCHSIZE(445));

@@ -9,6 +9,8 @@
 #import "IndentAlert.h"
 
 @interface IndentAlert ()
+/** 右上角关闭按钮 */
+@property (nonatomic, strong) UIButton *cancleBtn;
 /** 头像 */
 @property (nonatomic, strong) UIButton *headIMGBtn;
 /** 昵称 */
@@ -83,11 +85,19 @@
 
 -(UIButton *)robIndent{
     if (!_robIndent) {
-        _robIndent = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(30),MATCHSIZE(850), (SCREEN_W - MATCHSIZE(30)*2 - MATCHSIZE(100)), MATCHSIZE(80)) Title:@"抢单" backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
+        _robIndent = [FactoryClass buttonWithFrame:CGRectMake((SCREEN_W -MATCHSIZE(30)*2- MATCHSIZE(190))/2,MATCHSIZE(800), MATCHSIZE(190), MATCHSIZE(190)) Title:@"抢单" backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(95)];
         [_robIndent setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }
     return _robIndent;
     
+}
+
+-(UIButton *)cancleBtn{
+    if (!_cancleBtn) {
+        _cancleBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(30),MATCHSIZE(850), (SCREEN_W - MATCHSIZE(30)*2 - MATCHSIZE(100)), MATCHSIZE(80)) Title:@"抢单" backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
+        [_cancleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }
+    return _cancleBtn;
 }
 
 - (void)viewDidLoad {
