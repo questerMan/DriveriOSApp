@@ -290,11 +290,25 @@ static NSTimeInterval acceptIndentCount;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [alert alertViewCloseWithBlock:nil];
         [self changeMapStateWithMapIndentState:MapIndentStateHaveIndent];
+        
+        //测试------------------->
+        NetWorkingManage *netManage = [NetWorkingManage shareInstance];
+        
+        [netManage getInstantIndentWithBlock:^(NSArray *array) {
+            IndentData *model = array[0];
+            
+            CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat doubleValue], [model.startLocationLon doubleValue]);
+            CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake([model.endLocationLat doubleValue], [model.endLocationLon doubleValue]);
+            
+            AMPublicTools *tool = [AMPublicTools shareInstance];
+            [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate:startCoor andDestinationCoordinate:endCoor andStrategy:5 block:nil];
+            
+        }];
     });
 }
 
 - (void)showRouteBetweenSelfAndUser{
-    
+   
 }
 
 - (void)presentRefuseIndent

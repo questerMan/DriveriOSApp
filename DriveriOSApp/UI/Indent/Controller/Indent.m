@@ -176,18 +176,7 @@
     self.indentTool.startNavigation.hidden = YES;
     self.indentTool.cancelBtn.hidden = YES;
     
-    //测试------------------->
-    __weak typeof(self) weakSelf = self;
-    [self.netManage getInstantIndentWithBlock:^(NSArray *array) {
-        IndentData *model = array[0];
-        
-        CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat floatValue], [model.startLocationLon floatValue]);
-        CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake([model.endLocationLat floatValue], [model.endLocationLon floatValue]);
-        
-        
-        [weakSelf.amTool showRouteWithMap:weakSelf.map.mapView StartCoordinate:startCoor andDestinationCoordinate:endCoor andStrategy:5 block:nil];
-        
-    }];
+   
     
 }
 #pragma mark - 获取tab数据
