@@ -13,24 +13,26 @@
 @interface AlertView : UIView
 
 typedef enum {
-  AlertViewTypeCenterAlertInfo,
+    AlertViewTypeCenterAlertInfo,
     AlertViewTypePhoneAlert,
     AlertViewTypeCodeAlert,
     AlertViewTypeLoadAlert,
     AlertViewTypeIndentAlert,
     AlertViewTypeLoginAlert,
     AlertViewTypeDeleteIndentAlert,
-    AlertViewTypeLimitLoginAlert
+    AlertViewTypeLimitLoginAlert,
+    AlertViewTypeInstantIndentCommingAlert,
+    AlertViewTypeIndentSucceedAlert
 }AlertViewType;
 
 @property (nonatomic, assign) AlertViewType addAlertViewType;
-
 
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType;
 
 -(void)alertViewShow;
 
--(void)alertViewClose;
+-(void)alertViewCloseWithBlock:(void (^) ())block;
+
 /** 只显示文字 */
 -(void)alertViewShowTitle:(NSString *)title
                 textColor:(UIColor *)textColor;

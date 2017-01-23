@@ -57,14 +57,14 @@
     return _pointAnnotation;
 }
 
--(MAPointAnnotation *)startAnnotation{
+-(RoutPointAnnotation *)startAnnotation{
     if (!_startAnnotation) {
         _startAnnotation = [[RoutPointAnnotation alloc] init];
     }
     return _startAnnotation;
 }
 
--(MAPointAnnotation *)endAnnotation{
+-(RoutPointAnnotation *)endAnnotation{
     if (!_endAnnotation) {
         _endAnnotation = [[RoutPointAnnotation alloc] init];
     }

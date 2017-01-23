@@ -19,7 +19,6 @@ typedef void (^PicBlock) (UIImage *image);
 
 @interface PublicTool : NSObject
 
-
 /**
  *  工具单例类
  *
@@ -101,7 +100,6 @@ typedef void (^PicBlock) (UIImage *image);
  *  @return 返回YES为可用网络
  */
 + (BOOL)testNetworkIsConnected;
-
 
 /**
  *  检测网络状态(返回YES为wifi环境)

@@ -15,8 +15,8 @@
 #import "LoginView.h"
 #import "DeleteIndentAlert.h"
 #import "LimitLoginAlert.h"
-
-
+#import "InstantIndentCommingAlert.h"
+#import "IndentSucceedAlert.h"
 @interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate,LimitLoginAlertDelegate>
 
 @property (nonatomic,strong) UIView *bgView;
@@ -40,6 +40,13 @@
 @property (nonatomic, strong) DeleteIndentAlert *deleteIndentAlert;
 
 @property (nonatomic, strong) LimitLoginAlert *limitLoginAlert;
+
+@property (nonatomic, strong) InstantIndentCommingAlert *instantIndentCommingAlert;
+
+@property (nonatomic, strong) IndentSucceedAlert *indentSucceedAlert;
+
+
+
 @end
 
 @implementation AlertView
@@ -105,6 +112,19 @@
     return _limitLoginAlert;
 }
 
+-(InstantIndentCommingAlert *)instantIndentCommingAlert{
+    if (!_instantIndentCommingAlert) {
+        _instantIndentCommingAlert = [[InstantIndentCommingAlert alloc] init];
+    }
+    return _instantIndentCommingAlert;
+}
+
+-(IndentSucceedAlert *)indentSucceedAlert{
+    if (!_indentSucceedAlert) {
+        _indentSucceedAlert = [[IndentSucceedAlert alloc] init];
+    }
+    return _indentSucceedAlert;
+}
 //直接调用该方法一般用于固定 view 的展示
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
     
@@ -114,27 +134,27 @@
         
         switch (alertViewType) {
             case AlertViewTypeCenterAlertInfo:
-              
-                [self isCloseWithTap:YES];
-                [self isCreatTimerWithTimeInterval:5];//测试
+                
+                [self isCloseWithTap:NO];
+                [self isCreatTimerWithTimeInterval:3];//测试
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
-
+                
                 break;
                 
             case AlertViewTypePhoneAlert:
-               
+                
                 [self isCloseWithTap:NO];
                 
                 break;
                 
             case AlertViewTypeCodeAlert:
-              
+                
                 [self isCloseWithTap:YES];
                 
                 break;
                 
             case AlertViewTypeLoadAlert:
-              
+                
                 [self isCloseWithTap:YES];
                 
                 break;
@@ -148,7 +168,7 @@
                 
                 [self isCloseWithTap:YES];
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
-
+                
                 break;
             case AlertViewTypeDeleteIndentAlert:
                 
@@ -160,14 +180,27 @@
                 [self isCloseWithTap:NO];
                 
                 break;
+            case AlertViewTypeInstantIndentCommingAlert:
+                
+                [self isCloseWithTap:YES];
+                [self isCreatTimerWithTimeInterval:3];
+                
+                break;
+                
+            case AlertViewTypeIndentSucceedAlert:
+                
+                [self isCloseWithTap:YES];
+                [self isCreatTimerWithTimeInterval:3];
+                
+                break;
             default:
                 break;
         }
         
     }
     
-   
-
+    
+    
     return self;
 }
 #pragma mark - 添加背景膜层，是否需要点击模糊层关闭弹出框:YES为可以点击模糊层关闭alertView
@@ -215,6 +248,14 @@
     self.alertView.userInteractionEnabled = YES;
     
     [self.alertView addSubview:controller.view];
+    
+    [controller.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(0);
+        make.bottom.offset(0);
+        make.left.offset(0);
+        make.right.offset(0);
+    }];
+    
     [self addSubview:self.alertView];
     
     [UIView animateWithDuration:0.5 animations:^{
@@ -226,16 +267,15 @@
 
 #pragma mark - 显示alertView
 -(void)alertViewShow{
-    
     if (_addAlertViewType == AlertViewTypePhoneAlert){
         
         [self initAlertViewWithViewController:self.phoneAlert];
         __weak typeof(self) weakSelf = self;
-
+        
         //下拉框回调
         [self.phoneAlert showInsetAlertViewHeightWithBlock:^(int lenght) {
             __strong __typeof(weakSelf)strongSelf = weakSelf;
-
+            
             if (lenght == 6) {
                 [UIView animateWithDuration:0.3 animations:^{
                     strongSelf.alertView.frame = CGRectMake(MATCHSIZE(100), SCREEN_H/2-MATCHSIZE(150), SCREEN_W-MATCHSIZE(200), MATCHSIZE(360));
@@ -269,11 +309,11 @@
         
         [self initAlertViewWithViewController:self.indentAlert];
         self.alertView.frame = CGRectMake(MATCHSIZE(50), MATCHSIZE(150), SCREEN_W - MATCHSIZE(100),SCREEN_H - MATCHSIZE(300));
-
+        
     }else if (_addAlertViewType == AlertViewTypeLoginAlert){
         [self initAlertViewWithViewController:self.loginAlert];
         self.alertView.frame = CGRectMake(MATCHSIZE(110), MATCHSIZE(600), SCREEN_W - MATCHSIZE(220), MATCHSIZE(530));
-
+        
     }else if (_addAlertViewType == AlertViewTypeDeleteIndentAlert){
         [self initAlertViewWithViewController:self.deleteIndentAlert];
         
@@ -284,9 +324,26 @@
             make.bottom.equalTo(self).offset(-MATCHSIZE(60));
         }];
         
+        
     }else if (_addAlertViewType == AlertViewTypeLimitLoginAlert){
         [self initAlertViewWithViewController:self.limitLoginAlert];
         self.alertView.frame = CGRectMake(MATCHSIZE(130), MATCHSIZE(400), SCREEN_W - MATCHSIZE(260), MATCHSIZE(370));
+    }else if (_addAlertViewType == AlertViewTypeInstantIndentCommingAlert){
+        [self initAlertViewWithViewController:self.instantIndentCommingAlert];
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(MATCHSIZE(200));
+            make.right.equalTo(self).offset(MATCHSIZE(-200));
+            make.centerY.offset(0);
+            make.height.offset(MATCHSIZE(250));
+        }];
+    }else if (_addAlertViewType == AlertViewTypeIndentSucceedAlert){
+        [self initAlertViewWithViewController:self.indentSucceedAlert];
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(MATCHSIZE(174));
+            make.right.equalTo(self).offset(MATCHSIZE(-174));
+            make.centerY.offset(0);
+            make.height.offset(MATCHSIZE(300));
+        }];
     }
     
     
@@ -298,15 +355,17 @@
         
         [self initAlertViewWithViewController:self.centerAlertInfo];
         
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(MATCHSIZE(120));
+            make.top.equalTo(self).offset(MATCHSIZE(445));
+            make.right.equalTo(self).offset(-MATCHSIZE(120));
+            make.height.offset(MATCHSIZE(340));
+        }];
+        
         //计算文字高度
         self.centerAlertInfo.contentLabel.text = title;
-        self.centerAlertInfo.contentLabel.textColor = [UIColor blueColor];
-        CGFloat height = [PublicTool heightOfStr:self.centerAlertInfo.contentLabel.text andTextWidth:SCREEN_W-MATCHSIZE(200) andFont:[UIFont systemFontOfSize:MATCHSIZE(30)]];
-        self.centerAlertInfo.contentLabel.frame = CGRectMake(MATCHSIZE(20), MATCHSIZE(30), SCREEN_W-MATCHSIZE(200)- MATCHSIZE(40), height);
         self.centerAlertInfo.contentLabel.textColor = textColor;
-        
-        self.alertView.frame = CGRectMake(MATCHSIZE(100), SCREEN_H/2-MATCHSIZE(150), SCREEN_W-MATCHSIZE(200), height + MATCHSIZE(60));
-
+    
     }
 }
 
@@ -315,6 +374,9 @@
     [self alertViewClose];
 }
 
+-(void)alertViewCloseWithBlock:(void (^) ())block{
+    [self alertViewClose];
+}
 -(void)alertViewClose{
     [UIView animateWithDuration:0.5 animations:^{
         self.alertView.alpha = 0;

@@ -5,6 +5,7 @@
 //  Created by lixin on 16/11/29.
 //  Copyright © 2016年 陆遗坤. All rights reserved.
 //
+
 #define collection_H self.frame.size.height
 #define collection_W SCREEN_W
 
@@ -32,15 +33,15 @@
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];//设置其布局方向
         flowLayout.minimumInteritemSpacing = 0;
         flowLayout.minimumLineSpacing = 0;
-        flowLayout.sectionInset = UIEdgeInsetsMake( 5,0,5,0);//设置其边界
+        flowLayout.sectionInset = UIEdgeInsetsMake( 0,0,0,0);//设置其边界
         //确定水平方向
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, collection_W, collection_H+10) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, collection_W, collection_H) collectionViewLayout:flowLayout];
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.backgroundColor = [UIColor blackColor];
+        _collectionView.backgroundColor = [UIColor whiteColor];
         //注册collectionView cell
         [_collectionView registerClass:[TabCell class] forCellWithReuseIdentifier:@"cellID"];
     }
@@ -78,6 +79,13 @@
     
     return cell;
 }
+
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    TabModel *model = self.arrayData[indexPath.row];
+    return model.size;
+}
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [self changeAllCellTextColor];
@@ -85,6 +93,7 @@
     TabCell *cell = (TabCell *)[collectionView cellForItemAtIndexPath:indexPath];
     cell.lable.textColor = TAB_SELECT_TEXTCOLOR;
     cell.lable.backgroundColor = TAB_SELECT_BG;
+    cell.countLabel.backgroundColor = TAB_SELECT_TEXTCOLOR;
     
     TabModel *model = self.arrayData[indexPath.row];
     
@@ -92,7 +101,6 @@
         _Block(model.type);
     }
     
-    //    NSLog(@"%s",__FUNCTION__);
 }
 
 
@@ -103,20 +111,22 @@
         
         cell.lable.textColor = TAB_NOTSELECT_TEXTCOLOR;
         cell.lable.backgroundColor = TAB_NOTSELECT_BG;
-        
+        cell.countLabel.backgroundColor = [UIColor grayColor];
     }
     
 }
+
 
 -(void)didSelectTabWithBlock:(TabClassBlock)block{
     _Block = block;
 }
 
 #pragma mark - 获取tab数据
--(void)getTabTitleDataWithArray:(NSMutableArray *)arrayData{
+-(void)getTabTitleDataWithArray:(NSArray *)arrayData{
 
     //获取数据
-    self.arrayData = arrayData;
+    self.arrayData = [NSMutableArray arrayWithArray:arrayData];
+    
     //刷行
     [self.collectionView reloadData];
 

@@ -11,14 +11,14 @@
 @interface CenterAlertInfo ()
 
 
-
 @end
 
 @implementation CenterAlertInfo
 
 -(UILabel *)contentLabel{
     if (!_contentLabel) {
-        _contentLabel = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(30) textColor:[UIColor blackColor] numberOfLine:0 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor clearColor]];
+        _contentLabel = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(30) textColor:[UIColor blackColor] numberOfLine:0 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
+        _contentLabel.font = [UIFont boldSystemFontOfSize:MATCHSIZE(36)];
     }
     return _contentLabel;
 }
@@ -35,13 +35,14 @@
 
 -(void)creatUI{
     
-   
-    
     [self.view addSubview:self.contentLabel];
     
-    
-    
-    
+    [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(MATCHSIZE(35));
+        make.right.equalTo(self.view).offset(MATCHSIZE(-35));
+        make.top.equalTo(self.view).offset(MATCHSIZE(35));
+        make.bottom.equalTo(self.view).offset(MATCHSIZE(-35));
+    }];
     
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040F79B61E2F5C2300C8F227 /* LXQRecevingIndentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */; };
 		820555C11E00D30C0095BB47 /* PhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C01E00D30C0095BB47 /* PhoneNumber.m */; };
 		820555C41E00D33D0095BB47 /* ChangeNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C31E00D33D0095BB47 /* ChangeNumber.m */; };
 		820555C81E0139BA0095BB47 /* IndentAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C71E0139BA0095BB47 /* IndentAlert.m */; };
@@ -28,7 +29,6 @@
 		824F5EAE1E077B99004B33EE /* driver_car@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F5EAD1E077B99004B33EE /* driver_car@2x.png */; };
 		8259F9251E09030A003E6350 /* guide@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8259F9241E09030A003E6350 /* guide@2x.png */; };
 		825F20651DF585A5001800B3 /* TabModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 825F20641DF585A5001800B3 /* TabModel.m */; };
-		8260F69B1DF8526800B4EB79 /* phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8260F69A1DF8526800B4EB79 /* phone@2x.png */; };
 		82620A5D1E1C9C4700219C5D /* CustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82620A581E1C9C4700219C5D /* CustomCalloutView.m */; };
 		82620A5E1E1C9C4700219C5D /* DriverAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82620A5A1E1C9C4700219C5D /* DriverAnnotationView.m */; };
 		82620A5F1E1C9C4700219C5D /* DriverPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 82620A5C1E1C9C4700219C5D /* DriverPointAnnotation.m */; };
@@ -39,6 +39,7 @@
 		8268A50C1DF7007F00293A75 /* NSObject+EasyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8268A50B1DF7007F00293A75 /* NSObject+EasyModel.m */; };
 		826E7B1B1DF9B33400CB3AFE /* end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 826E7B191DF9B33400CB3AFE /* end@2x.png */; };
 		826E7B1C1DF9B33400CB3AFE /* start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 826E7B1A1DF9B33400CB3AFE /* start@2x.png */; };
+		827015741E35A0AC00030C2F /* EmergencyRescueAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 827015731E35A0AC00030C2F /* EmergencyRescueAlert.m */; };
 		8271938F1DF0629300327ACB /* AMMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 827193871DF0629300327ACB /* AMMapView.m */; };
 		827193901DF0629300327ACB /* AMPublicTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 827193891DF0629300327ACB /* AMPublicTools.m */; };
 		827193911DF0629300327ACB /* AMSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 8271938C1DF0629300327ACB /* AMSearch.m */; };
@@ -96,6 +97,7 @@
 		8295460A1E23897F009D9C62 /* PublicTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 829546091E23897F009D9C62 /* PublicTools.m */; };
 		8297EC991E0A83A100D59413 /* guides@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8297EC981E0A83A100D59413 /* guides@2x.png */; };
 		82999EBC1E2DB0B100193FE1 /* NetWorkingManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 82999EBB1E2DB0B100193FE1 /* NetWorkingManage.m */; };
+		82999EBF1E2E046500193FE1 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 82999EBE1E2E046500193FE1 /* UIColor+Hex.m */; };
 		82A9DF691DFD218000B495FD /* LeftMenuRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9DF681DFD218000B495FD /* LeftMenuRoot.m */; };
 		82A9DF701DFD228E00B495FD /* MyIndent.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9DF6F1DFD228E00B495FD /* MyIndent.m */; };
 		82A9DF731DFD278300B495FD /* MyIndentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A9DF721DFD278300B495FD /* MyIndentModel.m */; };
@@ -227,6 +229,11 @@
 		82DBFAAF1DFFA73A00CBE7C3 /* PhoneAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DBFAAE1DFFA73A00CBE7C3 /* PhoneAlert.m */; };
 		82DBFAB21DFFA74B00CBE7C3 /* CodeAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DBFAB11DFFA74B00CBE7C3 /* CodeAlert.m */; };
 		82DBFAB51DFFA75B00CBE7C3 /* LoadAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DBFAB41DFFA75B00CBE7C3 /* LoadAlert.m */; };
+		82DFD9511E31A12A00B2F2ED /* LXQRefuseIndentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DFD94C1E31A12A00B2F2ED /* LXQRefuseIndentItem.m */; };
+		82DFD9521E31A12A00B2F2ED /* LXQRefuseIndentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DFD94E1E31A12A00B2F2ED /* LXQRefuseIndentViewController.m */; };
+		82DFD9531E31A12A00B2F2ED /* LXQTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DFD9501E31A12A00B2F2ED /* LXQTableViewCell.m */; };
+		82DFD9571E31A13900B2F2ED /* InstantIndentCommingAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DFD9561E31A13900B2F2ED /* InstantIndentCommingAlert.m */; };
+		82DFD95B1E31BCAC00B2F2ED /* IndentSucceedAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DFD95A1E31BCAC00B2F2ED /* IndentSucceedAlert.m */; };
 		82E11E7E1DED2C6400FED9C0 /* Indent.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E11E6B1DED2C6400FED9C0 /* Indent.m */; };
 		82E11E7F1DED2C6400FED9C0 /* InstantHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E11E6E1DED2C6400FED9C0 /* InstantHeadView.m */; };
 		82E11E841DED2C6400FED9C0 /* Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E11E7A1DED2C6400FED9C0 /* Setup.m */; };
@@ -283,6 +290,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		040F79B41E2F5C2300C8F227 /* LXQRecevingIndentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQRecevingIndentView.h; path = DriveriOSApp/UI/Indent/LXQRecevingIndentView.h; sourceTree = SOURCE_ROOT; };
+		040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQRecevingIndentView.m; path = DriveriOSApp/UI/Indent/LXQRecevingIndentView.m; sourceTree = SOURCE_ROOT; };
 		21F1B86AACBB7CF6E723DB76 /* Pods_DriveriOSApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveriOSApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58D53EB037267918395C1400 /* Pods-DriveriOSApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveriOSApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DriveriOSApp/Pods-DriveriOSApp.debug.xcconfig"; sourceTree = "<group>"; };
 		820555BF1E00D30C0095BB47 /* PhoneNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneNumber.h; sourceTree = "<group>"; };
@@ -318,7 +327,6 @@
 		8259F9241E09030A003E6350 /* guide@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide@2x.png"; sourceTree = "<group>"; };
 		825F20631DF585A5001800B3 /* TabModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabModel.h; sourceTree = "<group>"; };
 		825F20641DF585A5001800B3 /* TabModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabModel.m; sourceTree = "<group>"; };
-		8260F69A1DF8526800B4EB79 /* phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone@2x.png"; sourceTree = "<group>"; };
 		82620A571E1C9C4700219C5D /* CustomCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCalloutView.h; sourceTree = "<group>"; };
 		82620A581E1C9C4700219C5D /* CustomCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCalloutView.m; sourceTree = "<group>"; };
 		82620A591E1C9C4700219C5D /* DriverAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriverAnnotationView.h; sourceTree = "<group>"; };
@@ -336,6 +344,8 @@
 		8268A50B1DF7007F00293A75 /* NSObject+EasyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+EasyModel.m"; sourceTree = "<group>"; };
 		826E7B191DF9B33400CB3AFE /* end@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "end@2x.png"; sourceTree = "<group>"; };
 		826E7B1A1DF9B33400CB3AFE /* start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start@2x.png"; sourceTree = "<group>"; };
+		827015721E35A0AC00030C2F /* EmergencyRescueAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmergencyRescueAlert.h; sourceTree = "<group>"; };
+		827015731E35A0AC00030C2F /* EmergencyRescueAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyRescueAlert.m; sourceTree = "<group>"; };
 		827193861DF0629300327ACB /* AMMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMapView.h; sourceTree = "<group>"; };
 		827193871DF0629300327ACB /* AMMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMapView.m; sourceTree = "<group>"; };
 		827193881DF0629300327ACB /* AMPublicTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPublicTools.h; sourceTree = "<group>"; };
@@ -438,6 +448,8 @@
 		8297EC981E0A83A100D59413 /* guides@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guides@2x.png"; sourceTree = "<group>"; };
 		82999EBA1E2DB0B100193FE1 /* NetWorkingManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkingManage.h; sourceTree = "<group>"; };
 		82999EBB1E2DB0B100193FE1 /* NetWorkingManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkingManage.m; sourceTree = "<group>"; };
+		82999EBD1E2E046500193FE1 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		82999EBE1E2E046500193FE1 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		82A9DF671DFD218000B495FD /* LeftMenuRoot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuRoot.h; sourceTree = "<group>"; };
 		82A9DF681DFD218000B495FD /* LeftMenuRoot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuRoot.m; sourceTree = "<group>"; };
 		82A9DF6E1DFD228E00B495FD /* MyIndent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyIndent.h; sourceTree = "<group>"; };
@@ -698,6 +710,16 @@
 		82DBFAB11DFFA74B00CBE7C3 /* CodeAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeAlert.m; sourceTree = "<group>"; };
 		82DBFAB31DFFA75B00CBE7C3 /* LoadAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadAlert.h; sourceTree = "<group>"; };
 		82DBFAB41DFFA75B00CBE7C3 /* LoadAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadAlert.m; sourceTree = "<group>"; };
+		82DFD94B1E31A12A00B2F2ED /* LXQRefuseIndentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQRefuseIndentItem.h; sourceTree = "<group>"; };
+		82DFD94C1E31A12A00B2F2ED /* LXQRefuseIndentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQRefuseIndentItem.m; sourceTree = "<group>"; };
+		82DFD94D1E31A12A00B2F2ED /* LXQRefuseIndentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQRefuseIndentViewController.h; sourceTree = "<group>"; };
+		82DFD94E1E31A12A00B2F2ED /* LXQRefuseIndentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQRefuseIndentViewController.m; sourceTree = "<group>"; };
+		82DFD94F1E31A12A00B2F2ED /* LXQTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQTableViewCell.h; sourceTree = "<group>"; };
+		82DFD9501E31A12A00B2F2ED /* LXQTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQTableViewCell.m; sourceTree = "<group>"; };
+		82DFD9551E31A13900B2F2ED /* InstantIndentCommingAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstantIndentCommingAlert.h; sourceTree = "<group>"; };
+		82DFD9561E31A13900B2F2ED /* InstantIndentCommingAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstantIndentCommingAlert.m; sourceTree = "<group>"; };
+		82DFD9591E31BCAC00B2F2ED /* IndentSucceedAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndentSucceedAlert.h; sourceTree = "<group>"; };
+		82DFD95A1E31BCAC00B2F2ED /* IndentSucceedAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndentSucceedAlert.m; sourceTree = "<group>"; };
 		82E11E6A1DED2C6400FED9C0 /* Indent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Indent.h; sourceTree = "<group>"; };
 		82E11E6B1DED2C6400FED9C0 /* Indent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Indent.m; sourceTree = "<group>"; };
 		82E11E6D1DED2C6400FED9C0 /* InstantHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstantHeadView.h; sourceTree = "<group>"; };
@@ -928,6 +950,15 @@
 			name = UserPionAnnotationView;
 			sourceTree = "<group>";
 		};
+		827015711E35A09E00030C2F /* EmergencyRescueAlert */ = {
+			isa = PBXGroup;
+			children = (
+				827015721E35A0AC00030C2F /* EmergencyRescueAlert.h */,
+				827015731E35A0AC00030C2F /* EmergencyRescueAlert.m */,
+			);
+			path = EmergencyRescueAlert;
+			sourceTree = "<group>";
+		};
 		827193841DF0629300327ACB /* Other */ = {
 			isa = PBXGroup;
 			children = (
@@ -1012,6 +1043,8 @@
 				82DBFAAA1DFFA59200CBE7C3 /* UIButton+Time.m */,
 				82771A311E1F44F400541BA6 /* NSObject+NSLog.h */,
 				82771A321E1F44F400541BA6 /* NSObject+NSLog.m */,
+				82999EBD1E2E046500193FE1 /* UIColor+Hex.h */,
+				82999EBE1E2E046500193FE1 /* UIColor+Hex.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1380,6 +1413,8 @@
 		82AF3EC41DE91354001F0066 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				040F79B41E2F5C2300C8F227 /* LXQRecevingIndentView.h */,
+				040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1937,7 +1972,6 @@
 				82E7CCE41E0230350072E874 /* pwdIMG@2x.png */,
 				826E7B191DF9B33400CB3AFE /* end@2x.png */,
 				826E7B1A1DF9B33400CB3AFE /* start@2x.png */,
-				8260F69A1DF8526800B4EB79 /* phone@2x.png */,
 				828778BC1DF5C3DF00DCADBF /* history@2x.png */,
 				828BF64E1DF15A37004D6946 /* centerLocation@2x.png */,
 				821B7C941DEEA98B006DFBF8 /* location@2x.png */,
@@ -2011,6 +2045,10 @@
 		82D4B01F1DEBCDB500FDA730 /* AlertViewController */ = {
 			isa = PBXGroup;
 			children = (
+				827015711E35A09E00030C2F /* EmergencyRescueAlert */,
+				82DFD9581E31BC9600B2F2ED /* IndentSucceedAlert */,
+				82DFD9541E31A13900B2F2ED /* InstantIndentCommingAlert */,
+				82DFD94A1E31A12A00B2F2ED /* LXQRefuseIndentAlert */,
 				823C31D01E28C04F00D6CAE6 /* DeleteIndentAlert */,
 				829546001E238591009D9C62 /* LimitLoginView */,
 				829546011E238591009D9C62 /* LoginView */,
@@ -2042,6 +2080,37 @@
 				82DBFAB41DFFA75B00CBE7C3 /* LoadAlert.m */,
 			);
 			path = PhoneInfo;
+			sourceTree = "<group>";
+		};
+		82DFD94A1E31A12A00B2F2ED /* LXQRefuseIndentAlert */ = {
+			isa = PBXGroup;
+			children = (
+				82DFD94B1E31A12A00B2F2ED /* LXQRefuseIndentItem.h */,
+				82DFD94C1E31A12A00B2F2ED /* LXQRefuseIndentItem.m */,
+				82DFD94D1E31A12A00B2F2ED /* LXQRefuseIndentViewController.h */,
+				82DFD94E1E31A12A00B2F2ED /* LXQRefuseIndentViewController.m */,
+				82DFD94F1E31A12A00B2F2ED /* LXQTableViewCell.h */,
+				82DFD9501E31A12A00B2F2ED /* LXQTableViewCell.m */,
+			);
+			path = LXQRefuseIndentAlert;
+			sourceTree = "<group>";
+		};
+		82DFD9541E31A13900B2F2ED /* InstantIndentCommingAlert */ = {
+			isa = PBXGroup;
+			children = (
+				82DFD9551E31A13900B2F2ED /* InstantIndentCommingAlert.h */,
+				82DFD9561E31A13900B2F2ED /* InstantIndentCommingAlert.m */,
+			);
+			path = InstantIndentCommingAlert;
+			sourceTree = "<group>";
+		};
+		82DFD9581E31BC9600B2F2ED /* IndentSucceedAlert */ = {
+			isa = PBXGroup;
+			children = (
+				82DFD9591E31BCAC00B2F2ED /* IndentSucceedAlert.h */,
+				82DFD95A1E31BCAC00B2F2ED /* IndentSucceedAlert.m */,
+			);
+			path = IndentSucceedAlert;
 			sourceTree = "<group>";
 		};
 		82E11E691DED2C6400FED9C0 /* Controller */ = {
@@ -2353,7 +2422,7 @@
 				TargetAttributes = {
 					82E465E61DE90B9F00432E88 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = HJB9HWVPB2;
+						DevelopmentTeam = U9PA6T7YS8;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -2407,7 +2476,6 @@
 				8274A3E21E2C6BA8005A5B3A /* indent_down@2x.png in Resources */,
 				82E465F71DE90B9F00432E88 /* Assets.xcassets in Resources */,
 				82E7CCED1E02806E0072E874 /* iPhone@2x.png in Resources */,
-				8260F69B1DF8526800B4EB79 /* phone@2x.png in Resources */,
 				82AF40BA1DE9404D001F0066 /* set@2x.png in Resources */,
 				826E7B1C1DF9B33400CB3AFE /* start@2x.png in Resources */,
 				826E7B1B1DF9B33400CB3AFE /* end@2x.png in Resources */,
@@ -2576,6 +2644,7 @@
 				82AF40521DE92477001F0066 /* PSTCollectionViewItemKey.m in Sources */,
 				82AF40471DE92477001F0066 /* UIImage+EMMultiFormat.m in Sources */,
 				82E465EF1DE90B9F00432E88 /* AppDelegate.m in Sources */,
+				82DFD9511E31A12A00B2F2ED /* LXQRefuseIndentItem.m in Sources */,
 				827320C91E27817F0040AC2B /* IndentData.m in Sources */,
 				82AF406E1DE92477001F0066 /* EaseRefreshTableViewController.m in Sources */,
 				8228913E1DEDB802001F6E57 /* MAHeaderView.m in Sources */,
@@ -2599,6 +2668,7 @@
 				82AF40581DE92477001F0066 /* PSTGridLayoutSection.m in Sources */,
 				82A9DF731DFD278300B495FD /* MyIndentModel.m in Sources */,
 				823C31CF1E28A63700D6CAE6 /* RoutPointAnnotation.m in Sources */,
+				82DFD9521E31A12A00B2F2ED /* LXQRefuseIndentViewController.m in Sources */,
 				82AF40741DE92477001F0066 /* EaseMessageCell.m in Sources */,
 				82620A6B1E1CEEEF00219C5D /* UserCalloutView.m in Sources */,
 				82AF405C1DE92477001F0066 /* EaseMessageModel.m in Sources */,
@@ -2629,6 +2699,7 @@
 				82AF406A1DE92477001F0066 /* FixFopen.c in Sources */,
 				82AF404E1DE92477001F0066 /* PSTCollectionViewCell.m in Sources */,
 				827193E61DF06E6B00327ACB /* MJRefreshAutoStateFooter.m in Sources */,
+				82DFD9531E31A12A00B2F2ED /* LXQTableViewCell.m in Sources */,
 				828400661E001CA10061FA0D /* Safety.m in Sources */,
 				82E7CCE31E02268A0072E874 /* Login.m in Sources */,
 				82AF40511DE92477001F0066 /* PSTCollectionViewFlowLayout.m in Sources */,
@@ -2663,6 +2734,7 @@
 				82AF40191DE92477001F0066 /* amrFileCodec.mm in Sources */,
 				82AF403F1DE92477001F0066 /* EMSDWebImageDownloader.m in Sources */,
 				82AF40701DE92477001F0066 /* EaseViewController.m in Sources */,
+				82999EBF1E2E046500193FE1 /* UIColor+Hex.m in Sources */,
 				82AF403E1DE92477001F0066 /* EMSDWebImageDecoder.m in Sources */,
 				82AF40571DE92477001F0066 /* PSTGridLayoutRow.m in Sources */,
 				82A9DF691DFD218000B495FD /* LeftMenuRoot.m in Sources */,
@@ -2672,6 +2744,7 @@
 				8295460A1E23897F009D9C62 /* PublicTools.m in Sources */,
 				82E6F15D1DF69AA60099A7CE /* PublicTool.m in Sources */,
 				82AF40401DE92477001F0066 /* EMSDWebImageDownloaderOperation.m in Sources */,
+				040F79B61E2F5C2300C8F227 /* LXQRecevingIndentView.m in Sources */,
 				82AF40351DE92477001F0066 /* MWGridViewController.m in Sources */,
 				82AF403B1DE92477001F0066 /* DACircularProgressView.m in Sources */,
 				82AF40361DE92477001F0066 /* MWPhoto.m in Sources */,
@@ -2685,6 +2758,7 @@
 				82AF40441DE92477001F0066 /* NSData+EMImageContentType.m in Sources */,
 				82E11E921DED354900FED9C0 /* TabCell.m in Sources */,
 				82E6F1611DF69AD30099A7CE /* GPUImageBeautifyFilter.m in Sources */,
+				82DFD9571E31A13900B2F2ED /* InstantIndentCommingAlert.m in Sources */,
 				827193DF1DF06E6B00327ACB /* MJRefreshAutoFooter.m in Sources */,
 				827193E01DF06E6B00327ACB /* MJRefreshBackFooter.m in Sources */,
 				82AF40111DE92477001F0066 /* EaseUI.m in Sources */,
@@ -2699,6 +2773,7 @@
 				82AF40661DE92477001F0066 /* EaseEmoji.m in Sources */,
 				82E11E841DED2C6400FED9C0 /* Setup.m in Sources */,
 				827193911DF0629300327ACB /* AMSearch.m in Sources */,
+				827015741E35A0AC00030C2F /* EmergencyRescueAlert.m in Sources */,
 				827193E21DF06E6B00327ACB /* MJRefreshFooter.m in Sources */,
 				82D4B0281DEBCE9500FDA730 /* CenterAlertInfo.m in Sources */,
 				82AF405B1DE92477001F0066 /* EaseConversationModel.m in Sources */,
@@ -2711,6 +2786,7 @@
 				82AF407D1DE92477001F0066 /* EaseBubbleView.m in Sources */,
 				82AF40551DE92477001F0066 /* PSTGridLayoutInfo.m in Sources */,
 				8271938F1DF0629300327ACB /* AMMapView.m in Sources */,
+				82DFD95B1E31BCAC00B2F2ED /* IndentSucceedAlert.m in Sources */,
 				82AF40481DE92477001F0066 /* UIImage+EMWebP.m in Sources */,
 				82EAADBE1E08DF4100BE8434 /* LXRoute.m in Sources */,
 			);
@@ -2861,7 +2937,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = HJB9HWVPB2;
+				DEVELOPMENT_TEAM = U9PA6T7YS8;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = ./DriveriOSApp/LiXin.pch;
 				INFOPLIST_FILE = DriveriOSApp/Info.plist;
@@ -2888,7 +2964,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = HJB9HWVPB2;
+				DEVELOPMENT_TEAM = U9PA6T7YS8;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = ./DriveriOSApp/LiXin.pch;
 				INFOPLIST_FILE = DriveriOSApp/Info.plist;

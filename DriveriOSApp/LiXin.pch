@@ -48,20 +48,19 @@
 
 //----------------------颜色类---------------------------
 // rgb颜色转换（16进制->10进制）
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define UIColorFromRGB(rgbValue) [UIColor colorWithHexString:rgbValue alpha:1.0]
 //带有RGBA的颜色设置
 #define COLOR(R, G, B, A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
 
 //tab背景属性
-#define TAB_NOTSELECT_BG [UIColor blackColor]
-#define TAB_SELECT_BG [UIColor blackColor]
-#define TAB_SELECT_TEXTCOLOR [UIColor orangeColor]
-#define TAB_NOTSELECT_TEXTCOLOR [UIColor whiteColor]
+#define TAB_NOTSELECT_BG [UIColor clearColor]
+#define TAB_SELECT_BG [UIColor clearColor]
+#define TAB_SELECT_TEXTCOLOR UIColorFromRGB(@"#ff6d00")
+#define TAB_NOTSELECT_TEXTCOLOR UIColorFromRGB(@"#acabab")
 
 //=======缓存=======
 #define UserDefault [NSUserDefaults  standardUserDefaults]
-//=======默认字体=======
-#define FontDefault [UIFont systemFontOfSize:MATCHSIZE(30)]
+
 //=======YYCache=======
 #define CACHE_DATA @"CACHEDATA"
 //=======搜索历史记录=======
@@ -108,6 +107,7 @@
 #import "StarsView.h"
 #import "SlideMenuController.h"
 #import "UIViewController+SlideMenuControllerOC.h"
+#import "UIColor+Hex.h"
 
 #import "LeftMenuRoot.h"
 #import "MyMessage.h"

@@ -36,9 +36,18 @@
 
 @property (nonatomic, strong) NSMutableArray *arrryData;
 
+@property (nonatomic, strong) NetWorkingManage *netManage;
+
 @end
 
 @implementation Indent
+
+-(NetWorkingManage *)netManage{
+    if (!_netManage) {
+        _netManage = [NetWorkingManage shareInstance];
+    }
+    return _netManage;
+}
 
 -(AMPublicTools *)tool{
     if (!_tool) {
@@ -64,7 +73,7 @@
 
 -(AMMapView *)map{
     if (!_map) {
-        _map = [[AMMapView alloc] initWithFrame:CGRectMake(0, MATCHSIZE(80), SCREEN_W, VIEW_H - MATCHSIZE(80) - MATCHSIZE(130))];
+        _map = [[AMMapView alloc] initWithFrame:self.view.bounds];
     }
     return _map;
 }
@@ -82,15 +91,9 @@
     
 }
 
-/**
- *  创建导航栏
- */
--(void)creatNAC{
-    
-    self.title = @"丽新专车";
-    
-    //不透明
-    self.navigationController.navigationBar.translucent = NO;
+-(void)viewWillDisappear:(BOOL)animated{
+ 
+    [self useMethodToFindBlackLineAndHindWithFlag:NO];
     
     //背景颜色
     [self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
@@ -98,23 +101,43 @@
     //显示的颜色
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
-    //导航栏字体颜色
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    
-    //左上角菜单按钮
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"菜单"] style:UIBarButtonItemStylePlain target:self action:@selector(leftItemOnclick:)];
-    
-    //右上角聊天按钮
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"聊天"] style:UIBarButtonItemStylePlain target:self action:@selector(rightItemOnclick:)];
-    
+    //状态栏变白
+    [self changeStatusBarStyleWithFlag:NO];
 }
-#pragma mark - 左上角菜单按钮
--(void)leftItemOnclick:(UIBarButtonItem *)itemBtn{
+
+/**
+ *  创建导航栏
+ */
+-(void)creatNAC{
     
-    //打开左侧栏
+    self.title = @"丽新专车";
+    
+    //状态栏变黑
+    [self changeStatusBarStyleWithFlag:YES];
+    //去掉导航栏下划线
+    [self useMethodToFindBlackLineAndHindWithFlag:YES];
+    
+    //不透明
+    self.navigationController.navigationBar.translucent = NO;
+    
+    //背景颜色
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    
+    //显示的颜色
+    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
+    
+    //导航栏字体颜色
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColorFromRGB(@"#ff6d00")}];
+    
+    
+    //左上角菜单按钮:打开左侧栏
     [self setNavigationBarItem];
     
+    //右上角聊天按钮
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu_right"] style:UIBarButtonItemStylePlain target:self action:@selector(rightItemOnclick:)];
+    
 }
+
 #pragma mark - 右上角聊天按钮
 -(void)rightItemOnclick:(UIBarButtonItem *)itemBtn{
     
@@ -129,12 +152,21 @@
     
     [self.view addSubview:self.map];
     
+    [self.map mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(0);
+        make.right.equalTo(self.view).offset(0);
+        make.bottom.equalTo(self.view).offset(0);
+        make.top.equalTo(self.view).offset(MATCHSIZE(80));
+    }];
+    
 }
 
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor grayColor];
     
     [self creatAMMap];//先建立地图以免把其他view覆盖掉
     
@@ -144,9 +176,11 @@
     self.indentTool.startNavigation.hidden = YES;
     self.indentTool.cancelBtn.hidden = YES;
     
+   
+    
 }
 #pragma mark - 获取tab数据
--(NSMutableArray *)getTabDataWithCount:(NSString *)count{
+-(NSMutableArray *)getTabData{
     
     NSError*error;
     //获取文件路径
@@ -179,21 +213,22 @@
 -(void)creatTab{
     
     
-    TabClass *tabClass = [[TabClass alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, MATCHSIZE(60))];
+    TabClass *tabClass = [[TabClass alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, MATCHSIZE(80))];
     //获取tab数据
-    NSMutableArray *arrData = [self getTabDataWithCount:@"2"];
-    [tabClass getTabTitleDataWithArray:arrData];
-    
-    //显示第一个tab(获取第一个tab的type)
-    TabModel *mode = arrData[0];
-    int type = [mode.type intValue];
-    //默认显示第一个tab（等单）的view
-    [self.indentTool implementAllMethodWithIndent:type andIndent:self];
-    
-    [self.view addSubview:tabClass];
-    
-    
     __weak typeof(self) weakSelf = self;
+    [self.netManage getTabDataWithBlock:^(NSArray *array) {
+            [tabClass getTabTitleDataWithArray:array];
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        if(array.count > 0){
+            //显示第一个tab(获取第一个tab的type)
+            TabModel *mode = array[0];
+            int type = [mode.type intValue];
+            //默认显示第一个tab（等单）的view
+            [strongSelf.indentTool implementAllMethodWithIndent:type andIndent:self];
+        }
+    }];
+
+    [self.view addSubview:tabClass];
     
     [tabClass didSelectTabWithBlock:^(NSString *type) {
         
@@ -208,7 +243,9 @@
     //等单页面导航页跳转
     [self pusToNavigationMap];
     
+    [self clearRoute];
     
+   
     
 }
 
@@ -237,20 +274,16 @@
                 strongSelf.indentTool.startNavigation.hidden = NO;
                 strongSelf.indentTool.cancelBtn.hidden = NO;
                 //绘制路径（全屏全图路径）
-                //                [self.map showRouteWithStartCoordinate:self.map.currentLocationCoordinate2D andDestinationCoordinate:CLLocationCoordinate2DMake([model.latitude floatValue], [model.longitude floatValue]) andStrategy:5];
                 AMPublicTools *amTool = [AMPublicTools shareInstance];
-                [amTool showRouteWithMap:self.map.mapView StartCoordinate:self.map.currentLocationCoordinate2D andDestinationCoordinate:CLLocationCoordinate2DMake([model.latitude floatValue], [model.longitude floatValue]) andStrategy:5 block:^{
-                    
-                }];
+                [amTool showRouteWithMap:self.map.mapView StartCoordinate:self.map.currentLocationCoordinate2D andDestinationCoordinate:CLLocationCoordinate2DMake([model.latitude floatValue], [model.longitude floatValue]) andStrategy:5 block:nil];
                 self.map.MapIndentState = MapIndentStateWaitNavigation;
             }
-            
         }];
         
         [strongSelf.navigationController pushViewController:amSearch animated:YES];
     }];
-    
 }
+
 #pragma mark - 等单页面导航页跳转
 -(void)pusToNavigationMap{
     __weak typeof(self) weakSelf = self;
@@ -269,19 +302,17 @@
         }else{
             [strongSelf showHint:@"导航信息有误！"];
         }
-        
-        
     }];
 }
+
 #pragma mark - 移除驾车路径
-//-(void)clearRoute{
-//    [self.indentTool clearRouteWithBlock:^{
-//        //移除路径
-//        [self.map clearRoute];
-//        //取消按钮消失
-//        self.indentTool.cancelBtn.hidden = YES;
-//    }];
-//}
+-(void)clearRoute{
+    [self.indentTool clearRouteWithBlock:^{
+        //移除路径
+        AMPublicTools *amTool = [AMPublicTools shareInstance];
+        [amTool clearRouteWithBlock:nil];
+    }];
+}
 
 
 
