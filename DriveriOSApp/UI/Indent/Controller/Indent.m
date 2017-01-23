@@ -176,6 +176,19 @@
     self.indentTool.startNavigation.hidden = YES;
     self.indentTool.cancelBtn.hidden = YES;
     
+    //测试------------------->
+    __weak typeof(self) weakSelf = self;
+    [self.netManage getInstantIndentWithBlock:^(NSArray *array) {
+        IndentData *model = array[0];
+        
+        CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat floatValue], [model.startLocationLon floatValue]);
+        CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake([model.endLocationLat floatValue], [model.endLocationLon floatValue]);
+        
+        
+        [weakSelf.amTool showRouteWithMap:weakSelf.map.mapView StartCoordinate:startCoor andDestinationCoordinate:endCoor andStrategy:5 block:nil];
+        
+    }];
+    
 }
 #pragma mark - 获取tab数据
 -(NSMutableArray *)getTabData{
@@ -243,6 +256,8 @@
     
     [self clearRoute];
     
+   
+    
 }
 
 #pragma mark - 等单页面跳转到搜索框
@@ -271,8 +286,7 @@
                 strongSelf.indentTool.cancelBtn.hidden = NO;
                 //绘制路径（全屏全图路径）
                 AMPublicTools *amTool = [AMPublicTools shareInstance];
-                [amTool showRouteWithMap:self.map.mapView StartCoordinate:self.map.currentLocationCoordinate2D andDestinationCoordinate:CLLocationCoordinate2DMake([model.latitude floatValue], [model.longitude floatValue]) andStrategy:5 block:^{
-                }];
+                [amTool showRouteWithMap:self.map.mapView StartCoordinate:self.map.currentLocationCoordinate2D andDestinationCoordinate:CLLocationCoordinate2DMake([model.latitude floatValue], [model.longitude floatValue]) andStrategy:5 block:nil];
                 self.map.MapIndentState = MapIndentStateWaitNavigation;
             }
         }];
@@ -306,7 +320,7 @@
 -(void)clearRoute{
     [self.indentTool clearRouteWithBlock:^{
         //移除路径
-    AMPublicTools *amTool = [AMPublicTools shareInstance];
+        AMPublicTools *amTool = [AMPublicTools shareInstance];
         [amTool clearRouteWithBlock:nil];
     }];
 }
