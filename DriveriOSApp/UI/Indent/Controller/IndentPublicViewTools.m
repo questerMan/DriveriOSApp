@@ -283,6 +283,7 @@ static NSTimeInterval acceptIndentCount;
 }
 
 - (void)presentOrderReceiving{
+    
     AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeCenterAlertInfo];
     [alert alertViewShowTitle:@"接单成功!正在拨打乘客的电话，请检查车上服务用品，尽快前往上车点。" textColor:[UIColor blackColor]];
 
@@ -291,7 +292,6 @@ static NSTimeInterval acceptIndentCount;
         [alert alertViewCloseWithBlock:nil];
         [self changeMapStateWithMapIndentState:MapIndentStateHaveIndent];
         
-        //测试------------------->
         NetWorkingManage *netManage = [NetWorkingManage shareInstance];
         
         [netManage getInstantIndentWithBlock:^(NSArray *array) {
