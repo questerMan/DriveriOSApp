@@ -11,7 +11,6 @@
 @interface CenterAlertInfo ()
 
 
-
 @end
 
 @implementation CenterAlertInfo

@@ -135,7 +135,7 @@
         switch (alertViewType) {
             case AlertViewTypeCenterAlertInfo:
                 
-                [self isCloseWithTap:YES];
+                [self isCloseWithTap:NO];
                 [self isCreatTimerWithTimeInterval:3];//测试
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
                 
