@@ -118,6 +118,19 @@
     return btn;
 }
 
+
++(UIButton *)buttonWithTitle:(NSString *)title
+               backGroundIMG:(UIImage *)backGroundIMG
+                   textColor:(UIColor *)textColor
+                cornerRadius:(CGFloat)cornerRadius{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setBackgroundImage:backGroundIMG forState:UIControlStateNormal];
+    [btn setTitleColor:textColor forState:UIControlStateNormal];
+    btn.layer.cornerRadius = cornerRadius;
+    btn.layer.masksToBounds = YES;
+    return btn;
+}
 #pragma mark ----------------UIImageView----------------
 /** 图片视图 UIImageView 图片 */
 +(UIImageView *)imageViewWithFrame:(CGRect)frame

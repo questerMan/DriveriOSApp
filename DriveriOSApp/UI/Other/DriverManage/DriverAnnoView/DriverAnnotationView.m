@@ -29,7 +29,7 @@
 {
     CLLocationCoordinate2D coorinate = [self.annotation coordinate];
     
-    NSLog(@"coordinate = {%f, %f}", coorinate.latitude, coorinate.longitude);
+    DLog(@"coordinate = {%f, %f}", coorinate.latitude, coorinate.longitude);
 }
 
 #pragma mark - Override

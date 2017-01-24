@@ -41,7 +41,7 @@
 }
 -(void)loadData{
     
-    [self.arrayData addObjectsFromArray:@[@"我的信息",@"我的订单",@"消息通知",@"司机指南",@"离线地图",@"客服热线"]];
+    [self.arrayData addObjectsFromArray:@[@"我的订单",@"消息通知",@"司机指南",@"离线地图",@"客服热线"]];
 
     
 }
@@ -113,7 +113,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return MATCHSIZE(200.0);
+    return MATCHSIZE(235);
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     static NSString *cell = @"headCell";
@@ -124,13 +124,21 @@
         headCell = [[LeftMainHeadView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell];
     }
     
+    [headCell getData];
+    
+    [headCell userIMGWithBlock:^{
+        UINavigationController *myMessage = [[UINavigationController alloc] initWithRootViewController:[[MyMessage alloc] init]];
+        
+        [self presentFromViewController:self andToViewController:myMessage andAnimated:YES];
+    }];
+    
+    
     return headCell;
 
 }
 //点击cell
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UINavigationController *messageNac = [[UINavigationController alloc] initWithRootViewController:[[MyMessage alloc] init]];
     
     UINavigationController *offlineNac = [[UINavigationController alloc] initWithRootViewController:[[OfflineDetailViewController alloc] init]];
 
@@ -142,24 +150,21 @@
 
     
     switch (indexPath.row) {
+    
         case 0:
-            [self presentFromViewController:self andToViewController:messageNac andAnimated:YES];
-            break;
-            
-        case 1:
             [self presentFromViewController:self andToViewController:myIndentNac andAnimated:YES];
             break;
-        case 2:
+        case 1:
             [self presentFromViewController:self andToViewController:notifyNac andAnimated:YES];
             break;
             
-        case 3:
+        case 2:
             [self presentFromViewController:self andToViewController:driverGuideNac andAnimated:YES];
             break;
-        case 4:
+        case 3:
             [self presentFromViewController:self andToViewController:offlineNac andAnimated:YES];
             break;
-        case 5:
+        case 4:
             NSLog(@"-------------5");
             
             break;

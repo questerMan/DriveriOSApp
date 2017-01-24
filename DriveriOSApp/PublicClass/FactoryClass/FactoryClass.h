@@ -67,6 +67,12 @@
                    tintColor:(UIColor *)tintColor
                 cornerRadius:(CGFloat)cornerRadius;
 
+/** 按钮 Button 标题 背景色 字色 圆角*/
++(UIButton *)buttonWithTitle:(NSString *)title
+                  backGroundIMG:(UIImage *)backGroundIMG
+                   textColor:(UIColor *)textColor
+                cornerRadius:(CGFloat)cornerRadius;
+
 #pragma mark ----------------UIImageView----------------
 /** 图片视图 UIImageView 图片 */
 +(UIImageView *)imageViewWithFrame:(CGRect)frame

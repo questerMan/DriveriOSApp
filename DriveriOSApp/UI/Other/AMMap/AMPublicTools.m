@@ -300,7 +300,7 @@ andDestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinat
         
         AMapPath *path = newRespone.route.paths[0]; //选择一条路径
         AMapStep *step = path.steps[0]; //这个路径上的导航路段数组
-        NSLog(@"step.polyline %@",step.polyline);   //此路段坐标点字符串
+        DLog(@"step.polyline %@",step.polyline);   //此路段坐标点字符串
         
         if (newRespone.count > 0)
         {
@@ -309,11 +309,10 @@ andDestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinat
             _pathPolylines = nil;
             // 只显⽰示第⼀条 规划的路径
             _pathPolylines = [self polylinesForPath:newRespone.route.paths[0]];
-            NSLog(@"%@",newRespone.route.paths[0]);
+            DLog(@"%@",newRespone.route.paths[0]);
             //添加新的遮盖，然后会触发代理方法进行绘制
             [mapView addOverlays:_pathPolylines];
             
-
             //展示路径
             [mapView setVisibleMapRect:[self mapRectForOverlays:self.pathPolylines] edgePadding:UIEdgeInsetsMake(RoutePlanningPaddingEdge, RoutePlanningPaddingEdge, RoutePlanningPaddingEdge, RoutePlanningPaddingEdge) animated:YES];
 

@@ -64,7 +64,7 @@
         BOOL isSuccess = [self.driveManager calculateDriveRouteWithStartPoints:@[self.startLocatoin] endPoints:@[self.destinationPoint] wayPoints:nil drivingStrategy:AMapNaviDrivingStrategySingleDefault];
         
         if (isSuccess) {
-            NSLog(@"导航路线规划成功");
+            DLog(@"导航路线规划成功");
         }
         
         [self.driveManager setBroadcastMode:AMapNaviBroadcastModeConcise];

@@ -28,6 +28,7 @@
 		8241521C1DF5192800FAB385 /* AMNavigationMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8241521B1DF5192800FAB385 /* AMNavigationMap.m */; };
 		824F5EAE1E077B99004B33EE /* driver_car@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F5EAD1E077B99004B33EE /* driver_car@2x.png */; };
 		8259F9251E09030A003E6350 /* guide@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8259F9241E09030A003E6350 /* guide@2x.png */; };
+		825E08C11E372E350054B133 /* starsVCount@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 825E08C01E372E350054B133 /* starsVCount@2x.png */; };
 		825F20651DF585A5001800B3 /* TabModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 825F20641DF585A5001800B3 /* TabModel.m */; };
 		82620A5D1E1C9C4700219C5D /* CustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82620A581E1C9C4700219C5D /* CustomCalloutView.m */; };
 		82620A5E1E1C9C4700219C5D /* DriverAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82620A5A1E1C9C4700219C5D /* DriverAnnotationView.m */; };
@@ -325,6 +326,7 @@
 		8241521B1DF5192800FAB385 /* AMNavigationMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMNavigationMap.m; sourceTree = "<group>"; };
 		824F5EAD1E077B99004B33EE /* driver_car@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "driver_car@2x.png"; sourceTree = "<group>"; };
 		8259F9241E09030A003E6350 /* guide@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide@2x.png"; sourceTree = "<group>"; };
+		825E08C01E372E350054B133 /* starsVCount@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "starsVCount@2x.png"; sourceTree = "<group>"; };
 		825F20631DF585A5001800B3 /* TabModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabModel.h; sourceTree = "<group>"; };
 		825F20641DF585A5001800B3 /* TabModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabModel.m; sourceTree = "<group>"; };
 		82620A571E1C9C4700219C5D /* CustomCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCalloutView.h; sourceTree = "<group>"; };
@@ -2202,6 +2204,7 @@
 			isa = PBXGroup;
 			children = (
 				82AF40921DE92C43001F0066 /* TemporaryIMG */,
+				825E08C01E372E350054B133 /* starsVCount@2x.png */,
 				82AF3ECB1DE91382001F0066 /* LiXin.pch */,
 				82AF3EE01DE91576001F0066 /* KeyManage.h */,
 				82AF3EBA1DE91354001F0066 /* NetWorkingManage */,
@@ -2512,6 +2515,7 @@
 				8274A3E71E2CA135005A5B3A /* IndentData.geojson in Resources */,
 				822891461DEDBDD4001F6E57 /* Bottom@2x.png in Resources */,
 				82620A671E1CEC8800219C5D /* map60.png in Resources */,
+				825E08C11E372E350054B133 /* starsVCount@2x.png in Resources */,
 				82AF40A21DE93A91001F0066 /* car@2x.png in Resources */,
 				82D4B0061DEBB79600FDA730 /* item@2x.png in Resources */,
 				82AF40951DE92C43001F0066 /* ic_menu_black_24dp@2x.png in Resources */,

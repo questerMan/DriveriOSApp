@@ -248,7 +248,7 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
     [self.tool locationWithLocationBlock:^(AMapLocationManager *manager, CLLocation *location, AMapLocationReGeocode *reGeocode) {
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         //定位获取到的数据
-        NSLog(@"location:{lat:%f; lon:%f; accuracy:%f}", location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy);
+        DLog(@"location:{lat:%f; lon:%f; accuracy:%f}", location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy);
         
         CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
         

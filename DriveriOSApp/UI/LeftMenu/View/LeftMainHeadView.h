@@ -7,13 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void (^LeftMainHeadViewBlock) (void);
 
 @interface LeftMainHeadView : UITableViewCell
-/** 用户头像 */
-@property (nonatomic, strong) UIImageView *userIMG;
-/** 用户手机号 */
-@property (nonatomic, strong) UILabel *userNumber;
-/** 用户星级 */
-@property (nonatomic, strong) StarsView *userStars;
 
+@property (nonatomic, copy) LeftMainHeadViewBlock block;
+/** 用户头像 */
+@property (nonatomic, strong) UIButton *userIMG;
+
+@property (nonatomic, strong) UILabel *userName;
+
+@property (nonatomic, strong) UIImageView *starsIMG;
+
+@property (nonatomic, strong) UILabel *starsCount;
+
+@property (nonatomic, strong) UILabel *carType;
+
+@property (nonatomic, strong) UILabel *carNumber;
+
+-(void)userIMGWithBlock:(LeftMainHeadViewBlock)block;
+
+/**获取数据*/
+-(void)getData;
 @end
