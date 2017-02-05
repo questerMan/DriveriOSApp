@@ -542,7 +542,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
     
 }
 
-
 /**
  * @brief 位置或者设备方向更新后，会调用此函数
  * @param mapView 地图View
@@ -615,7 +614,7 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
         NSDictionary *dict = [usersModel easy_modelInfo];
         //保存字典信息
         [CacheClass cacheFromYYCacheWithValue:dict AndKey:CACHE_DATA];
-        DLog(@"字典信息 %@",dict);
+//        DLog(@"字典信息 %@",dict);
     }
 }
 
@@ -668,8 +667,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
         }];
     });
 }
-
-
 
 
 
