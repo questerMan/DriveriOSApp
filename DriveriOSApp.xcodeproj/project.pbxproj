@@ -23,7 +23,6 @@
 		8228914B1DEDBDD4001F6E57 /* Updata@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 822891451DEDBDD4001F6E57 /* Updata@2x.png */; };
 		823C31CF1E28A63700D6CAE6 /* RoutPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 823C31CE1E28A63700D6CAE6 /* RoutPointAnnotation.m */; };
 		823C31D31E28C07100D6CAE6 /* DeleteIndentAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 823C31D21E28C07100D6CAE6 /* DeleteIndentAlert.m */; };
-		823C31D71E28C13400D6CAE6 /* DeleteIndentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 823C31D61E28C13400D6CAE6 /* DeleteIndentCell.m */; };
 		824152181DF5038500FAB385 /* FactoryClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 824152171DF5038500FAB385 /* FactoryClass.m */; };
 		8241521C1DF5192800FAB385 /* AMNavigationMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8241521B1DF5192800FAB385 /* AMNavigationMap.m */; };
 		824F5EAE1E077B99004B33EE /* driver_car@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F5EAD1E077B99004B33EE /* driver_car@2x.png */; };
@@ -315,8 +314,6 @@
 		823C31CE1E28A63700D6CAE6 /* RoutPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutPointAnnotation.m; sourceTree = "<group>"; };
 		823C31D11E28C07100D6CAE6 /* DeleteIndentAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteIndentAlert.h; sourceTree = "<group>"; };
 		823C31D21E28C07100D6CAE6 /* DeleteIndentAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteIndentAlert.m; sourceTree = "<group>"; };
-		823C31D51E28C13400D6CAE6 /* DeleteIndentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteIndentCell.h; sourceTree = "<group>"; };
-		823C31D61E28C13400D6CAE6 /* DeleteIndentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteIndentCell.m; sourceTree = "<group>"; };
 		824152161DF5038500FAB385 /* FactoryClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FactoryClass.h; sourceTree = "<group>"; };
 		824152171DF5038500FAB385 /* FactoryClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FactoryClass.m; sourceTree = "<group>"; };
 		8241521A1DF5192800FAB385 /* AMNavigationMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMNavigationMap.h; sourceTree = "<group>"; };
@@ -883,20 +880,10 @@
 		823C31D01E28C04F00D6CAE6 /* DeleteIndentAlert */ = {
 			isa = PBXGroup;
 			children = (
-				823C31D41E28C0FF00D6CAE6 /* View */,
 				823C31D11E28C07100D6CAE6 /* DeleteIndentAlert.h */,
 				823C31D21E28C07100D6CAE6 /* DeleteIndentAlert.m */,
 			);
 			path = DeleteIndentAlert;
-			sourceTree = "<group>";
-		};
-		823C31D41E28C0FF00D6CAE6 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				823C31D51E28C13400D6CAE6 /* DeleteIndentCell.h */,
-				823C31D61E28C13400D6CAE6 /* DeleteIndentCell.m */,
-			);
-			name = View;
 			sourceTree = "<group>";
 		};
 		824152151DF5038500FAB385 /* FactoryClass */ = {
@@ -2604,7 +2591,6 @@
 				8241521C1DF5192800FAB385 /* AMNavigationMap.m in Sources */,
 				827193EE1DF06E6B00327ACB /* MJRefreshConst.m in Sources */,
 				82AF40621DE92477001F0066 /* UIViewController+HUD.m in Sources */,
-				823C31D71E28C13400D6CAE6 /* DeleteIndentCell.m in Sources */,
 				82AF40761DE92477001F0066 /* EaseBubbleView+File.m in Sources */,
 				82AF40791DE92477001F0066 /* EaseBubbleView+Location.m in Sources */,
 				82EAADB51E08DA6400BE8434 /* LXRequest.m in Sources */,

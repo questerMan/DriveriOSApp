@@ -316,12 +316,12 @@
         
     }else if (_addAlertViewType == AlertViewTypeDeleteIndentAlert){
         [self initAlertViewWithViewController:self.deleteIndentAlert];
-        
+        self.alertView.layer.cornerRadius = MATCHSIZE(18);
         [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self).offset(MATCHSIZE(18));
-            make.top.equalTo(self).offset(MATCHSIZE(45));
-            make.right.equalTo(self).offset(-MATCHSIZE(18));
-            make.bottom.equalTo(self).offset(-MATCHSIZE(60));
+            make.left.equalTo(self).offset(MATCHSIZE(26));
+            make.top.equalTo(self).offset(MATCHSIZE(74));
+            make.right.equalTo(self).offset(-MATCHSIZE(26));
+            make.bottom.equalTo(self).offset(-MATCHSIZE(74));
         }];
         
         

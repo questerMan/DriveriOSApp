@@ -7,34 +7,18 @@
 //
 
 #import "DeleteIndentAlert.h"
-#import "DeleteIndentCell.h"
 
-@interface DeleteIndentAlert ()<UITableViewDelegate,UITableViewDataSource>
+@interface DeleteIndentAlert ()
 
 @property (nonatomic, strong) UIImageView *headIMG;
 
-@property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *arrayData;
 @end
 
 @implementation DeleteIndentAlert
 
-/* 懒加载 */
--(UITableView *)tableView{
-    if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(MATCHSIZE(50), MATCHSIZE(220), VIEW_W - MATCHSIZE(136), VIEW_H - MATCHSIZE(360)) style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.rowHeight = MATCHSIZE(100);
-        //去掉分割线
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.layer.cornerRadius = MATCHSIZE(10);
-        _tableView.layer.masksToBounds = YES;
-        
-    }
-    return _tableView;
-}
+
 
 -(NSMutableArray *)arrayData{
     if (!_arrayData) {
@@ -49,19 +33,6 @@
     return self.arrayData.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    static NSString *cellID = @"cellID";
-    
-    DeleteIndentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
-        cell = [[DeleteIndentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-    }
-    
-    cell.titleLab.text = self.arrayData[indexPath.row];
-    
-    return cell;
-}
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
@@ -71,7 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = COLOR(215, 215, 215, 1);
+    self.view.backgroundColor = UIColorFromRGB(@"#f5f5f5");
     
     //获取列表数据
     [self getDataArray];
@@ -87,48 +58,53 @@
 
 -(void)creatUI{
     //页面顶部图像
-    self.headIMG = [FactoryClass imageViewWithFrame:CGRectMake(MATCHSIZE(300), MATCHSIZE(40), VIEW_W - MATCHSIZE(620), MATCHSIZE(80)) Image:[UIImage imageNamed:@"item"]];
+    self.headIMG = [FactoryClass imageViewWithFrame:CGRectMake(MATCHSIZE(300), MATCHSIZE(40), VIEW_W - MATCHSIZE(620), MATCHSIZE(80)) Image:[UIImage imageNamed:@"sad"]];
     [self.view addSubview:self.headIMG];
     
     [self.headIMG mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view).offset(0);
-        make.top.equalTo(self.view).offset(MATCHSIZE(40));
-        make.width.offset(MATCHSIZE(78));
-        make.height.offset(MATCHSIZE(78));
+        make.top.equalTo(self.view).offset(MATCHSIZE(34));
+        make.width.offset(MATCHSIZE(80));
+        make.height.offset(MATCHSIZE(80));
     }];
     
     //页面头部大标题
-    UILabel *titleLab = [FactoryClass labelWithText:@"为什么改派单" fontSize:MATCHSIZE(40) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor clearColor]];
+    UILabel *titleLab = [FactoryClass labelWithText:@"拒接单理由" fontSize:MATCHSIZE(40) textColor:UIColorFromRGB(@"#333333") numberOfLine:1 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor clearColor]];
     titleLab.font = [UIFont boldSystemFontOfSize:MATCHSIZE(40)];
     [self.view addSubview:titleLab];
     [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view).offset(0);
-        make.top.equalTo(self.headIMG.mas_bottom).offset(MATCHSIZE(35));
+        make.top.equalTo(self.headIMG.mas_bottom).offset(MATCHSIZE(30));
         make.width.offset(VIEW_W);
-        make.height.offset(MATCHSIZE(45));
+        make.height.offset(MATCHSIZE(33));
     }];
-
-    //创建表格视图
-    [self creatTableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(MATCHSIZE(50));
-        make.right.equalTo(self.view).offset(MATCHSIZE(-50));
-        make.bottom.equalTo(self.view).offset(MATCHSIZE(-38));
-        make.top.equalTo(titleLab.mas_bottom).offset(MATCHSIZE(25));
-    }];
+    
+    //创建理由按钮项
+    for (int i = 0 ; i < 7; i++) {
+        UIButton *btn = [FactoryClass buttonWithTitle:self.arrayData[i] backGroundIMG:nil textColor:UIColorFromRGB(@"#808080") cornerRadius:MATCHSIZE(14)];
+        btn.backgroundColor = UIColorFromRGB(@"#ffffff");
+        [self.view addSubview:btn];
+        
+        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(titleLab.mas_bottom).offset(MATCHSIZE(36+i*96));
+            make.centerX.equalTo(self.view).offset(0);
+            make.height.offset(MATCHSIZE(60));
+            make.width.offset(MATCHSIZE(543));
+        }];
+    }
     
     //创建提交按钮
     UIButton *submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [submitBtn setBackgroundColor:[UIColor lightGrayColor]];
-    [submitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [submitBtn setBackgroundColor:UIColorFromRGB(@"#ffffff")];
+    [submitBtn setTitleColor:UIColorFromRGB(@"#ff6d00") forState:UIControlStateNormal];
     [submitBtn setTitle:@"提交" forState:UIControlStateNormal];
-    submitBtn.layer.cornerRadius = MATCHSIZE(8);
+    submitBtn.layer.cornerRadius = MATCHSIZE(40);
     submitBtn.layer.masksToBounds = YES;
-    [self.tableView addSubview:submitBtn];
+    [self.view addSubview:submitBtn];
     [submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.offset(0);
-        make.top.equalTo(self.tableView).offset(MATCHSIZE(850));
-        make.width.offset(MATCHSIZE(300));
+        make.bottom.equalTo(self.view).offset(MATCHSIZE(-64));
+        make.width.offset(MATCHSIZE(294));
         make.height.offset(MATCHSIZE(80));
     }];
     //提交按钮的点击事件
@@ -143,12 +119,6 @@
     }];
     
     
-    
-}
-#pragma mark -  创建表格视图
--(void)creatTableView{
-    self.tableView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.tableView];
     
 }
 
