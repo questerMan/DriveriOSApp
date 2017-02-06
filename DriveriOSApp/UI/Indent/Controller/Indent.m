@@ -176,8 +176,6 @@
     self.indentTool.startNavigation.hidden = YES;
     self.indentTool.cancelBtn.hidden = YES;
     
-   
-    
 }
 #pragma mark - 获取tab数据
 -(NSMutableArray *)getTabData{

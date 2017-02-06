@@ -43,6 +43,7 @@ typedef void (^IndentPublicViewToolsPusOfClearRouteBlock) (void);
 /** 即时单 */
 @property (nonatomic, strong) InstantHeadView *instantHeadView;
 @property (nonatomic, strong) UIButton *acceptIndentBtn;
+
 /** 预约单 */
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayData;

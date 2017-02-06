@@ -313,7 +313,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
     
     //逆地理编码
     [self searchReGeocodeWithCoordinate:CLLocationCoordinate2DMake(mapView.centerCoordinate.latitude, mapView.centerCoordinate.longitude)];
-    
 }
 
 /**

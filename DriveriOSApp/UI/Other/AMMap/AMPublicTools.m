@@ -85,8 +85,7 @@
 
 -(instancetype)init{
     if (self = [super init]) {
-        _search  = [[AMapSearchAPI alloc] init];
-        _search.delegate = self;
+        
     }
     return self;
 }
@@ -126,6 +125,10 @@
 #pragma mark - 搜索
 -(void)onReGeocodeSearchDoneWithRequest:(id)request
                                andBlock:(OnReGeocodeSearchBlock)onReGeocodeSearchBlock{
+    if (_search == nil) {
+        _search  = [[AMapSearchAPI alloc] init];
+        _search.delegate = self;
+    }
     
     //发起逆地理编码
     if ([request isKindOfClass:[AMapPOIKeywordsSearchRequest class]])

@@ -259,10 +259,11 @@ static NSTimeInterval acceptIndentCount;
     [indent.view addSubview:self.acceptIndentBtn];
         
     acceptIndentCount = 10;
-    
+    //触发定时器
     [self.acceptIndentTimer fire];
-    
+    //接单按钮点击事件
     [[self.acceptIndentBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        
         [self presentOrderReceiving];
         //按钮状态显示“接单”
         [self.acceptIndentBtn setTitle:@"接单" forState:UIControlStateNormal];
@@ -270,7 +271,7 @@ static NSTimeInterval acceptIndentCount;
         [self.acceptIndentTimer invalidate];
         self.acceptIndentTimer = nil;
     }];
-    
+    //接单按钮位置布局
     [self.acceptIndentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(indent.view).offset(0);
         make.bottom.equalTo(indent.view).offset(MATCHSIZE(-75));
@@ -288,20 +289,26 @@ static NSTimeInterval acceptIndentCount;
     [alert alertViewShowTitle:@"接单成功!正在拨打乘客的电话，请检查车上服务用品，尽快前往上车点。" textColor:[UIColor blackColor]];
 
     [self.acceptIndentTimer invalidate];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //关闭弹出框
         [alert alertViewCloseWithBlock:nil];
+        //接单后进入地图“已接单”状态
         [self changeMapStateWithMapIndentState:MapIndentStateHaveIndent];
-        
+        //获取当前即时单数据
         NetWorkingManage *netManage = [NetWorkingManage shareInstance];
-        
         [netManage getInstantIndentWithBlock:^(NSArray *array) {
             IndentData *model = array[0];
-            
+            //起始点地图坐标
             CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat doubleValue], [model.startLocationLon doubleValue]);
+            //目的地地图坐标
             CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake([model.endLocationLat doubleValue], [model.endLocationLon doubleValue]);
-            
+            //描绘路径（起始点－－目的地）
             AMPublicTools *tool = [AMPublicTools shareInstance];
-            [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate:startCoor andDestinationCoordinate:endCoor andStrategy:5 block:nil];
+            [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate:startCoor andDestinationCoordinate:endCoor andStrategy:5 block:^{
+                //显示导航按钮
+                
+            }];
             
         }];
     });
@@ -447,7 +454,7 @@ static NSTimeInterval acceptIndentCount;
     [self.seachTextF resignFirstResponder];
     
     switch (type) {
-        case 0:
+        case 0://等单
             //显示
             [self addWaitIndentWithIndent:indent];//已经加载
             [self showWaitIndentAllView];
@@ -455,7 +462,7 @@ static NSTimeInterval acceptIndentCount;
             [self hideReservationIndentAllView];
             [self hideInstantIndentAllView];
             break;
-        case 1:
+        case 1://即时单
             //显示
             [self addInstantIndentWithIndent:indent];
             [self showInstantIndentAllView];
@@ -465,7 +472,7 @@ static NSTimeInterval acceptIndentCount;
             [self hideReservationIndentAllView];
             [self hideWaitIndentAllView];
             break;
-        case 2:
+        case 2://预约单
             //显示
             [self addReservationIndentWithIndent:indent];
             [self showReservationIndentAllView];
@@ -492,7 +499,6 @@ static NSTimeInterval acceptIndentCount;
 -(void)getstantIndentData{
     [self.netWorkingManage getInstantIndentWithBlock:^(NSArray *array) {
         self.instantHeadView.model = array[0];
-//        [self.arrayData addObject:array[0]];
         self.recevingIndentView.model = array[0];
     }];
 }
@@ -502,21 +508,37 @@ static NSTimeInterval acceptIndentCount;
     [self hideIndentClass];
     
     switch (mapIndentState) {
-        case MapIndentStateWait:
-            [self hideRecevingIndentView];
+        case MapIndentStateWait://等单
+
             break;
-        case MapIndentStateWaitNavigation:
-            [self hideRecevingIndentView];
+        case MapIndentStateWaitNavigation://等单导航
+
             break;
-        case MapIndentStateWaitingList:
-            [self hideRecevingIndentView];
+        case MapIndentStateWaitingList://待接单
+
             break;
-            //已接单
-        case MapIndentStateHaveIndent:
+            
+        case MapIndentStateHaveIndent://已接单
             [self showRecevingIndentView];
             break;
+        case MapIndentStateGoToPoint://去目的地
+            
+            break;
+        case MapIndentStateWaitingPassengers://免费or收费等候乘客上车
+            
+            break;
+        case MapIndentStateGoToDestination://去上车点
+            
+            break;
+        case MapIndentStateForSettlement://待结算
+            
+            break;
+        case MapIndentStateForGathering://待收款
+            
+            break;
+            
         default:
-            [self hideMapStateChange];
+
             break;
     }
 }
@@ -540,7 +562,7 @@ static NSTimeInterval acceptIndentCount;
 - (void)hideMapStateChange{
     [self hideRecevingIndentView];
 }
-
+//隐藏等单、即时单、预约单
 - (void)hideIndentClass{
     [self hideWaitIndentAllView];
     [self hideInstantIndentAllView];
