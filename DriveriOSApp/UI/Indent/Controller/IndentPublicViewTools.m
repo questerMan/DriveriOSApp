@@ -354,12 +354,12 @@ static NSTimeInterval acceptIndentCount;
 }
 //即时单接单按钮
 - (void)presentOrderReceiving{
-    //弹出提示
+    //弹出提示：接单成功
     AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeCenterAlertInfo];
     [alert alertViewShowTitle:@"接单成功!正在拨打乘客的电话，请检查车上服务用品，尽快前往上车点。" textColor:[UIColor blackColor]];
-
+    //关闭计时器
     [self.acceptIndentTimer invalidate];
-    
+    //延迟3s后执行进入地图”已接单状态“
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //关闭弹出框
         [alert alertViewCloseWithBlock:nil];
