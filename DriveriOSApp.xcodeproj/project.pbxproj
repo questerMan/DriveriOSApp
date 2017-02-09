@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		040F79B61E2F5C2300C8F227 /* LXQRecevingIndentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */; };
+		04C1841E1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */; };
+		04C1841F1E4BFFB500696D39 /* LXQRecevingIndentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1841D1E4BFFB500696D39 /* LXQRecevingIndentView.m */; };
 		820555C11E00D30C0095BB47 /* PhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C01E00D30C0095BB47 /* PhoneNumber.m */; };
 		820555C41E00D33D0095BB47 /* ChangeNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C31E00D33D0095BB47 /* ChangeNumber.m */; };
 		820555C81E0139BA0095BB47 /* IndentAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C71E0139BA0095BB47 /* IndentAlert.m */; };
@@ -289,6 +291,10 @@
 /* Begin PBXFileReference section */
 		040F79B41E2F5C2300C8F227 /* LXQRecevingIndentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQRecevingIndentView.h; path = DriveriOSApp/UI/Indent/LXQRecevingIndentView.h; sourceTree = SOURCE_ROOT; };
 		040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQRecevingIndentView.m; path = DriveriOSApp/UI/Indent/LXQRecevingIndentView.m; sourceTree = SOURCE_ROOT; };
+		04C1841A1E4BFFB500696D39 /* LXQAfterDrivingTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQAfterDrivingTipsView.h; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.h; sourceTree = SOURCE_ROOT; };
+		04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQAfterDrivingTipsView.m; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.m; sourceTree = SOURCE_ROOT; };
+		04C1841C1E4BFFB500696D39 /* LXQRecevingIndentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQRecevingIndentView.h; path = DriveriOSApp/UI/Indent/LXQRecevingIndentView.h; sourceTree = SOURCE_ROOT; };
+		04C1841D1E4BFFB500696D39 /* LXQRecevingIndentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQRecevingIndentView.m; path = DriveriOSApp/UI/Indent/LXQRecevingIndentView.m; sourceTree = SOURCE_ROOT; };
 		21F1B86AACBB7CF6E723DB76 /* Pods_DriveriOSApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveriOSApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58D53EB037267918395C1400 /* Pods-DriveriOSApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveriOSApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DriveriOSApp/Pods-DriveriOSApp.debug.xcconfig"; sourceTree = "<group>"; };
 		820555BF1E00D30C0095BB47 /* PhoneNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneNumber.h; sourceTree = "<group>"; };
@@ -1395,6 +1401,10 @@
 			children = (
 				040F79B41E2F5C2300C8F227 /* LXQRecevingIndentView.h */,
 				040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */,
+				04C1841A1E4BFFB500696D39 /* LXQAfterDrivingTipsView.h */,
+				04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */,
+				04C1841C1E4BFFB500696D39 /* LXQRecevingIndentView.h */,
+				04C1841D1E4BFFB500696D39 /* LXQRecevingIndentView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2571,6 +2581,7 @@
 				82D4B0251DEBCDB500FDA730 /* UIView+Frame.m in Sources */,
 				827193901DF0629300327ACB /* AMPublicTools.m in Sources */,
 				82A9DF701DFD228E00B495FD /* MyIndent.m in Sources */,
+				04C1841F1E4BFFB500696D39 /* LXQRecevingIndentView.m in Sources */,
 				82E6F16C1DF6AF9D0099A7CE /* PunishClass.m in Sources */,
 				82AF406D1DE92477001F0066 /* EaseMessageViewController.m in Sources */,
 				827193B11DF06C2D00327ACB /* UIViewController+HUD.m in Sources */,
@@ -2609,6 +2620,7 @@
 				82DBFAB51DFFA75B00CBE7C3 /* LoadAlert.m in Sources */,
 				82DBFAB21DFFA74B00CBE7C3 /* CodeAlert.m in Sources */,
 				82AF40521DE92477001F0066 /* PSTCollectionViewItemKey.m in Sources */,
+				04C1841E1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m in Sources */,
 				82AF40471DE92477001F0066 /* UIImage+EMMultiFormat.m in Sources */,
 				82E465EF1DE90B9F00432E88 /* AppDelegate.m in Sources */,
 				827320C91E27817F0040AC2B /* IndentData.m in Sources */,
