@@ -15,4 +15,9 @@
 
 @property (nonatomic, strong) AMMapView *map;
 
+@property (nonatomic, strong) AMapNaviPoint *destinationPoint;
+
+@property (nonatomic, strong) AMapNaviPoint *startLocatoin;
+
+-(void)clearRoute;
 @end

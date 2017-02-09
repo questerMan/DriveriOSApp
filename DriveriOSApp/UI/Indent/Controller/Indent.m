@@ -28,10 +28,6 @@
 
 @property (nonatomic, strong) AMPublicTools *amTool;
 
-@property (nonatomic, strong) AMapNaviPoint *startLocatoin;
-
-@property (nonatomic, strong) AMapNaviPoint *destinationPoint;
-
 @property (nonatomic, strong) AMPublicTools *tool;
 
 @property (nonatomic, strong) NSMutableArray *arrryData;
@@ -90,6 +86,17 @@
     [self creatNAC];
     
 }
+
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    [self.indentTool.drivingTipsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.indentTool.recevingIndentView.mas_bottom);
+        make.left.offset(0);
+        make.right.offset(0);
+        make.height.offset(MATCHSIZE(190) + MATCHSIZE(60));
+    }];
+}
+
 
 -(void)viewWillDisappear:(BOOL)animated{
  

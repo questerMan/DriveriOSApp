@@ -16,7 +16,8 @@
  */
 
 #import <UIKit/UIKit.h>
-
+#import "LXQRecevingIndentView.h"
+#import "LXQAfterDrivingTipsView.h"
 //搜索
 typedef void (^IndentPublicViewToolsPusToSearchBlock) (void);
 //导航
@@ -58,6 +59,14 @@ typedef void (^IndentPublicViewToolsPusOfClearRouteBlock) (void);
 @property (nonatomic, copy) IndentPublicViewToolsPusOfClearRouteBlock clearRouteBlock;
 /** 控制的当前订单控制器*/
 @property (nonatomic, strong) Indent* indentController;
+
+
+/** 乘客上车提示*/
+@property (nonatomic, weak) LXQAfterDrivingTipsView* drivingTipsView;
+
+/** 接单下拉窗口*/
+@property (nonatomic, weak) LXQRecevingIndentView* recevingIndentView;
+
 /** 跳到搜索栏 */
 -(void)pusToSearchWithSearchBlock:(IndentPublicViewToolsPusToSearchBlock) searchBlock;
 /** 跳到导航页 */
