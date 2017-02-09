@@ -56,6 +56,7 @@ typedef void (^IndentPublicViewToolsPusOfClearRouteBlock) (void);
 @property (nonatomic, copy) IndentPublicViewToolsPusToNavigationMapBlock navigationMapBlock;
 
 @property (nonatomic, copy) IndentPublicViewToolsPusOfClearRouteBlock clearRouteBlock;
+
 /** 控制的当前订单控制器*/
 @property (nonatomic, strong) Indent* indentController;
 /** 跳到搜索栏 */

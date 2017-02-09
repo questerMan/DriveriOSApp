@@ -199,8 +199,6 @@
         
     }
     
-    
-    
     return self;
 }
 #pragma mark - 添加背景膜层，是否需要点击模糊层关闭弹出框:YES为可以点击模糊层关闭alertView

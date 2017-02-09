@@ -181,7 +181,7 @@
             
             //保存／更新 相应数据
             AMLocationModel *model = self.arrayData[indexPath.row];
-            
+           
             if(_block){
                 _block(model);
             }
@@ -398,6 +398,7 @@
          [self.arrayData addObject:model];
          
      }];
+    
     
     [self.tableView reloadData];
 

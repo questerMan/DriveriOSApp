@@ -258,6 +258,7 @@
         strongSelf.startLocatoin = nil;
         
         AMSearch *amSearch = [[AMSearch alloc] init];
+    
         //搜索框回调
         [amSearch getSearchResultWithAMSearchBlock:^(AMLocationModel *model) {
             NSLog(@"搜索结果%@",model);
@@ -285,7 +286,7 @@
 #pragma mark - 等单页面导航页跳转
 -(void)pusToNavigationMap{
     __weak typeof(self) weakSelf = self;
-    
+
     [self.indentTool pusToNavigationMapWithNavigationMapBlock:^{
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         
