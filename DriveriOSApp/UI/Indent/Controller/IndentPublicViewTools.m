@@ -352,9 +352,9 @@ static NSTimeInterval acceptIndentCount;
     [self getstantIndentData];
     
 }
-
+//即时单接单按钮
 - (void)presentOrderReceiving{
-    
+    //弹出提示
     AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeCenterAlertInfo];
     [alert alertViewShowTitle:@"接单成功!正在拨打乘客的电话，请检查车上服务用品，尽快前往上车点。" textColor:[UIColor blackColor]];
 
