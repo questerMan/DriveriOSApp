@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		040F79B61E2F5C2300C8F227 /* LXQRecevingIndentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */; };
+		04C1841E1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */; };
+		04C184281E4C01A800696D39 /* LXQReservationIndentTips.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C184271E4C01A800696D39 /* LXQReservationIndentTips.m */; };
 		820555C11E00D30C0095BB47 /* PhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C01E00D30C0095BB47 /* PhoneNumber.m */; };
 		820555C41E00D33D0095BB47 /* ChangeNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C31E00D33D0095BB47 /* ChangeNumber.m */; };
 		820555C81E0139BA0095BB47 /* IndentAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C71E0139BA0095BB47 /* IndentAlert.m */; };
@@ -289,6 +291,10 @@
 /* Begin PBXFileReference section */
 		040F79B41E2F5C2300C8F227 /* LXQRecevingIndentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQRecevingIndentView.h; path = DriveriOSApp/UI/Indent/LXQRecevingIndentView.h; sourceTree = SOURCE_ROOT; };
 		040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQRecevingIndentView.m; path = DriveriOSApp/UI/Indent/LXQRecevingIndentView.m; sourceTree = SOURCE_ROOT; };
+		04C1841A1E4BFFB500696D39 /* LXQAfterDrivingTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQAfterDrivingTipsView.h; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.h; sourceTree = SOURCE_ROOT; };
+		04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQAfterDrivingTipsView.m; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.m; sourceTree = SOURCE_ROOT; };
+		04C184261E4C01A800696D39 /* LXQReservationIndentTips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQReservationIndentTips.h; path = DriveriOSApp/UI/Indent/LXQReservationIndentTips.h; sourceTree = SOURCE_ROOT; };
+		04C184271E4C01A800696D39 /* LXQReservationIndentTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQReservationIndentTips.m; path = DriveriOSApp/UI/Indent/LXQReservationIndentTips.m; sourceTree = SOURCE_ROOT; };
 		21F1B86AACBB7CF6E723DB76 /* Pods_DriveriOSApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveriOSApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58D53EB037267918395C1400 /* Pods-DriveriOSApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveriOSApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DriveriOSApp/Pods-DriveriOSApp.debug.xcconfig"; sourceTree = "<group>"; };
 		820555BF1E00D30C0095BB47 /* PhoneNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneNumber.h; sourceTree = "<group>"; };
@@ -1395,6 +1401,10 @@
 			children = (
 				040F79B41E2F5C2300C8F227 /* LXQRecevingIndentView.h */,
 				040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */,
+				04C1841A1E4BFFB500696D39 /* LXQAfterDrivingTipsView.h */,
+				04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */,
+				04C184261E4C01A800696D39 /* LXQReservationIndentTips.h */,
+				04C184271E4C01A800696D39 /* LXQReservationIndentTips.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2609,6 +2619,7 @@
 				82DBFAB51DFFA75B00CBE7C3 /* LoadAlert.m in Sources */,
 				82DBFAB21DFFA74B00CBE7C3 /* CodeAlert.m in Sources */,
 				82AF40521DE92477001F0066 /* PSTCollectionViewItemKey.m in Sources */,
+				04C1841E1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m in Sources */,
 				82AF40471DE92477001F0066 /* UIImage+EMMultiFormat.m in Sources */,
 				82E465EF1DE90B9F00432E88 /* AppDelegate.m in Sources */,
 				827320C91E27817F0040AC2B /* IndentData.m in Sources */,
@@ -2664,6 +2675,7 @@
 				82AF406A1DE92477001F0066 /* FixFopen.c in Sources */,
 				82AF404E1DE92477001F0066 /* PSTCollectionViewCell.m in Sources */,
 				827193E61DF06E6B00327ACB /* MJRefreshAutoStateFooter.m in Sources */,
+				04C184281E4C01A800696D39 /* LXQReservationIndentTips.m in Sources */,
 				828400661E001CA10061FA0D /* Safety.m in Sources */,
 				82E7CCE31E02268A0072E874 /* Login.m in Sources */,
 				82AF40511DE92477001F0066 /* PSTCollectionViewFlowLayout.m in Sources */,
