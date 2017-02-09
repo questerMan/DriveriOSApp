@@ -591,7 +591,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 {
     if (response.regeocode != nil) {
         /*保存数据到本地*/
-        
         UsersClass *usersModel = [UsersClass userInfoShareInstance];
         //省/直辖市
         usersModel.province = response.regeocode.addressComponent.province;
@@ -666,8 +665,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
         }];
     });
 }
-
-
 
 @end
 

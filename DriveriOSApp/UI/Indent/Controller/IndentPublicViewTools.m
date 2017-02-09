@@ -327,7 +327,7 @@ static NSTimeInterval acceptIndentCount;
     [indent.view addSubview:self.instantHeadView];
     
     [indent.view addSubview:self.acceptIndentBtn];
-        
+    
     acceptIndentCount = 10;
     //触发定时器
     [self.acceptIndentTimer fire];
@@ -364,7 +364,7 @@ static NSTimeInterval acceptIndentCount;
         //关闭弹出框
         [alert alertViewCloseWithBlock:nil];
         //接单后进入地图“已接单”状态
-        [self changeMapStateWithMapIndentState:MapIndentStateHaveIndent];
+        [self changeMapStateWithMapIndentState:MapIndentStateGoToPoint];
         //获取当前即时单数据
         NetWorkingManage *netManage = [NetWorkingManage shareInstance];
         [netManage getInstantIndentWithBlock:^(NSArray *array) {
@@ -384,10 +384,6 @@ static NSTimeInterval acceptIndentCount;
     });
 }
 
-- (void)alertRecevingIndent{
-    AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeCenterAlertInfo];
-    [alert alertViewShowTitle:@"接单成功!正在拨打乘客的电话，请检查车上服务用品，尽快前往上车点。" textColor:[UIColor blackColor]];
-}
 
 - (void)presentRefuseIndent
 {
@@ -582,36 +578,40 @@ static NSTimeInterval acceptIndentCount;
         case MapIndentStateWait://等单
             [self hideRecevingIndentView];
             break;
+            
         case MapIndentStateWaitNavigation://等单导航
             [self hideRecevingIndentView];
             break;
+            
         case MapIndentStateWaitingList://待接单
             [self hideRecevingIndentView];
             break;
             
         case MapIndentStateHaveIndent://已接单
-            [self alertRecevingIndent];
             break;
+            
         case MapIndentStateGoToPoint://去目的地
             [self showRecevingIndentView];
             [self showNavigationBtnAndDetermineBtn];
-            [self showRouteBetweenSelfAndUser];
-          //[self.determinedBtn setTitle:@"到达上车点" forState:0];
             break;
+            
         case MapIndentStateWaitingPassengers://免费or收费等候乘客上车
             [self showRecevingIndentView];
             [self showRouteBetweenUserAndDetermination];
             [self showPassengerGetOnBtn];
             [self showDrivingTipsView];
             break;
+            
         case MapIndentStateGoToDestination://去上车点
             [self showReservationIndentTips];
             [self showNavigationBtnAndDetermineBtn];
           //[self.determinedBtn setTitle:@"到达目的地" forState:0];
             break;
+            
         case MapIndentStateForSettlement://待结算
             
             break;
+            
         case MapIndentStateForGathering://待收款
             
             break;
