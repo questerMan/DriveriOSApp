@@ -25,6 +25,7 @@ static NSTimeInterval acceptIndentCount;
 
 @property (nonatomic, strong) AlertView *alert;
 
+
 @end
 
 //标志Yes已经点击接单按钮在此过程中保持接单倒计时定时器不会中断而重启  yes定时器启动 NO定时器关闭
@@ -142,10 +143,19 @@ static NSTimeInterval acceptIndentCount;
     if (!_determinedBtn) {
         UIButton* determinedBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40)*2 + (SCREEN_W - MATCHSIZE(40)*3)/2,SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*3)/2, MATCHSIZE(60)) Title:@"到达目的地" backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
         determinedBtn.hidden = YES;
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
         [[determinedBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             [self changeMapStateWithMapIndentState:MapIndentStateWaitingPassengers];
         }];
         
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
         [_indentController.view addSubview:determinedBtn];
         _determinedBtn = determinedBtn;
     }
@@ -158,6 +168,11 @@ static NSTimeInterval acceptIndentCount;
     if (!_passengerGetOn) {
         UIButton* passengerGetOn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40),SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), SCREEN_W - MATCHSIZE(40)*2, MATCHSIZE(60)) Title:@"乘客上车 " backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
         passengerGetOn.hidden = YES;
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
         [[passengerGetOn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             UIAlertController* alertVc = [UIAlertController alertControllerWithTitle:nil message:@"请确认乘客上车，乘客会投诉未上车就开始计费的行为" preferredStyle:UIAlertControllerStyleAlert];
             [alertVc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -166,6 +181,10 @@ static NSTimeInterval acceptIndentCount;
             [self.indentController presentViewController:alertVc animated:YES completion:nil];
         }];
         
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
         [_indentController.view addSubview:passengerGetOn];
         _passengerGetOn = passengerGetOn;
     }
@@ -191,7 +210,7 @@ static NSTimeInterval acceptIndentCount;
         recevingView.layer.cornerRadius = MATCHSIZE(8);
         recevingView.layer.masksToBounds = YES;
         recevingView.hidden = YES;
-        [self.indentController.view addSubview:recevingView];
+        [_indentController.view addSubview:recevingView];
         _recevingIndentView = recevingView;
     }
     return _recevingIndentView;
@@ -202,7 +221,7 @@ static NSTimeInterval acceptIndentCount;
     if (!_drivingTipsView) {
         LXQAfterDrivingTipsView* drivingTipsView = [[LXQAfterDrivingTipsView alloc] init];
         drivingTipsView.hidden = YES;
-        [self.indentController.view addSubview:drivingTipsView];
+        [_indentController.view addSubview:drivingTipsView];
         _drivingTipsView = drivingTipsView;
     }
     return _drivingTipsView;
@@ -212,7 +231,7 @@ static NSTimeInterval acceptIndentCount;
     if (!_reservationIndentTips) {
         LXQReservationIndentTips* reservationIndentTips = [[LXQReservationIndentTips alloc] init];
         reservationIndentTips.hidden = YES;
-        [self.indentController.view addSubview:reservationIndentTips];
+        [_indentController.view addSubview:reservationIndentTips];
         _reservationIndentTips = reservationIndentTips;
     }
     return _reservationIndentTips;
@@ -393,17 +412,16 @@ static NSTimeInterval acceptIndentCount;
         //获取当前即时单数据
         NetWorkingManage *netManage = [NetWorkingManage shareInstance];
         [netManage getInstantIndentWithBlock:^(NSArray *array) {
-            IndentData *model = array[0];
+        IndentData *model = array[0];
             //起始点地图坐标
             CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat doubleValue], [model.startLocationLon doubleValue]);
             //目的地地图坐标
             CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake([model.endLocationLat doubleValue], [model.endLocationLon doubleValue]);
             //描绘路径（起始点－－目的地）
             AMPublicTools *tool = [AMPublicTools shareInstance];
-            [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate:startCoor andDestinationCoordinate:endCoor andStrategy:5 block:^{
-                //显示导航按钮
-                
-            }];
+            [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate:startCoor andDestinationCoordinate:endCoor andStrategy:5 block:nil];
+            //把起点赋值给导航页面的目的地处
+            self.indentController.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.startLocationLat floatValue] longitude:[model.startLocationLon floatValue]];
             
         }];
     });
@@ -617,7 +635,10 @@ static NSTimeInterval acceptIndentCount;
             
         case MapIndentStateGoToPoint://去目的地
             [self showRecevingIndentView];
+          
+            //显示导航/去目的地按钮
             [self showNavigationBtnAndDetermineBtn];
+            
             break;
             
         case MapIndentStateWaitingPassengers://免费or收费等候乘客上车
