@@ -287,6 +287,7 @@
 -(void)pusToNavigationMap{
     __weak typeof(self) weakSelf = self;
 
+    //从当前位置前往目的地
     [self.indentTool pusToNavigationMapWithNavigationMapBlock:^{
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         

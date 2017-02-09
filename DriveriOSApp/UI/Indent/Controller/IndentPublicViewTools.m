@@ -155,6 +155,15 @@ static NSTimeInterval acceptIndentCount;
     });
     return shareTools;
 }
+//所有控件的事件都在这里写，避免多次执行出现崩溃
+-(instancetype)init{
+    if (self = [super init]) {
+        
+        [self buttonOfIndent];
+        
+    }
+    return self;
+}
 
 #pragma mark - 等单
 -(void)addWaitIndentWithIndent:(UIViewController *)indent{
@@ -167,10 +176,10 @@ static NSTimeInterval acceptIndentCount;
     //创建取消按钮
     [indent.view addSubview:self.cancelBtn];
     
-    [self buttonOfIndent];
 }
 
 -(void)buttonOfIndent{
+    
     //开始导航 点击事件
     [[self.startNavigation rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         
@@ -241,6 +250,7 @@ static NSTimeInterval acceptIndentCount;
     self.seachTextF.hidden = YES;
     self.startNavigation.hidden = YES;
     self.cancelBtn.hidden = YES;
+    
 }
 
 #pragma mark - 显示等单页面的view
