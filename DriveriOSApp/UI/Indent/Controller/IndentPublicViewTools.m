@@ -143,19 +143,11 @@ static NSTimeInterval acceptIndentCount;
     if (!_determinedBtn) {
         UIButton* determinedBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40)*2 + (SCREEN_W - MATCHSIZE(40)*3)/2,SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*3)/2, MATCHSIZE(60)) Title:@"到达目的地" backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
         determinedBtn.hidden = YES;
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
+
         [[determinedBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             [self changeMapStateWithMapIndentState:MapIndentStateWaitingPassengers];
         }];
         
-<<<<<<< Updated upstream
-=======
->>>>>>> origin/master
->>>>>>> Stashed changes
         [_indentController.view addSubview:determinedBtn];
         _determinedBtn = determinedBtn;
     }
@@ -168,11 +160,7 @@ static NSTimeInterval acceptIndentCount;
     if (!_passengerGetOn) {
         UIButton* passengerGetOn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40),SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), SCREEN_W - MATCHSIZE(40)*2, MATCHSIZE(60)) Title:@"乘客上车 " backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
         passengerGetOn.hidden = YES;
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
+
         [[passengerGetOn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             UIAlertController* alertVc = [UIAlertController alertControllerWithTitle:nil message:@"请确认乘客上车，乘客会投诉未上车就开始计费的行为" preferredStyle:UIAlertControllerStyleAlert];
             [alertVc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -180,11 +168,7 @@ static NSTimeInterval acceptIndentCount;
             [alertVc addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
             [self.indentController presentViewController:alertVc animated:YES completion:nil];
         }];
-        
-<<<<<<< Updated upstream
-=======
->>>>>>> origin/master
->>>>>>> Stashed changes
+ 
         [_indentController.view addSubview:passengerGetOn];
         _passengerGetOn = passengerGetOn;
     }
