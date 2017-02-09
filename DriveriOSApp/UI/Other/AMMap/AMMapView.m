@@ -550,38 +550,38 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation{
     
 
-    // 让定位箭头随着方向旋转
-    MAAnnotationView *annotationView = (MAAnnotationView *)[self viewWithTag:1002];
-    
-    if (!updatingLocation && annotationView != nil)
-    {
-        [UIView animateWithDuration:0.1 animations:^{
-            double degree = userLocation.heading.trueHeading - self.mapView.rotationDegree;
-            annotationView.transform = CGAffineTransformMakeRotation(degree * M_PI / 180.f);
-        }];
-    }
-   
-    self.userLocation = mapView.userLocation;
-    
-    self.currentLocationCoordinate2D = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
-    
-    if (updatingLocation) {
-        
-        dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_async(globalQueue, ^{
-            //子线程异步执行任务，防止主线程卡顿
-            if (_search == nil) {
-                _search  = [[AMapSearchAPI alloc] init];
-                _search.delegate = self;
-            }
-            AMapReGeocodeSearchRequest *regeo = [[AMapReGeocodeSearchRequest alloc] init];
-            
-            regeo.location                    = [AMapGeoPoint locationWithLatitude:userLocation.coordinate.latitude longitude:userLocation.coordinate.longitude];
-            regeo.requireExtension            = YES;
-            
-            [_search AMapReGoecodeSearch:regeo];
-        });
-    }
+//    // 让定位箭头随着方向旋转
+//    MAAnnotationView *annotationView = (MAAnnotationView *)[self viewWithTag:1002];
+//    
+//    if (!updatingLocation && annotationView != nil)
+//    {
+//        [UIView animateWithDuration:0.1 animations:^{
+//            double degree = userLocation.heading.trueHeading - self.mapView.rotationDegree;
+//            annotationView.transform = CGAffineTransformMakeRotation(degree * M_PI / 180.f);
+//        }];
+//    }
+//   
+//    self.userLocation = mapView.userLocation;
+//    
+//    self.currentLocationCoordinate2D = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
+//    
+//    if (updatingLocation) {
+//        
+//        dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//        dispatch_async(globalQueue, ^{
+//            //子线程异步执行任务，防止主线程卡顿
+//            if (_search == nil) {
+//                _search  = [[AMapSearchAPI alloc] init];
+//                _search.delegate = self;
+//            }
+//            AMapReGeocodeSearchRequest *regeo = [[AMapReGeocodeSearchRequest alloc] init];
+//            
+//            regeo.location                    = [AMapGeoPoint locationWithLatitude:userLocation.coordinate.latitude longitude:userLocation.coordinate.longitude];
+//            regeo.requireExtension            = YES;
+//            
+//            [_search AMapReGoecodeSearch:regeo];
+//        });
+//    }
     
 }
 

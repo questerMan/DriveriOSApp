@@ -142,7 +142,11 @@ static NSTimeInterval acceptIndentCount;
     if (!_determinedBtn) {
         UIButton* determinedBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40)*2 + (SCREEN_W - MATCHSIZE(40)*3)/2,SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*3)/2, MATCHSIZE(60)) Title:@"到达目的地" backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
         determinedBtn.hidden = YES;
-        [self.indentController.view addSubview:determinedBtn];
+        [[determinedBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            [self changeMapStateWithMapIndentState:MapIndentStateWaitingPassengers];
+        }];
+        
+        [_indentController.view addSubview:determinedBtn];
         _determinedBtn = determinedBtn;
     }
     return _determinedBtn;
@@ -154,11 +158,20 @@ static NSTimeInterval acceptIndentCount;
     if (!_passengerGetOn) {
         UIButton* passengerGetOn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40),SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), SCREEN_W - MATCHSIZE(40)*2, MATCHSIZE(60)) Title:@"乘客上车 " backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
         passengerGetOn.hidden = YES;
-        [self.indentController.view addSubview:passengerGetOn];
+        [[passengerGetOn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            UIAlertController* alertVc = [UIAlertController alertControllerWithTitle:nil message:@"请确认乘客上车，乘客会投诉未上车就开始计费的行为" preferredStyle:UIAlertControllerStyleAlert];
+            [alertVc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            }]];
+            [alertVc addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+            [self.indentController presentViewController:alertVc animated:YES completion:nil];
+        }];
+        
+        [_indentController.view addSubview:passengerGetOn];
         _passengerGetOn = passengerGetOn;
     }
     return _passengerGetOn;
 }
+
 
 
 
@@ -216,7 +229,7 @@ static NSTimeInterval acceptIndentCount;
     return shareTools;
 }
 //所有控件的事件都在这里写，避免多次执行出现崩溃
--(instancetype)init{
+- (instancetype)init{
     if (self = [super init]) {
         
         [self buttonOfIndent];
@@ -279,6 +292,18 @@ static NSTimeInterval acceptIndentCount;
     }] subscribeNext:^(id x) {
         self.startNavigation.hidden = YES;
         self.cancelBtn.hidden = YES;
+    }];
+    
+    [[self.determinedBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        [self changeMapStateWithMapIndentState:MapIndentStateWaitingPassengers];
+    }];
+    
+    [[self.passengerGetOn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        UIAlertController* alertVc = [UIAlertController alertControllerWithTitle:nil message:@"请确认乘客上车，乘客会投诉未上车就开始计费的行为" preferredStyle:UIAlertControllerStyleAlert];
+        [alertVc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        }]];
+        [alertVc addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        [self.indentController presentViewController:alertVc animated:YES completion:nil];
     }];
 }
 
@@ -350,8 +375,8 @@ static NSTimeInterval acceptIndentCount;
     }];
     //获取即时单数据
     [self getstantIndentData];
-    
 }
+
 //即时单接单按钮
 - (void)presentOrderReceiving{
     //弹出提示：接单成功
