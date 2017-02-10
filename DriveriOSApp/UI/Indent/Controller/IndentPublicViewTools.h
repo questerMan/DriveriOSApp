@@ -63,10 +63,10 @@ typedef void (^IndentPublicViewToolsPusOfClearRouteBlock) (void);
 
 
 /** 乘客上车提示*/
-@property (nonatomic, weak) LXQAfterDrivingTipsView* drivingTipsView;
+@property (nonatomic, strong) LXQAfterDrivingTipsView* drivingTipsView;
 
 /** 接单下拉窗口*/
-@property (nonatomic, weak) LXQRecevingIndentView* recevingIndentView;
+@property (nonatomic, strong) LXQRecevingIndentView* recevingIndentView;
 
 /** 跳到搜索栏 */
 -(void)pusToSearchWithSearchBlock:(IndentPublicViewToolsPusToSearchBlock) searchBlock;

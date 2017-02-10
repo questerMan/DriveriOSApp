@@ -17,7 +17,7 @@ static NSTimeInterval acceptIndentCount;
 
 @property (nonatomic, weak) NSTimer* acceptIndentTimer;
 
-@property (nonatomic, weak) UIButton* determinedBtn;
+@property (nonatomic, strong) UIButton* determinedBtn;
 
 @property (nonatomic, weak) UIButton* passengerGetOn;
 
@@ -146,18 +146,32 @@ static NSTimeInterval acceptIndentCount;
     if (!_determinedBtn) {
         UIButton* determinedBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40)*2 + (SCREEN_W - MATCHSIZE(40)*3)/2,SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*3)/2, MATCHSIZE(60)) Title:@"到达目的地" backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
         determinedBtn.hidden = YES;
-
-        [[determinedBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            [self changeMapStateWithMapIndentState:MapIndentStateWaitingPassengers];
-        }];
-        
-        [_indentController.view addSubview:determinedBtn];
+//        //上车点按钮确认
+//        [[self.determinedBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+//            [self changeMapStateWithMapIndentState:MapIndentStateWaitingPassengers];
+//        }];
+//        [_indentController.view addSubview:self.determinedBtn];
+     
         _determinedBtn = determinedBtn;
     }
     return _determinedBtn;
 }
 
+- (UIButton *)getToPoint
+{
+    if (!_getToPoint) {
+        UIButton* getToPoint = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40)*2 + (SCREEN_W - MATCHSIZE(40)*3)/2,SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*3)/2, MATCHSIZE(60)) Title:@"到达目的地" backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
+        getToPoint.hidden = YES;
+        
+        [[getToPoint rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 
+        }];
+        
+        [_indentController.view addSubview:getToPoint];
+        _getToPoint = getToPoint;
+    }
+    return _getToPoint;
+}
 
 - (UIButton *)passengerGetOn{
     if (!_passengerGetOn) {
@@ -189,12 +203,12 @@ static NSTimeInterval acceptIndentCount;
 - (LXQRecevingIndentView *)recevingIndentView
 {
     if (!_recevingIndentView) {
-        LXQRecevingIndentView* recevingView = [[LXQRecevingIndentView alloc] initWithFrame:CGRectMake(MATCHSIZE(20), MATCHSIZE(90), SCREEN_W - MATCHSIZE(40), MATCHSIZE(240))];
-        recevingView.layer.cornerRadius = MATCHSIZE(8);
-        recevingView.layer.masksToBounds = YES;
-        recevingView.hidden = YES;
-        [_indentController.view addSubview:recevingView];
-        _recevingIndentView = recevingView;
+        _recevingIndentView = [[LXQRecevingIndentView alloc] initWithFrame:CGRectMake(MATCHSIZE(20), MATCHSIZE(90), SCREEN_W - MATCHSIZE(40), MATCHSIZE(240))];
+        _recevingIndentView.layer.cornerRadius = MATCHSIZE(8);
+        _recevingIndentView.layer.masksToBounds = YES;
+        _recevingIndentView.hidden = YES;
+        //接单乘客信息栏
+        [_indentController.view addSubview: self.recevingIndentView];
     }
     return _recevingIndentView;
 }
@@ -202,10 +216,10 @@ static NSTimeInterval acceptIndentCount;
 - (LXQAfterDrivingTipsView *)drivingTipsView
 {
     if (!_drivingTipsView) {
-        LXQAfterDrivingTipsView* drivingTipsView = [[LXQAfterDrivingTipsView alloc] init];
-        drivingTipsView.hidden = YES;
-        [_indentController.view addSubview:drivingTipsView];
-        _drivingTipsView = drivingTipsView;
+        _drivingTipsView = [[LXQAfterDrivingTipsView alloc] init];
+        _drivingTipsView.hidden = YES;
+        //等待乘客提示框
+        [_indentController.view addSubview: self.drivingTipsView];
     }
     return _drivingTipsView;
 }
@@ -369,16 +383,41 @@ static NSTimeInterval acceptIndentCount;
         [self.acceptIndentTimer invalidate];
         self.acceptIndentTimer = nil;
     }];
+    
+    [self.drivingTipsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.recevingIndentView.mas_bottom);
+        make.left.offset(0);
+        make.right.offset(0);
+        make.height.offset(MATCHSIZE(190) + MATCHSIZE(60));
+    }];
     //接单按钮位置布局
     [self.acceptIndentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(indent.view).offset(0);
-        make.bottom.equalTo(indent.view).offset(MATCHSIZE(-75));
+        make.centerX.equalTo(self.indentController.view).offset(0);
+        make.bottom.equalTo(self.indentController.view).offset(MATCHSIZE(-75));
         make.width.offset(MATCHSIZE(600));
         make.height.offset(MATCHSIZE(80));
     }];
+
     //获取即时单数据
     [self getstantIndentData];
+    
+    //上车点按钮确认
+    [[self.determinedBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        [self changeMapStateWithMapIndentState:MapIndentStateWaitingPassengers];
+    }];
+    [indent.view addSubview:self.determinedBtn];
+    
+//    //接单乘客信息栏
+//    [indent.view addSubview: self.recevingIndentView];
+    
+//    //等待乘客提示框
+//    [indent.view addSubview: self.drivingTipsView];
 }
+
+//- (void)loadInstantIndentView{
+//  
+//}
+
 
 //即时单接单按钮
 - (void)presentOrderReceiving{
@@ -473,6 +512,7 @@ static NSTimeInterval acceptIndentCount;
     }];
 }
 
+
 #pragma mark - 预约单
 -(void)addReservationIndentWithIndent:(UIViewController *)indent{
     
@@ -560,6 +600,7 @@ static NSTimeInterval acceptIndentCount;
             //显示
             [self addInstantIndentWithIndent:indent];
             [self showInstantIndentAllView];
+//            [self loadInstantIndentView]; //加载即时单控件
             //非正确监听位置
             self.indentController.map.MapIndentState = MapIndentStateWaitingList;
             //隐藏
@@ -570,6 +611,7 @@ static NSTimeInterval acceptIndentCount;
             //显示
             [self addReservationIndentWithIndent:indent];
             [self showReservationIndentAllView];
+           
             //隐藏
             [self hideWaitIndentAllView];
             [self hideInstantIndentAllView];
@@ -672,7 +714,6 @@ static NSTimeInterval acceptIndentCount;
 }
 
 - (void)showRecevingIndentView{
-    
     self.recevingIndentView.hidden = NO;
     [UIView animateWithDuration:0.8 animations:^{
         self.recevingIndentView.y = MATCHSIZE(90);
