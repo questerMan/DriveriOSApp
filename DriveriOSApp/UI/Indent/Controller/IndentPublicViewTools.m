@@ -676,7 +676,7 @@ static NSTimeInterval acceptIndentCount;
             break;
     }
 }
-
+#pragma mark - 去上车点地图状态
 -(void)addGoToPointWithIndent{
     //接单乘客信息栏
     [_indentController.view addSubview: self.recevingIndentView];
