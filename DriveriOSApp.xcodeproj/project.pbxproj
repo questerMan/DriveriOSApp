@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		040F79B61E2F5C2300C8F227 /* LXQRecevingIndentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */; };
-		0454371C1E4D5559008602A0 /* tips.png in Resources */ = {isa = PBXBuildFile; fileRef = 0454371B1E4D5559008602A0 /* tips.png */; };
 		04C1841E1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */; };
 		04C184281E4C01A800696D39 /* LXQReservationIndentTips.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C184271E4C01A800696D39 /* LXQReservationIndentTips.m */; };
 		820555C11E00D30C0095BB47 /* PhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C01E00D30C0095BB47 /* PhoneNumber.m */; };
@@ -292,7 +291,6 @@
 /* Begin PBXFileReference section */
 		040F79B41E2F5C2300C8F227 /* LXQRecevingIndentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQRecevingIndentView.h; path = DriveriOSApp/UI/Indent/LXQRecevingIndentView.h; sourceTree = SOURCE_ROOT; };
 		040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQRecevingIndentView.m; path = DriveriOSApp/UI/Indent/LXQRecevingIndentView.m; sourceTree = SOURCE_ROOT; };
-		0454371B1E4D5559008602A0 /* tips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tips.png; sourceTree = "<group>"; };
 		04C1841A1E4BFFB500696D39 /* LXQAfterDrivingTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQAfterDrivingTipsView.h; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.h; sourceTree = SOURCE_ROOT; };
 		04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQAfterDrivingTipsView.m; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.m; sourceTree = SOURCE_ROOT; };
 		04C184261E4C01A800696D39 /* LXQReservationIndentTips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQReservationIndentTips.h; path = DriveriOSApp/UI/Indent/LXQReservationIndentTips.h; sourceTree = SOURCE_ROOT; };
@@ -1953,7 +1951,6 @@
 				8274A3E41E2C727F005A5B3A /* limitLogin@2x.png */,
 				8274A3E01E2C6BA8005A5B3A /* indent_down@2x.png */,
 				8274A3E11E2C6BA8005A5B3A /* indent_up@2x.png */,
-				0454371B1E4D5559008602A0 /* tips.png */,
 				827320BE1E2713410040AC2B /* loginBG.png */,
 				827CA10B1E1DD54100F908C2 /* timeAnno.png */,
 				827320C21E2726F50040AC2B /* logo.png */,
@@ -2490,7 +2487,6 @@
 				82D4B0351DEC11DA00FDA730 /* bg@2x.png in Resources */,
 				827193A11DF0633A00327ACB /* Star.png in Resources */,
 				82AF409C1DE93468001F0066 /* chat@3x.png in Resources */,
-				0454371C1E4D5559008602A0 /* tips.png in Resources */,
 				82AF40591DE92477001F0066 /* MWPhotoBrowser.bundle in Resources */,
 				8274A3E51E2C727F005A5B3A /* limitLogin@2x.png in Resources */,
 				827193ED1DF06E6B00327ACB /* MJRefresh.bundle in Resources */,
