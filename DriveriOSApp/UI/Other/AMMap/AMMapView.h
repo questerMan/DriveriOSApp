@@ -25,8 +25,6 @@ typedef enum MapIndentState{
 //地图
 @property (nonatomic, strong) MAMapView *mapView;
 
-@property (nonatomic, assign) CLLocationCoordinate2D currentLocationCoordinate2D;
-
 @property (nonatomic, assign) MAUserLocation *userLocation;
 
 //** 地图订单状态 */
