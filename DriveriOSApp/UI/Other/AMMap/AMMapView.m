@@ -549,7 +549,7 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
  */
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation{
     
-
+//
 //    // 让定位箭头随着方向旋转
 //    MAAnnotationView *annotationView = (MAAnnotationView *)[self viewWithTag:1002];
 //    
@@ -561,8 +561,8 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 //        }];
 //    }
 //   
-//    self.userLocation = mapView.userLocation;
-//    
+    self.userLocation = mapView.userLocation;
+    
 //    self.currentLocationCoordinate2D = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
 //    
 //    if (updatingLocation) {

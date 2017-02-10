@@ -273,15 +273,16 @@
             
             //在搜索文本框显示
             strongSelf.indentTool.seachTextF.text = model.name;
-            if ((int)strongSelf.map.currentLocationCoordinate2D.latitude == 0 || model.address == nil) {
+            if (strongSelf.map.userLocation == nil || model.address == nil) {
                 [strongSelf showHint:@"本地定位功能尚未开启"];
             }else{
                 //显示导航按钮 / 取消按钮
                 strongSelf.indentTool.startNavigation.hidden = NO;
                 strongSelf.indentTool.cancelBtn.hidden = NO;
+                
                 //绘制路径（全屏全图路径）
                 AMPublicTools *amTool = [AMPublicTools shareInstance];
-                [amTool showRouteWithMap:self.map.mapView StartCoordinate:self.map.currentLocationCoordinate2D andDestinationCoordinate:CLLocationCoordinate2DMake([model.latitude floatValue], [model.longitude floatValue]) andStrategy:5 block:nil];
+                [amTool showRouteWithMap:self.map.mapView StartCoordinate:CLLocationCoordinate2DMake(self.map.userLocation.coordinate.latitude, self.map.userLocation.coordinate.longitude) andDestinationCoordinate:CLLocationCoordinate2DMake([model.latitude floatValue], [model.longitude floatValue]) andStrategy:5 block:nil];
                 self.map.MapIndentState = MapIndentStateWaitNavigation;
             }
         }];
