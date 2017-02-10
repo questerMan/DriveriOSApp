@@ -31,4 +31,5 @@ typedef enum MapIndentState{
 @property (nonatomic, assign) MapIndentState MapIndentState;
 
 
+
 @end
