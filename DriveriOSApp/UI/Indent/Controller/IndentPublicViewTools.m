@@ -20,6 +20,9 @@ static NSTimeInterval acceptIndentCount;
 @property (nonatomic, weak) UIButton* determinedBtn;
 
 @property (nonatomic, weak) UIButton* passengerGetOn;
+
+@property (nonatomic, weak) UIButton* getToPoint;
+
 /** 接单下拉窗口*/
 @property (nonatomic, weak) LXQReservationIndentTips* reservationIndentTips;
 
@@ -175,10 +178,6 @@ static NSTimeInterval acceptIndentCount;
     return _passengerGetOn;
 }
 
-
-
-
-
 - (AlertView *)alert
 {
     if (!_alert) {
@@ -231,6 +230,7 @@ static NSTimeInterval acceptIndentCount;
     });
     return shareTools;
 }
+
 //所有控件的事件都在这里写，避免多次执行出现崩溃
 - (instancetype)init{
     if (self = [super init]) {
@@ -705,7 +705,7 @@ static NSTimeInterval acceptIndentCount;
     [self hidePassengerGetOnBtn];
     [self hideDrivingTipsView];
     [self hideReservationIndentTips];
-    //    [self closeRecevingIndent];
+//  [self closeRecevingIndent];
 }
 
 - (void)showPassengerGetOnBtn{
@@ -723,7 +723,6 @@ static NSTimeInterval acceptIndentCount;
 - (void)hideReservationIndentTips{
     self.reservationIndentTips.hidden = YES;
 }
-
 
 - (void)showNavigationBtnAndDetermineBtn{
     self.startNavigation.hidden = NO;
@@ -760,7 +759,6 @@ static NSTimeInterval acceptIndentCount;
         
         self.indentController.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.endLocationLat floatValue] longitude:[model.endLocationLon floatValue]];
     }];
-    
 }
 
 - (void)hideRouteBetweenSelfAndUser{
