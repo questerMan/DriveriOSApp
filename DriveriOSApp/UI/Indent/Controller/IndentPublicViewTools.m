@@ -676,6 +676,7 @@ static NSTimeInterval acceptIndentCount;
             break;
     }
 }
+
 #pragma mark - 去上车点地图状态
 -(void)addGoToPointWithIndent{
     //接单乘客信息栏
@@ -690,7 +691,9 @@ static NSTimeInterval acceptIndentCount;
 //        
 //    }];
 //    [_indentController.view addSubview:self.getToPoint];
+    
 }
+
 
 -(void)addWaitingPassengersWithIndent{
     //等待乘客提示框
@@ -724,23 +727,7 @@ static NSTimeInterval acceptIndentCount;
     [_indentController.view addSubview:self.getToPoint];
 }
 
-- (void)showRouteBetweenUserAndDetermination{
-    //测试------------------->
-    NetWorkingManage *netManage = [NetWorkingManage shareInstance];
-    
-    [netManage getInstantIndentWithBlock:^(NSArray *array) {
-        IndentData *model = array[0];
-        
-        //      CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat doubleValue], [model.startLocationLon doubleValue]);
-        
-        CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake([model.endLocationLat doubleValue], [model.endLocationLon doubleValue]);
-        
-        AMPublicTools *tool = [AMPublicTools shareInstance];
-        [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate: self.indentController.map.userLocation.coordinate andDestinationCoordinate:endCoor andStrategy:5 block:nil];
-        
-        self.indentController.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.endLocationLat floatValue] longitude:[model.endLocationLon floatValue]];
-    }];
-}
+
 
 - (void)showRecevingIndentView{
     self.recevingIndentView.hidden = NO;
@@ -812,7 +799,26 @@ static NSTimeInterval acceptIndentCount;
 - (void)hideDrivingTipsView{
     self.drivingTipsView.hidden = YES;
 }
+//从用户位置到用户目的地
+- (void)showRouteBetweenUserAndDetermination{
+    //测试------------------->
+    NetWorkingManage *netManage = [NetWorkingManage shareInstance];
+    
+    [netManage getInstantIndentWithBlock:^(NSArray *array) {
+        IndentData *model = array[0];
+        
+        //      CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat doubleValue], [model.startLocationLon doubleValue]);
+        
+        CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake([model.endLocationLat doubleValue], [model.endLocationLon doubleValue]);
+        
+        AMPublicTools *tool = [AMPublicTools shareInstance];
+        [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate: self.indentController.map.userLocation.coordinate andDestinationCoordinate:endCoor andStrategy:5 block:nil];
+        
+        self.indentController.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.endLocationLat floatValue] longitude:[model.endLocationLon floatValue]];
+    }];
+}
 
+//从当前位置到用户位置
 - (void)showRouteBetweenSelfAndUser{
     //测试------------------->
     NetWorkingManage *netManage = [NetWorkingManage shareInstance];
