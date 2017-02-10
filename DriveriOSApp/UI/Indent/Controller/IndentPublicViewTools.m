@@ -19,15 +19,20 @@ static NSTimeInterval acceptIndentCount;
 
 @property (nonatomic, strong) UIButton* determinedBtn;
 
-@property (nonatomic, weak) UIButton* passengerGetOn;
+@property (nonatomic, strong) UIButton* passengerGetOn;
 
-@property (nonatomic, weak) UIButton* getToPoint;
+@property (nonatomic, strong) UIButton* getToPoint;
 
 /** 接单下拉窗口*/
 @property (nonatomic, weak) LXQReservationIndentTips* reservationIndentTips;
 
 @property (nonatomic, strong) AlertView *alert;
 
+/** 乘客上车提示*/
+@property (nonatomic, strong) LXQAfterDrivingTipsView* drivingTipsView;
+
+/** 接单下拉窗口*/
+@property (nonatomic, strong) LXQRecevingIndentView* recevingIndentView;
 
 @end
 
@@ -163,11 +168,9 @@ static NSTimeInterval acceptIndentCount;
         UIButton* getToPoint = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40)*2 + (SCREEN_W - MATCHSIZE(40)*3)/2,SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*3)/2, MATCHSIZE(60)) Title:@"到达目的地" backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
         getToPoint.hidden = YES;
         
-        [[getToPoint rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 
-        }];
         
-        [_indentController.view addSubview:getToPoint];
+        
         _getToPoint = getToPoint;
     }
     return _getToPoint;
@@ -178,15 +181,7 @@ static NSTimeInterval acceptIndentCount;
         UIButton* passengerGetOn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40),SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), SCREEN_W - MATCHSIZE(40)*2, MATCHSIZE(60)) Title:@"乘客上车 " backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
         passengerGetOn.hidden = YES;
 
-        [[passengerGetOn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            UIAlertController* alertVc = [UIAlertController alertControllerWithTitle:nil message:@"请确认乘客上车，乘客会投诉未上车就开始计费的行为" preferredStyle:UIAlertControllerStyleAlert];
-            [alertVc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            }]];
-            [alertVc addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-            [self.indentController presentViewController:alertVc animated:YES completion:nil];
-        }];
- 
-        [_indentController.view addSubview:passengerGetOn];
+
         _passengerGetOn = passengerGetOn;
     }
     return _passengerGetOn;
@@ -207,8 +202,7 @@ static NSTimeInterval acceptIndentCount;
         _recevingIndentView.layer.cornerRadius = MATCHSIZE(8);
         _recevingIndentView.layer.masksToBounds = YES;
         _recevingIndentView.hidden = YES;
-        //接单乘客信息栏
-        [_indentController.view addSubview: self.recevingIndentView];
+     
     }
     return _recevingIndentView;
 }
@@ -218,8 +212,7 @@ static NSTimeInterval acceptIndentCount;
     if (!_drivingTipsView) {
         _drivingTipsView = [[LXQAfterDrivingTipsView alloc] init];
         _drivingTipsView.hidden = YES;
-        //等待乘客提示框
-        [_indentController.view addSubview: self.drivingTipsView];
+
     }
     return _drivingTipsView;
 }
@@ -228,7 +221,7 @@ static NSTimeInterval acceptIndentCount;
     if (!_reservationIndentTips) {
         LXQReservationIndentTips* reservationIndentTips = [[LXQReservationIndentTips alloc] init];
         reservationIndentTips.hidden = YES;
-        [_indentController.view addSubview:reservationIndentTips];
+        
         _reservationIndentTips = reservationIndentTips;
     }
     return _reservationIndentTips;
@@ -384,12 +377,12 @@ static NSTimeInterval acceptIndentCount;
         self.acceptIndentTimer = nil;
     }];
     
-    [self.drivingTipsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.recevingIndentView.mas_bottom);
-        make.left.offset(0);
-        make.right.offset(0);
-        make.height.offset(MATCHSIZE(190) + MATCHSIZE(60));
-    }];
+//    [self.drivingTipsView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.recevingIndentView.mas_bottom);
+//        make.left.offset(0);
+//        make.right.offset(0);
+//        make.height.offset(MATCHSIZE(190) + MATCHSIZE(60));
+//    }];
     //接单按钮位置布局
     [self.acceptIndentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.indentController.view).offset(0);
@@ -400,24 +393,10 @@ static NSTimeInterval acceptIndentCount;
 
     //获取即时单数据
     [self getstantIndentData];
+
     
-    //上车点按钮确认
-    [[self.determinedBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        [self changeMapStateWithMapIndentState:MapIndentStateWaitingPassengers];
-    }];
-    [indent.view addSubview:self.determinedBtn];
-    
-//    //接单乘客信息栏
-//    [indent.view addSubview: self.recevingIndentView];
-    
-//    //等待乘客提示框
-//    [indent.view addSubview: self.drivingTipsView];
+
 }
-
-//- (void)loadInstantIndentView{
-//  
-//}
-
 
 //即时单接单按钮
 - (void)presentOrderReceiving{
@@ -659,7 +638,9 @@ static NSTimeInterval acceptIndentCount;
         case MapIndentStateHaveIndent://已接单
             break;
             
-        case MapIndentStateGoToPoint://去目的地
+        case MapIndentStateGoToPoint://去上车点
+            
+            [self addGoToPointWithIndent];
             [self showRecevingIndentView];
           
             //显示导航/去目的地按钮
@@ -668,15 +649,17 @@ static NSTimeInterval acceptIndentCount;
             break;
             
         case MapIndentStateWaitingPassengers://免费or收费等候乘客上车
+            [self addWaitingPassengersWithIndent];
             [self showRecevingIndentView];
             [self showRouteBetweenUserAndDetermination];
             [self showPassengerGetOnBtn];
             [self showDrivingTipsView];
             break;
             
-        case MapIndentStateGoToDestination://去上车点
+        case MapIndentStateGoToDestination://去目的地
+            [self addGoToDestinationWithIndent];
             [self showReservationIndentTips];
-            [self showNavigationBtnAndDetermineBtn];
+//            [self showNavigationBtnAndDetermineBtn];
           //[self.determinedBtn setTitle:@"到达目的地" forState:0];
             break;
             
@@ -693,7 +676,53 @@ static NSTimeInterval acceptIndentCount;
             break;
     }
 }
+#pragma mark - 即时单
+-(void)addGoToPointWithIndent{
+    //接单乘客信息栏
+    [_indentController.view addSubview: self.recevingIndentView];
+    //上车点按钮确认
+    [[self.determinedBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        [self changeMapStateWithMapIndentState:MapIndentStateWaitingPassengers];
+    }];
+    [self.indentController.view addSubview:self.determinedBtn];
+//    //到达目的地按钮;
+//    [[self.getToPoint rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+//        
+//    }];
+//    [_indentController.view addSubview:self.getToPoint];
+}
 
+-(void)addWaitingPassengersWithIndent{
+    //等待乘客提示框
+    [_indentController.view addSubview: self.drivingTipsView];
+    [self.drivingTipsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.recevingIndentView.mas_bottom);
+        make.left.offset(0);
+        make.right.offset(0);
+        make.height.offset(MATCHSIZE(190) + MATCHSIZE(60));
+    }];
+    //上车按钮
+    [[self.passengerGetOn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        UIAlertController* alertVc = [UIAlertController alertControllerWithTitle:nil message:@"请确认乘客上车，乘客会投诉未上车就开始计费的行为" preferredStyle:UIAlertControllerStyleAlert];
+        [alertVc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        }]];
+        [alertVc addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        [self.indentController presentViewController:alertVc animated:YES completion:nil];
+    }];
+    
+    [_indentController.view addSubview:self.passengerGetOn];
+}
+
+-(void)addGoToDestinationWithIndent{
+//  上车提示
+    [_indentController.view addSubview:self.reservationIndentTips];
+    
+    //到达目的地按钮;
+    [[self.getToPoint rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        
+    }];
+    [_indentController.view addSubview:self.getToPoint];
+}
 
 - (void)showRouteBetweenUserAndDetermination{
     //测试------------------->
