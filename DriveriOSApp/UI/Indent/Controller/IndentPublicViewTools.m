@@ -10,6 +10,7 @@
 #import "DeleteIndentAlert.h"
 #import "AlertView.h"
 #import "LXQReservationIndentTips.h"
+#import "LXQDestinationTipsView.h"
 static NSTimeInterval acceptIndentCount;
 
 @interface IndentPublicViewTools()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
@@ -33,6 +34,9 @@ static NSTimeInterval acceptIndentCount;
 
 /** 接单下拉窗口*/
 @property (nonatomic, strong) LXQRecevingIndentView* recevingIndentView;
+
+/** 去目的地提示框*/
+@property (nonatomic, strong) LXQDestinationTipsView* destinationTipsView;
 
 @end
 
@@ -212,6 +216,14 @@ static NSTimeInterval acceptIndentCount;
 
     }
     return _drivingTipsView;
+}
+
+- (LXQDestinationTipsView *)destinationTipsView{
+    if (!_destinationTipsView) {
+        _destinationTipsView = [[LXQDestinationTipsView alloc] init];
+        _destinationTipsView.hidden = YES;
+    }
+    return _destinationTipsView;
 }
 
 - (LXQReservationIndentTips *)reservationIndentTips{
@@ -659,6 +671,7 @@ static NSTimeInterval acceptIndentCount;
             [self showReservationIndentTips];
             [self showNavigationBtnAndGetToPointBtn];
             [self showRouteBetweenUserAndDetermination];
+            [self showDestinationTipsView];
           //[self showNavigationBtnAndDetermineBtn];
           //[self.determinedBtn setTitle:@"到达目的地" forState:0];
             break;
@@ -677,7 +690,7 @@ static NSTimeInterval acceptIndentCount;
     }
 }
 
-//去上车点
+#pragma mark - 去上车点地图状态
 -(void)addGoToPointWithIndent{
     //接单乘客信息栏
     [_indentController.view addSubview: self.recevingIndentView];
@@ -728,8 +741,16 @@ static NSTimeInterval acceptIndentCount;
         
     }];
     [_indentController.view addSubview:self.getToPoint];
+    
+    //去目的地提示
+    [_indentController.view addSubview: self.destinationTipsView];
+    [self.destinationTipsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.recevingIndentView.mas_bottom);
+        make.left.offset(0);
+        make.right.offset(0);
+        make.height.offset(MATCHSIZE(190) + MATCHSIZE(60));
+    }];
 }
-
 
 
 - (void)showRouteBetweenUserAndDestination{
@@ -773,6 +794,7 @@ static NSTimeInterval acceptIndentCount;
     [self hideDrivingTipsView];
     [self hideReservationIndentTips];
     [self hideNavigationBtnAndGetToPointBtn];
+    [self hideDestinationTipsView];
 }
 
 - (void)hideIndentClassAndMapStateChange{
@@ -785,7 +807,16 @@ static NSTimeInterval acceptIndentCount;
     [self hideDrivingTipsView];
     [self hideReservationIndentTips];
     [self hideNavigationBtnAndGetToPointBtn];
+    [self hideDestinationTipsView];
 //  [self closeRecevingIndent];
+}
+
+- (void)showDestinationTipsView{
+    self.destinationTipsView.hidden = NO;
+}
+
+- (void)hideDestinationTipsView{
+    self.destinationTipsView.hidden = YES;
 }
 
 - (void)showPassengerGetOnBtn{

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		040F79B61E2F5C2300C8F227 /* LXQRecevingIndentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */; };
+		041132631E515387005A1096 /* LXQDestinationTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 041132621E515387005A1096 /* LXQDestinationTipsView.m */; };
 		0454371E1E4D5896008602A0 /* tips.png in Resources */ = {isa = PBXBuildFile; fileRef = 0454371D1E4D5896008602A0 /* tips.png */; };
 		04C1841E1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */; };
 		04C184281E4C01A800696D39 /* LXQReservationIndentTips.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C184271E4C01A800696D39 /* LXQReservationIndentTips.m */; };
@@ -292,6 +293,8 @@
 /* Begin PBXFileReference section */
 		040F79B41E2F5C2300C8F227 /* LXQRecevingIndentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQRecevingIndentView.h; path = DriveriOSApp/UI/Indent/LXQRecevingIndentView.h; sourceTree = SOURCE_ROOT; };
 		040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQRecevingIndentView.m; path = DriveriOSApp/UI/Indent/LXQRecevingIndentView.m; sourceTree = SOURCE_ROOT; };
+		041132611E515387005A1096 /* LXQDestinationTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQDestinationTipsView.h; path = DriveriOSApp/UI/Indent/LXQDestinationTipsView.h; sourceTree = SOURCE_ROOT; };
+		041132621E515387005A1096 /* LXQDestinationTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQDestinationTipsView.m; path = DriveriOSApp/UI/Indent/LXQDestinationTipsView.m; sourceTree = SOURCE_ROOT; };
 		0454371D1E4D5896008602A0 /* tips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tips.png; sourceTree = "<group>"; };
 		04C1841A1E4BFFB500696D39 /* LXQAfterDrivingTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQAfterDrivingTipsView.h; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.h; sourceTree = SOURCE_ROOT; };
 		04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQAfterDrivingTipsView.m; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.m; sourceTree = SOURCE_ROOT; };
@@ -825,6 +828,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		041132671E51940C005A1096 /* disposingLoadAlert */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = disposingLoadAlert;
+			sourceTree = "<group>";
+		};
 		776A8E4F0C4A409C901C8D0D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1409,6 +1419,8 @@
 				04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */,
 				04C184261E4C01A800696D39 /* LXQReservationIndentTips.h */,
 				04C184271E4C01A800696D39 /* LXQReservationIndentTips.m */,
+				041132611E515387005A1096 /* LXQDestinationTipsView.h */,
+				041132621E515387005A1096 /* LXQDestinationTipsView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2029,9 +2041,9 @@
 		82D4B01C1DEBCDB500FDA730 /* AlertView */ = {
 			isa = PBXGroup;
 			children = (
+				82D4B01F1DEBCDB500FDA730 /* AlertViewController */,
 				82D4B01D1DEBCDB500FDA730 /* AlertView.h */,
 				82D4B01E1DEBCDB500FDA730 /* AlertView.m */,
-				82D4B01F1DEBCDB500FDA730 /* AlertViewController */,
 				82D4B0221DEBCDB500FDA730 /* UIView+Frame.h */,
 				82D4B0231DEBCDB500FDA730 /* UIView+Frame.m */,
 			);
@@ -2041,6 +2053,7 @@
 		82D4B01F1DEBCDB500FDA730 /* AlertViewController */ = {
 			isa = PBXGroup;
 			children = (
+				041132671E51940C005A1096 /* disposingLoadAlert */,
 				827015711E35A09E00030C2F /* EmergencyRescueAlert */,
 				82DFD9581E31BC9600B2F2ED /* IndentSucceedAlert */,
 				82DFD9541E31A13900B2F2ED /* InstantIndentCommingAlert */,
@@ -2683,6 +2696,7 @@
 				82AF406A1DE92477001F0066 /* FixFopen.c in Sources */,
 				82AF404E1DE92477001F0066 /* PSTCollectionViewCell.m in Sources */,
 				827193E61DF06E6B00327ACB /* MJRefreshAutoStateFooter.m in Sources */,
+				041132631E515387005A1096 /* LXQDestinationTipsView.m in Sources */,
 				04C184281E4C01A800696D39 /* LXQReservationIndentTips.m in Sources */,
 				828400661E001CA10061FA0D /* Safety.m in Sources */,
 				82E7CCE31E02268A0072E874 /* Login.m in Sources */,
