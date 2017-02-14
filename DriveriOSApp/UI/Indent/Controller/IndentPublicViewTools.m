@@ -11,6 +11,8 @@
 #import "AlertView.h"
 #import "LXQReservationIndentTips.h"
 #import "LXQDestinationTipsView.h"
+#import "LXQDisposingLoadAlertViewController.h"
+#import "LXQFinalSettlementViewController.h"
 static NSTimeInterval acceptIndentCount;
 
 @interface IndentPublicViewTools()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
@@ -677,7 +679,10 @@ static NSTimeInterval acceptIndentCount;
             break;
             
         case MapIndentStateForSettlement://待结算
+            [self showDisposingLoadAlertAndFinalSettlement];
             
+          //隐藏
+            [self hideRecevingIndentView];
             break;
             
         case MapIndentStateForGathering://待收款
@@ -717,6 +722,7 @@ static NSTimeInterval acceptIndentCount;
         make.right.offset(0);
         make.height.offset(MATCHSIZE(190) + MATCHSIZE(60));
     }];
+    
     //上车按钮
     [[self.passengerGetOn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         UIAlertController* alertVc = [UIAlertController alertControllerWithTitle:nil message:@"请确认乘客上车，乘客会投诉未上车就开始计费的行为" preferredStyle:UIAlertControllerStyleAlert];
@@ -737,9 +743,13 @@ static NSTimeInterval acceptIndentCount;
     [_indentController.view addSubview:self.reservationIndentTips];
     
     //到达目的地按钮;
-    [[self.getToPoint rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        
-    }];
+//    __weak typeof(self) weakSelf = self;
+//    [[self.getToPoint rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+//        [weakSelf changeMapStateWithMapIndentState:MapIndentStateForSettlement];
+//    }];
+    
+    [self.getToPoint addTarget:self action:@selector(getToPointClick) forControlEvents:UIControlEventTouchUpInside];
+    
     [_indentController.view addSubview:self.getToPoint];
     
     //去目的地提示
@@ -752,6 +762,23 @@ static NSTimeInterval acceptIndentCount;
     }];
 }
 
+- (void)getToPointClick{
+   [self changeMapStateWithMapIndentState:MapIndentStateForSettlement];
+}
+
+- (void)showDisposingLoadAlertAndFinalSettlement{
+    LXQDisposingLoadAlertViewController* LoadAlertViewController = [[LXQDisposingLoadAlertViewController alloc] init];
+    LoadAlertViewController.modalPresentationStyle = 2;
+    [self.indentController presentViewController:LoadAlertViewController animated:YES completion:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [LoadAlertViewController dismissFromViewController:self.indentController andAnimated:YES];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            LXQFinalSettlementViewController* FinalSettlementViewController = [[LXQFinalSettlementViewController alloc] init];
+            [self.indentController.navigationController pushViewController:FinalSettlementViewController animated:YES];
+        });
+    });
+}
 
 - (void)showRouteBetweenUserAndDestination{
     //测试------------------->
@@ -760,7 +787,7 @@ static NSTimeInterval acceptIndentCount;
     [netManage getInstantIndentWithBlock:^(NSArray *array) {
         IndentData *model = array[0];
         
-        //      CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat doubleValue], [model.startLocationLon doubleValue]);
+      //CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat doubleValue], [model.startLocationLon doubleValue]);
         
         CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake([model.endLocationLat doubleValue], [model.endLocationLon doubleValue]);
         

@@ -129,7 +129,8 @@
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     
     //导航栏字体颜色
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColorFromRGB(@"#ff6d00")}];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColorFromRGB(@"#ff6d00"),
+          NSFontAttributeName : [UIFont systemFontOfSize:20]}];
     
     
     //左上角菜单按钮:打开左侧栏
@@ -137,7 +138,6 @@
     
     //右上角聊天按钮
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu_right"] style:UIBarButtonItemStylePlain target:self action:@selector(rightItemOnclick:)];
-    
 }
 
 #pragma mark - 右上角聊天按钮
