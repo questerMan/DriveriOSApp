@@ -231,8 +231,8 @@
     [self alertViewClose];
     //关闭定时器
     [self.timer setFireDate:[NSDate distantFuture]];
-    
 }
+
 #pragma mark - 初始化alertView
 -(void)initAlertViewWithViewController:(UIViewController *)controller{
     if (self.alertView) return;
@@ -343,9 +343,8 @@
             make.height.offset(MATCHSIZE(300));
         }];
     }
-    
-    
 }
+
 #pragma mark - 只显示文字
 -(void)alertViewShowTitle:(NSString *)title
                 textColor:(UIColor *)textColor{

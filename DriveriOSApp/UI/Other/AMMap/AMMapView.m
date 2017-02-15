@@ -564,7 +564,7 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
     self.userLocation = mapView.userLocation;
     
 //    self.currentLocationCoordinate2D = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
-//    
+//
 //    if (updatingLocation) {
 //        
 //        dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
