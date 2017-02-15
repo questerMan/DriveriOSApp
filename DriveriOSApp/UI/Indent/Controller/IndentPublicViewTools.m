@@ -696,14 +696,17 @@ static NSTimeInterval acceptIndentCount;
 
 
 -(void)addWaitingPassengersWithIndent{
+    
     //等待乘客提示框
     [_indentController.view addSubview: self.drivingTipsView];
+    
     [self.drivingTipsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.recevingIndentView.mas_bottom);
         make.left.offset(0);
         make.right.offset(0);
         make.height.offset(MATCHSIZE(190) + MATCHSIZE(60));
     }];
+    
     //上车按钮
     [[self.passengerGetOn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         UIAlertController* alertVc = [UIAlertController alertControllerWithTitle:nil message:@"请确认乘客上车，乘客会投诉未上车就开始计费的行为" preferredStyle:UIAlertControllerStyleAlert];
