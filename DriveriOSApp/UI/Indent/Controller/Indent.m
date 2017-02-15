@@ -130,7 +130,7 @@
     
     //导航栏字体颜色
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColorFromRGB(@"#ff6d00"),
-          NSFontAttributeName : [UIFont systemFontOfSize:20]}];
+          NSFontAttributeName : [UIFont systemFontOfSize:MATCHSIZE(40)]}];
     
     
     //左上角菜单按钮:打开左侧栏

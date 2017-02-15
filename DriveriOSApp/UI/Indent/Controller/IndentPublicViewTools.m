@@ -412,8 +412,9 @@ static NSTimeInterval acceptIndentCount;
 //即时单接单按钮
 - (void)presentOrderReceiving{
     //弹出提示：接单成功
-    AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeCenterAlertInfo];
-    [alert alertViewShowTitle:@"接单成功!正在拨打乘客的电话，请检查车上服务用品，尽快前往上车点。" textColor:[UIColor blackColor]];
+    AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeIndentSucceedAlert];
+//    [alert alertViewShowTitle:@"接单成功!正在拨打乘客的电话，请检查车上服务用品，尽快前往上车点。" textColor:[UIColor blackColor]];
+    [alert alertViewShow];
     //关闭计时器
     [self.acceptIndentTimer invalidate];
     //延迟3s后执行进入地图”已接单状态“
