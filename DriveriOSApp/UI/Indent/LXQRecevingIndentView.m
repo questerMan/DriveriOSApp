@@ -26,70 +26,57 @@
 
 -(void)creatUI{
     /** 背景 */
-    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(MATCHSIZE(10), MATCHSIZE(10), SCREEN_W - MATCHSIZE(20), MATCHSIZE(300))];
+    self.bgView = [[UIView alloc] init];
     self.bgView.backgroundColor = [UIColor whiteColor];
     self.bgView.layer.cornerRadius = MATCHSIZE(8);
     self.bgView.layer.masksToBounds = YES;
     [self addSubview:self.bgView];
     
     /** 头像图标 */
-    self.headIMG = [FactoryClass imageViewWithFrame:CGRectMake(MATCHSIZE(10), MATCHSIZE(10), MATCHSIZE(140), MATCHSIZE(140)) Image:[UIImage imageNamed:@""] cornerRadius:MATCHSIZE(70)];
+    self.headIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
     [self.bgView addSubview:self.headIMG];
     
     /** 名字 */
     self.name = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(30) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
-    self.name.frame = CGRectMake(MATCHSIZE(160), MATCHSIZE(20), MATCHSIZE(120), MATCHSIZE(60));
+//    self.name.frame = CGRectMake(MATCHSIZE(160), MATCHSIZE(20), MATCHSIZE(120), MATCHSIZE(60));
     [self.bgView addSubview:self.name];
     
-    /** 电话 */
-    self.number = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(25) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
-    self.number.frame = CGRectMake(MATCHSIZE(280), MATCHSIZE(25), MATCHSIZE(200), MATCHSIZE(55));
-    [self.bgView addSubview:self.number];
+//    /** 电话 */
+//    self.number = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(25) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
+//    self.number.frame = CGRectMake(MATCHSIZE(280), MATCHSIZE(25), MATCHSIZE(200), MATCHSIZE(55));
+//    [self.bgView addSubview:self.number];
     
     /** 上车图标 */
-    self.tCarIMG = [FactoryClass imageViewWithFrame:CGRectMake(MATCHSIZE(160), MATCHSIZE(100), MATCHSIZE(50), MATCHSIZE(50)) Image:[UIImage imageNamed:@"start"]];
+    self.tCarIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"start"]];
     [self.bgView addSubview:self.tCarIMG];
     
     /** 下车图标 */
-    self.bCarIMG = [FactoryClass imageViewWithFrame:CGRectMake(MATCHSIZE(160), MATCHSIZE(170), MATCHSIZE(50), MATCHSIZE(50)) Image:[UIImage imageNamed:@"end"]];
+    self.bCarIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"end"]];
     [self.bgView addSubview:self.bCarIMG];
-    
-//    /** 预约时间图标 */
-//    self.timeIMG = [FactoryClass imageViewWithFrame:CGRectMake(MATCHSIZE(160), MATCHSIZE(240), MATCHSIZE(50), MATCHSIZE(50)) Image:[UIImage imageNamed:@"history"]];
-//    [self.bgView addSubview:self.timeIMG];
     
     /** 上车点 */
     self.tCarLab = [FactoryClass labelWithText:@"上车点:" fontSize:MATCHSIZE(28) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
-    self.tCarLab.frame = CGRectMake(MATCHSIZE(220), MATCHSIZE(100), MATCHSIZE(120), MATCHSIZE(50));
+//    self.tCarLab.frame = CGRectMake(MATCHSIZE(220), MATCHSIZE(100), MATCHSIZE(120), MATCHSIZE(50));
     [self.bgView addSubview:self.tCarLab];
     
     /** 下车点 */
     self.bCarLab = [FactoryClass labelWithText:@"下车点:" fontSize:MATCHSIZE(28) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
-    self.bCarLab.frame = CGRectMake(MATCHSIZE(220), MATCHSIZE(170), MATCHSIZE(120), MATCHSIZE(50));
+//    self.bCarLab.frame = CGRectMake(MATCHSIZE(220), MATCHSIZE(170), MATCHSIZE(120), MATCHSIZE(50));
     [self.bgView addSubview:self.bCarLab];
-    
-//    /** 预约时间 */
-//    self.timeLab = [FactoryClass labelWithText:@"预约时间:" fontSize:MATCHSIZE(28) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
-//    self.timeLab.frame = CGRectMake(MATCHSIZE(220), MATCHSIZE(240), MATCHSIZE(140), MATCHSIZE(50));
-//    [self.bgView addSubview:self.timeLab];
     
     /** 上车点文本 */
     self.tCarText = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(28) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
-    self.tCarText.frame = CGRectMake(MATCHSIZE(340), MATCHSIZE(100), MATCHSIZE(230), MATCHSIZE(50));
+//    self.tCarText.frame = CGRectMake(MATCHSIZE(340), MATCHSIZE(100), MATCHSIZE(230), MATCHSIZE(50));
     [self.bgView addSubview:self.tCarText];
     
     /** 下车点文本 */
     self.bCarText = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(28) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
-    self.bCarText.frame = CGRectMake(MATCHSIZE(340), MATCHSIZE(170), MATCHSIZE(230), MATCHSIZE(50));
+//    self.bCarText.frame = CGRectMake(MATCHSIZE(340), MATCHSIZE(170), MATCHSIZE(230), MATCHSIZE(50));
     [self.bgView addSubview:self.bCarText];
     
-//    /** 预约时间文本 */
-//    self.timeText = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(28) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
-//    self.timeText.frame = CGRectMake(MATCHSIZE(350), MATCHSIZE(240), MATCHSIZE(300), MATCHSIZE(50));
-//    [self.bgView addSubview:self.timeText];
-    
     /** 打电话按钮 */
-    self.callBtn = [FactoryClass buttonWithFrame:CGRectMake(SCREEN_W - MATCHSIZE(170), MATCHSIZE(20), MATCHSIZE(60), MATCHSIZE(60)) image:[UIImage imageNamed:@"phone"]];
+    self.callBtn = [UIButton buttonWithType:0];
+    [self.callBtn setImage:[UIImage imageNamed:@"phone"] forState:0];
     
     //打电话
     [[self.callBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
@@ -100,10 +87,8 @@
     }];
     [self.bgView addSubview:self.callBtn];
     
-//    /** 订单状态标签 */
-//    self.satus = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(30) textColor:[UIColor whiteColor] numberOfLine:1 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor grayColor]];
-//    self.satus.frame = CGRectMake(SCREEN_W - MATCHSIZE(170), MATCHSIZE(200), MATCHSIZE(140), MATCHSIZE(80));
-//    [self.bgView addSubview:self.satus];
+    //详情按钮
+    self.sendBtn = [UIButton buttonWithType:0];
 }
 
 
@@ -117,13 +102,17 @@
     
     self.name.text = model.name;
     
-//    self.satus.text = model.satus;
+  //self.satus.text = model.satus;
     
     self.tCarText.text = model.startName;
     
     self.bCarText.text = model.endName;
     
-//    self.timeText.text = model.time;
+  //self.timeText.text = model.time;
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
     
 }
 @end
