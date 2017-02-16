@@ -12,8 +12,6 @@
 
 @property (nonatomic, strong) UIView *bgView;//背景图
 
-@property (nonatomic, strong) UIButton* scalingBtn;
-
 @end
 
 @implementation LXQRecevingIndentView
@@ -38,7 +36,8 @@
     [self.bgView addSubview:self.titleLabel];
     
     self.scalingBtn = [UIButton buttonWithType:0];
-    [self.scalingBtn setImage:[UIImage imageNamed:@"pull-up"] forState:0];
+    [self.scalingBtn setBackgroundImage:[UIImage imageNamed:@"pull-up"] forState:0];
+    self.scalingBtn.backgroundColor = [UIColor blackColor];
     [self.bgView addSubview:self.scalingBtn];
     
     /** 头像图标 */
