@@ -93,10 +93,10 @@
 
 -(UIButton *)lookPassWordBtn{
     if (!_lookPassWordBtn) {
-        CGFloat lenght = [PublicTool lengthofStr:@"忘记密码？" AndSystemFontOfSize:MATCHSIZE(30)];
-        _lookPassWordBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(100), MATCHSIZE(1080), lenght, MATCHSIZE(60)) Title:@"忘记密码?" backGround:[UIColor clearColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(0)];
-        [_lookPassWordBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        _lookPassWordBtn.titleLabel.font = [UIFont systemFontOfSize:MATCHSIZE(30)];
+        _lookPassWordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_lookPassWordBtn setTitle:@"忘记密码?" forState:UIControlStateNormal];
+        [_lookPassWordBtn setTitleColor:UIColorFromRGB(@"#ff772b") forState:UIControlStateNormal];
+        _lookPassWordBtn.titleLabel.font = [UIFont systemFontOfSize:MATCHSIZE(28)];
         _lookPassWordBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     }
     return _lookPassWordBtn;
@@ -272,6 +272,14 @@
     
     //忘记密码
     [self.view addSubview:self.lookPassWordBtn];
+    CGFloat lenght_W = [PublicTool lengthofStr:@"忘记密码？" AndSystemFontOfSize:MATCHSIZE(26)];
+    [self.lookPassWordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(MATCHSIZE(116));
+        make.top.equalTo(bgView.mas_bottom).offset(MATCHSIZE(20));
+        make.width.offset(lenght_W);
+        make.height.offset(MATCHSIZE(30));
+    }];
+    
     [[self.lookPassWordBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         
         [self showHint:@"忘记密码"];
