@@ -719,8 +719,10 @@ static NSTimeInterval acceptIndentCount;
 
 //免费or收费等候乘客上车
 -(void)addWaitingPassengersWithIndent{
+    
     //等待乘客提示框
     [_indentController.view addSubview: self.drivingTipsView];
+    
     [self.drivingTipsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.recevingIndentView.mas_bottom);
         make.left.offset(0);
