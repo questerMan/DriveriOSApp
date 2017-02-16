@@ -661,11 +661,15 @@ static NSTimeInterval acceptIndentCount;
             break;
             
         case MapIndentStateWaitingPassengers://免费or收费等候乘客上车
+            //隐藏
+            [self hideRouteBetweenSelfAndUser];
             [self addWaitingPassengersWithIndent];
+            //显示
             [self showRecevingIndentView];
             [self showRouteBetweenUserAndDetermination];
             [self showPassengerGetOnBtn];
             [self showDrivingTipsView];
+            
             break;
             
         case MapIndentStateGoToDestination://去目的地
@@ -684,6 +688,7 @@ static NSTimeInterval acceptIndentCount;
             
           //隐藏
             [self hideRecevingIndentView];
+            [self hideRouteBetweenSelfAndUser];
             break;
             
         case MapIndentStateForGathering://待收款
@@ -705,12 +710,11 @@ static NSTimeInterval acceptIndentCount;
         [self changeMapStateWithMapIndentState:MapIndentStateWaitingPassengers];
     }];
     [self.indentController.view addSubview:self.determinedBtn];
-//    //到达目的地按钮;
+    //到达目的地按钮;
 //    [[self.getToPoint rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 //        
 //    }];
 //    [_indentController.view addSubview:self.getToPoint];
-    
 }
 
 //免费or收费等候乘客上车
@@ -734,7 +738,6 @@ static NSTimeInterval acceptIndentCount;
         [alertVc addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
         [self.indentController presentViewController:alertVc animated:YES completion:nil];
     }];
-    
     [_indentController.view addSubview:self.passengerGetOn];
 }
 
@@ -767,6 +770,7 @@ static NSTimeInterval acceptIndentCount;
    [self changeMapStateWithMapIndentState:MapIndentStateForSettlement];
 }
 
+//正在处理加载弹窗
 - (void)showDisposingLoadAlertAndFinalSettlement{
     LXQDisposingLoadAlertViewController* LoadAlertViewController = [[LXQDisposingLoadAlertViewController alloc] init];
     LoadAlertViewController.modalPresentationStyle = 2;
@@ -829,36 +833,37 @@ static NSTimeInterval acceptIndentCount;
     [self hideWaitIndentAllView];
     [self hideInstantIndentAllView];
     [self hideReservationIndentAllView];
-    [self.indentController clearRoute];
     [self hideNavigationBtnAndDetermineBtn];
     [self hidePassengerGetOnBtn];
     [self hideDrivingTipsView];
     [self hideReservationIndentTips];
     [self hideNavigationBtnAndGetToPointBtn];
     [self hideDestinationTipsView];
+//  [self.indentController clearRoute];
 //  [self closeRecevingIndent];
 }
 
+//显示目的地按钮
 - (void)showDestinationTipsView{
     self.destinationTipsView.hidden = NO;
 }
-
+//隐藏目的地按钮
 - (void)hideDestinationTipsView{
     self.destinationTipsView.hidden = YES;
 }
-
+//显示乘客上车按钮
 - (void)showPassengerGetOnBtn{
     self.passengerGetOn.hidden = NO;
 }
-
+//隐藏乘客上车按钮
 - (void)hidePassengerGetOnBtn{
     self.passengerGetOn.hidden = YES;
 }
-
+//乘客信息栏显示
 - (void)showReservationIndentTips{
     self.reservationIndentTips.hidden = NO;
 }
-
+//乘客信息栏隐藏
 - (void)hideReservationIndentTips{
     self.reservationIndentTips.hidden = YES;
 }
@@ -883,12 +888,12 @@ static NSTimeInterval acceptIndentCount;
     self.startNavigation.hidden = YES;
     self.determinedBtn.hidden = YES;
 }
-
+//等车弹窗提示显示
 - (void)showDrivingTipsView{
     self.drivingTipsView.hidden = NO;
     
 }
-
+//等车弹窗提示隐藏
 - (void)hideDrivingTipsView{
     self.drivingTipsView.hidden = YES;
 }
@@ -929,7 +934,7 @@ static NSTimeInterval acceptIndentCount;
         self.indentController.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.endLocationLat floatValue] longitude:[model.endLocationLon floatValue]];
     }];
 }
-
+//隐藏路径
 - (void)hideRouteBetweenSelfAndUser{
     AMPublicTools *tool = [AMPublicTools shareInstance];
     [tool clearRouteWithBlock:nil];

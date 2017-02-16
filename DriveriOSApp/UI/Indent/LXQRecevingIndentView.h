@@ -42,4 +42,7 @@
 
 @property (nonatomic, strong) IndentData *model;
 
+/** 该派单按钮 */
+@property (nonatomic, strong) UIButton *sendBtn;
+
 @end
