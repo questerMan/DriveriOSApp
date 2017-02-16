@@ -47,4 +47,6 @@
 /** 该派单按钮 */
 @property (nonatomic, strong) UIButton *sendBtn;
 
+@property (nonatomic, strong) UIButton* scalingBtn;
+
 @end
