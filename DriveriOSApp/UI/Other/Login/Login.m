@@ -39,7 +39,7 @@
 
 -(UITextField *)usersF{
     if (!_usersF) {
-        _usersF = [FactoryClass textFieldWithFrame:CGRectMake(MATCHSIZE(60), MATCHSIZE(80), SCREEN_W - MATCHSIZE(340), MATCHSIZE(40)) placeholder:@"  " placeholderColor:[UIColor grayColor] textColor:[UIColor blackColor] backgroundColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft cornerRadius:0 itemImage:[UIImage imageNamed:@""] keyboardType:UIKeyboardTypeNumberPad];
+        _usersF = [FactoryClass textFieldWithFrame:CGRectMake(MATCHSIZE(60), MATCHSIZE(80), SCREEN_W - MATCHSIZE(340), MATCHSIZE(40)) placeholder:@"  " placeholderColor:[UIColor grayColor] textColor:[UIColor blackColor] backgroundColor:[UIColor whiteColor] textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:[UIImage imageNamed:@""] keyboardType:UIKeyboardTypeNumberPad];
         _usersF.tag = 1000;
     }
     return _usersF;
@@ -47,7 +47,7 @@
 
 -(UITextField *)passWordF{
     if (!_passWordF) {
-        _passWordF = [FactoryClass textFieldWithFrame:CGRectMake(MATCHSIZE(60), MATCHSIZE(183), SCREEN_W - MATCHSIZE(340), MATCHSIZE(40)) placeholder:@"  " placeholderColor:[UIColor grayColor] textColor:[UIColor blackColor] backgroundColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft cornerRadius:0 itemImage:[UIImage imageNamed:@""] keyboardType:UIKeyboardTypeNumberPad];
+        _passWordF = [FactoryClass textFieldWithFrame:CGRectMake(MATCHSIZE(60), MATCHSIZE(183), SCREEN_W - MATCHSIZE(340), MATCHSIZE(40)) placeholder:@"  " placeholderColor:[UIColor grayColor] textColor:[UIColor blackColor] backgroundColor:[UIColor whiteColor] textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:[UIImage imageNamed:@""] keyboardType:UIKeyboardTypeNumberPad];
         _passWordF.secureTextEntry = YES;
         _passWordF.tag = 1001;
     }
@@ -56,7 +56,7 @@
 
 -(UITextField *)codeF{
     if (!_codeF) {
-        _codeF = [FactoryClass textFieldWithFrame:CGRectMake(MATCHSIZE(60), MATCHSIZE(284), MATCHSIZE(180), MATCHSIZE(40)) placeholder:@"  " placeholderColor:[UIColor grayColor] textColor:[UIColor blackColor] backgroundColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft cornerRadius:0 itemImage:[UIImage imageNamed:@""] keyboardType:UIKeyboardTypeNumberPad];
+        _codeF = [FactoryClass textFieldWithFrame:CGRectMake(MATCHSIZE(60), MATCHSIZE(284), MATCHSIZE(180), MATCHSIZE(40)) placeholder:@"  " placeholderColor:[UIColor grayColor] textColor:[UIColor blackColor] backgroundColor:[UIColor whiteColor] textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:[UIImage imageNamed:@""] keyboardType:UIKeyboardTypeNumberPad];
         _codeF.tag = 1002;
     }
     return _codeF;
