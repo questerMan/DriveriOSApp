@@ -201,7 +201,8 @@ static NSTimeInterval acceptIndentCount;
 - (LXQRecevingIndentView *)recevingIndentView
 {
     if (!_recevingIndentView) {
-        _recevingIndentView = [[LXQRecevingIndentView alloc] initWithFrame:CGRectMake(MATCHSIZE(20), MATCHSIZE(90), SCREEN_W - MATCHSIZE(40), MATCHSIZE(240))];
+        _recevingIndentView = [[LXQRecevingIndentView alloc] initWithFrame:CGRectMake(MATCHSIZE(23), MATCHSIZE(90), SCREEN_W - 2 * MATCHSIZE(23), MATCHSIZE(248))];
+        _recevingIndentView.backgroundColor = COLOR(204, 204, 204, 1);
         _recevingIndentView.layer.cornerRadius = MATCHSIZE(8);
         _recevingIndentView.layer.masksToBounds = YES;
         _recevingIndentView.hidden = YES;
