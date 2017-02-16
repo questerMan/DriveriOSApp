@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) UIView *bgView;//背景图
 
+@property (nonatomic, strong) UIButton* scalingBtn;
+
 @end
 
 @implementation LXQRecevingIndentView
@@ -26,11 +28,18 @@
 
 -(void)creatUI{
     /** 背景 */
-    self.bgView = [[UIView alloc] init];
+    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(MATCHSIZE(26), MATCHSIZE(10), SCREEN_W - MATCHSIZE(26) * 2, MATCHSIZE(242))];
     self.bgView.backgroundColor = [UIColor whiteColor];
     self.bgView.layer.cornerRadius = MATCHSIZE(8);
     self.bgView.layer.masksToBounds = YES;
     [self addSubview:self.bgView];
+    
+    self.titleLabel = [FactoryClass labelWithText:@"开始接驾" fontSize:MATCHSIZE(32) textColor:UIColorFromRGB(@"#8c8c8c") numberOfLine:1];
+    [self.bgView addSubview:self.titleLabel];
+    
+    self.scalingBtn = [UIButton buttonWithType:0];
+    [self.scalingBtn setImage:[UIImage imageNamed:@"pull-up"] forState:0];
+    [self.bgView addSubview:self.scalingBtn];
     
     /** 头像图标 */
     self.headIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
@@ -55,12 +64,12 @@
     [self.bgView addSubview:self.bCarIMG];
     
     /** 上车点 */
-    self.tCarLab = [FactoryClass labelWithText:@"上车点:" fontSize:MATCHSIZE(28) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
+    self.tCarLab = [FactoryClass labelWithText:@"出发地:" fontSize:MATCHSIZE(28) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
 //    self.tCarLab.frame = CGRectMake(MATCHSIZE(220), MATCHSIZE(100), MATCHSIZE(120), MATCHSIZE(50));
     [self.bgView addSubview:self.tCarLab];
     
     /** 下车点 */
-    self.bCarLab = [FactoryClass labelWithText:@"下车点:" fontSize:MATCHSIZE(28) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
+    self.bCarLab = [FactoryClass labelWithText:@"目的地:" fontSize:MATCHSIZE(28) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
 //    self.bCarLab.frame = CGRectMake(MATCHSIZE(220), MATCHSIZE(170), MATCHSIZE(120), MATCHSIZE(50));
     [self.bgView addSubview:self.bCarLab];
     
@@ -89,6 +98,8 @@
     
     //详情按钮
     self.sendBtn = [UIButton buttonWithType:0];
+    [self.sendBtn setImage:[UIImage imageNamed:@"send-order"] forState:0];
+    [self.bgView addSubview:self.sendBtn];
 }
 
 
@@ -113,6 +124,18 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
+    
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(MATCHSIZE(20));
+        make.left.offset(MATCHSIZE(270));
+    }];
+    
+    [self.scalingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.titleLabel.mas_right).offset(MATCHSIZE(10));
+        make.right.offset(MATCHSIZE(270));
+        make.centerY.equalTo(self.titleLabel.mas_centerY);
+    }];
+    
     
 }
 @end

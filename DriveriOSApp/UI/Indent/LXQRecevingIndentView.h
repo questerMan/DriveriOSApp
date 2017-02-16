@@ -11,6 +11,8 @@
 
 @interface LXQRecevingIndentView : UIView
 
+/** 名字 */
+@property (nonatomic, strong) UILabel *titleLabel;
 /** 头像图标 */
 @property (nonatomic, strong) UIImageView *headIMG;
 /** 名字 */
