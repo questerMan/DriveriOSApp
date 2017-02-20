@@ -893,9 +893,7 @@ static NSTimeInterval acceptIndentCount;
         IndentData *model = array[0];
         
         CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat doubleValue], [model.startLocationLon doubleValue]);
-        
-        //        CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake([model.endLocationLat doubleValue], [model.endLocationLon doubleValue]);
-        
+                
         AMPublicTools *tool = [AMPublicTools shareInstance];
         [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate: self.indentController.map.userLocation.coordinate andDestinationCoordinate:startCoor andStrategy:5 block:nil];
         
