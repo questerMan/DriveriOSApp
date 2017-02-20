@@ -362,6 +362,10 @@
             make.top.offset(MATCHSIZE(466));
             make.height.offset(MATCHSIZE(400));
         }];
+        __weak typeof(self) weakSelf = self;
+        self.emergencyRescueAlert.closeAlert = ^{
+            [weakSelf alertViewClose];
+        };
     }
 }
 

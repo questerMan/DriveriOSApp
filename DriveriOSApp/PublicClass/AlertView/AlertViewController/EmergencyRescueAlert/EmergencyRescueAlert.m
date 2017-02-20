@@ -72,6 +72,7 @@ static NSTimeInterval count = 5;
     
     UILabel* phoneLabel = [[UILabel alloc] init];
     phoneLabel.text = @"方便接电话";
+    phoneLabel.textAlignment = NSTextAlignmentCenter;
     phoneLabel.font = [UIFont systemFontOfSize:MATCHSIZE(32)];
     phoneLabel.textColor = UIColorFromRGB(@"#333333");
     [self.upView addSubview:phoneLabel];
@@ -107,7 +108,10 @@ static NSTimeInterval count = 5;
 }
 
 - (void)cancelBtnClick:(UIButton *)sender{
-    
+    if (_closeAlert) {
+        _closeAlert();
+    }
+    [self.countTimer invalidate];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
