@@ -31,8 +31,6 @@ static NSTimeInterval acceptIndentCount;
 /** 接单下拉窗口*/
 @property (nonatomic, weak) LXQReservationIndentTips* reservationIndentTips;
 
-@property (nonatomic, strong) AlertView *alert;
-
 /** 乘客上车提示*/
 @property (nonatomic, strong) LXQAfterDrivingTipsView* drivingTipsView;
 
@@ -342,13 +340,6 @@ static NSTimeInterval acceptIndentCount;
         [self changeMapStateWithMapIndentState:MapIndentStateWaitingPassengers];
     }];
     
-//    [[self.passengerGetOn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-//        UIAlertController* alertVc = [UIAlertController alertControllerWithTitle:nil message:@"请确认乘客上车，乘客会投诉未上车就开始计费的行为" preferredStyle:UIAlertControllerStyleAlert];
-//        [alertVc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        }]];
-//        [alertVc addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-//        [self.indentController presentViewController:alertVc animated:YES completion:nil];
-//    }];
 }
 
 
@@ -411,12 +402,6 @@ static NSTimeInterval acceptIndentCount;
         self.acceptIndentTimer = nil;
     }];
     
-//    [self.drivingTipsView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.recevingIndentView.mas_bottom);
-//        make.left.offset(0);
-//        make.right.offset(0);
-//        make.height.offset(MATCHSIZE(190) + MATCHSIZE(60));
-//    }];
     //接单按钮位置布局
     [self.acceptIndentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.indentController.view).offset(0);
@@ -563,10 +548,6 @@ static NSTimeInterval acceptIndentCount;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [self showHint:@"页面未搭建完成"];
-//    IndentData* data = self.arrayData[indexPath.row];
-//    [self.arrayData removeAllObjects];
-//    [self.arrayData addObject:data];
-//    [tableView reloadData];
 }
 
 #pragma mark - 隐藏预约单页面的view
@@ -771,12 +752,6 @@ static NSTimeInterval acceptIndentCount;
 //  上车提示
     [_indentController.view addSubview:self.reservationIndentTips];
     
-    //到达目的地按钮;
-//    __weak typeof(self) weakSelf = self;
-//    [[self.getToPoint rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-//        [weakSelf changeMapStateWithMapIndentState:MapIndentStateForSettlement];
-//    }];
-    
     [self.getToPoint addTarget:self action:@selector(getToPointClick) forControlEvents:UIControlEventTouchUpInside];
     
     [_indentController.view addSubview:self.getToPoint];
@@ -864,8 +839,6 @@ static NSTimeInterval acceptIndentCount;
     [self hideReservationIndentTips];
     [self hideNavigationBtnAndGetToPointBtn];
     [self hideDestinationTipsView];
-//  [self.indentController clearRoute];
-//  [self closeRecevingIndent];
 }
 
 //显示目的地按钮
@@ -950,9 +923,7 @@ static NSTimeInterval acceptIndentCount;
         IndentData *model = array[0];
         
         CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat doubleValue], [model.startLocationLon doubleValue]);
-        
-        //        CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake([model.endLocationLat doubleValue], [model.endLocationLon doubleValue]);
-        
+                
         AMPublicTools *tool = [AMPublicTools shareInstance];
         [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate: self.indentController.map.userLocation.coordinate andDestinationCoordinate:startCoor andStrategy:5 block:nil];
         
