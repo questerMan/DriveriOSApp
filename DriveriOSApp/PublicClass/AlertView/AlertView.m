@@ -203,7 +203,7 @@
                 
                 break;
             case AlertViewTypeEmergencyRescueAlert:
-                [self isCloseWithTap:YES];
+                [self isCloseWithTap:NO];
                 
                 break;
             default:

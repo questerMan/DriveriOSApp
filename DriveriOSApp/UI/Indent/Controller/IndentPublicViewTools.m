@@ -198,14 +198,6 @@ static NSTimeInterval acceptIndentCount;
     return _rescueBtn;
 }
 
-- (AlertView *)alert
-{
-    if (!_alert) {
-        _alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeCenterAlertInfo];
-    }
-    return _alert;
-}
-
 - (LXQRecevingIndentView *)recevingIndentView
 {
     if (!_recevingIndentView) {
@@ -283,7 +275,7 @@ static NSTimeInterval acceptIndentCount;
     [indent.view addSubview:self.rescueBtn];
     [[self.rescueBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeEmergencyRescueAlert];
-        //    [alert alertViewShowTitle:@"接单成功!正在拨打乘客的电话，请检查车上服务用品，尽快前往上车点。" textColor:[UIColor blackColor]];
+
         [alert alertViewShow];
     }];
     [self.rescueBtn mas_makeConstraints:^(MASConstraintMaker *make) {

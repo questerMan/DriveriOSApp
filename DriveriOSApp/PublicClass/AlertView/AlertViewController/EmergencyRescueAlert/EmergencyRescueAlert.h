@@ -10,4 +10,6 @@
 
 @interface EmergencyRescueAlert : UIViewController
 
+@property(nonatomic, copy) void(^closeAlert)(void);
+
 @end
