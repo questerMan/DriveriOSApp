@@ -61,7 +61,7 @@
         make.top.offset(MATCHSIZE(515));
         make.left.offset(MATCHSIZE(275));
         make.right.offset(MATCHSIZE(-275));
-        make.height.equalTo(self.loadIMG.mas_width);
+        make.height.equalTo(self.loadIMG.mas_width).multipliedBy(190/200.0);
     }];
     
     [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
