@@ -66,6 +66,7 @@
     [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.offset(0);
         make.top.equalTo(self.loadIMG.mas_bottom).offset(MATCHSIZE(77));
+        make.width.equalTo(self.textLabel.mas_height);
     }];
 }
 
