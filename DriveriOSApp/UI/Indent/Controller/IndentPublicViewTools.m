@@ -391,8 +391,8 @@ static NSTimeInterval acceptIndentCount;
 - (void)presentOrderReceiving{
     //弹出提示：接单成功
     AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeIndentSucceedAlert];
-//    [alert alertViewShowTitle:@"接单成功!正在拨打乘客的电话，请检查车上服务用品，尽快前往上车点。" textColor:[UIColor blackColor]];
     [alert alertViewShow];
+    
     //关闭计时器
     [self.acceptIndentTimer invalidate];
     //延迟3s后执行进入地图”已接单状态“
@@ -893,7 +893,7 @@ static NSTimeInterval acceptIndentCount;
         IndentData *model = array[0];
         
         CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat doubleValue], [model.startLocationLon doubleValue]);
-                
+        
         AMPublicTools *tool = [AMPublicTools shareInstance];
         [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate: self.indentController.map.userLocation.coordinate andDestinationCoordinate:startCoor andStrategy:5 block:nil];
         

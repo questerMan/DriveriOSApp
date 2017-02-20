@@ -129,7 +129,7 @@
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
     
     _addAlertViewType = alertViewType;
-    
+
     if (self = [super initWithFrame:frame]) {
         
         switch (alertViewType) {
@@ -412,4 +412,7 @@
         }
     }];
 }
+
+
+
 @end
