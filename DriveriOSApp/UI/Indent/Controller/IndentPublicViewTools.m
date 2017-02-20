@@ -25,6 +25,8 @@ static NSTimeInterval acceptIndentCount;
 @property (nonatomic, strong) UIButton* passengerGetOn;
 
 @property (nonatomic, strong) UIButton* getToPoint;
+//救援电话
+@property (nonatomic, strong) UIButton* rescueBtn;
 
 /** 接单下拉窗口*/
 @property (nonatomic, weak) LXQReservationIndentTips* reservationIndentTips;
@@ -108,7 +110,6 @@ static NSTimeInterval acceptIndentCount;
         _acceptIndentBtn.hidden = YES;
     }
     return _acceptIndentBtn;
-
 }
 
 -(InstantHeadView *)instantHeadView{
@@ -188,6 +189,15 @@ static NSTimeInterval acceptIndentCount;
         _passengerGetOn = passengerGetOn;
     }
     return _passengerGetOn;
+}
+
+- (UIButton *)rescueBtn
+{
+    if (!_rescueBtn) {
+        _rescueBtn = [UIButton buttonWithType:0];
+        [_rescueBtn setImage:[UIImage imageNamed:@"rescue"] forState:0];
+    }
+    return _rescueBtn;
 }
 
 - (AlertView *)alert
@@ -271,6 +281,18 @@ static NSTimeInterval acceptIndentCount;
     //创建取消按钮
     [indent.view addSubview:self.cancelBtn];
     
+    //创建救援按钮
+    [indent.view addSubview:self.rescueBtn];
+    [[self.rescueBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeEmergencyRescueAlert];
+        //    [alert alertViewShowTitle:@"接单成功!正在拨打乘客的电话，请检查车上服务用品，尽快前往上车点。" textColor:[UIColor blackColor]];
+        [alert alertViewShow];
+    }];
+    [self.rescueBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.offset(0);
+        make.left.offset(MATCHSIZE(26));
+    }];
+
 }
 
 -(void)buttonOfIndent{

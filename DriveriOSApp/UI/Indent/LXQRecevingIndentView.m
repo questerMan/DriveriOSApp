@@ -185,15 +185,15 @@
     [self.callBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(MATCHSIZE(46));
         make.right.offset(MATCHSIZE(-20));
-        make.bottom.equalTo(self.sendBtn.mas_top).offset(MATCHSIZE(-58));
+//        make.bottom.equalTo(self.sendBtn.mas_top).offset(MATCHSIZE(-58));
+        make.height.offset(MATCHSIZE(51));
+        make.width.offset(MATCHSIZE(50));
     }];
     
     [self.sendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.offset(MATCHSIZE(-34));
         make.right.offset(MATCHSIZE(-20));
     }];
-    
-    
 }
 
 @end

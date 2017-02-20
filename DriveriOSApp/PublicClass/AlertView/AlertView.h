@@ -22,7 +22,8 @@ typedef enum {
     AlertViewTypeDeleteIndentAlert,
     AlertViewTypeLimitLoginAlert,
     AlertViewTypeInstantIndentCommingAlert,
-    AlertViewTypeIndentSucceedAlert
+    AlertViewTypeIndentSucceedAlert,
+    AlertViewTypeEmergencyRescueAlert
 }AlertViewType;
 
 @property (nonatomic, assign) AlertViewType addAlertViewType;

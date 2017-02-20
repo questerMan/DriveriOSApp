@@ -17,6 +17,7 @@
 #import "LimitLoginAlert.h"
 #import "InstantIndentCommingAlert.h"
 #import "IndentSucceedAlert.h"
+#import "EmergencyRescueAlert.h"
 @interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate,LimitLoginAlertDelegate>
 
 @property (nonatomic,strong) UIView *bgView;
@@ -45,7 +46,7 @@
 
 @property (nonatomic, strong) IndentSucceedAlert *indentSucceedAlert;
 
-
+@property (nonatomic, strong) EmergencyRescueAlert *emergencyRescueAlert;
 
 @end
 
@@ -125,6 +126,14 @@
     }
     return _indentSucceedAlert;
 }
+
+- (EmergencyRescueAlert *)emergencyRescueAlert{
+    if (!_emergencyRescueAlert) {
+        _emergencyRescueAlert = [[EmergencyRescueAlert alloc] init];
+    }
+    return _emergencyRescueAlert;
+}
+
 //直接调用该方法一般用于固定 view 的展示
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
     
@@ -191,6 +200,10 @@
                 
                 [self isCloseWithTap:YES];
                 [self isCreatTimerWithTimeInterval:3];
+                
+                break;
+            case AlertViewTypeEmergencyRescueAlert:
+                [self isCloseWithTap:YES];
                 
                 break;
             default:
@@ -322,7 +335,6 @@
             make.bottom.equalTo(self).offset(-MATCHSIZE(74));
         }];
         
-        
     }else if (_addAlertViewType == AlertViewTypeLimitLoginAlert){
         [self initAlertViewWithViewController:self.limitLoginAlert];
         self.alertView.frame = CGRectMake(MATCHSIZE(130), MATCHSIZE(400), SCREEN_W - MATCHSIZE(260), MATCHSIZE(370));
@@ -341,6 +353,14 @@
             make.right.equalTo(self).offset(MATCHSIZE(-174));
             make.centerY.offset(0);
             make.height.offset(MATCHSIZE(300));
+        }];
+    }else if (_addAlertViewType == AlertViewTypeEmergencyRescueAlert){
+        [self initAlertViewWithViewController:self.emergencyRescueAlert];
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(MATCHSIZE(104));
+            make.right.equalTo(self).offset(MATCHSIZE(-104));
+            make.top.offset(MATCHSIZE(466));
+            make.height.offset(MATCHSIZE(400));
         }];
     }
 }
