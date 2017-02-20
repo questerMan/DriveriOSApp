@@ -28,6 +28,10 @@ static NSTimeInterval acceptIndentCount;
 //救援电话
 @property (nonatomic, strong) UIButton* rescueBtn;
 
+@property (nonatomic, strong) AlertView* rescueAlert;
+
+@property (nonatomic, strong) AlertView* receiveOrderAlert;
+
 /** 接单下拉窗口*/
 @property (nonatomic, weak) LXQReservationIndentTips* reservationIndentTips;
 
@@ -126,8 +130,6 @@ static NSTimeInterval acceptIndentCount;
     }
     return _netWorkingManage;
 }
-
-
 
 - (NSTimer *)acceptIndentTimer
 {
@@ -239,6 +241,13 @@ static NSTimeInterval acceptIndentCount;
     return _reservationIndentTips;
 }
 
+-(AlertView *)rescueAlert{
+    if (!_rescueAlert) {
+        _rescueAlert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeEmergencyRescueAlert];
+    }
+    return _rescueAlert;
+}
+
 /** 单例 */
 + (IndentPublicViewTools *)shareInstance{
     
@@ -274,9 +283,9 @@ static NSTimeInterval acceptIndentCount;
     //创建救援按钮
     [indent.view addSubview:self.rescueBtn];
     [[self.rescueBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeEmergencyRescueAlert];
+//        AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeEmergencyRescueAlert];
 
-        [alert alertViewShow];
+        [self.rescueAlert alertViewShow];
     }];
     [self.rescueBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.offset(0);
@@ -384,15 +393,8 @@ static NSTimeInterval acceptIndentCount;
     //触发定时器
     [self.acceptIndentTimer fire];
     //接单按钮点击事件
-    [[self.acceptIndentBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        
-        [self presentOrderReceiving];
-        //按钮状态显示“接单”
-        [self.acceptIndentBtn setTitle:@"接单" forState:UIControlStateNormal];
-        //取消定时器
-        [self.acceptIndentTimer invalidate];
-        self.acceptIndentTimer = nil;
-    }];
+    [self.acceptIndentBtn addTarget:self action:@selector(acceptIndentBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    self.acceptIndentBtn.cs_acceptEventInterval = 3;
     
     //接单按钮位置布局
     [self.acceptIndentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -404,9 +406,15 @@ static NSTimeInterval acceptIndentCount;
 
     //获取即时单数据
     [self getstantIndentData];
+}
 
-    
-
+- (void)acceptIndentBtnClick{
+    [self presentOrderReceiving];
+    //按钮状态显示“接单”
+    [self.acceptIndentBtn setTitle:@"接单" forState:UIControlStateNormal];
+    //取消定时器
+    [self.acceptIndentTimer invalidate];
+    self.acceptIndentTimer = nil;
 }
 
 //即时单接单按钮
@@ -487,7 +495,7 @@ static NSTimeInterval acceptIndentCount;
     self.instantHeadView.hidden = YES;
     
     self.acceptIndentBtn.hidden = YES;
-
+    
 }
 
 #pragma mark - 显示即时单页面的view
