@@ -21,16 +21,16 @@
 
 -(void)creatUI{
     //背景颜色
-    self.backgroundColor = [UIColor grayColor];
+    self.backgroundColor = UIColorFromRGB(@"#ffffff");
     //用户头像
-    self.userIMG = [FactoryClass buttonWithTitle:@"" backGroundIMG:[UIImage imageNamed:@"userIMG"] textColor:[UIColor blueColor] cornerRadius:MATCHSIZE(60)];
+    self.userIMG = [FactoryClass buttonWithTitle:@"" backGroundIMG:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://wx.qlogo.cn/mmhead/ver_1/VZwibrUAlMxJ4yfCOcBrhBfz5ib5l9IBEPpfEWRLHLnlxPbBDdUhjVmQDrZIrHOz1E8VnooevXhibpVto2ibfhX2YcMY7L780ic9cSjsDw0ndsOo/0"]]] textColor:[UIColor blueColor] cornerRadius:MATCHSIZE(57)];
     [self addSubview:self.userIMG];
     
     [self.userIMG mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(MATCHSIZE(15));
-        make.top.equalTo(self).offset(MATCHSIZE(35));
-        make.width.offset(MATCHSIZE(120));
-        make.height.offset(MATCHSIZE(120));
+        make.left.equalTo(self).offset(MATCHSIZE(146));
+        make.top.equalTo(self).offset(MATCHSIZE(100));
+        make.width.offset(MATCHSIZE(114));
+        make.height.offset(MATCHSIZE(114));
     }];
     [[self.userIMG rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
        
@@ -54,19 +54,22 @@
     }];
 
     
-    self.userName = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(30) textColor:[UIColor whiteColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
+    self.userName = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(20) textColor:UIColorFromRGB(@"#8c8c8c") numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
     [self addSubview:self.userName];
     
     self.starsIMG = [[UIImageView alloc] init];
     [self addSubview:self.starsIMG];
 
-    self.starsCount = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(30) textColor:[UIColor whiteColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
+    self.starsCount = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(20) textColor:UIColorFromRGB(@"#8c8c8c") numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
     [self addSubview:self.starsCount];
     
-    self.carType = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(30) textColor:[UIColor whiteColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
+    self.carType = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(20) textColor:UIColorFromRGB(@"#8c8c8c") numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
     [self addSubview:self.carType];
     
-    self.carNumber = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(30) textColor:[UIColor whiteColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
+    self.carModel = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(20) textColor:UIColorFromRGB(@"#8c8c8c") numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
+    [self addSubview:self.carModel];
+    
+    self.carNumber = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(20) textColor:UIColorFromRGB(@"#8c8c8c") numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
     [self addSubview:self.carNumber];
     
     
@@ -77,48 +80,57 @@
 }
 
 -(void)getData{
-    self.userName.text = @"姓名";
-   CGFloat lenght = [PublicTool lengthofStr:self.userName.text AndSystemFontOfSize:MATCHSIZE(30)]+MATCHSIZE(2);
+    self.userName.text = @"李师傅";
+   CGFloat lenght = [PublicTool lengthofStr:self.userName.text AndSystemFontOfSize:MATCHSIZE(20)]+MATCHSIZE(2);
     [self.userName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.userIMG.mas_right).offset(MATCHSIZE(10));
-        make.top.equalTo(self).offset(MATCHSIZE(35));
+        make.top.equalTo(self).offset(MATCHSIZE(100));
         make.width.offset(lenght);
-        make.height.offset(MATCHSIZE(30));
+        make.height.offset(MATCHSIZE(20));
     }];
     
-    self.starsIMG.image = [UIImage imageNamed:@"starsVCount"];
+    self.starsIMG.image = [UIImage imageNamed:@"star"];
     [self.starsIMG mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.userName.mas_right).offset(MATCHSIZE(30));
-        make.top.equalTo(self).offset(MATCHSIZE(35));
-        make.width.offset(MATCHSIZE(30));
-        make.height.offset(MATCHSIZE(30));
+        make.left.equalTo(self.userName.mas_right).offset(MATCHSIZE(20));
+        make.top.equalTo(self).offset(MATCHSIZE(100));
+        make.width.offset(MATCHSIZE(20));
+        make.height.offset(MATCHSIZE(20));
     }];
     
     self.starsCount.text = @"4.5";
-    CGFloat lenght_S = [PublicTool lengthofStr:self.starsCount.text AndSystemFontOfSize:MATCHSIZE(30)]+MATCHSIZE(2);
+    CGFloat lenght_S = [PublicTool lengthofStr:self.starsCount.text AndSystemFontOfSize:MATCHSIZE(20)]+MATCHSIZE(2);
     [self.starsCount mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.starsIMG.mas_right).offset(MATCHSIZE(2));
-        make.top.equalTo(self).offset(MATCHSIZE(35));
+        make.left.equalTo(self.starsIMG.mas_right).offset(MATCHSIZE(10));
+        make.top.equalTo(self).offset(MATCHSIZE(100));
         make.width.offset(lenght_S);
-        make.height.offset(MATCHSIZE(30));
+        make.height.offset(MATCHSIZE(20));
     }];
     
-    self.carType.text = @"品牌＋车型";
-    CGFloat lenght_T = [PublicTool lengthofStr:self.carType.text AndSystemFontOfSize:MATCHSIZE(30)]+MATCHSIZE(2);
+    self.carType.text = @"广汽丰田";
+    CGFloat lenght_T = [PublicTool lengthofStr:self.carType.text AndSystemFontOfSize:MATCHSIZE(20)]+MATCHSIZE(2);
     [self.carType mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.userIMG.mas_right).offset(MATCHSIZE(10));
-        make.top.equalTo(self.userName.mas_bottom).offset(MATCHSIZE(25));
+        make.top.equalTo(self.userName.mas_bottom).offset(MATCHSIZE(20));
         make.width.offset(lenght_T);
-        make.height.offset(MATCHSIZE(30));
+        make.height.offset(MATCHSIZE(20));
     }];
     
-    self.carNumber.text = @"车牌";
-    CGFloat lenght_N = [PublicTool lengthofStr:self.carNumber.text AndSystemFontOfSize:MATCHSIZE(30)]+MATCHSIZE(2);
+    self.carModel.text = @"雷凌双擎";
+    CGFloat lenght_M = [PublicTool lengthofStr:self.carModel.text AndSystemFontOfSize:MATCHSIZE(20)]+MATCHSIZE(2);
+    [self.carModel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.carType.mas_right).offset(MATCHSIZE(10));
+        make.top.equalTo(self.userName.mas_bottom).offset(MATCHSIZE(20));
+        make.width.offset(lenght_M);
+        make.height.offset(MATCHSIZE(20));
+    }];
+    
+    self.carNumber.text = @"粤A 888888";
+    CGFloat lenght_N = [PublicTool lengthofStr:self.carNumber.text AndSystemFontOfSize:MATCHSIZE(20)]+MATCHSIZE(2);
     [self.carNumber mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.userIMG.mas_right).offset(MATCHSIZE(10));
-        make.top.equalTo(self.carType.mas_bottom).offset(MATCHSIZE(25));
+        make.top.equalTo(self.carType.mas_bottom).offset(MATCHSIZE(20));
         make.width.offset(lenght_N);
-        make.height.offset(MATCHSIZE(30));
+        make.height.offset(MATCHSIZE(20));
     }];
 }
 @end

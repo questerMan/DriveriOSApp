@@ -23,6 +23,8 @@ typedef void (^LeftMainHeadViewBlock) (void);
 
 @property (nonatomic, strong) UILabel *carType;
 
+@property (nonatomic, strong) UILabel *carModel;
+
 @property (nonatomic, strong) UILabel *carNumber;
 
 -(void)userIMGWithBlock:(LeftMainHeadViewBlock)block;
