@@ -229,7 +229,13 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    
+    if (![self.phoneNumTeF.text isEqualToString:@""] && ![self.pwdNumTeF.text isEqualToString:@""] && ![self.confirmNumTeF.text isEqualToString:@""]) {
+        self.finishItem.tintColor = UIColorFromRGB(@"#333333");
+        self.finishItem.enabled = YES;
+    }else{
+        self.finishItem.tintColor = UIColorFromRGB(@"#cccccc");
+        self.finishItem.enabled = NO;
+    }
     return YES;
 }
 
@@ -245,6 +251,7 @@
     
     UIBarButtonItem* finishItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:0 target:self action:@selector(finishBtnClick)];
     finishItem.tintColor = UIColorFromRGB(@"#cccccc");
+    finishItem.enabled = NO;
     
     self.navigationItem.rightBarButtonItem = finishItem;
     
