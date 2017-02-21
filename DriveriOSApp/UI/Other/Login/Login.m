@@ -114,10 +114,15 @@
     [self creatUI];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
 }
+
+//- (void)viewWillDisappear:(BOOL)animated{
+//    [super viewWillDisappear:animated];
+//    self.navigationController.navigationBar.hidden = NO;
+//}
 
 -(void)creatUI{
 
