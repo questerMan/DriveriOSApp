@@ -259,6 +259,17 @@
     return YES;
 }
 
+- (BOOL)textFieldShouldClear:(UITextField *)textField{
+    if (![self.phoneNumTeF.text isEqualToString:@""] && ![self.pwdNumTeF.text isEqualToString:@""] && ![self.confirmNumTeF.text isEqualToString:@""]) {
+        self.finishItem.tintColor = UIColorFromRGB(@"#333333");
+        self.finishItem.enabled = YES;
+    }else{
+        self.finishItem.tintColor = UIColorFromRGB(@"#cccccc");
+        self.finishItem.enabled = NO;
+    }
+    return YES;
+}
+
 - (void)setupNav{
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:MATCHSIZE(40)],NSForegroundColorAttributeName : UIColorFromRGB(@"#ff6d00")};
