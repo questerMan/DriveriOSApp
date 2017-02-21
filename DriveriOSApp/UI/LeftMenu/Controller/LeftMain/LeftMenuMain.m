@@ -165,7 +165,7 @@
             [self presentFromViewController:self andToViewController:offlineNac andAnimated:YES];
             break;
         case 4:
-            NSLog(@"-------------5");
+            NSLog(@"-------------4");
             
             break;
             
@@ -175,9 +175,9 @@
     
 
    //测试**********
-    if (indexPath.row == 5) {
+    if (indexPath.row == 4) {
         
-        AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeIndentSucceedAlert];
+        AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeInstantIndentCommingAlert];
         [alert alertViewShow];
         
     }

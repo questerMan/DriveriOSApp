@@ -42,8 +42,8 @@
     [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleIMG.mas_bottom).offset(MATCHSIZE(25));
         make.bottom.equalTo(self.view).offset(MATCHSIZE(-50));
-        make.left.equalTo(self.view).offset(MATCHSIZE(34));
-        make.right.equalTo(self.view).offset(MATCHSIZE(-34));
+        make.left.equalTo(self.view).offset(MATCHSIZE(20));
+        make.right.equalTo(self.view).offset(MATCHSIZE(-20));
     }];
     
     NSString *firstStr = @"您有个";
