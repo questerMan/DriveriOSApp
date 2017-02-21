@@ -8,7 +8,7 @@
 
 #import "LeftMenuMain.h"
 #import "LeftMainHeadView.h"
-
+#import "LeftMainItemCell.h"
 
 @interface LeftMenuMain ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -81,6 +81,8 @@
 
     self.tableView.backgroundColor = UIColorFromRGB(@"#ffffff");
     
+    self.tableView.rowHeight = MATCHSIZE(90);
+    
     [self.view addSubview:self.tableView];
     
 }
@@ -129,19 +131,24 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"cellID";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    LeftMainItemCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+//    if (!cell) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
+//    }
+//    
+//    cell.selectionStyle =UITableViewCellSelectionStyleNone;
+//    
+//    cell.textLabel.text = self.arrayData[indexPath.row];
+//    
+//    cell.textLabel.textColor = UIColorFromRGB(@"#8c8c8c");
+//    
+//    cell.imageView.image = [UIImage imageNamed:self.arrayItemIMG[indexPath.row]];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
+        cell = [[LeftMainItemCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
     }
-    
-    cell.selectionStyle =UITableViewCellSelectionStyleNone;
-    
-    cell.textLabel.text = self.arrayData[indexPath.row];
-    
-    cell.textLabel.textColor = UIColorFromRGB(@"#8c8c8c");
-    
-    cell.imageView.image = [UIImage imageNamed:self.arrayItemIMG[indexPath.row]];
-    
+    cell.itemIMG.image = [UIImage imageNamed:self.arrayItemIMG[indexPath.row]];
+    cell.itemTitle.text = self.arrayData[indexPath.row];
+
     return cell;
 }
 

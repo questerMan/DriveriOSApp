@@ -39,11 +39,11 @@
     
     self.itemTitle = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(28) textColor:UIColorFromRGB(@"#8c8c8c") numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
     [self addSubview:self.itemTitle];
-    [self.itemIMG mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.itemTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.itemIMG.mas_right).offset(MATCHSIZE(20));
         make.top.equalTo(self).offset(MATCHSIZE(0));
         make.bottom.equalTo(self).offset(MATCHSIZE(-60));
-        make.width.offset(MATCHSIZE(30));
+        make.width.offset(MATCHSIZE(130));
     }];
     
     self.itemCount = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(28) textColor:UIColorFromRGB(@"#ffffff") numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:UIColorFromRGB(@"#ff6d00")];
@@ -56,8 +56,9 @@
         make.bottom.equalTo(self).offset(MATCHSIZE(-66));
         make.width.offset(MATCHSIZE(18));
     }];
-    
 }
+
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
