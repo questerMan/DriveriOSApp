@@ -33,10 +33,6 @@
         make.width.offset(MATCHSIZE(80));
     }];
     
-    
-   
-
-    
     self.titleLab = [FactoryClass labelWithText:nil fontSize:MATCHSIZE(26) textColor:UIColorFromRGB(@"#333333") numberOfLine:2 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor clearColor]];
     [self.view addSubview:self.titleLab];
     [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -55,9 +51,6 @@
     [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:MATCHSIZE(26)] range:NSMakeRange([firstStr length],[indentName length])];
     self.titleLab.attributedText = str;
 }
-
-
-
 
 /*
 #pragma mark - Navigation
