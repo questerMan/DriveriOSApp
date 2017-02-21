@@ -8,7 +8,7 @@
 
 #import "LXQResetPwdViewController.h"
 
-@interface LXQResetPwdViewController ()
+@interface LXQResetPwdViewController ()<UITextFieldDelegate>
 
 @property(nonatomic, weak)UILabel* tipsLabel;
 
@@ -22,11 +22,23 @@
 
 @property(nonatomic, weak)UIView* phoneNumline;
 
+@property(nonatomic, weak)UITextField* phoneNumTeF;
+
 @property(nonatomic, weak)UILabel* pwdNumLabel;
 
 @property(nonatomic, weak)UIView* pwdNumline;
 
+@property(nonatomic, weak)UIButton* pwdNumEyeBtn;
+
+@property(nonatomic, weak)UITextField* pwdNumTeF;
+
 @property(nonatomic, weak)UILabel* confirmPwdNumLabel;
+
+@property(nonatomic, weak)UIView* confirmPwdNumline;
+
+@property(nonatomic, weak)UIButton* confirmPwdNumEyeBtn;
+
+@property(nonatomic, weak)UITextField* confirmNumTeF;
 
 @property(nonatomic, strong)UIBarButtonItem* finishItem;
 
@@ -57,7 +69,69 @@
     [self.view addSubview:tipsLabel];
     self.tipsLabel = tipsLabel;
     
-//    UIView* phoneNumView = 
+    UIView* phoneNumView = [[UIView alloc] init];
+    phoneNumView.backgroundColor = UIColorFromRGB(@"#ffffff");
+    [self.view addSubview:phoneNumView];
+    self.phoneNumView = phoneNumView;
+    
+    UILabel* phoneNumLabel = [FactoryClass labelWithText:@"手机号" fontSize:MATCHSIZE(26) textColor:UIColorFromRGB(@"#cccccc") numberOfLine:0];
+    [self.phoneNumView addSubview:phoneNumLabel];
+    self.phoneNumLabel = phoneNumLabel;
+    
+    UIView* phoneNumline = [[UIView alloc] init];
+    phoneNumline.backgroundColor = UIColorFromRGB(@"#c4c4c4");
+    [self.phoneNumView addSubview:phoneNumline];
+    self.phoneNumline = phoneNumline;
+    
+    UITextField* phoneNumTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:nil placeholderColor:nil textColor:UIColorFromRGB(@"#333333") backgroundColor:nil textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:nil keyboardType:0];
+    phoneNumTeF.delegate = self;
+    [self.phoneNumView addSubview:phoneNumTeF];
+    self.phoneNumTeF = phoneNumTeF;
+    
+    UIView* pwdNumView = [[UIView alloc] init];
+    pwdNumView.backgroundColor = UIColorFromRGB(@"#ffffff");
+    [self.view addSubview:pwdNumView];
+    self.pwdNumView = pwdNumView;
+    
+    UILabel* pwdNumLabel = [FactoryClass labelWithText:@"密码" fontSize:MATCHSIZE(26) textColor:UIColorFromRGB(@"#cccccc") numberOfLine:0];
+    [self.pwdNumView addSubview:pwdNumLabel];
+    self.pwdNumLabel = pwdNumLabel;
+    
+    UIView* pwdNumline = [[UIView alloc] init];
+    pwdNumline.backgroundColor = UIColorFromRGB(@"#c4c4c4");
+    [self.pwdNumView addSubview:pwdNumline];
+    self.pwdNumline = pwdNumline;
+    
+    UIButton* pwdNumEyeBtn = [UIButton buttonWithType:0];
+    [pwdNumEyeBtn setImage:[UIImage imageNamed:@"eyesReset"] forState:0];
+    [self.pwdNumView addSubview:pwdNumEyeBtn];
+    self.pwdNumEyeBtn = pwdNumEyeBtn;
+    
+    UITextField* pwdNumTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:nil placeholderColor:nil textColor:UIColorFromRGB(@"#333333") backgroundColor:nil textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:nil keyboardType:0];
+    pwdNumTeF.secureTextEntry = YES;
+    pwdNumTeF.delegate = self;
+    [self.pwdNumView addSubview:pwdNumTeF];
+    self.pwdNumTeF = pwdNumTeF;
+    
+    UIView* confirmPwdNumView = [[UIView alloc] init];
+    confirmPwdNumView.backgroundColor = UIColorFromRGB(@"#ffffff");
+    [self.view addSubview:confirmPwdNumView];
+    self.confirmPwdNumView = confirmPwdNumView;
+    
+    UILabel* confirmPwdNumLabel = [FactoryClass labelWithText:@"确认密码" fontSize:MATCHSIZE(26) textColor:UIColorFromRGB(@"#cccccc") numberOfLine:0];
+    [self.confirmPwdNumView addSubview:confirmPwdNumLabel];
+    self.confirmPwdNumLabel = confirmPwdNumLabel;
+    
+    UIButton* confirmPwdNumEyeBtn = [UIButton buttonWithType:0];
+    [confirmPwdNumEyeBtn setImage:[UIImage imageNamed:@"eyesReset"] forState:0];
+    [self.confirmPwdNumView addSubview:confirmPwdNumEyeBtn];
+    self.confirmPwdNumEyeBtn = confirmPwdNumEyeBtn;
+    
+    UITextField* confirmNumTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:nil placeholderColor:nil textColor:UIColorFromRGB(@"#333333") backgroundColor:nil textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:nil keyboardType:0];
+    confirmNumTeF.secureTextEntry = YES;
+    confirmNumTeF.delegate = self;
+    [self.confirmPwdNumView addSubview:confirmNumTeF];
+    self.confirmNumTeF = confirmNumTeF;
 }
 
 - (void)viewDidLayoutSubviews{
@@ -69,7 +143,94 @@
         make.left.offset(MATCHSIZE(110));
     }];
     
+    [self.phoneNumView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(MATCHSIZE(88) + MATCHSIZE(174));
+        make.left.offset(0);
+        make.right.offset(0);
+        make.height.offset(MATCHSIZE(80));
+    }];
     
+    [self.phoneNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(MATCHSIZE(28));
+        make.left.offset(MATCHSIZE(26));
+        make.bottom.offset(MATCHSIZE(-28));
+    }];
+    
+    [self.phoneNumline mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(MATCHSIZE(28));
+        make.right.offset(0);
+        make.bottom.offset(0);
+        make.height.offset(MATCHSIZE(1));
+    }];
+    
+    [self.phoneNumTeF mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(MATCHSIZE(20));
+        make.bottom.offset(MATCHSIZE(-20));
+        make.left.offset(MATCHSIZE(200));
+        make.right.offset(MATCHSIZE(-200));
+    }];
+    
+    [self.pwdNumView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.phoneNumView.mas_bottom);
+        make.left.offset(0);
+        make.right.offset(0);
+        make.height.offset(MATCHSIZE(80));
+    }];
+    
+    [self.pwdNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(MATCHSIZE(28));
+        make.left.offset(MATCHSIZE(26));
+        make.bottom.offset(MATCHSIZE(-28));
+    }];
+    
+    [self.pwdNumline mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(MATCHSIZE(28));
+        make.right.offset(0);
+        make.bottom.offset(0);
+        make.height.offset(MATCHSIZE(1));
+    }];
+    
+    [self.pwdNumEyeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.offset(MATCHSIZE(-26));
+        make.centerY.offset(0);
+    }];
+    
+    [self.pwdNumTeF mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(MATCHSIZE(20));
+        make.bottom.offset(MATCHSIZE(-20));
+        make.left.offset(MATCHSIZE(200));
+        make.right.offset(MATCHSIZE(-200));
+    }];
+    
+    [self.confirmPwdNumView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.pwdNumView.mas_bottom);
+        make.left.offset(0);
+        make.right.offset(0);
+        make.height.offset(MATCHSIZE(80));
+    }];
+    
+    [self.confirmPwdNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(MATCHSIZE(28));
+        make.left.offset(MATCHSIZE(26));
+        make.bottom.offset(MATCHSIZE(-28));
+    }];
+    
+    [self.confirmPwdNumEyeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.offset(MATCHSIZE(-26));
+        make.centerY.offset(0);
+    }];
+    
+    [self.confirmNumTeF mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(MATCHSIZE(20));
+        make.bottom.offset(MATCHSIZE(-20));
+        make.left.offset(MATCHSIZE(200));
+        make.right.offset(MATCHSIZE(-200));
+    }];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    return YES;
 }
 
 - (void)setupNav{
