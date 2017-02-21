@@ -115,6 +115,7 @@ static NSTimeInterval count = 5;
 }
 
 - (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     [self.countTimer fire];
 }
 

@@ -50,10 +50,6 @@
     });
 }
 
-//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-//    
-//}
-
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     
@@ -69,11 +65,5 @@
         make.top.equalTo(self.loadIMG.mas_bottom).offset(MATCHSIZE(77));
     }];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 @end

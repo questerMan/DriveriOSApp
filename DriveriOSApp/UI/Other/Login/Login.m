@@ -7,7 +7,7 @@
 //
 
 #import "Login.h"
-
+#import "LXQResetPwdViewController.h"
 @interface Login ()
 /** logo图 */
 @property (nonatomic, strong) UIImageView *logoIMG;
@@ -108,12 +108,16 @@
     [super viewDidLoad];
 
     
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self creatUI];
 }
 
-
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+}
 
 -(void)creatUI{
 
@@ -265,8 +269,9 @@
     }];
     
     [[self.loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        //跳到主页面，移除当前登录页面
-        [self.view removeFromSuperview];
+//        //跳到主页面，移除当前登录页面
+//        [self.view removeFromSuperview];
+        self.loginClick();
         
     }];
     
@@ -281,9 +286,10 @@
     }];
     
     [[self.lookPassWordBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        
-        [self showHint:@"忘记密码"];
-        
+      //[self showHint:@"忘记密码"];
+        LXQResetPwdViewController* resetPwdViewController = [[LXQResetPwdViewController alloc] init];
+        [self.navigationController pushViewController:resetPwdViewController animated:YES];
+//      [self.navigationController                                  pushViewController:resetPwdViewController animated:YES];
     }];
     
     [bgView addSubview:self.eyeBtn];
@@ -293,8 +299,6 @@
         make.width.offset(MATCHSIZE(20));
         make.height.offset(MATCHSIZE(10));
     }];
-    
-    
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -302,6 +306,5 @@
     [self.passWordF resignFirstResponder];
     [self.codeF resignFirstResponder];
 }
-
 
 @end

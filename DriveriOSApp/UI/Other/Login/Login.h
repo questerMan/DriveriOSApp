@@ -10,4 +10,6 @@
 
 @interface Login : UIViewController
 
+@property(nonatomic, copy)void(^loginClick)(void);
+
 @end
