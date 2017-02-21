@@ -24,8 +24,6 @@
     [self initEM];
 
     [self initWindow];
-
-    [self.window addSubview:[[Login alloc] init].view];
     
     return YES;
 }
@@ -36,6 +34,21 @@
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
+    Login* LoginVc = [[Login alloc] init];
+    
+    UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:LoginVc];
+    
+    self.window.rootViewController = nav;
+    
+    __weak typeof(self) weakSelf = self;
+    LoginVc.loginClick = ^{
+        weakSelf.window.rootViewController = [weakSelf getSlideMenuController];
+    };
+    
+    [self.window makeKeyAndVisible];
+}
+
+- (SlideMenuController *)getSlideMenuController{
     EaseMessageViewController *chatController = [[EaseMessageViewController alloc] initWithConversationChatter:GROUND_ID conversationType:EMConversationTypeGroupChat];
     
     UINavigationController *nac = [[UINavigationController alloc] initWithRootViewController:chatController];
@@ -50,9 +63,7 @@
     
     slideMenuController.delegate = chatController;
     
-    self.window.rootViewController = slideMenuController;
-    
-    [self.window makeKeyAndVisible];
+    return slideMenuController;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
