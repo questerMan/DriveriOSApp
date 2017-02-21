@@ -104,6 +104,8 @@
     
     UIButton* pwdNumEyeBtn = [UIButton buttonWithType:0];
     [pwdNumEyeBtn setImage:[UIImage imageNamed:@"eyesReset"] forState:0];
+    [pwdNumEyeBtn addTarget:self action:@selector(pwdNumEyeBtnClick) forControlEvents:UIControlEventTouchDown];
+    [pwdNumEyeBtn addTarget:self action:@selector(pwdNumEyeBtnUp) forControlEvents:UIControlEventTouchUpInside];
     [self.pwdNumView addSubview:pwdNumEyeBtn];
     self.pwdNumEyeBtn = pwdNumEyeBtn;
     
@@ -124,6 +126,8 @@
     
     UIButton* confirmPwdNumEyeBtn = [UIButton buttonWithType:0];
     [confirmPwdNumEyeBtn setImage:[UIImage imageNamed:@"eyesReset"] forState:0];
+    [confirmPwdNumEyeBtn addTarget:self action:@selector(confirmPwdNumEyeBtnClick) forControlEvents:UIControlEventTouchDown];
+    [confirmPwdNumEyeBtn addTarget:self action:@selector(confirmPwdNumEyeBtnUp) forControlEvents:UIControlEventTouchUpInside];
     [self.confirmPwdNumView addSubview:confirmPwdNumEyeBtn];
     self.confirmPwdNumEyeBtn = confirmPwdNumEyeBtn;
     
@@ -132,6 +136,22 @@
     confirmNumTeF.delegate = self;
     [self.confirmPwdNumView addSubview:confirmNumTeF];
     self.confirmNumTeF = confirmNumTeF;
+}
+
+-(void)pwdNumEyeBtnClick{
+    self.pwdNumTeF.secureTextEntry = NO;
+}
+
+-(void)pwdNumEyeBtnUp{
+    self.pwdNumTeF.secureTextEntry = YES;
+}
+
+-(void)confirmPwdNumEyeBtnClick{
+    self.confirmNumTeF.secureTextEntry = NO;
+}
+
+-(void)confirmPwdNumEyeBtnUp{
+    self.confirmNumTeF.secureTextEntry = YES;
 }
 
 - (void)viewDidLayoutSubviews{
