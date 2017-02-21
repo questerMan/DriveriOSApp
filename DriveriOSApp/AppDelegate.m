@@ -59,7 +59,7 @@
     
     slideMenuController.automaticallyAdjustsScrollViewInsets = YES;
     
-    [slideMenuController changeLeftViewWidth:MATCHSIZE(550)];//左侧栏显示宽度的大小
+    [slideMenuController changeLeftViewWidth:MATCHSIZE(580)];//左侧栏显示宽度的大小
     
     slideMenuController.delegate = chatController;
     

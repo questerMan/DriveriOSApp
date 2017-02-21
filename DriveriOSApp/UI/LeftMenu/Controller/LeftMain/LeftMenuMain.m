@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayData;
+@property (nonatomic, strong) NSMutableArray *arrayItemIMG;
+
 
 @end
 
@@ -25,6 +27,9 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.rowHeight = MATCHSIZE(80);
+        
+        //去掉分割线
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }
@@ -35,6 +40,14 @@
     }
     return _arrayData;
 }
+-(NSMutableArray *)arrayItemIMG{
+    if (!_arrayItemIMG) {
+        _arrayItemIMG = [NSMutableArray array];
+    }
+    return _arrayItemIMG;
+}
+
+
 -(void)viewWillAppear:(BOOL)animated{
     
     
@@ -42,6 +55,8 @@
 -(void)loadData{
     
     [self.arrayData addObjectsFromArray:@[@"我的订单",@"消息通知",@"司机指南",@"离线地图",@"客服热线"]];
+
+    [self.arrayItemIMG addObjectsFromArray:@[@"orders",@"guide",@"map",@"feedback",@"hot-line"]];
 
     
 }
@@ -63,21 +78,41 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     self.tableView.scrollEnabled = NO; //设置tableview 不能滚动
-    
-    self.tableView.backgroundColor = [UIColor blackColor];
+
+    self.tableView.backgroundColor = UIColorFromRGB(@"#ffffff");
     
     [self.view addSubview:self.tableView];
     
 }
 
 -(void)versionInfo{
-    UILabel *versionInfo = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_H - MATCHSIZE(40), MATCHSIZE(550), MATCHSIZE(30))];
-    versionInfo.textAlignment = NSTextAlignmentCenter;
-    versionInfo.font = [UIFont systemFontOfSize:MATCHSIZE(25)];
-    versionInfo.textColor = [UIColor whiteColor];
-    versionInfo.text = @"丽新专车App版本2.0";
-    [self.view addSubview:versionInfo];
-}
+    
+    UILabel *lastVersionInfo = [FactoryClass labelWithText:@"Copyright © 2016-2017 Gaclixin All Rights Reserved" fontSize:MATCHSIZE(18) textColor:UIColorFromRGB(@"#8c8c8c") numberOfLine:1 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor clearColor]];
+    [self.view addSubview:lastVersionInfo];
+    [lastVersionInfo mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.offset(0);
+        make.bottom.equalTo(self.view).offset(MATCHSIZE(-16));
+        make.height.offset(MATCHSIZE(22));
+        make.width.offset(self.view.frame.size.width);
+    }];
+    
+    UILabel *secondVersionInfo = [FactoryClass labelWithText:@"广汽丽新 版权所有" fontSize:MATCHSIZE(22) textColor:UIColorFromRGB(@"#8c8c8c") numberOfLine:1 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor clearColor]];
+    [self.view addSubview:secondVersionInfo];
+    [secondVersionInfo mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.offset(0);
+        make.bottom.equalTo(lastVersionInfo.mas_top).offset(MATCHSIZE(-16));
+        make.height.offset(MATCHSIZE(22));
+        make.width.offset(self.view.frame.size.width);
+    }];
+    
+    UILabel *firstVersionInfo = [FactoryClass labelWithText:@"丽新专车 APP版本 2.0" fontSize:MATCHSIZE(22) textColor:UIColorFromRGB(@"#8c8c8c") numberOfLine:1 textAlignment:NSTextAlignmentCenter backGroundColor:[UIColor clearColor]];
+    [self.view addSubview:firstVersionInfo];
+    [firstVersionInfo mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.offset(0);
+        make.bottom.equalTo(secondVersionInfo.mas_top).offset(MATCHSIZE(-16));
+        make.height.offset(MATCHSIZE(22));
+        make.width.offset(self.view.frame.size.width);
+    }];}
 
 #pragma mark tableView代理方法
 
@@ -99,21 +134,19 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
     }
     
-    cell.backgroundColor = [UIColor blackColor];
-    
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     
     cell.textLabel.text = self.arrayData[indexPath.row];
     
-    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.textColor = UIColorFromRGB(@"#8c8c8c");
     
-    cell.imageView.image = [UIImage imageNamed:@"item"];
+    cell.imageView.image = [UIImage imageNamed:self.arrayItemIMG[indexPath.row]];
     
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return MATCHSIZE(235);
+    return MATCHSIZE(294);
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     static NSString *cell = @"headCell";
