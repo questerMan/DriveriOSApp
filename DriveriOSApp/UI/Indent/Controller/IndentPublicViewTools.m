@@ -403,7 +403,10 @@ static NSTimeInterval acceptIndentCount;
         make.width.offset(MATCHSIZE(600));
         make.height.offset(MATCHSIZE(80));
     }];
-
+    //弹出有即时单提示框
+    AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeInstantIndentCommingAlert];
+    [alert alertViewShow];
+    
     //获取即时单数据
     [self getstantIndentData];
 }
