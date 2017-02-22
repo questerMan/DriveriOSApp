@@ -249,6 +249,7 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
     if (![self.phoneNumTeF.text isEqualToString:@""] && ![self.pwdNumTeF.text isEqualToString:@""] && ![self.confirmNumTeF.text isEqualToString:@""]) {
         self.finishItem.tintColor = UIColorFromRGB(@"#333333");
         self.finishItem.enabled = YES;
@@ -260,6 +261,7 @@
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField{
+    
     if (![self.phoneNumTeF.text isEqualToString:@""] && ![self.pwdNumTeF.text isEqualToString:@""] && ![self.confirmNumTeF.text isEqualToString:@""]) {
         self.finishItem.tintColor = UIColorFromRGB(@"#333333");
         self.finishItem.enabled = YES;
@@ -294,7 +296,13 @@
 }
 
 - (void)finishBtnClick{
+    //测试加载弹窗
+    AlertView* alertV = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeLoadingAlert];
+    [alertV alertViewShow];
     
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [alertV alertViewCloseWithBlock:nil];
+    });
 }
 
 @end

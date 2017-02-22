@@ -18,6 +18,7 @@
 #import "InstantIndentCommingAlert.h"
 #import "IndentSucceedAlert.h"
 #import "EmergencyRescueAlert.h"
+#import "LXQLodingAlertViewController.h"
 @interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate,LimitLoginAlertDelegate>
 
 @property (nonatomic,strong) UIView *bgView;
@@ -47,6 +48,8 @@
 @property (nonatomic, strong) IndentSucceedAlert *indentSucceedAlert;
 
 @property (nonatomic, strong) EmergencyRescueAlert *emergencyRescueAlert;
+
+@property (nonatomic, strong) LXQLodingAlertViewController *lodingAlertViewController;
 
 @end
 
@@ -134,6 +137,13 @@
     return _emergencyRescueAlert;
 }
 
+-(LXQLodingAlertViewController *)lodingAlertViewController{
+    if (!_lodingAlertViewController) {
+        _lodingAlertViewController = [[LXQLodingAlertViewController alloc] init];
+    }
+    return _lodingAlertViewController;
+}
+
 //直接调用该方法一般用于固定 view 的展示
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
     
@@ -203,6 +213,10 @@
                 
                 break;
             case AlertViewTypeEmergencyRescueAlert:
+                [self isCloseWithTap:NO];
+                
+                break;
+            case AlertViewTypeLoadingAlert:
                 [self isCloseWithTap:NO];
                 
                 break;
@@ -366,6 +380,14 @@
         self.emergencyRescueAlert.closeAlert = ^{
             [weakSelf alertViewClose];
         };
+    }else if (_addAlertViewType == AlertViewTypeLoadingAlert){
+        [self initAlertViewWithViewController:self.lodingAlertViewController];
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(MATCHSIZE(94));
+            make.right.equalTo(self).offset(MATCHSIZE(-94));
+            make.top.offset(MATCHSIZE(527));
+            make.height.offset(MATCHSIZE(80));
+        }];
     }
 }
 
