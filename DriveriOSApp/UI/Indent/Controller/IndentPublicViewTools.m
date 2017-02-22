@@ -156,13 +156,8 @@ static NSTimeInterval acceptIndentCount;
 - (UIButton *)determinedBtn
 {
     if (!_determinedBtn) {
-        UIButton* determinedBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40)*2 + (SCREEN_W - MATCHSIZE(40)*3)/2,SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*3)/2, MATCHSIZE(60)) Title:@"到达目的地" backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
+        UIButton* determinedBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40)*2 + (SCREEN_W - MATCHSIZE(40)*3)/2,SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*3)/2, MATCHSIZE(60)) Title:@"到达上车点" backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
         determinedBtn.hidden = YES;
-//        //上车点按钮确认
-//        [[self.determinedBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-//            [self changeMapStateWithMapIndentState:MapIndentStateWaitingPassengers];
-//        }];
-//        [_indentController.view addSubview:self.determinedBtn];
      
         _determinedBtn = determinedBtn;
     }
@@ -174,7 +169,6 @@ static NSTimeInterval acceptIndentCount;
     if (!_getToPoint) {
         UIButton* getToPoint = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40)*2 + (SCREEN_W - MATCHSIZE(40)*3)/2,SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*3)/2, MATCHSIZE(60)) Title:@"到达目的地" backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
         getToPoint.hidden = YES;
-        
         _getToPoint = getToPoint;
     }
     return _getToPoint;
@@ -184,8 +178,6 @@ static NSTimeInterval acceptIndentCount;
     if (!_passengerGetOn) {
         UIButton* passengerGetOn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40),SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), SCREEN_W - MATCHSIZE(40)*2, MATCHSIZE(60)) Title:@"乘客上车 " backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
         passengerGetOn.hidden = YES;
-
-
         _passengerGetOn = passengerGetOn;
     }
     return _passengerGetOn;
@@ -203,12 +195,10 @@ static NSTimeInterval acceptIndentCount;
 - (LXQRecevingIndentView *)recevingIndentView
 {
     if (!_recevingIndentView) {
-        _recevingIndentView = [[LXQRecevingIndentView alloc] initWithFrame:CGRectMake(MATCHSIZE(23), MATCHSIZE(90), SCREEN_W - 2 * MATCHSIZE(23), MATCHSIZE(248))];
-        _recevingIndentView.backgroundColor = COLOR(204, 204, 204, 1);
-        _recevingIndentView.layer.cornerRadius = MATCHSIZE(8);
-        _recevingIndentView.layer.masksToBounds = YES;
+        
+        _recevingIndentView = [[LXQRecevingIndentView alloc] initWithFrame:CGRectMake(MATCHSIZE(26), MATCHSIZE(90), SCREEN_W - 2 * MATCHSIZE(26), MATCHSIZE(242))];
+//        _recevingIndentView.backgroundColor = COLOR(1, 1, 1, 1);
         _recevingIndentView.hidden = YES;
-     
     }
     return _recevingIndentView;
 }
@@ -224,6 +214,7 @@ static NSTimeInterval acceptIndentCount;
 }
 
 - (LXQDestinationTipsView *)destinationTipsView{
+    
     if (!_destinationTipsView) {
         _destinationTipsView = [[LXQDestinationTipsView alloc] init];
         _destinationTipsView.hidden = YES;
@@ -270,7 +261,7 @@ static NSTimeInterval acceptIndentCount;
 }
 
 #pragma mark - 等单
--(void)addWaitIndentWithIndent:(UIViewController *)indent{
+- (void)addWaitIndentWithIndent:(UIViewController *)indent{
     
     [indent.view addSubview:self.seachTextF];
     
@@ -283,7 +274,7 @@ static NSTimeInterval acceptIndentCount;
     //创建救援按钮
     [indent.view addSubview:self.rescueBtn];
     [[self.rescueBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-//        AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeEmergencyRescueAlert];
+//      AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeEmergencyRescueAlert];
 
         [self.rescueAlert alertViewShow];
     }];
@@ -291,7 +282,6 @@ static NSTimeInterval acceptIndentCount;
         make.centerY.offset(0);
         make.left.offset(MATCHSIZE(26));
     }];
-
 }
 
 -(void)buttonOfIndent{
