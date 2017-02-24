@@ -1449,10 +1449,10 @@
 		82AF3EC41DE91354001F0066 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				040F79B41E2F5C2300C8F227 /* LXQRecevingIndentView.h */,
-				040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */,
 				04C1841A1E4BFFB500696D39 /* LXQAfterDrivingTipsView.h */,
 				04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */,
+				040F79B41E2F5C2300C8F227 /* LXQRecevingIndentView.h */,
+				040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */,
 				04C184261E4C01A800696D39 /* LXQReservationIndentTips.h */,
 				04C184271E4C01A800696D39 /* LXQReservationIndentTips.m */,
 				041132611E515387005A1096 /* LXQDestinationTipsView.h */,

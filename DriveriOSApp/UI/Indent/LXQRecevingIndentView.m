@@ -12,6 +12,10 @@
 
 @property (nonatomic, strong) UIView *bgView;//背景图
 
+@property (nonatomic, strong) UIView *tCarView;
+
+@property (nonatomic, strong) UIView *bCarView;
+
 @end
 
 @implementation LXQRecevingIndentView
@@ -66,33 +70,45 @@
 //    self.number.frame = CGRectMake(MATCHSIZE(280), MATCHSIZE(25), MATCHSIZE(200), MATCHSIZE(55));
 //    [self addSubview:self.number];
     
+    UIView* tCarView = [[UIView alloc] init];
+    tCarView.backgroundColor = [UIColor clearColor];
+    [self addSubview:tCarView];
+    self.tCarView = tCarView;
+    
+    UIView* bCarView = [[UIView alloc] init];
+    bCarView.backgroundColor = [UIColor clearColor];
+    [self addSubview:bCarView];
+    self.bCarView = bCarView;
+    
     /** 上车图标 */
     self.tCarIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"positioning"]];
-    [self addSubview:self.tCarIMG];
+    [tCarView addSubview:self.tCarIMG];
     
     /** 下车图标 */
     self.bCarIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"positioning-1"]];
-    [self addSubview:self.bCarIMG];
+    [bCarView addSubview:self.bCarIMG];
     
     /** 上车点 */
     self.tCarLab = [FactoryClass labelWithText:@"出发地:" fontSize:MATCHSIZE(28) textColor:UIColorFromRGB(@"#4c4c4c") numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
 //    self.tCarLab.frame = CGRectMake(MATCHSIZE(220), MATCHSIZE(100), MATCHSIZE(120), MATCHSIZE(50));
-    [self addSubview:self.tCarLab];
+    [tCarView addSubview:self.tCarLab];
+    
+
     
     /** 下车点 */
     self.bCarLab = [FactoryClass labelWithText:@"目的地:" fontSize:MATCHSIZE(28) textColor:UIColorFromRGB(@"#4c4c4c") numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
 //    self.bCarLab.frame = CGRectMake(MATCHSIZE(220), MATCHSIZE(170), MATCHSIZE(120), MATCHSIZE(50));
-    [self addSubview:self.bCarLab];
+    [bCarView addSubview:self.bCarLab];
     
     /** 上车点文本 */
     self.tCarText = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(26) textColor:UIColorFromRGB(@"#4c4c4c") numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
 //    self.tCarText.frame = CGRectMake(MATCHSIZE(340), MATCHSIZE(100), MATCHSIZE(230), MATCHSIZE(50));
-    [self addSubview:self.tCarText];
+    [tCarView addSubview:self.tCarText];
     
     /** 下车点文本 */
     self.bCarText = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(26) textColor:UIColorFromRGB(@"#4c4c4c") numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
 //    self.bCarText.frame = CGRectMake(MATCHSIZE(340), MATCHSIZE(170), MATCHSIZE(230), MATCHSIZE(50));
-    [self addSubview:self.bCarText];
+    [bCarView addSubview:self.bCarText];
     
     /** 打电话按钮 */
     self.callBtn = [UIButton buttonWithType:0];
@@ -139,13 +155,13 @@
     [super layoutSubviews];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.offset(MATCHSIZE(20));
+//        make.top.offset(MATCHSIZE(20));
+        make.centerY.equalTo(self.scalingBtn.mas_centerY);
         make.left.offset(MATCHSIZE(270));
     }];
     
     [self.scalingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel.mas_right).offset(MATCHSIZE(10));
-//      make.centerY.equalTo(self.titleLabel.mas_centerY);
         make.top.offset(MATCHSIZE(20));
     }];
     
@@ -161,14 +177,28 @@
         make.top.equalTo(self.headIMG.mas_top);
     }];
     
-    [self.tCarIMG mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.headIMG.mas_right).offset(MATCHSIZE(20));
+    [self.tCarView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.name.mas_bottom).offset(MATCHSIZE(20));
+        make.left.equalTo(self.headIMG.mas_right).offset(MATCHSIZE(20));
+        make.width.offset(MATCHSIZE(450));
+        make.height.offset(MATCHSIZE(40));
+    }];
+    
+    [self.bCarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.tCarView.mas_bottom).offset(MATCHSIZE(30));
+        make.left.equalTo(self.headIMG.mas_right).offset(MATCHSIZE(20));
+        make.width.offset(MATCHSIZE(450));
+        make.height.offset(MATCHSIZE(40));
+    }];
+    
+    [self.tCarIMG mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(0);
+        make.top.offset(0);
     }];
     
     [self.bCarIMG mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.tCarIMG.mas_bottom).offset(MATCHSIZE(30));
-        make.left.equalTo(self.tCarIMG.mas_left);
+        make.top.offset(0);
+        make.left.offset(0);
     }];
     
     [self.tCarLab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -214,53 +244,61 @@
         self.titleLabel.textColor = UIColorFromRGB(@"#ff6d00");
         
         [self.name mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.offset(0);
-            make.width.offset(0);
+            make.left.offset(0);
+            make.top.offset(0);
+//            make.height.offset(0);
+//            make.width.offset(0);
         }];
-        
-        [self.headIMG mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.offset(0);
-            make.width.offset(0);
-        }];
-        
-        [self.bCarIMG mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.offset(0);
-            make.width.offset(0);
-        }];
-        
-        [self.bCarLab mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.offset(0);
-            make.width.offset(0);
-        }];
-        
-        [self.bCarText mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.offset(0);
-            make.width.offset(0);
-        }];
-        
-        [self.callBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.offset(0);
-            make.width.offset(0);
-        }];
-        
-        [self.sendBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.offset(0);
-            make.width.offset(0);
-        }];
+//
+//        [self.headIMG mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.height.offset(0);
+//            make.width.offset(0);
+//        }];
+//        
+//        [self.bCarIMG mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.height.offset(0);
+//            make.width.offset(0);
+//        }];
+//        
+//        [self.bCarLab mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.height.offset(0);
+//            make.width.offset(0);
+//        }];
+//        
+//        [self.bCarText mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.height.offset(0);
+//            make.width.offset(0);
+//        }];
+//        
+//        [self.callBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.height.offset(0);
+//            make.width.offset(0);
+//        }];
+//        
+//        [self.sendBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.height.offset(0);
+//            make.width.offset(0);
+//        }];
 
-        [self.tCarIMG mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        [self.tCarIMG mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self.name.mas_bottom).offset(MATCHSIZE(0));
+//            make.left.equalTo(self.headIMG.mas_right).offset(MATCHSIZE(20));
+//            make.bottom.equalTo(self.tCarLab.mas_bottom);
+//        }];
+//        
+//        [self.tCarLab mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(self.tCarIMG.mas_right).offset(MATCHSIZE(10));
+//            make.top.equalTo(self.tCarIMG.mas_top);
+//        }];
+////
+//        [self.tCarText mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(self.tCarLab.mas_right).offset(MATCHSIZE(10));
+//            make.top.equalTo(self.tCarIMG.mas_top);
+//        }];
+        
+        [self.tCarView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.offset(MATCHSIZE(140));
-            make.top.equalTo(self.titleLabel.mas_bottom).offset(MATCHSIZE(20));
-        }];
-        
-        [self.tCarLab mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.tCarIMG.mas_right).offset(MATCHSIZE(10));
-            make.top.equalTo(self.tCarIMG.mas_top);
-        }];
-        
-        [self.tCarText mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.tCarLab.mas_right).offset(MATCHSIZE(10));
-            make.top.equalTo(self.tCarLab.mas_top);
+            make.bottom.offset(MATCHSIZE(-10));
         }];
         
         self.frame = CGRectMake(MATCHSIZE(26), MATCHSIZE(90), SCREEN_W - 2 * MATCHSIZE(26), MATCHSIZE(126));
@@ -280,59 +318,16 @@
         
         self.titleLabel.textColor = UIColorFromRGB(@"#8c8c8c");
         
-        [self.headIMG mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.offset(MATCHSIZE(20));
-            make.top.offset(MATCHSIZE(68));
-            make.width.offset(MATCHSIZE(102));
-            make.height.offset(MATCHSIZE(102));
-        }];
-        
         [self.name mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.headIMG.mas_right).offset(MATCHSIZE(20));
             make.top.equalTo(self.headIMG.mas_top);
         }];
         
-        [self.tCarIMG mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.headIMG.mas_right).offset(MATCHSIZE(20));
+        [self.tCarView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.name.mas_bottom).offset(MATCHSIZE(20));
-        }];
-        
-        [self.bCarIMG mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.tCarIMG.mas_bottom).offset(MATCHSIZE(30));
-            make.left.equalTo(self.tCarIMG.mas_left);
-        }];
-        
-        [self.tCarLab mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.tCarIMG.mas_right).offset(MATCHSIZE(10));
-            make.centerY.equalTo(self.tCarIMG.mas_centerY);
-        }];
-        
-        [self.bCarLab mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.bCarIMG.mas_right).offset(MATCHSIZE(10));
-            make.centerY.equalTo(self.bCarIMG.mas_centerY);
-        }];
-        
-        [self.tCarText mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.tCarLab.mas_right).offset(MATCHSIZE(10));
-            make.centerY.equalTo(self.tCarLab.mas_centerY);
-        }];
-        
-        [self.bCarText mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.bCarLab.mas_right).offset(MATCHSIZE(10));
-            make.centerY.equalTo(self.bCarLab.mas_centerY);
-        }];
-        
-        [self.callBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.offset(MATCHSIZE(46));
-            make.right.offset(MATCHSIZE(-20));
-            //        make.bottom.equalTo(self.sendBtn.mas_top).offset(MATCHSIZE(-58));
-            make.height.offset(MATCHSIZE(51));
-            make.width.offset(MATCHSIZE(50));
-        }];
-        
-        [self.sendBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.offset(MATCHSIZE(-34));
-            make.right.offset(MATCHSIZE(-20));
+            make.left.equalTo(self.headIMG.mas_right).offset(MATCHSIZE(20));
+            make.width.offset(MATCHSIZE(450));
+            make.height.offset(MATCHSIZE(40));
         }];
         
         self.frame = CGRectMake(MATCHSIZE(26), MATCHSIZE(90), SCREEN_W - 2 * MATCHSIZE(26), MATCHSIZE(242));

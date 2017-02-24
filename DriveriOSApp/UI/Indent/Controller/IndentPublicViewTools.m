@@ -91,7 +91,7 @@ static NSTimeInterval acceptIndentCount;
 
 -(UIButton *)startNavigation{
     if (!_startNavigation) {
-        _startNavigation = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40),SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*3)/2, MATCHSIZE(60)) Title:@"开始导航" backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
+        _startNavigation = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(46),SCREEN_H - MATCHSIZE(60) - MATCHSIZE(40) - StatusBar_H -MATCHSIZE(100), MATCHSIZE(290), MATCHSIZE(80)) Title:@"开始导航" backGround:UIColorFromRGB(@"#ff6d00") tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(40)];
         _startNavigation.hidden = YES;
     }
     return _startNavigation;
@@ -156,7 +156,8 @@ static NSTimeInterval acceptIndentCount;
 - (UIButton *)determinedBtn
 {
     if (!_determinedBtn) {
-        UIButton* determinedBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40)*2 + (SCREEN_W - MATCHSIZE(40)*3)/2,SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*3)/2, MATCHSIZE(60)) Title:@"到达上车点" backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
+        UIButton* determinedBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40)*2 + (SCREEN_W - MATCHSIZE(40)*3)/2,SCREEN_H - MATCHSIZE(60) - MATCHSIZE(40) - StatusBar_H - MATCHSIZE(100), MATCHSIZE(290), MATCHSIZE(80)) Title:@"到达上车点" backGround:UIColorFromRGB(@"#ffffff") tintColor:UIColorFromRGB(@"#ff6d00") cornerRadius:MATCHSIZE(40)];
+        [determinedBtn setTitleColor:UIColorFromRGB(@"#ff6d00") forState:0];
         determinedBtn.hidden = YES;
      
         _determinedBtn = determinedBtn;
