@@ -12,9 +12,7 @@
 
 @property (nonatomic, strong) UIView *bgView;//背景图
 
-@property (nonatomic, strong) UIView *tCarView;
 
-@property (nonatomic, strong) UIView *bCarView;
 
 @end
 
@@ -79,6 +77,9 @@
     bCarView.backgroundColor = [UIColor clearColor];
     [self addSubview:bCarView];
     self.bCarView = bCarView;
+    
+    self.scalingView = tCarView;
+    self.hidenView = bCarView;
     
     /** 上车图标 */
     self.tCarIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"positioning"]];
@@ -235,7 +236,7 @@
     }];
 }
 
--(void)scalingBtnClick:(UIButton *)sender{
+- (void)scalingBtnClick:(UIButton *)sender{
     sender.selected = !sender.selected;
     
     if (sender.selected) {
@@ -246,59 +247,17 @@
         [self.name mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.offset(0);
             make.top.offset(0);
-//            make.height.offset(0);
-//            make.width.offset(0);
         }];
-//
-//        [self.headIMG mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.height.offset(0);
-//            make.width.offset(0);
-//        }];
-//        
-//        [self.bCarIMG mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.height.offset(0);
-//            make.width.offset(0);
-//        }];
-//        
-//        [self.bCarLab mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.height.offset(0);
-//            make.width.offset(0);
-//        }];
-//        
-//        [self.bCarText mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.height.offset(0);
-//            make.width.offset(0);
-//        }];
-//        
-//        [self.callBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.height.offset(0);
-//            make.width.offset(0);
-//        }];
-//        
-//        [self.sendBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.height.offset(0);
-//            make.width.offset(0);
-//        }];
-
-//        [self.tCarIMG mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.name.mas_bottom).offset(MATCHSIZE(0));
-//            make.left.equalTo(self.headIMG.mas_right).offset(MATCHSIZE(20));
-//            make.bottom.equalTo(self.tCarLab.mas_bottom);
-//        }];
-//        
-//        [self.tCarLab mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.left.equalTo(self.tCarIMG.mas_right).offset(MATCHSIZE(10));
-//            make.top.equalTo(self.tCarIMG.mas_top);
-//        }];
-////
-//        [self.tCarText mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.left.equalTo(self.tCarLab.mas_right).offset(MATCHSIZE(10));
-//            make.top.equalTo(self.tCarIMG.mas_top);
-//        }];
         
-        [self.tCarView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        [self.hidenView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.offset(0);
+            make.top.offset(0);
+        }];
+        
+        [self.scalingView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.offset(MATCHSIZE(140));
-            make.bottom.offset(MATCHSIZE(-10));
+//            make.bottom.offset(MATCHSIZE(-10));
+            make.top.offset(MATCHSIZE(75));
         }];
         
         self.frame = CGRectMake(MATCHSIZE(26), MATCHSIZE(90), SCREEN_W - 2 * MATCHSIZE(26), MATCHSIZE(126));
@@ -306,12 +265,10 @@
         self.headIMG.hidden = YES;
         self.name.hidden = YES;
         self.number.hidden = YES;
-        self.bCarIMG.hidden = YES;
-        self.bCarLab.hidden = YES;
-        self.bCarText.hidden = YES;
+        self.hidenView.hidden = YES;
         self.callBtn.hidden = YES;
         self.sendBtn.hidden = YES;
-        
+        self.scalingView.hidden = NO;
     }else{
         
         [sender setImage:[UIImage imageNamed:@"pull-up"] forState:0];
@@ -330,16 +287,22 @@
             make.height.offset(MATCHSIZE(40));
         }];
         
+        [self.bCarView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.tCarView.mas_bottom).offset(MATCHSIZE(30));
+            make.left.equalTo(self.headIMG.mas_right).offset(MATCHSIZE(20));
+            make.width.offset(MATCHSIZE(450));
+            make.height.offset(MATCHSIZE(40));
+        }];
+        
         self.frame = CGRectMake(MATCHSIZE(26), MATCHSIZE(90), SCREEN_W - 2 * MATCHSIZE(26), MATCHSIZE(242));
         
         self.headIMG.hidden = NO;
         self.name.hidden = NO;
         self.number.hidden = NO;
-        self.bCarIMG.hidden = NO;
-        self.bCarLab.hidden = NO;
-        self.bCarText.hidden = NO;
+        self.hidenView.hidden = NO;
         self.callBtn.hidden = NO;
         self.sendBtn.hidden = NO;
+        self.scalingView.hidden = NO;
     }
 }
 

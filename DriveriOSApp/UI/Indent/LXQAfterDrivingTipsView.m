@@ -8,19 +8,21 @@
 
 #import "LXQAfterDrivingTipsView.h"
 
-static NSTimeInterval countTime = 300;
+static NSTimeInterval countTime = 240;
 
 @interface LXQAfterDrivingTipsView()
 
 /** 提示图标 */
 @property (nonatomic, weak) UIImageView *tipsIMG;
 
+/** 聊天气泡 */
+@property (nonatomic, weak) UIImageView *chatAir;
+
 /** 提示文字背景 */
 @property (nonatomic, weak) UIView *tipsLabelBg;
 
 /** 提示文字 */
 @property (nonatomic, weak) UILabel *tipsLabel;
-
 
 /** 等待倒计时背景 */
 @property (nonatomic, weak) UIView *waitLabelBg;
@@ -47,37 +49,47 @@ static NSTimeInterval countTime = 300;
 }
 
 -(void)creatUI{
-    UIImageView* tipsIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tips"]];
-    tipsIMG.center = CGPointMake(MATCHSIZE(30), MATCHSIZE(35));
-    tipsIMG.bounds = CGRectMake(0, 0, MATCHSIZE(32), MATCHSIZE(32));
+    UIImageView* tipsIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"reminder"]];
+//    tipsIMG.center = CGPointMake(MATCHSIZE(30), MATCHSIZE(35));
+//    tipsIMG.bounds = CGRectMake(0, 0, MATCHSIZE(32), MATCHSIZE(32));
     [self addSubview:tipsIMG];
     self.tipsIMG = tipsIMG;
     
-    UIView* tipsLabelBg = [[UIView alloc] initWithFrame:CGRectMake(MATCHSIZE(60), MATCHSIZE(10), MATCHSIZE(660), MATCHSIZE(65))];
-    tipsLabelBg.backgroundColor = [UIColor lightGrayColor];
-    [self addSubview:tipsLabelBg];
-    self.tipsLabelBg = tipsLabelBg;
+//    UIView* tipsLabelBg = [[UIView alloc] initWithFrame:CGRectMake(MATCHSIZE(60), MATCHSIZE(10), MATCHSIZE(660), MATCHSIZE(65))];
+//    tipsLabelBg.backgroundColor = [UIColor lightGrayColor];
+//    [self addSubview:tipsLabelBg];
+//    self.tipsLabelBg = tipsLabelBg;
+    UIImageView* chatAir = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"prompt-box"]];
+    [self addSubview:chatAir];
+    self.chatAir = chatAir;
     
     UILabel* tipsLabel = [[UILabel alloc] init];
-    tipsLabel.text = @"乘客即将到达，请及时到路边停车，若5分钟后，乘客未上车，开始计费等候....";
+    tipsLabel.text = @"乘客即将到达，请及时到路边停车，若5分钟后，乘客未上车，开始计费等候.";
+    tipsLabel.textColor = UIColorFromRGB(@"#737373");
     tipsLabel.numberOfLines = 0;
-    tipsLabel.font = [UIFont systemFontOfSize:14];
-    [tipsLabelBg addSubview:tipsLabel];
+    tipsLabel.font = [UIFont systemFontOfSize:MATCHSIZE(20)];
+    [chatAir addSubview:tipsLabel];
     self.tipsLabel = tipsLabel;
     
-    UIView* waitLabelBg = [[UIView alloc] initWithFrame:CGRectMake(MATCHSIZE(60), MATCHSIZE(10)*2 + MATCHSIZE(65), MATCHSIZE(200), MATCHSIZE(90))];
-    waitLabelBg.backgroundColor = [UIColor lightGrayColor];
+    UIView* waitLabelBg = [[UIView alloc] init];
+    waitLabelBg.backgroundColor = [UIColor whiteColor];
+    waitLabelBg.layer.cornerRadius = MATCHSIZE(6);
+    waitLabelBg.layer.borderColor = [COLOR(204, 204, 204, 1) CGColor];
+    waitLabelBg.layer.borderWidth = MATCHSIZE(1);
     [self addSubview:waitLabelBg];
     self.waitLabelBg = waitLabelBg;
     
-    UILabel* waitLabel = [[UILabel alloc] initWithFrame:CGRectMake(MATCHSIZE(10), MATCHSIZE(10), MATCHSIZE(200) - 2 * MATCHSIZE(10), MATCHSIZE(30))];
-    waitLabel.text = @"正在耐心等待";
-    waitLabel.font = [UIFont systemFontOfSize:14];
-    [self.waitLabelBg addSubview:waitLabel];
+    UILabel* waitLabel = [[UILabel alloc] init];
+    waitLabel.text = @"耐心等待";
+    waitLabel.font = [UIFont systemFontOfSize:MATCHSIZE(22)];
+    waitLabel.textColor = UIColorFromRGB(@"#8c8c8c");
+    [waitLabelBg addSubview:waitLabel];
     self.waitLabel = waitLabel;
     
     UILabel* countLabel = [[UILabel alloc] init];
     countLabel.font = [UIFont systemFontOfSize:14];
+    countLabel.font = [UIFont systemFontOfSize:MATCHSIZE(22)];
+    countLabel.textColor = UIColorFromRGB(@"#8c8c8c");
     [waitLabelBg addSubview:countLabel];
     self.countLabel = countLabel;
     
@@ -94,8 +106,18 @@ static NSTimeInterval countTime = 300;
             NSTimeInterval second = (int)countTime%60;
             
 //            NSLog(@"%.0f,%.0f",hour,minute);
-            if (minute >= 0 && second >= 0) {
+            if (countTime >= 0) {
                 self.countLabel.text = [NSString stringWithFormat:@"0%.0f:%.0f分",minute,second];
+                if (countTime <= 10) {
+                    self.waitLabel.text = @"计费等候";
+                    self.waitLabel.textColor = UIColorFromRGB(@"#ff0000");
+                    self.countLabel.textColor = UIColorFromRGB(@"#ff0000");
+                }
+                else{
+                    self.waitLabel.text = @"耐心等待";
+                    self.waitLabel.textColor = UIColorFromRGB(@"#8c8c8c");
+                    self.countLabel.textColor = UIColorFromRGB(@"#8c8c8c");
+                }
             }
             else
             {
@@ -110,16 +132,40 @@ static NSTimeInterval countTime = 300;
 
 - (void)layoutSubviews{
     [super layoutSubviews];
+    
+    [self.tipsIMG mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(MATCHSIZE(26));
+        make.centerY.equalTo(self.chatAir.mas_centerY);
+    }];
+    
+    [self.chatAir mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.tipsIMG.mas_right).offset(MATCHSIZE(10));
+        make.top.offset(MATCHSIZE(5));
+    }];
+    
     [self.tipsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(MATCHSIZE(20));
-        make.top.offset(MATCHSIZE(0));
-        make.width.offset(MATCHSIZE(620));
+        make.left.offset(MATCHSIZE(25));
+//        make.right.offset(MATCHSIZE(-12));
+        make.width.offset(MATCHSIZE(480));
+        make.centerY.offset(0);
+        make.height.offset(MATCHSIZE(50));
+    }];
+    
+    [self.waitLabelBg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(MATCHSIZE(64));
+        make.top.equalTo(self.chatAir.mas_bottom).offset(MATCHSIZE(5));
+        make.width.offset(MATCHSIZE(120));
+        make.height.offset(MATCHSIZE(80));
+    }];
+    
+    [self.waitLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(MATCHSIZE(12));
+        make.centerX.offset(0);
     }];
     
     [self.countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.waitLabel.mas_centerX);
-        make.top.equalTo(self.waitLabel.mas_bottom).offset(MATCHSIZE(10));
-        make.width.offset(MATCHSIZE(120));
+        make.top.equalTo(self.waitLabel.mas_bottom).offset(MATCHSIZE(12));
+        make.centerX.offset(0);
     }];
 }
 

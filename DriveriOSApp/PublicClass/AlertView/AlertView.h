@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LXQPassengerGetOnAlertViewController.h"
 
 
 @interface AlertView : UIView
@@ -24,10 +24,13 @@ typedef enum {
     AlertViewTypeInstantIndentCommingAlert,
     AlertViewTypeIndentSucceedAlert,
     AlertViewTypeEmergencyRescueAlert,
-    AlertViewTypeLoadingAlert
+    AlertViewTypeLoadingAlert,
+    AlertViewTypePassengerGetOnAlert
 }AlertViewType;
 
 @property (nonatomic, assign) AlertViewType addAlertViewType;
+
+@property (nonatomic, strong)LXQPassengerGetOnAlertViewController*  passengerGetOnAlert;
 
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType;
 

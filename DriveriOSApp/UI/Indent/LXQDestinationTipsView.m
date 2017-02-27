@@ -13,20 +13,17 @@
 /** 提示图标 */
 @property (nonatomic, weak) UIImageView *tipsIMG;
 
+/** 聊天气泡 */
+@property (nonatomic, weak) UIImageView *chatAir;
+
 /** 提示文字背景 */
 @property (nonatomic, weak) UIView *tipsLabelBg;
 
 /** 提示文字 */
 @property (nonatomic, weak) UILabel *tipsLabel;
 
-/** 等待倒计时背景 */
-@property (nonatomic, weak) UIView *waitLabelBg;
-
-/** 等待文字 */
-@property (nonatomic, weak) UILabel *waitLabel;
-
-/** 倒计时文字 */
-@property (nonatomic, weak) UILabel *countLabel;
+/** 计费文字 */
+@property (nonatomic, weak) UILabel *priceLabel;
 
 @end
 
@@ -41,59 +38,80 @@
 }
 
 -(void)creatUI{
-    UIImageView* tipsIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tips"]];
-    tipsIMG.center = CGPointMake(MATCHSIZE(30), MATCHSIZE(35));
-    tipsIMG.bounds = CGRectMake(0, 0, MATCHSIZE(32), MATCHSIZE(32));
+    UIImageView* tipsIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"reminder"]];
+    //    tipsIMG.center = CGPointMake(MATCHSIZE(30), MATCHSIZE(35));
+    //    tipsIMG.bounds = CGRectMake(0, 0, MATCHSIZE(32), MATCHSIZE(32));
     [self addSubview:tipsIMG];
     self.tipsIMG = tipsIMG;
     
-    UIView* tipsLabelBg = [[UIView alloc] initWithFrame:CGRectMake(MATCHSIZE(60), MATCHSIZE(10), MATCHSIZE(660), MATCHSIZE(65))];
-    tipsLabelBg.backgroundColor = [UIColor lightGrayColor];
+    //    UIView* tipsLabelBg = [[UIView alloc] initWithFrame:CGRectMake(MATCHSIZE(60), MATCHSIZE(10), MATCHSIZE(660), MATCHSIZE(65))];
+    //    tipsLabelBg.backgroundColor = [UIColor lightGrayColor];
+    //    [self addSubview:tipsLabelBg];
+    //    self.tipsLabelBg = tipsLabelBg;
+    UIImageView* chatAir = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"prompt-box"]];
+    [self addSubview:chatAir];
+    self.chatAir = chatAir;
+    
+    UILabel* tipsLabel = [[UILabel alloc] init];
+    tipsLabel.text = @"您有个预约单将在两小时后开始，请您记得准时到达目的地。";
+    tipsLabel.textColor = UIColorFromRGB(@"#737373");
+    tipsLabel.numberOfLines = 0;
+    tipsLabel.font = [UIFont systemFontOfSize:MATCHSIZE(20)];
+    [chatAir addSubview:tipsLabel];
+    self.tipsLabel = tipsLabel;
+    
+    UIView* tipsLabelBg = [[UIView alloc] init];
+    tipsLabelBg.backgroundColor = [UIColor whiteColor];
+    tipsLabelBg.layer.cornerRadius = MATCHSIZE(6);
+    tipsLabelBg.layer.borderColor = [COLOR(204, 204, 204, 1) CGColor];
+    tipsLabelBg.layer.borderWidth = MATCHSIZE(1);
     [self addSubview:tipsLabelBg];
     self.tipsLabelBg = tipsLabelBg;
     
-    UILabel* tipsLabel = [[UILabel alloc] init];
-    tipsLabel.text = @"正在开车服务，请系好安全带，谨慎驾驶";
-    tipsLabel.numberOfLines = 0;
-    tipsLabel.textAlignment = NSTextAlignmentCenter;
-    tipsLabel.font = [UIFont systemFontOfSize:14];
-    [tipsLabelBg addSubview:tipsLabel];
-    self.tipsLabel = tipsLabel;
-    
-    UIView* waitLabelBg = [[UIView alloc] initWithFrame:CGRectMake(MATCHSIZE(60), MATCHSIZE(10)*2 + MATCHSIZE(65), MATCHSIZE(250), MATCHSIZE(135))];
-    waitLabelBg.backgroundColor = [UIColor lightGrayColor];
-    [self addSubview:waitLabelBg];
-    self.waitLabelBg = waitLabelBg;
-    
-    UILabel* waitLabel = [[UILabel alloc] initWithFrame:CGRectMake(MATCHSIZE(10), MATCHSIZE(0), MATCHSIZE(250) - 2 * MATCHSIZE(10), MATCHSIZE(135))];
-    waitLabel.text = @"行程2公里，还剩3公里，共计08.32元";
-    waitLabel.font = [UIFont systemFontOfSize:14];
-    waitLabel.numberOfLines = 0;
-    waitLabel.preferredMaxLayoutWidth = MATCHSIZE(250) - 2 * MATCHSIZE(10);
-    [self.waitLabelBg addSubview:waitLabel];
-    self.waitLabel = waitLabel;
-    
-    UILabel* countLabel = [[UILabel alloc] init];
-    countLabel.font = [UIFont systemFontOfSize:14];
-    [waitLabelBg addSubview:countLabel];
-    self.countLabel = countLabel;
-    
-//  [self.countTimer fire];
+    UILabel* priceLabel = [[UILabel alloc] init];
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"已行驶2公里，还剩1.5公里，计费10.12元"];
+    [str addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:MATCHSIZE(20)],NSForegroundColorAttributeName : UIColorFromRGB(@"#333333")} range:NSMakeRange(0, 23)];
+    [str addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:MATCHSIZE(20)],NSForegroundColorAttributeName : UIColorFromRGB(@"#ff6d00")} range:NSMakeRange(3, 1)];
+    [str addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:MATCHSIZE(20)],NSForegroundColorAttributeName : UIColorFromRGB(@"#ff6d00")} range:NSMakeRange(9, 3)];
+    [str addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:MATCHSIZE(20)],NSForegroundColorAttributeName : UIColorFromRGB(@"#ff6d00")} range:NSMakeRange(17, 5)];
+    priceLabel.attributedText = str;
+    priceLabel.numberOfLines = 0;
+    [tipsLabelBg addSubview:priceLabel];
+    self.priceLabel = priceLabel;
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    [self.tipsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(MATCHSIZE(0));
-        make.right.offset(MATCHSIZE(20));
-        make.top.centerY.offset(0);
-      //make.width.offset(MATCHSIZE(620));
+    
+    [self.tipsIMG mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(MATCHSIZE(26));
+        make.centerY.equalTo(self.chatAir.mas_centerY);
     }];
     
-    [self.countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.waitLabel.mas_centerX);
-        make.top.equalTo(self.waitLabel.mas_bottom).offset(MATCHSIZE(10));
-        make.width.offset(MATCHSIZE(120));
+    [self.chatAir mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.tipsIMG.mas_right).offset(MATCHSIZE(10));
+        make.top.offset(MATCHSIZE(5));
+    }];
+    
+    [self.tipsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(MATCHSIZE(25));
+        //        make.right.offset(MATCHSIZE(-12));
+        make.width.offset(MATCHSIZE(480));
+        make.centerY.offset(0);
+        make.height.offset(MATCHSIZE(50));
+    }];
+    
+    [self.tipsLabelBg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(MATCHSIZE(64));
+        make.top.equalTo(self.chatAir.mas_bottom).offset(MATCHSIZE(5));
+        make.width.offset(MATCHSIZE(160));
+        make.height.offset(MATCHSIZE(95));
+    }];
+    
+    [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(MATCHSIZE(12));
+        make.width.offset(MATCHSIZE(140));
+        make.centerX.offset(0);
     }];
 }
 

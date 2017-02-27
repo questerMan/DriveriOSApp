@@ -19,6 +19,7 @@
 #import "IndentSucceedAlert.h"
 #import "EmergencyRescueAlert.h"
 #import "LXQLodingAlertViewController.h"
+
 @interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate,LimitLoginAlertDelegate>
 
 @property (nonatomic,strong) UIView *bgView;
@@ -50,6 +51,7 @@
 @property (nonatomic, strong) EmergencyRescueAlert *emergencyRescueAlert;
 
 @property (nonatomic, strong) LXQLodingAlertViewController *lodingAlertViewController;
+
 
 @end
 
@@ -144,6 +146,13 @@
     return _lodingAlertViewController;
 }
 
+- (LXQPassengerGetOnAlertViewController *)passengerGetOnAlert{
+    if (!_passengerGetOnAlert) {
+        _passengerGetOnAlert = [[LXQPassengerGetOnAlertViewController alloc] init];
+    }
+    return _passengerGetOnAlert;
+}
+
 //直接调用该方法一般用于固定 view 的展示
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
     
@@ -201,14 +210,14 @@
                 break;
             case AlertViewTypeInstantIndentCommingAlert:
                 
-                [self isCloseWithTap:YES];
+                [self isCloseWithTap:NO];
                 [self isCreatTimerWithTimeInterval:3];
                 
                 break;
                 
             case AlertViewTypeIndentSucceedAlert:
                 
-                [self isCloseWithTap:YES];
+                [self isCloseWithTap:NO];
                 [self isCreatTimerWithTimeInterval:3];
                 
                 break;
@@ -217,6 +226,10 @@
                 
                 break;
             case AlertViewTypeLoadingAlert:
+                [self isCloseWithTap:NO];
+                
+                break;
+            case AlertViewTypePassengerGetOnAlert:
                 [self isCloseWithTap:NO];
                 
                 break;
@@ -387,6 +400,14 @@
             make.right.equalTo(self).offset(MATCHSIZE(-94));
             make.top.offset(MATCHSIZE(527));
             make.height.offset(MATCHSIZE(80));
+        }];
+    }else if (_addAlertViewType == AlertViewTypePassengerGetOnAlert){
+        [self initAlertViewWithViewController:self.passengerGetOnAlert];
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(MATCHSIZE(174));
+            make.right.equalTo(self).offset(MATCHSIZE(-174));
+            make.centerY.offset(0);
+            make.height.offset(MATCHSIZE(300));
         }];
     }
 }

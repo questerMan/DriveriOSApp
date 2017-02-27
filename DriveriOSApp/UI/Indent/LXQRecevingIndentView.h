@@ -49,4 +49,15 @@
 
 @property (nonatomic, weak) UIButton* scalingBtn;
 
+/** 出发地背景 */
+@property (nonatomic, strong) UIView *tCarView;
+/** 目的地背景 */
+@property (nonatomic, strong) UIView *bCarView;
+/** 伸缩背景 */
+@property (nonatomic, strong) UIView *scalingView;
+/** 伸缩背景 */
+@property (nonatomic, strong) UIView *hidenView;
+
+- (void)scalingBtnClick:(UIButton *)sender;
+
 @end
