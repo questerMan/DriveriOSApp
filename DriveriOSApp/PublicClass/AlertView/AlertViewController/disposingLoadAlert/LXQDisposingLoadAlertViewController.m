@@ -26,6 +26,11 @@
     [self creatUI];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self changeStatusBarStyleWithFlag:YES];
+}
+
 - (void)creatUI{
     UILabel* textLabel = [[UILabel alloc] init];
     textLabel.text = @"正在处理，请稍后";

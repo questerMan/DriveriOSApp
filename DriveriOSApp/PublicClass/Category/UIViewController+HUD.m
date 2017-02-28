@@ -95,7 +95,7 @@ static const void *HttpRequestHUDKey = &HttpRequestHUDKey;
     }else{
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     }
-
+    
 }
 
 @end

@@ -63,6 +63,11 @@
     self.title = @"最终结算";
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self changeStatusBarStyleWithFlag:YES];
+}
+
 - (void)creatUI{
     
     self.view.backgroundColor = UIColorFromRGB(@"#f5f5f5");

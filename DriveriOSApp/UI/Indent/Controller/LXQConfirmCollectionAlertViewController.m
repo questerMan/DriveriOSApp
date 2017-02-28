@@ -132,8 +132,18 @@
     UIButton* finishBtn = [UIButton buttonWithType:0];
     [finishBtn setAttributedTitle:[[NSAttributedString alloc] initWithString:@"完成" attributes:@{NSForegroundColorAttributeName : UIColorFromRGB(@"#333333"),NSFontAttributeName : [UIFont systemFontOfSize:MATCHSIZE(36)]}] forState:0];
     [finishBtn setBackgroundColor:UIColorFromRGB(@"#d9d9d9")];
+    [finishBtn addTarget:self action:@selector(finishBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [confirmCollectionView addSubview:finishBtn];
     self.finishBtn = finishBtn;
+}
+
+- (void)finishBtnClick{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self changeStatusBarStyleWithFlag:YES];
 }
 
 - (void)viewDidLayoutSubviews{
@@ -155,20 +165,19 @@
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.offset(0);
-//        make.left.equalTo(self.leftLineView.mas_right).offset(MATCHSIZE(30));
         make.centerY.offset(0);
     }];
     
     [self.leftLineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(MATCHSIZE(26));
-        make.width.offset(MATCHSIZE(250));
+        make.right.equalTo(self.titleLabel.mas_left).offset(MATCHSIZE(-30));
         make.centerY.offset(0);
         make.height.offset(MATCHSIZE(1));
     }];
     
-    [self.leftLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(MATCHSIZE(-26));
-        make.right.equalTo(self.titleLabel.mas_right).offset(MATCHSIZE(30));
+    [self.rightLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.offset(MATCHSIZE(-26));
+        make.left.equalTo(self.titleLabel.mas_right).offset(MATCHSIZE(30));
         make.centerY.offset(0);
         make.height.offset(MATCHSIZE(1));
     }];

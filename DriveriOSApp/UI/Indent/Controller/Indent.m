@@ -85,6 +85,9 @@
     
     [self creatNAC];
     
+    //状态栏变白
+    [self changeStatusBarStyleWithFlag:YES];
+    
 }
 
 - (void)viewDidLayoutSubviews{
@@ -100,11 +103,12 @@
     //背景颜色
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
     
-//  //显示的颜色
-//  [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    //显示的颜色
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
     //状态栏变白
-    [self changeStatusBarStyleWithFlag:NO];
+    [self changeStatusBarStyleWithFlag:YES];
 }
 
 /**
