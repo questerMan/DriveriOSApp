@@ -271,7 +271,6 @@ static NSTimeInterval acceptIndentCount;
     //创建救援按钮
     [indent.view addSubview:self.rescueBtn];
     [[self.rescueBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-//      AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeEmergencyRescueAlert];
 
         [self.rescueAlert alertViewShow];
     }];

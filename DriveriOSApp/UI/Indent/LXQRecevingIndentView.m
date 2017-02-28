@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) UIView *bgView;//背景图
 
-
+@property (nonatomic, strong) AlertView *sendBtnAlert;//改派单
 
 @end
 
@@ -24,6 +24,13 @@
         [self creatUI];
     }
     return self;
+}
+
+- (AlertView *)sendBtnAlert{
+    if (!_sendBtnAlert) {
+        _sendBtnAlert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeReassignmentIndentAlert];
+    }
+    return _sendBtnAlert;
 }
 
 -(void)creatUI{
@@ -129,6 +136,7 @@
     self.sendBtn = [UIButton buttonWithType:0];
     [self.sendBtn setImage:[UIImage imageNamed:@"send-order"] forState:0];
     [self.sendBtn sizeToFit];
+    [self.sendBtn addTarget:self action:@selector(sendBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.sendBtn];
 }
 
@@ -306,7 +314,18 @@
     }
 }
 
-- (void)scalingUp{
+- (void)sendBtnClick{
+
+    [self.sendBtnAlert alertViewShow];
     
+    __weak typeof(self) weakSelf = self;
+    self.sendBtnAlert.reassignmentIndentAlertViewController.okBtnClick = ^{
+        [weakSelf.sendBtnAlert alertViewCloseWithBlock:nil];
+    };
+    
+    self.sendBtnAlert.reassignmentIndentAlertViewController.cancelBtnClick = ^{
+        [weakSelf.sendBtnAlert alertViewCloseWithBlock:nil];
+    };
 }
+
 @end

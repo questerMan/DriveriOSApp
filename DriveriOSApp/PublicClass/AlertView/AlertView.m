@@ -52,7 +52,6 @@
 
 @property (nonatomic, strong) LXQLodingAlertViewController *lodingAlertViewController;
 
-
 @end
 
 @implementation AlertView
@@ -153,6 +152,13 @@
     return _passengerGetOnAlert;
 }
 
+- (LXQreassignmentIndentAlertViewController *)reassignmentIndentAlertViewController{
+    if (!_reassignmentIndentAlertViewController) {
+        _reassignmentIndentAlertViewController = [[LXQreassignmentIndentAlertViewController alloc] init];
+    }
+    return _reassignmentIndentAlertViewController;
+}
+
 //直接调用该方法一般用于固定 view 的展示
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
     
@@ -230,6 +236,10 @@
                 
                 break;
             case AlertViewTypePassengerGetOnAlert:
+                [self isCloseWithTap:NO];
+                
+                break;
+            case AlertViewTypeReassignmentIndentAlert:
                 [self isCloseWithTap:NO];
                 
                 break;
@@ -403,6 +413,14 @@
         }];
     }else if (_addAlertViewType == AlertViewTypePassengerGetOnAlert){
         [self initAlertViewWithViewController:self.passengerGetOnAlert];
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(MATCHSIZE(174));
+            make.right.equalTo(self).offset(MATCHSIZE(-174));
+            make.centerY.offset(0);
+            make.height.offset(MATCHSIZE(300));
+        }];
+    }else if (_addAlertViewType == AlertViewTypeReassignmentIndentAlert){
+        [self initAlertViewWithViewController:self.reassignmentIndentAlertViewController];
         [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).offset(MATCHSIZE(174));
             make.right.equalTo(self).offset(MATCHSIZE(-174));

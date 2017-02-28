@@ -7,7 +7,8 @@
 //
 
 #import "LXQFinalSettlementViewController.h"
-
+#import "LXQConfirmCollectionAlertViewController.h"
+#import "LXQDisposingLoadAlertViewController.h"
 @interface LXQFinalSettlementViewController ()
 
 @property(nonatomic , weak)UIView* navBar;
@@ -167,6 +168,7 @@
     [settlementFee setTitleColor:UIColorFromRGB(@"#ffffff") forState:0];
     [settlementFee setBackgroundColor:UIColorFromRGB(@"#ff6d00")];
     settlementFee.layer.cornerRadius = MATCHSIZE(40);
+    [settlementFee addTarget:self action:@selector(settlementFeeClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:settlementFee];
     self.settlementFee = settlementFee;
     
@@ -217,6 +219,21 @@
     parkingFeeMinute.backgroundColor = UIColorFromRGB(@"#ff6d00");
     [self.view addSubview:parkingFeeMinute];
     self.parkingFeeMinute = parkingFeeMinute;
+}
+
+- (void)settlementFeeClick{
+    LXQDisposingLoadAlertViewController* LoadAlertViewController = [[LXQDisposingLoadAlertViewController alloc] init];
+    LoadAlertViewController.modalPresentationStyle = 2;
+    [self presentViewController:LoadAlertViewController animated:YES completion:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [LoadAlertViewController dismissFromViewController:self andAnimated:YES];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            LXQConfirmCollectionAlertViewController* ConfirmCollectionAlertViewController = [[LXQConfirmCollectionAlertViewController alloc] init];
+             [self.navigationController pushViewController:ConfirmCollectionAlertViewController animated:YES];
+        });
+    });
+   
 }
 
 -(void)viewDidLayoutSubviews{
@@ -325,7 +342,6 @@
         make.centerY.equalTo(self.parkingFee.mas_centerY);
         make.height.equalTo(self.parkingFeeMinute.mas_width);
     }];
-
 }
 
 @end

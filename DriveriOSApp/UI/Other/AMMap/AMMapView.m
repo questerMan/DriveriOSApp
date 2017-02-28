@@ -641,7 +641,7 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
             
             __strong __typeof(weakSelf)strongSelf = weakSelf;//防止多次weakSelf会把之前方法置空而崩溃
             
-            if (responseNew.regeocode != nil) {
+            if (error == nil) {
                 //注意这里，如果数据为空会出错，可以做字符串判断
                 //通知主线程刷新
                 dispatch_async(dispatch_get_main_queue(), ^{

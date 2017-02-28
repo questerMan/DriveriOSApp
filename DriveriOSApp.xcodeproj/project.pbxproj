@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0400509B1E5FE5B400448108 /* LXQPassengerGetOnAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0400509A1E5FE5B400448108 /* LXQPassengerGetOnAlertViewController.m */; };
+		0400509F1E641DD600448108 /* LXQreassignmentIndentAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0400509E1E641DD600448108 /* LXQreassignmentIndentAlertViewController.m */; };
 		040F79B61E2F5C2300C8F227 /* LXQRecevingIndentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */; };
 		041132631E515387005A1096 /* LXQDestinationTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 041132621E515387005A1096 /* LXQDestinationTipsView.m */; };
 		0411326A1E519A07005A1096 /* LXQDisposingLoadAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 041132691E519A07005A1096 /* LXQDisposingLoadAlertViewController.m */; };
 		0411326E1E52A8FF005A1096 /* LXQFinalSettlementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0411326D1E52A8FF005A1096 /* LXQFinalSettlementViewController.m */; };
 		0443326A1E5AFDC200C63E4F /* LXQResetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044332691E5AFDC200C63E4F /* LXQResetPwdViewController.m */; };
 		0443326E1E5D2C0100C63E4F /* LXQLodingAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0443326D1E5D2C0100C63E4F /* LXQLodingAlertViewController.m */; };
+		04513DE41E651A1900E84DDC /* LXQConfirmCollectionAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04513DE31E651A1900E84DDC /* LXQConfirmCollectionAlertViewController.m */; };
 		0454371E1E4D5896008602A0 /* tips.png in Resources */ = {isa = PBXBuildFile; fileRef = 0454371D1E4D5896008602A0 /* tips.png */; };
 		04C1841E1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */; };
 		820555C11E00D30C0095BB47 /* PhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C01E00D30C0095BB47 /* PhoneNumber.m */; };
@@ -298,6 +300,8 @@
 /* Begin PBXFileReference section */
 		040050991E5FE5B400448108 /* LXQPassengerGetOnAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQPassengerGetOnAlertViewController.h; sourceTree = "<group>"; };
 		0400509A1E5FE5B400448108 /* LXQPassengerGetOnAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQPassengerGetOnAlertViewController.m; sourceTree = "<group>"; };
+		0400509D1E641DD600448108 /* LXQreassignmentIndentAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQreassignmentIndentAlertViewController.h; sourceTree = "<group>"; };
+		0400509E1E641DD600448108 /* LXQreassignmentIndentAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQreassignmentIndentAlertViewController.m; sourceTree = "<group>"; };
 		040F79B41E2F5C2300C8F227 /* LXQRecevingIndentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQRecevingIndentView.h; path = DriveriOSApp/UI/Indent/LXQRecevingIndentView.h; sourceTree = SOURCE_ROOT; };
 		040F79B51E2F5C2300C8F227 /* LXQRecevingIndentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQRecevingIndentView.m; path = DriveriOSApp/UI/Indent/LXQRecevingIndentView.m; sourceTree = SOURCE_ROOT; };
 		041132611E515387005A1096 /* LXQDestinationTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQDestinationTipsView.h; path = DriveriOSApp/UI/Indent/LXQDestinationTipsView.h; sourceTree = SOURCE_ROOT; };
@@ -310,6 +314,8 @@
 		044332691E5AFDC200C63E4F /* LXQResetPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQResetPwdViewController.m; sourceTree = "<group>"; };
 		0443326C1E5D2C0100C63E4F /* LXQLodingAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQLodingAlertViewController.h; sourceTree = "<group>"; };
 		0443326D1E5D2C0100C63E4F /* LXQLodingAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQLodingAlertViewController.m; sourceTree = "<group>"; };
+		04513DE21E651A1900E84DDC /* LXQConfirmCollectionAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQConfirmCollectionAlertViewController.h; sourceTree = "<group>"; };
+		04513DE31E651A1900E84DDC /* LXQConfirmCollectionAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQConfirmCollectionAlertViewController.m; sourceTree = "<group>"; };
 		0454371D1E4D5896008602A0 /* tips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tips.png; sourceTree = "<group>"; };
 		04C1841A1E4BFFB500696D39 /* LXQAfterDrivingTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQAfterDrivingTipsView.h; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.h; sourceTree = SOURCE_ROOT; };
 		04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQAfterDrivingTipsView.m; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.m; sourceTree = SOURCE_ROOT; };
@@ -855,6 +861,8 @@
 		0400509C1E641B8100448108 /* reassignmentIndentAlert */ = {
 			isa = PBXGroup;
 			children = (
+				0400509D1E641DD600448108 /* LXQreassignmentIndentAlertViewController.h */,
+				0400509E1E641DD600448108 /* LXQreassignmentIndentAlertViewController.m */,
 			);
 			name = reassignmentIndentAlert;
 			sourceTree = "<group>";
@@ -885,6 +893,15 @@
 				0443326D1E5D2C0100C63E4F /* LXQLodingAlertViewController.m */,
 			);
 			name = LodingAlert;
+			sourceTree = "<group>";
+		};
+		04513DDE1E6509C800E84DDC /* confirmCollectionAlert */ = {
+			isa = PBXGroup;
+			children = (
+				04513DE21E651A1900E84DDC /* LXQConfirmCollectionAlertViewController.h */,
+				04513DE31E651A1900E84DDC /* LXQConfirmCollectionAlertViewController.m */,
+			);
+			name = confirmCollectionAlert;
 			sourceTree = "<group>";
 		};
 		776A8E4F0C4A409C901C8D0D /* Pods */ = {
@@ -2169,6 +2186,7 @@
 				82E11E961DED58B200FED9C0 /* IndentPublicViewTools.m */,
 				82E11E6A1DED2C6400FED9C0 /* Indent.h */,
 				82E11E6B1DED2C6400FED9C0 /* Indent.m */,
+				04513DDE1E6509C800E84DDC /* confirmCollectionAlert */,
 				0411326B1E52A8C3005A1096 /* finalSettlement */,
 				041132671E51940C005A1096 /* disposingLoadAlert */,
 				82E11E6C1DED2C6400FED9C0 /* InstantIndent */,
@@ -2651,7 +2669,9 @@
 				82AF40821DE92477001F0066 /* EaseFaceView.m in Sources */,
 				0411326E1E52A8FF005A1096 /* LXQFinalSettlementViewController.m in Sources */,
 				82AF40121DE92477001F0066 /* EMAudioPlayerUtil.m in Sources */,
+				04513DE41E651A1900E84DDC /* LXQConfirmCollectionAlertViewController.m in Sources */,
 				0400509B1E5FE5B400448108 /* LXQPassengerGetOnAlertViewController.m in Sources */,
+				0400509F1E641DD600448108 /* LXQreassignmentIndentAlertViewController.m in Sources */,
 				82E465F21DE90B9F00432E88 /* ViewController.m in Sources */,
 				82AF40141DE92477001F0066 /* EMCDDeviceManager+Media.m in Sources */,
 				82AF407F1DE92477001F0066 /* EaseChatToolbarItem.m in Sources */,
