@@ -7,7 +7,7 @@
 //
 
 #import "LXQConfirmCollectionAlertViewController.h"
-
+#import "LXQTopUpViewController.h"
 @interface LXQConfirmCollectionAlertViewController ()
 
 @property (nonatomic, strong) AMMapView *map;
@@ -45,6 +45,11 @@
         _map = [[AMMapView alloc] initWithFrame:self.view.bounds];
     }
     return _map;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return 0;
 }
 
 -(void)creatAMMap{
@@ -115,6 +120,7 @@
     
     UIButton* insteadTopUpBtn = [UIButton buttonWithType:0];
     [insteadTopUpBtn setAttributedTitle:[[NSAttributedString alloc] initWithString:@"立即代充值 >>" attributes:@{NSForegroundColorAttributeName : UIColorFromRGB(@"#cccccc"),NSFontAttributeName : [UIFont systemFontOfSize:MATCHSIZE(28)]}] forState:0];
+    [insteadTopUpBtn addTarget:self action:@selector(insteadTopUpBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [confirmCollectionView addSubview:insteadTopUpBtn];
     self.insteadTopUpBtn = insteadTopUpBtn;
     
@@ -135,6 +141,12 @@
     [finishBtn addTarget:self action:@selector(finishBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [confirmCollectionView addSubview:finishBtn];
     self.finishBtn = finishBtn;
+}
+
+- (void)insteadTopUpBtnClick{
+    LXQTopUpViewController* topUpViewController = [[LXQTopUpViewController alloc] init];
+    topUpViewController.model = self.model;
+    [self.navigationController pushViewController:topUpViewController animated:YES];
 }
 
 - (void)finishBtnClick{

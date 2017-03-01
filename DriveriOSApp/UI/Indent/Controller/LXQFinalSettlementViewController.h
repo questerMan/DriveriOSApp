@@ -10,4 +10,6 @@
 
 @interface LXQFinalSettlementViewController : UIViewController
 
+@property (nonatomic, strong) IndentData *model;
+
 @end

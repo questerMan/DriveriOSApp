@@ -222,6 +222,7 @@ static NSTimeInterval acceptIndentCount;
     }
     return _destinationTipsView;
 }
+
 - (AlertView *)rescueAlert{
     if (!_rescueAlert) {
         _rescueAlert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeEmergencyRescueAlert];
@@ -327,8 +328,6 @@ static NSTimeInterval acceptIndentCount;
         [self changeMapStateWithMapIndentState:MapIndentStateWaitingPassengers];
     }];
 }
-
-
 
 #pragma mark - UITextFieldDelegate
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
@@ -762,6 +761,7 @@ static NSTimeInterval acceptIndentCount;
         make.right.offset(0);
         make.height.offset(MATCHSIZE(190) + MATCHSIZE(60));
     }];
+    
     //伸缩乘客信息栏信息修改
     self.recevingIndentView.scalingView = self.recevingIndentView.bCarView;
     self.recevingIndentView.hidenView = self.recevingIndentView.tCarView;
@@ -782,10 +782,11 @@ static NSTimeInterval acceptIndentCount;
     LoadAlertViewController.modalPresentationStyle = 2;
     [self.indentController presentViewController:LoadAlertViewController animated:YES completion:nil];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [LoadAlertViewController dismissFromViewController:self.indentController andAnimated:YES];
+        [LoadAlertViewController dismissViewControllerAnimated:YES completion:nil];
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             LXQFinalSettlementViewController* FinalSettlementViewController = [[LXQFinalSettlementViewController alloc] init];
+            FinalSettlementViewController.model = self.recevingIndentView.model;
             [self.indentController.navigationController pushViewController:FinalSettlementViewController animated:YES];
         });
     });

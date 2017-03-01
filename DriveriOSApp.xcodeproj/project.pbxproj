@@ -16,6 +16,7 @@
 		0443326A1E5AFDC200C63E4F /* LXQResetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044332691E5AFDC200C63E4F /* LXQResetPwdViewController.m */; };
 		0443326E1E5D2C0100C63E4F /* LXQLodingAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0443326D1E5D2C0100C63E4F /* LXQLodingAlertViewController.m */; };
 		04513DE41E651A1900E84DDC /* LXQConfirmCollectionAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04513DE31E651A1900E84DDC /* LXQConfirmCollectionAlertViewController.m */; };
+		04513DE81E666C8900E84DDC /* LXQTopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04513DE71E666C8900E84DDC /* LXQTopUpViewController.m */; };
 		0454371E1E4D5896008602A0 /* tips.png in Resources */ = {isa = PBXBuildFile; fileRef = 0454371D1E4D5896008602A0 /* tips.png */; };
 		04C1841E1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */; };
 		820555C11E00D30C0095BB47 /* PhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C01E00D30C0095BB47 /* PhoneNumber.m */; };
@@ -316,6 +317,8 @@
 		0443326D1E5D2C0100C63E4F /* LXQLodingAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQLodingAlertViewController.m; sourceTree = "<group>"; };
 		04513DE21E651A1900E84DDC /* LXQConfirmCollectionAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQConfirmCollectionAlertViewController.h; sourceTree = "<group>"; };
 		04513DE31E651A1900E84DDC /* LXQConfirmCollectionAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQConfirmCollectionAlertViewController.m; sourceTree = "<group>"; };
+		04513DE61E666C8900E84DDC /* LXQTopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQTopUpViewController.h; sourceTree = "<group>"; };
+		04513DE71E666C8900E84DDC /* LXQTopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQTopUpViewController.m; sourceTree = "<group>"; };
 		0454371D1E4D5896008602A0 /* tips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tips.png; sourceTree = "<group>"; };
 		04C1841A1E4BFFB500696D39 /* LXQAfterDrivingTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQAfterDrivingTipsView.h; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.h; sourceTree = SOURCE_ROOT; };
 		04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQAfterDrivingTipsView.m; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.m; sourceTree = SOURCE_ROOT; };
@@ -902,6 +905,15 @@
 				04513DE31E651A1900E84DDC /* LXQConfirmCollectionAlertViewController.m */,
 			);
 			name = confirmCollectionAlert;
+			sourceTree = "<group>";
+		};
+		04513DE51E666BC200E84DDC /* topUpViewController */ = {
+			isa = PBXGroup;
+			children = (
+				04513DE61E666C8900E84DDC /* LXQTopUpViewController.h */,
+				04513DE71E666C8900E84DDC /* LXQTopUpViewController.m */,
+			);
+			name = topUpViewController;
 			sourceTree = "<group>";
 		};
 		776A8E4F0C4A409C901C8D0D /* Pods */ = {
@@ -2186,6 +2198,7 @@
 				82E11E961DED58B200FED9C0 /* IndentPublicViewTools.m */,
 				82E11E6A1DED2C6400FED9C0 /* Indent.h */,
 				82E11E6B1DED2C6400FED9C0 /* Indent.m */,
+				04513DE51E666BC200E84DDC /* topUpViewController */,
 				04513DDE1E6509C800E84DDC /* confirmCollectionAlert */,
 				0411326B1E52A8C3005A1096 /* finalSettlement */,
 				041132671E51940C005A1096 /* disposingLoadAlert */,
@@ -2822,6 +2835,7 @@
 				82AF40431DE92477001F0066 /* MKAnnotationView+EMWebCache.m in Sources */,
 				8295460A1E23897F009D9C62 /* PublicTools.m in Sources */,
 				82E6F15D1DF69AA60099A7CE /* PublicTool.m in Sources */,
+				04513DE81E666C8900E84DDC /* LXQTopUpViewController.m in Sources */,
 				82AF40401DE92477001F0066 /* EMSDWebImageDownloaderOperation.m in Sources */,
 				040F79B61E2F5C2300C8F227 /* LXQRecevingIndentView.m in Sources */,
 				82AF40351DE92477001F0066 /* MWGridViewController.m in Sources */,

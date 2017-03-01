@@ -68,6 +68,11 @@
     [self changeStatusBarStyleWithFlag:YES];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return 0;
+}
+
 - (void)creatUI{
     
     self.view.backgroundColor = UIColorFromRGB(@"#f5f5f5");
@@ -231,10 +236,10 @@
     LoadAlertViewController.modalPresentationStyle = 2;
     [self presentViewController:LoadAlertViewController animated:YES completion:nil];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [LoadAlertViewController dismissFromViewController:self andAnimated:YES];
-        
+        [LoadAlertViewController dismissViewControllerAnimated:YES completion:nil];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             LXQConfirmCollectionAlertViewController* ConfirmCollectionAlertViewController = [[LXQConfirmCollectionAlertViewController alloc] init];
+            ConfirmCollectionAlertViewController.model = self.model;
              [self.navigationController pushViewController:ConfirmCollectionAlertViewController animated:YES];
         });
     });
