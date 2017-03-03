@@ -8,7 +8,7 @@
 static NSTimeInterval count = 10;
 
 #import "LXQRobIndentAlertViewController.h"
-
+#import "LXQRobIndentBtn.h"
 @interface LXQRobIndentAlertViewController ()
 
 @property(nonatomic, weak)UIImageView* nameIMG;
@@ -62,6 +62,7 @@ static NSTimeInterval count = 10;
 }
 
 - (NSTimer *)robIndentTimer{
+
     if (!_robIndentTimer) {
         NSTimer* robIndentTimer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
             count --;
@@ -69,6 +70,9 @@ static NSTimeInterval count = 10;
             if (count <= 0) {
                 count = 10;
                 [timer invalidate];
+                if (_robIndentTimerEnd) {
+                    _robIndentTimerEnd();
+                }
             }
         }];
         _robIndentTimer = robIndentTimer;
@@ -84,12 +88,19 @@ static NSTimeInterval count = 10;
 
 - (void)creatUI{
     
+    self.view.backgroundColor = UIColorFromRGB(@"#f5f5f5");
+    self.view.layer.cornerRadius = MATCHSIZE(18);
+    self.view.layer.masksToBounds = YES;
+    
     UIImageView* nameIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
     [nameIMG sd_setImageWithURL:[NSURL URLWithString:_model.headIMG] placeholderImage:[UIImage imageNamed:@"userIMG"]];
+    nameIMG.layer.cornerRadius = MATCHSIZE(57);
+    nameIMG.layer.masksToBounds = YES;
     [self.view addSubview:nameIMG];
     self.nameIMG = nameIMG;
     
     UILabel* nameLabel = [FactoryClass labelWithTextColor:UIColorFromRGB(@"#8c8c8c") fontSize:MATCHSIZE(28)];
+    nameLabel.text = _model.name;
     [self.view addSubview:nameLabel];
     self.nameLabel = nameLabel;
     
@@ -151,7 +162,7 @@ static NSTimeInterval count = 10;
     [self.view addSubview:appointmentView];
     self.appointmentView = appointmentView;
     
-    UIImageView* aCarIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"positioning-1"]];
+    UIImageView* aCarIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"time"]];
     [appointmentView addSubview:aCarIMG];
     self.aCarIMG = aCarIMG;
     
@@ -160,10 +171,11 @@ static NSTimeInterval count = 10;
     [appointmentView addSubview:aCarLabel];
     self.aCarLabel = aCarLabel;
     
-    UIButton* robIndentBtn = [UIButton buttonWithType:0];
+    LXQRobIndentBtn* robIndentBtn = [[LXQRobIndentBtn alloc] init];
     [robIndentBtn setBackgroundImage:[UIImage imageNamed:@"button"] forState:0];
     [robIndentBtn setAttributedTitle:[[NSAttributedString alloc] initWithString:@"抢单" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:MATCHSIZE(40)],NSForegroundColorAttributeName : UIColorFromRGB(@"#ff6d00")}] forState:0];
     robIndentBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, MATCHSIZE(30), 0);
+    [robIndentBtn addTarget:self action:@selector(robIndentBtnClick:) forControlEvents: 1<<6];
     [self.view addSubview:robIndentBtn];
     self.robIndentBtn = robIndentBtn;
     
@@ -173,19 +185,140 @@ static NSTimeInterval count = 10;
     self.secondLabel = secondLabel;
 }
 
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    
+    [self.nameIMG mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.offset(0);
+        make.top.offset(MATCHSIZE(56));
+        make.height.offset(MATCHSIZE(114));
+        make.width.offset(MATCHSIZE(114));
+    }];
+    
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.nameIMG.mas_bottom).offset(MATCHSIZE(20));
+        make.centerX.offset(0);
+    }];
+    
+    [self.evaluationView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(MATCHSIZE(110));
+        make.right.offset(MATCHSIZE(110));
+        make.top.equalTo(self.nameLabel.mas_bottom).offset(MATCHSIZE(30));
+        make.height.offset(MATCHSIZE(40));
+    }];
+    
+    [self.star0IMG mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(0);
+        make.top.offset(0);
+    }];
+    
+    [self.star1IMG mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.star0IMG.mas_right).offset(MATCHSIZE(45));
+        make.top.offset(0);
+    }];
+    
+    [self.star2IMG mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.star1IMG.mas_right).offset(MATCHSIZE(45));
+        make.top.offset(0);
+    }];
+    
+    [self.star3IMG mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.star2IMG.mas_right).offset(MATCHSIZE(45));
+        make.top.offset(0);
+    }];
+    
+    [self.star4IMG mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.star3IMG.mas_right).offset(MATCHSIZE(45));
+        make.top.offset(0);
+    }];
+    
+    [self.tCarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.evaluationView.mas_bottom).offset(MATCHSIZE(40));
+        make.left.offset(MATCHSIZE(136));
+        make.right.offset(0);
+        make.height.offset(MATCHSIZE(28));
+    }];
+    
+    [self.tCarIMG mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(0);
+        make.top.offset(0);
+    }];
+    
+    [self.tCarLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.tCarIMG.mas_right).offset(MATCHSIZE(10));
+        make.top.offset(0);
+    }];
+    
+    [self.bCarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(MATCHSIZE(136));
+        make.top.equalTo(self.tCarView.mas_bottom).offset(MATCHSIZE(20));
+        make.right.offset(0);
+        make.height.offset(MATCHSIZE(28));
+    }];
+    
+    [self.bCarIMG mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(0);
+        make.top.offset(0);
+    }];
+    
+    [self.bCarLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.bCarIMG.mas_right).offset(MATCHSIZE(10));
+        make.top.offset(0);
+    }];
+    
+    [self.appointmentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(MATCHSIZE(136));
+        make.top.equalTo(self.bCarView.mas_bottom).offset(MATCHSIZE(20));
+        make.right.offset(0);
+        make.height.offset(MATCHSIZE(28));
+    }];
+    
+    [self.aCarIMG mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(0);
+        make.top.offset(0);
+    }];
+    
+    [self.aCarLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.aCarIMG.mas_right).offset(MATCHSIZE(10));
+        make.top.offset(0);
+    }];
+    
+    [self.robIndentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.offset(0);
+        make.left.offset(MATCHSIZE(194));
+        make.right.offset(MATCHSIZE(-194));
+        make.bottom.offset(MATCHSIZE(-74));
+    }];
+    
+    [self.secondLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.offset(MATCHSIZE(-50));
+        make.centerX.offset(0);
+    }];
+}
+
 - (void)setModel:(IndentData *)model{
+    
     _model = model;
     
+    [self.nameIMG sd_setImageWithURL:[NSURL URLWithString:_model.headIMG] placeholderImage:[UIImage imageNamed:@"userIMG"]];
+    self.nameLabel.text = _model.name;
     self.tCarLabel.text = [NSString stringWithFormat:@"上车点: %@",_model.startName];
     self.bCarLabel.text = [NSString stringWithFormat:@"下车点: %@",_model.endName];
     self.aCarLabel.text = [NSString stringWithFormat:@"预约时间: %@",_model.time];
 }
 
-- (void)robIndentBtnClick{
+- (void)robIndentBtnClick:(UIButton*)sender{
     
     [self.robIndentTimer invalidate];
     
     count = 10;
+    
+    AlertView* alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeRobIndentAlertSuccessed];
+    [alert alertViewShow];
+    
+    if (_robIndentBtnClick) {
+        _robIndentBtnClick();
+    }
 }
 
 @end

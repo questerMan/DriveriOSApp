@@ -96,7 +96,7 @@ static NSTimeInterval count = 5;
     self.phoneBtn = phoneBtn;
     
     UIButton* cancelBtn = [UIButton buttonWithType:0];
-    [cancelBtn setImage:[UIImage imageNamed:@"cancel"] forState:0];
+    [cancelBtn setImage:[UIImage imageNamed:@"rescueCancel"] forState:0];
     [cancelBtn addTarget:self action:@selector(cancelBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.downView addSubview:cancelBtn];
     self.cancelBtn = cancelBtn;

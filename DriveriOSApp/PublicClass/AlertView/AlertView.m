@@ -20,6 +20,7 @@
 #import "EmergencyRescueAlert.h"
 #import "LXQLodingAlertViewController.h"
 #import "LXQSquareLodingAlertViewController.h"
+#import "LXQRobIndentAlertSuccessedViewController.h"
 @interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate,LimitLoginAlertDelegate>
 
 @property (nonatomic,strong) UIView *bgView;
@@ -53,6 +54,10 @@
 @property (nonatomic, strong) LXQLodingAlertViewController *lodingAlertViewController;
 
 @property (nonatomic, strong) LXQSquareLodingAlertViewController *squareLodingAlertViewController;
+
+@property (nonatomic, strong) LXQRobIndentAlertSuccessedViewController *robIndentAlertSuccessedViewController;
+
+@property (nonatomic, strong) UIButton *robIndentCancelAlertBtn;
 
 @end
 
@@ -168,6 +173,29 @@
     return _squareLodingAlertViewController;
 }
 
+- (LXQRobIndentAlertViewController *)robIndentAlertViewController{
+    if (!_robIndentAlertViewController) {
+        _robIndentAlertViewController = [[LXQRobIndentAlertViewController alloc] init];
+    }
+    return _robIndentAlertViewController;
+}
+
+- (UIButton *)robIndentCancelAlertBtn{
+    if (!_robIndentCancelAlertBtn) {
+        _robIndentCancelAlertBtn = [UIButton buttonWithType:0];
+        [_robIndentCancelAlertBtn setImage:[UIImage imageNamed:@"cancel"] forState:0];
+        [_robIndentCancelAlertBtn addTarget:self action:@selector(closeAlertView) forControlEvents:1<<6];
+    }
+    return _robIndentCancelAlertBtn;
+}
+
+- (LXQRobIndentAlertSuccessedViewController *)robIndentAlertSuccessedViewController{
+    if (!_robIndentAlertSuccessedViewController) {
+        _robIndentAlertSuccessedViewController = [[LXQRobIndentAlertSuccessedViewController alloc] init];
+    }
+    return _robIndentAlertSuccessedViewController;
+}
+
 //直接调用该方法一般用于固定 view 的展示
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
     
@@ -255,6 +283,14 @@
             case AlertViewTypeSquareLodingAlert:
                 [self isCloseWithTap:NO];
                 
+                break;
+            case AlertViewTypeRobIndentAlert:
+                [self isCloseWithTap:NO];
+                
+                break;
+            case AlertViewTypeRobIndentAlertSuccessed:
+                [self isCloseWithTap:NO];
+                [self isCreatTimerWithTimeInterval:3];
                 break;
             default:
                 break;
@@ -442,6 +478,28 @@
         }];
     }else if (_addAlertViewType == AlertViewTypeSquareLodingAlert){
         [self initAlertViewWithViewController:self.squareLodingAlertViewController];
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.offset(0);
+            make.centerY.offset(0);
+            make.width.offset(MATCHSIZE(400));
+            make.height.offset(MATCHSIZE(300));
+        }];
+    }else if (_addAlertViewType == AlertViewTypeRobIndentAlert){
+        [self initAlertViewWithViewController:self.robIndentAlertViewController];
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.offset(0);
+            make.centerY.offset(0);
+            make.width.offset(MATCHSIZE(588));
+            make.height.offset(MATCHSIZE(870));
+        }];
+        
+        [self addSubview:self.robIndentCancelAlertBtn];
+        [self.robIndentCancelAlertBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.offset(0);
+            make.top.equalTo(self.alertView.mas_bottom).offset(MATCHSIZE(30));
+        }];
+    }else if (_addAlertViewType == AlertViewTypeRobIndentAlertSuccessed){
+        [self initAlertViewWithViewController:self.robIndentAlertSuccessedViewController];
         [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.offset(0);
             make.centerY.offset(0);

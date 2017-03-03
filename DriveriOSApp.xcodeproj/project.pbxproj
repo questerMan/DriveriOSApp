@@ -19,6 +19,10 @@
 		04513DE81E666C8900E84DDC /* LXQTopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04513DE71E666C8900E84DDC /* LXQTopUpViewController.m */; };
 		04513DEC1E67B03200E84DDC /* LXQSquareLodingAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04513DEB1E67B03200E84DDC /* LXQSquareLodingAlertViewController.m */; };
 		04513DF21E67FB3C00E84DDC /* LXQRobIndentAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04513DF11E67FB3C00E84DDC /* LXQRobIndentAlertViewController.m */; };
+		04513DF91E69535000E84DDC /* IndentRob.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 04513DF81E69535000E84DDC /* IndentRob.geojson */; };
+		04513DFC1E695A2D00E84DDC /* LXQRobIndentBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 04513DFB1E695A2D00E84DDC /* LXQRobIndentBtn.m */; };
+		04513E011E69651B00E84DDC /* LXQRobIndentAlertSuccessedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04513E001E69651B00E84DDC /* LXQRobIndentAlertSuccessedViewController.m */; };
+		04513E041E696CB200E84DDC /* LXQRobIndentAlertFailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04513E031E696CB200E84DDC /* LXQRobIndentAlertFailedViewController.m */; };
 		0454371E1E4D5896008602A0 /* tips.png in Resources */ = {isa = PBXBuildFile; fileRef = 0454371D1E4D5896008602A0 /* tips.png */; };
 		04C1841E1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */; };
 		820555C11E00D30C0095BB47 /* PhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C01E00D30C0095BB47 /* PhoneNumber.m */; };
@@ -323,9 +327,15 @@
 		04513DE71E666C8900E84DDC /* LXQTopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQTopUpViewController.m; sourceTree = "<group>"; };
 		04513DEA1E67B03200E84DDC /* LXQSquareLodingAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQSquareLodingAlertViewController.h; sourceTree = "<group>"; };
 		04513DEB1E67B03200E84DDC /* LXQSquareLodingAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQSquareLodingAlertViewController.m; sourceTree = "<group>"; };
-		04513DED1E67CECA00E84DDC /* IndentRob.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = IndentRob.geojson; sourceTree = "<group>"; };
 		04513DF01E67FB3C00E84DDC /* LXQRobIndentAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQRobIndentAlertViewController.h; sourceTree = "<group>"; };
 		04513DF11E67FB3C00E84DDC /* LXQRobIndentAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQRobIndentAlertViewController.m; sourceTree = "<group>"; };
+		04513DF81E69535000E84DDC /* IndentRob.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = IndentRob.geojson; sourceTree = "<group>"; };
+		04513DFA1E695A2D00E84DDC /* LXQRobIndentBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQRobIndentBtn.h; sourceTree = "<group>"; };
+		04513DFB1E695A2D00E84DDC /* LXQRobIndentBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQRobIndentBtn.m; sourceTree = "<group>"; };
+		04513DFF1E69651B00E84DDC /* LXQRobIndentAlertSuccessedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQRobIndentAlertSuccessedViewController.h; sourceTree = "<group>"; };
+		04513E001E69651B00E84DDC /* LXQRobIndentAlertSuccessedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQRobIndentAlertSuccessedViewController.m; sourceTree = "<group>"; };
+		04513E021E696CB200E84DDC /* LXQRobIndentAlertFailedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQRobIndentAlertFailedViewController.h; sourceTree = "<group>"; };
+		04513E031E696CB200E84DDC /* LXQRobIndentAlertFailedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQRobIndentAlertFailedViewController.m; sourceTree = "<group>"; };
 		0454371D1E4D5896008602A0 /* tips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tips.png; sourceTree = "<group>"; };
 		04C1841A1E4BFFB500696D39 /* LXQAfterDrivingTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQAfterDrivingTipsView.h; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.h; sourceTree = SOURCE_ROOT; };
 		04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQAfterDrivingTipsView.m; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.m; sourceTree = SOURCE_ROOT; };
@@ -936,10 +946,32 @@
 		04513DEF1E67FB1800E84DDC /* RobIndentAlert */ = {
 			isa = PBXGroup;
 			children = (
+				04513DFE1E69632600E84DDC /* RobIndentAlertFailed */,
+				04513DFD1E6961F900E84DDC /* RobIndentAlertSuccessed */,
 				04513DF01E67FB3C00E84DDC /* LXQRobIndentAlertViewController.h */,
 				04513DF11E67FB3C00E84DDC /* LXQRobIndentAlertViewController.m */,
+				04513DFA1E695A2D00E84DDC /* LXQRobIndentBtn.h */,
+				04513DFB1E695A2D00E84DDC /* LXQRobIndentBtn.m */,
 			);
 			name = RobIndentAlert;
+			sourceTree = "<group>";
+		};
+		04513DFD1E6961F900E84DDC /* RobIndentAlertSuccessed */ = {
+			isa = PBXGroup;
+			children = (
+				04513DFF1E69651B00E84DDC /* LXQRobIndentAlertSuccessedViewController.h */,
+				04513E001E69651B00E84DDC /* LXQRobIndentAlertSuccessedViewController.m */,
+			);
+			name = RobIndentAlertSuccessed;
+			sourceTree = "<group>";
+		};
+		04513DFE1E69632600E84DDC /* RobIndentAlertFailed */ = {
+			isa = PBXGroup;
+			children = (
+				04513E021E696CB200E84DDC /* LXQRobIndentAlertFailedViewController.h */,
+				04513E031E696CB200E84DDC /* LXQRobIndentAlertFailedViewController.m */,
+			);
+			name = RobIndentAlertFailed;
 			sourceTree = "<group>";
 		};
 		776A8E4F0C4A409C901C8D0D /* Pods */ = {
@@ -1511,7 +1543,7 @@
 				827320C71E27817F0040AC2B /* IndentData.h */,
 				827320C81E27817F0040AC2B /* IndentData.m */,
 				8274A3E61E2CA135005A5B3A /* IndentData.geojson */,
-				04513DED1E67CECA00E84DDC /* IndentRob.geojson */,
+				04513DF81E69535000E84DDC /* IndentRob.geojson */,
 				8274A3EB1E2CB5BF005A5B3A /* ItemIndentModel.h */,
 				8274A3EC1E2CB5BF005A5B3A /* ItemIndentModel.m */,
 			);
@@ -2622,6 +2654,7 @@
 				82AF409C1DE93468001F0066 /* chat@3x.png in Resources */,
 				0454371E1E4D5896008602A0 /* tips.png in Resources */,
 				82AF40591DE92477001F0066 /* MWPhotoBrowser.bundle in Resources */,
+				04513DF91E69535000E84DDC /* IndentRob.geojson in Resources */,
 				8274A3E51E2C727F005A5B3A /* limitLogin@2x.png in Resources */,
 				827193ED1DF06E6B00327ACB /* MJRefresh.bundle in Resources */,
 				8274A3E71E2CA135005A5B3A /* IndentData.geojson in Resources */,
@@ -2748,6 +2781,8 @@
 				82AF40791DE92477001F0066 /* EaseBubbleView+Location.m in Sources */,
 				82EAADB51E08DA6400BE8434 /* LXRequest.m in Sources */,
 				827193991DF0631400327ACB /* UIViewController+SlideMenuControllerOC.m in Sources */,
+				04513E011E69651B00E84DDC /* LXQRobIndentAlertSuccessedViewController.m in Sources */,
+				04513E041E696CB200E84DDC /* LXQRobIndentAlertFailedViewController.m in Sources */,
 				82AF40561DE92477001F0066 /* PSTGridLayoutItem.m in Sources */,
 				82AF40151DE92477001F0066 /* EMCDDeviceManager+Microphone.m in Sources */,
 				827193F01DF06E6B00327ACB /* UIScrollView+MJRefresh.m in Sources */,
@@ -2843,6 +2878,7 @@
 				82620A5E1E1C9C4700219C5D /* DriverAnnotationView.m in Sources */,
 				0443326E1E5D2C0100C63E4F /* LXQLodingAlertViewController.m in Sources */,
 				82EAADB21E08D9F800BE8434 /* LXObjManage.m in Sources */,
+				04513DFC1E695A2D00E84DDC /* LXQRobIndentBtn.m in Sources */,
 				828D7ECB1DFE5309004F1BA5 /* SetupCell.m in Sources */,
 				829546041E238591009D9C62 /* LoginView.m in Sources */,
 				82AF406B1DE92477001F0066 /* EaseConversationListViewController.m in Sources */,

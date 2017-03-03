@@ -1,5 +1,4 @@
 {
     "type": "robIndent",
-    "indentArr": [{"Uid": "2002","name": "吴先生", "headIMG":"http://wx.qlogo.cn/mmhead/ver_1/VZwibrUAlMxJ4yfCOcBrhBfz5ib5l9IBEPpfEWRLHLnlxPbBDdUhjVmQDrZIrHOz1E8VnooevXhibpVto2ibfhX2YcMY7L780ic9cSjsDw0ndsOo/0", "number": "13304621708", "startLocationLat": "22.280119", "startLocationLon": "114.142708","startName":"香港国大学","endLocationLat":"22.275416", "endLocationLon": "114.176106", "endName":"罗家岗地铁站","time":"01月12日","satus":"预约中"  }
-    ]
+    "indentArr": [{"Uid": "2002","name": "吴先生", "headIMG":"http://wx.qlogo.cn/mmhead/ver_1/VZwibrUAlMxJ4yfCOcBrhBfz5ib5l9IBEPpfEWRLHLnlxPbBDdUhjVmQDrZIrHOz1E8VnooevXhibpVto2ibfhX2YcMY7L780ic9cSjsDw0ndsOo/0", "number": "13304621708", "startLocationLat": "22.280119", "startLocationLon": "114.142708","startName":"香港国大学","endLocationLat":"22.275416", "endLocationLon": "114.176106", "endName":"罗家岗地铁站","time":"01月12日","satus":"预约中"  }]
 }

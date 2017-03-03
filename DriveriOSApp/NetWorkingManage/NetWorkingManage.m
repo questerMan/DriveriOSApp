@@ -53,12 +53,29 @@
     NSString *filePath = [[NSBundle mainBundle]pathForResource:@"IndentData"ofType:@"geojson"];
     
     //根据文件路径读取数据
-    NSData *datas = [[NSData alloc]initWithContentsOfFile:filePath];
+    NSData *datas = [[NSData alloc] initWithContentsOfFile:filePath];
     
     //解读json数据
     NSArray *arrData = [NSJSONSerialization JSONObjectWithData:datas options:NSJSONReadingMutableContainers error:&error];
+    
     return arrData;
 }
+
+/** 获取抢单模型数据 */
+- (NSDictionary *)getRobIndentData{
+    NSError*error;
+    //获取文件路径
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"IndentRob.geojson" ofType:nil];
+    
+    //根据文件路径读取数据
+    NSData *datas = [[NSData alloc]initWithContentsOfFile:filePath];
+    
+    //解读json数据
+    NSDictionary *arrData = [NSJSONSerialization JSONObjectWithData:datas options:NSJSONReadingMutableContainers error:&error];
+    
+    return arrData;
+}
+
 /** 获取tab数据 */
 -(void)getTabDataWithBlock:(void(^)(NSArray *array))block{
     
@@ -117,6 +134,24 @@
     block(arrDatas);
 }
 
+/** 获取抢单数据 */
+-(void)getRobIndentWithBlock:(void(^)(NSArray *array))block{
+    
+    NSDictionary *arrData = [self getRobIndentData];
+    
+    NSMutableArray *arrDatas = [NSMutableArray array];
+    
+    NSDictionary *arrData2 = arrData[@"indentArr"][0];
+    
+    IndentData *model = [IndentData new];
+    [model setValuesForKeysWithDictionary:arrData2];
+    [arrDatas addObject:model];
+
+    
+    if (block) {
+        block(arrDatas);
+    }
+}
 
 /** 获取预约单数据 */
 -(void)getReservationIndentWithBlock:(void(^)(NSArray *array))block{

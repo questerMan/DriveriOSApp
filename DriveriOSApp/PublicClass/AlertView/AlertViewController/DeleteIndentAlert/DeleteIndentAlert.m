@@ -58,7 +58,7 @@
 
 -(void)creatUI{
     //页面顶部图像
-    self.headIMG = [FactoryClass imageViewWithFrame:CGRectMake(MATCHSIZE(300), MATCHSIZE(40), VIEW_W - MATCHSIZE(620), MATCHSIZE(80)) Image:[UIImage imageNamed:@"sad"]];
+    self.headIMG = [FactoryClass imageViewWithFrame:CGRectMake(MATCHSIZE(300), MATCHSIZE(40), VIEW_W - MATCHSIZE(620), MATCHSIZE(80)) Image:[UIImage imageNamed:@"sad_"]];
     [self.view addSubview:self.headIMG];
     
     [self.headIMG mas_makeConstraints:^(MASConstraintMaker *make) {

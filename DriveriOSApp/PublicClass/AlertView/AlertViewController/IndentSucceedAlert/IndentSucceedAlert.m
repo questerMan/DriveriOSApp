@@ -23,7 +23,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.titleIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"smile"]];
+    self.titleIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"smile_"]];
     [self.view addSubview:self.titleIMG];
     [self.titleIMG mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(MATCHSIZE(34));

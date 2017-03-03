@@ -12,4 +12,7 @@
 
 @property (nonatomic, strong) IndentData *model;
 
+@property (nonatomic, copy) void(^robIndentBtnClick)(void);
+
+@property (nonatomic, copy) void(^robIndentTimerEnd)(void);
 @end

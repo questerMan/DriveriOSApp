@@ -30,5 +30,7 @@
 /** 获取接机数据 */
 -(void)getMeetIndentWithBlock:(void(^)(NSArray *array))block;
 
+/** 获取抢单数据 */
+-(void)getRobIndentWithBlock:(void(^)(NSArray *array))block;
 
 @end

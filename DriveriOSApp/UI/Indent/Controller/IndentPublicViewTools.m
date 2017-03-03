@@ -34,6 +34,7 @@ static NSTimeInterval acceptIndentCount;
 
 @property (nonatomic, strong) AlertView* receiveOrderAlert;
 
+@property (nonatomic, strong) AlertView* robIndentAlertAlert;
 
 /** 乘客上车提示*/
 @property (nonatomic, strong) LXQAfterDrivingTipsView* drivingTipsView;
@@ -237,6 +238,13 @@ static NSTimeInterval acceptIndentCount;
     return _passengerGetOnAlert;
 }
 
+- (AlertView *)robIndentAlertAlert{
+    if (!_robIndentAlertAlert) {
+        _robIndentAlertAlert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType: AlertViewTypeRobIndentAlert];
+    }
+    return _robIndentAlertAlert;
+}
+
 /** 单例 */
 + (IndentPublicViewTools *)shareInstance{
     
@@ -278,6 +286,25 @@ static NSTimeInterval acceptIndentCount;
     [self.rescueBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.offset(0);
         make.left.offset(MATCHSIZE(26));
+    }];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self getRobIndentData];
+        __weak typeof(self) weakSelf = self;
+        self.robIndentAlertAlert.robIndentAlertViewController.robIndentBtnClick = ^{
+            [weakSelf.robIndentAlertAlert alertViewCloseWithBlock:nil];
+        };
+        self.robIndentAlertAlert.robIndentAlertViewController.robIndentTimerEnd = ^{
+            [weakSelf.robIndentAlertAlert alertViewCloseWithBlock:nil];
+        };
+        [self.robIndentAlertAlert alertViewShow];
+    });
+}
+
+- (void)getRobIndentData{
+    
+    [self.netWorkingManage getRobIndentWithBlock:^(NSArray *array) {
+        self.robIndentAlertAlert.robIndentAlertViewController.model = array[0];
     }];
 }
 
@@ -436,7 +463,6 @@ static NSTimeInterval acceptIndentCount;
     });
 }
 
-
 - (void)presentRefuseIndent
 {
     AlertView* alertV = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeDeleteIndentAlert];
@@ -545,7 +571,6 @@ static NSTimeInterval acceptIndentCount;
         
     } completion:^(BOOL finished) {
         self.tableView.hidden = YES;
-
     }];
 }
 
@@ -620,6 +645,7 @@ static NSTimeInterval acceptIndentCount;
         self.recevingIndentView.model = array[0];
     }];
 }
+
 
 - (void)changeMapStateWithMapIndentState: (MapIndentState)mapIndentState{
     

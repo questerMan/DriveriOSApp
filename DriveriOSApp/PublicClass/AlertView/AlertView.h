@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LXQPassengerGetOnAlertViewController.h"
 #import "LXQreassignmentIndentAlertViewController.h"
-
+#import "LXQRobIndentAlertViewController.h"
 @interface AlertView : UIView
 
 typedef enum {
@@ -27,7 +27,9 @@ typedef enum {
     AlertViewTypeLoadingAlert,
     AlertViewTypePassengerGetOnAlert,
     AlertViewTypeReassignmentIndentAlert,
-    AlertViewTypeSquareLodingAlert
+    AlertViewTypeSquareLodingAlert,
+    AlertViewTypeRobIndentAlert,
+    AlertViewTypeRobIndentAlertSuccessed
 }AlertViewType;
 
 @property (nonatomic, assign) AlertViewType addAlertViewType;
@@ -35,6 +37,8 @@ typedef enum {
 @property (nonatomic, strong)LXQPassengerGetOnAlertViewController*  passengerGetOnAlert;
 
 @property (nonatomic, strong) LXQreassignmentIndentAlertViewController *reassignmentIndentAlertViewController;
+
+@property (nonatomic, strong) LXQRobIndentAlertViewController *robIndentAlertViewController;
 
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType;
 
