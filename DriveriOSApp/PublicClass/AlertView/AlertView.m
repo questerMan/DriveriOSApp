@@ -19,7 +19,7 @@
 #import "IndentSucceedAlert.h"
 #import "EmergencyRescueAlert.h"
 #import "LXQLodingAlertViewController.h"
-
+#import "LXQSquareLodingAlertViewController.h"
 @interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate,LimitLoginAlertDelegate>
 
 @property (nonatomic,strong) UIView *bgView;
@@ -51,6 +51,8 @@
 @property (nonatomic, strong) EmergencyRescueAlert *emergencyRescueAlert;
 
 @property (nonatomic, strong) LXQLodingAlertViewController *lodingAlertViewController;
+
+@property (nonatomic, strong) LXQSquareLodingAlertViewController *squareLodingAlertViewController;
 
 @end
 
@@ -159,6 +161,13 @@
     return _reassignmentIndentAlertViewController;
 }
 
+- (LXQSquareLodingAlertViewController *)squareLodingAlertViewController{
+    if (!_squareLodingAlertViewController) {
+        _squareLodingAlertViewController = [[LXQSquareLodingAlertViewController alloc] init];
+    }
+    return _squareLodingAlertViewController;
+}
+
 //直接调用该方法一般用于固定 view 的展示
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
     
@@ -240,6 +249,10 @@
                 
                 break;
             case AlertViewTypeReassignmentIndentAlert:
+                [self isCloseWithTap:NO];
+                
+                break;
+            case AlertViewTypeSquareLodingAlert:
                 [self isCloseWithTap:NO];
                 
                 break;
@@ -425,6 +438,14 @@
             make.left.equalTo(self).offset(MATCHSIZE(174));
             make.right.equalTo(self).offset(MATCHSIZE(-174));
             make.centerY.offset(0);
+            make.height.offset(MATCHSIZE(300));
+        }];
+    }else if (_addAlertViewType == AlertViewTypeSquareLodingAlert){
+        [self initAlertViewWithViewController:self.squareLodingAlertViewController];
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.offset(0);
+            make.centerY.offset(0);
+            make.width.offset(MATCHSIZE(400));
             make.height.offset(MATCHSIZE(300));
         }];
     }

@@ -17,6 +17,8 @@
 		0443326E1E5D2C0100C63E4F /* LXQLodingAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0443326D1E5D2C0100C63E4F /* LXQLodingAlertViewController.m */; };
 		04513DE41E651A1900E84DDC /* LXQConfirmCollectionAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04513DE31E651A1900E84DDC /* LXQConfirmCollectionAlertViewController.m */; };
 		04513DE81E666C8900E84DDC /* LXQTopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04513DE71E666C8900E84DDC /* LXQTopUpViewController.m */; };
+		04513DEC1E67B03200E84DDC /* LXQSquareLodingAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04513DEB1E67B03200E84DDC /* LXQSquareLodingAlertViewController.m */; };
+		04513DF21E67FB3C00E84DDC /* LXQRobIndentAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04513DF11E67FB3C00E84DDC /* LXQRobIndentAlertViewController.m */; };
 		0454371E1E4D5896008602A0 /* tips.png in Resources */ = {isa = PBXBuildFile; fileRef = 0454371D1E4D5896008602A0 /* tips.png */; };
 		04C1841E1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */; };
 		820555C11E00D30C0095BB47 /* PhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C01E00D30C0095BB47 /* PhoneNumber.m */; };
@@ -319,6 +321,11 @@
 		04513DE31E651A1900E84DDC /* LXQConfirmCollectionAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQConfirmCollectionAlertViewController.m; sourceTree = "<group>"; };
 		04513DE61E666C8900E84DDC /* LXQTopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQTopUpViewController.h; sourceTree = "<group>"; };
 		04513DE71E666C8900E84DDC /* LXQTopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQTopUpViewController.m; sourceTree = "<group>"; };
+		04513DEA1E67B03200E84DDC /* LXQSquareLodingAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQSquareLodingAlertViewController.h; sourceTree = "<group>"; };
+		04513DEB1E67B03200E84DDC /* LXQSquareLodingAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQSquareLodingAlertViewController.m; sourceTree = "<group>"; };
+		04513DED1E67CECA00E84DDC /* IndentRob.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = IndentRob.geojson; sourceTree = "<group>"; };
+		04513DF01E67FB3C00E84DDC /* LXQRobIndentAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQRobIndentAlertViewController.h; sourceTree = "<group>"; };
+		04513DF11E67FB3C00E84DDC /* LXQRobIndentAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQRobIndentAlertViewController.m; sourceTree = "<group>"; };
 		0454371D1E4D5896008602A0 /* tips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tips.png; sourceTree = "<group>"; };
 		04C1841A1E4BFFB500696D39 /* LXQAfterDrivingTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQAfterDrivingTipsView.h; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.h; sourceTree = SOURCE_ROOT; };
 		04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQAfterDrivingTipsView.m; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.m; sourceTree = SOURCE_ROOT; };
@@ -892,6 +899,7 @@
 		0443326B1E5D2B9A00C63E4F /* LodingAlert */ = {
 			isa = PBXGroup;
 			children = (
+				04513DE91E67AF5D00E84DDC /* SquareLodingAlert */,
 				0443326C1E5D2C0100C63E4F /* LXQLodingAlertViewController.h */,
 				0443326D1E5D2C0100C63E4F /* LXQLodingAlertViewController.m */,
 			);
@@ -914,6 +922,24 @@
 				04513DE71E666C8900E84DDC /* LXQTopUpViewController.m */,
 			);
 			name = topUpViewController;
+			sourceTree = "<group>";
+		};
+		04513DE91E67AF5D00E84DDC /* SquareLodingAlert */ = {
+			isa = PBXGroup;
+			children = (
+				04513DEA1E67B03200E84DDC /* LXQSquareLodingAlertViewController.h */,
+				04513DEB1E67B03200E84DDC /* LXQSquareLodingAlertViewController.m */,
+			);
+			name = SquareLodingAlert;
+			sourceTree = "<group>";
+		};
+		04513DEF1E67FB1800E84DDC /* RobIndentAlert */ = {
+			isa = PBXGroup;
+			children = (
+				04513DF01E67FB3C00E84DDC /* LXQRobIndentAlertViewController.h */,
+				04513DF11E67FB3C00E84DDC /* LXQRobIndentAlertViewController.m */,
+			);
+			name = RobIndentAlert;
 			sourceTree = "<group>";
 		};
 		776A8E4F0C4A409C901C8D0D /* Pods */ = {
@@ -1485,6 +1511,7 @@
 				827320C71E27817F0040AC2B /* IndentData.h */,
 				827320C81E27817F0040AC2B /* IndentData.m */,
 				8274A3E61E2CA135005A5B3A /* IndentData.geojson */,
+				04513DED1E67CECA00E84DDC /* IndentRob.geojson */,
 				8274A3EB1E2CB5BF005A5B3A /* ItemIndentModel.h */,
 				8274A3EC1E2CB5BF005A5B3A /* ItemIndentModel.m */,
 			);
@@ -2134,6 +2161,7 @@
 		82D4B01F1DEBCDB500FDA730 /* AlertViewController */ = {
 			isa = PBXGroup;
 			children = (
+				04513DEF1E67FB1800E84DDC /* RobIndentAlert */,
 				0400509C1E641B8100448108 /* reassignmentIndentAlert */,
 				040050981E5FE57500448108 /* PassengerGetOnAlert */,
 				0443326B1E5D2B9A00C63E4F /* LodingAlert */,
@@ -2777,6 +2805,7 @@
 				82AF40371DE92477001F0066 /* MWPhotoBrowser.m in Sources */,
 				82AF407C1DE92477001F0066 /* EaseBubbleView+Voice.m in Sources */,
 				82AF406F1DE92477001F0066 /* EaseUsersListViewController.m in Sources */,
+				04513DF21E67FB3C00E84DDC /* LXQRobIndentAlertViewController.m in Sources */,
 				8228913F1DEDB802001F6E57 /* OfflineDetailViewController.m in Sources */,
 				82620A5F1E1C9C4700219C5D /* DriverPointAnnotation.m in Sources */,
 				827193981DF0631400327ACB /* SlideMenuController.m in Sources */,
@@ -2799,6 +2828,7 @@
 				829546071E2385A7009D9C62 /* LimitLoginAlert.m in Sources */,
 				82AF40531DE92477001F0066 /* PSTCollectionViewLayout.m in Sources */,
 				82620A711E1CF01F00219C5D /* UserPointAnnotation.m in Sources */,
+				04513DEC1E67B03200E84DDC /* LXQSquareLodingAlertViewController.m in Sources */,
 				82AF404C1DE92477001F0066 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				82D4B0241DEBCDB500FDA730 /* AlertView.m in Sources */,
 				824152181DF5038500FAB385 /* FactoryClass.m in Sources */,

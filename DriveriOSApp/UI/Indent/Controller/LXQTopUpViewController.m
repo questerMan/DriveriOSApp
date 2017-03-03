@@ -61,7 +61,7 @@
     middleView.backgroundColor = UIColorFromRGB(@"#ffffff");
     middleView.layer.shadowColor = [UIColorFromRGB(@"#cccccc") CGColor];
     middleView.layer.shadowOffset = CGSizeMake(0, MATCHSIZE(5));
-//    middleView.layer.shadowRadius = MATCHSIZE(1);
+ 
     middleView.layer.opacity = 1;
     [self.view addSubview:middleView];
     self.middleView = middleView;
@@ -91,22 +91,19 @@
     [middleView addSubview:noteTeF];
     self.noteTeF = noteTeF;
     
+    UIView* confirmBtnLineView = [[UIView alloc] init];
+    confirmBtnLineView.backgroundColor = UIColorFromRGB(@"#e0e0e0");
+    confirmBtnLineView.layer.cornerRadius = MATCHSIZE(16);
+    [self.view addSubview:confirmBtnLineView];
+    self.confirmBtnLineView = confirmBtnLineView;
+
     UIButton* confirmBtn = [UIButton buttonWithType:0];
     [confirmBtn setAttributedTitle:[[NSAttributedString alloc] initWithString:@"确定" attributes:@{NSForegroundColorAttributeName : UIColorFromRGB(@"#ff6d00"),NSFontAttributeName : [UIFont systemFontOfSize:MATCHSIZE(32)]}] forState:0];
     [confirmBtn setBackgroundColor:[UIColor whiteColor]];
     confirmBtn.layer.cornerRadius = MATCHSIZE(16);
-    confirmBtn.layer.shadowOffset = CGSizeMake(0, MATCHSIZE(5));
-    confirmBtn.layer.shadowColor = [UIColorFromRGB(@"#e0e0e0") CGColor];
-    confirmBtn.layer.opacity = 1;
     [confirmBtn addTarget:self action:@selector(confirmBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:confirmBtn];
     self.confirmBtn = confirmBtn;
-    
-//    UIView* confirmBtnLineView = [[UIView alloc] init];
-//    confirmBtnLineView.backgroundColor = UIColorFromRGB(@"#e0e0e0");
-//    [self.view addSubview:confirmBtnLineView];
-//    self.confirmBtnLineView = confirmBtnLineView;
-
 }
 
 - (void)setModel:(IndentData *)model{
@@ -180,10 +177,10 @@
     }];
     
     [self.confirmBtnLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.confirmBtn.mas_bottom);
-        make.left.equalTo(self.confirmBtn.mas_left).offset(MATCHSIZE(16));
-        make.right.equalTo(self.confirmBtn.mas_right).offset(MATCHSIZE(-16));
-        make.height.offset(MATCHSIZE(2));
+        make.top.equalTo(self.confirmBtn.mas_top).offset(MATCHSIZE(2));
+        make.left.equalTo(self.confirmBtn.mas_left);
+        make.right.equalTo(self.confirmBtn.mas_right);
+        make.height.offset(MATCHSIZE(80));
     }];
 }
 
@@ -198,7 +195,13 @@
 }
 
 - (void)confirmBtnClick{
-    [self.navigationController popViewControllerAnimated:YES];
+    AlertView* alertV = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeSquareLodingAlert];
+    [alertV alertViewShow];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [alertV alertViewCloseWithBlock:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+    });
 }
 
 

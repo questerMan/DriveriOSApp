@@ -103,18 +103,9 @@
     //背景颜色
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
     
-    
-//    //显示的颜色
-//    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-    
     //状态栏变白
     [self changeStatusBarStyleWithFlag:YES];
     
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return 0;
 }
 
 /**
@@ -212,8 +203,7 @@
         if(arr.count > 0){
             modelTab.indentCount = [NSString stringWithFormat:@"%ld",arr.count];
         }
-
-
+        
         [arrDatas addObject:modelTab];
     }
     
@@ -221,7 +211,6 @@
 }
 
 -(void)creatTab{
-    
     
     TabClass *tabClass = [[TabClass alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, MATCHSIZE(80))];
     //获取tab数据
@@ -254,9 +243,6 @@
     [self pusToNavigationMap];
     
     [self clearRoute];
-    
-   
-    
 }
 
 #pragma mark - 等单页面跳转到搜索框
@@ -291,7 +277,6 @@
                 self.map.MapIndentState = MapIndentStateWaitNavigation;
             }
         }];
-        
         [strongSelf.navigationController pushViewController:amSearch animated:YES];
     }];
 }
