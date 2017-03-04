@@ -10,8 +10,6 @@
 
 @interface LXQRobIndentAlertFailedViewController ()
 
-
-
 @end
 
 @implementation LXQRobIndentAlertFailedViewController
