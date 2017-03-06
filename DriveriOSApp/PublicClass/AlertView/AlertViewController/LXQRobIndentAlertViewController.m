@@ -70,6 +70,10 @@ static NSTimeInterval count = 10;
             if (count <= 0) {
                 count = 10;
                 [timer invalidate];
+                
+                AlertView* alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeRobIndentAlertFailed];
+                [alert alertViewShow];
+                
                 if (_robIndentTimerEnd) {
                     _robIndentTimerEnd();
                 }

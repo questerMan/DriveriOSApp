@@ -24,10 +24,10 @@
     [super viewDidLoad];
     
     [self creatUI];
-    
 }
 
 - (void)creatUI{
+    
     self.view.backgroundColor = UIColorFromRGB(@"#f5f5f5");
     self.view.layer.cornerRadius = MATCHSIZE(18);
     self.view.layer.masksToBounds = YES;

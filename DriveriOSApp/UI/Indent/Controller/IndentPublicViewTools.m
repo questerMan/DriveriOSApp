@@ -390,7 +390,6 @@ static NSTimeInterval acceptIndentCount;
 -(void)showWaitIndentAllView{
     
     self.seachTextF.hidden = NO;
-    
 }
 
 #pragma mark - 即时单
@@ -440,7 +439,7 @@ static NSTimeInterval acceptIndentCount;
     //关闭计时器
     [self.acceptIndentTimer invalidate];
     //延迟3s后执行进入地图”已接单状态“
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //关闭弹出框
         [alert alertViewCloseWithBlock:nil];
         //接单后进入地图“已接单”状态
@@ -458,7 +457,6 @@ static NSTimeInterval acceptIndentCount;
             [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate:startCoor andDestinationCoordinate:endCoor andStrategy:5 block:nil];
             //把起点赋值给导航页面的目的地处
             self.indentController.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.startLocationLat floatValue] longitude:[model.startLocationLon floatValue]];
-            
         }];
     });
 }

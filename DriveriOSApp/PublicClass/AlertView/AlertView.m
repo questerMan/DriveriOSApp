@@ -21,6 +21,7 @@
 #import "LXQLodingAlertViewController.h"
 #import "LXQSquareLodingAlertViewController.h"
 #import "LXQRobIndentAlertSuccessedViewController.h"
+#import "LXQRobIndentAlertFailedViewController.h"
 @interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate,LimitLoginAlertDelegate>
 
 @property (nonatomic,strong) UIView *bgView;
@@ -59,6 +60,7 @@
 
 @property (nonatomic, strong) UIButton *robIndentCancelAlertBtn;
 
+@property (nonatomic, strong) LXQRobIndentAlertFailedViewController *robIndentAlertFailedViewController;
 @end
 
 @implementation AlertView
@@ -196,6 +198,13 @@
     return _robIndentAlertSuccessedViewController;
 }
 
+- (LXQRobIndentAlertFailedViewController *)robIndentAlertFailedViewController{
+    if (!_robIndentAlertFailedViewController) {
+        _robIndentAlertFailedViewController = [[LXQRobIndentAlertFailedViewController alloc] init];
+    }
+    return _robIndentAlertFailedViewController;
+}
+
 //直接调用该方法一般用于固定 view 的展示
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
     
@@ -254,14 +263,14 @@
             case AlertViewTypeInstantIndentCommingAlert:
                 
                 [self isCloseWithTap:NO];
-                [self isCreatTimerWithTimeInterval:3];
+                [self isCreatTimerWithTimeInterval:1.5];
                 
                 break;
                 
             case AlertViewTypeIndentSucceedAlert:
                 
                 [self isCloseWithTap:NO];
-                [self isCreatTimerWithTimeInterval:3];
+                [self isCreatTimerWithTimeInterval:1.5];
                 
                 break;
             case AlertViewTypeEmergencyRescueAlert:
@@ -290,7 +299,11 @@
                 break;
             case AlertViewTypeRobIndentAlertSuccessed:
                 [self isCloseWithTap:NO];
-                [self isCreatTimerWithTimeInterval:3];
+                [self isCreatTimerWithTimeInterval:1.5];
+                break;
+            case AlertViewTypeRobIndentAlertFailed:
+                [self isCloseWithTap:NO];
+                [self isCreatTimerWithTimeInterval:1.5];
                 break;
             default:
                 break;
@@ -500,6 +513,14 @@
         }];
     }else if (_addAlertViewType == AlertViewTypeRobIndentAlertSuccessed){
         [self initAlertViewWithViewController:self.robIndentAlertSuccessedViewController];
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.offset(0);
+            make.centerY.offset(0);
+            make.width.offset(MATCHSIZE(400));
+            make.height.offset(MATCHSIZE(300));
+        }];
+    }else if (_addAlertViewType == AlertViewTypeRobIndentAlertFailed){
+        [self initAlertViewWithViewController:self.robIndentAlertFailedViewController];
         [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.offset(0);
             make.centerY.offset(0);
