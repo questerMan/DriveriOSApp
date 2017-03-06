@@ -59,11 +59,11 @@
     self.navigationController.navigationBar.translucent = NO;
     
     //背景颜色
-    [self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
     
     //显示的颜色
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-    
+    [self.navigationController.navigationBar setTintColor:UIColorFromRGB(@"#ff6d00")];
+
     //导航栏字体颜色
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 }

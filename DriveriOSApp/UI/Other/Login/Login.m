@@ -273,6 +273,8 @@
         make.centerX.offset(0);
     }];
     
+    
+    
     [[self.loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 //        //跳到主页面，移除当前登录页面
 //        [self.view removeFromSuperview];
@@ -304,6 +306,15 @@
         make.width.offset(MATCHSIZE(20));
         make.height.offset(MATCHSIZE(10));
     }];
+    
+    [[self.eyeBtn rac_signalForControlEvents:UIControlEventTouchDown] subscribeNext:^(id x) {
+        self.passWordF.secureTextEntry = NO;
+    }];
+    [[self.eyeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        self.passWordF.secureTextEntry = YES;
+    }];
+
+    
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

@@ -117,6 +117,7 @@
     
     //状态栏变黑
     [self changeStatusBarStyleWithFlag:YES];
+    
     //去掉导航栏下划线
     [self useMethodToFindBlackLineAndHindWithFlag:YES];
     
@@ -132,7 +133,6 @@
     //导航栏字体颜色
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColorFromRGB(@"#ff6d00"),
           NSFontAttributeName : [UIFont systemFontOfSize:MATCHSIZE(40)]}];
-    
     
     //左上角菜单按钮:打开左侧栏
     [self setNavigationBarItem];
