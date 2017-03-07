@@ -27,14 +27,18 @@ static NSTimeInterval acceptIndentCount;
 //救援电话
 @property (nonatomic, strong) UIButton* rescueBtn;
 
+//预约单背景图
+@property (nonatomic, strong) UIImageView* reservationImageV;
+
 @property (nonatomic, strong) AlertView* rescueAlert;
 
 @property (nonatomic, strong) AlertView* passengerGetOnAlert;
 
-
 @property (nonatomic, strong) AlertView* receiveOrderAlert;
 
 @property (nonatomic, strong) AlertView* robIndentAlertAlert;
+
+
 
 /** 乘客上车提示*/
 @property (nonatomic, strong) LXQAfterDrivingTipsView* drivingTipsView;
@@ -55,11 +59,14 @@ static NSTimeInterval acceptIndentCount;
 -(UITableView *)tableView{
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(MATCHSIZE(0), MATCHSIZE(80),SCREEN_W, SCREEN_H - MATCHSIZE(90+44)) style:UITableViewStylePlain];
+        UIView* bgView = [[UIView alloc] initWithFrame:CGRectMake(0,MATCHSIZE(-500), SCREEN_W, MATCHSIZE(500))];
+        bgView.backgroundColor = COLOR(245, 245, 245, 1);
+        [_tableView addSubview:bgView];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.hidden = YES;
         _tableView.backgroundColor = [UIColor clearColor];
-
+        _tableView.separatorStyle = 0;
     }
     return _tableView;
 }
@@ -194,6 +201,15 @@ static NSTimeInterval acceptIndentCount;
     return _rescueBtn;
 }
 
+- (UIImageView *)reservationImageV{
+    if (!_reservationImageV) {
+        UIImage* protectImage = [[UIImage imageNamed:@"baseboard_"] stretchableImageWithLeftCapWidth:MATCHSIZE(374) topCapHeight:MATCHSIZE(149)];
+        _reservationImageV = [[UIImageView alloc] initWithImage:protectImage];
+        _reservationImageV.frame = CGRectMake(0, 0, SCREEN_W, self.arrayData.count * MATCHSIZE(240) + MATCHSIZE(70));
+    }
+    return _reservationImageV;
+}
+
 - (LXQRecevingIndentView *)recevingIndentView
 {
     if (!_recevingIndentView) {
@@ -268,6 +284,8 @@ static NSTimeInterval acceptIndentCount;
 
 #pragma mark - 等单
 - (void)addWaitIndentWithIndent:(UIViewController *)indent{
+    
+    
     
     [indent.view addSubview:self.seachTextF];
     
@@ -532,8 +550,10 @@ static NSTimeInterval acceptIndentCount;
     [self.tableView reloadData];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.rowHeight = MATCHSIZE(310);
+    self.tableView.rowHeight = MATCHSIZE(240);
     [indent.view addSubview:self.tableView];
+    
+    [self.tableView insertSubview:self.reservationImageV atIndex:0];
 }
 
 #pragma mark - 预约单tableView代理方法
@@ -577,7 +597,7 @@ static NSTimeInterval acceptIndentCount;
     self.tableView.hidden = NO;
     
     [UIView animateWithDuration:0.8 animations:^{
-        self.tableView.y = MATCHSIZE(90);
+        self.tableView.y = MATCHSIZE(80);
 
     } completion:^(BOOL finished) {
         

@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) AlertView *sendBtnAlert;//改派单
 
+
+
 @end
 
 @implementation LXQRecevingIndentView

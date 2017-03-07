@@ -32,6 +32,8 @@
 @property (nonatomic, strong) UILabel *tCarText;
 /** 下车点文本 */
 @property (nonatomic, strong) UILabel *bCarText;
+/** 预约日期文本 */
+@property (nonatomic, strong) UILabel *dateText;
 /** 预约时间文本 */
 @property (nonatomic, strong) UILabel *timeText;
 /** 打电话按钮 */
