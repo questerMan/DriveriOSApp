@@ -148,12 +148,15 @@
     }
     cell.itemIMG.image = [UIImage imageNamed:self.arrayItemIMG[indexPath.row]];
     cell.itemTitle.text = self.arrayData[indexPath.row];
-
+    if (indexPath.row == 0) {
+        cell.itemCount.hidden = NO;
+        cell.itemCount.text = @"5";
+    }
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return MATCHSIZE(294);
+    return MATCHSIZE(267);
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     static NSString *cell = @"headCell";
