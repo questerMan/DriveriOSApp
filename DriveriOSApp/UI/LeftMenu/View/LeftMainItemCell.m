@@ -32,8 +32,8 @@
     
     [self.itemIMG mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(MATCHSIZE(24));
-        make.top.equalTo(self).offset(MATCHSIZE(0));
-        make.bottom.equalTo(self).offset(MATCHSIZE(-60));
+        make.top.equalTo(self).offset(MATCHSIZE(27.5));
+        make.height.offset(MATCHSIZE(35));
         make.width.offset(MATCHSIZE(30));
     }];
     
@@ -41,33 +41,37 @@
     [self addSubview:self.itemTitle];
     [self.itemTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.itemIMG.mas_right).offset(MATCHSIZE(20));
-        make.top.equalTo(self).offset(MATCHSIZE(0));
-        make.bottom.equalTo(self).offset(MATCHSIZE(-60));
+        make.top.equalTo(self).offset(MATCHSIZE(27.5));
+        make.height.offset(MATCHSIZE(35));
         make.width.offset(MATCHSIZE(130));
     }];
     
-    self.itemCount = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(28) textColor:UIColorFromRGB(@"#ffffff") numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:UIColorFromRGB(@"#ff6d00")];
+    self.itemCount = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(18) textColor:UIColorFromRGB(@"#ffffff") numberOfLine:1 textAlignment:NSTextAlignmentCenter backGroundColor:UIColorFromRGB(@"#ff6d00")];
     self.itemCount.layer.cornerRadius = MATCHSIZE(9);
     self.itemCount.layer.masksToBounds = YES;
     [self addSubview:self.itemCount];
     [self.itemCount mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.itemIMG.mas_right).offset(MATCHSIZE(-84));
-        make.top.equalTo(self).offset(MATCHSIZE(6));
-        make.bottom.equalTo(self).offset(MATCHSIZE(-66));
+        make.right.equalTo(self).offset(MATCHSIZE(-84));
+        make.top.equalTo(self).offset(MATCHSIZE(33.5));
+        make.height.offset(MATCHSIZE(18));
         make.width.offset(MATCHSIZE(18));
     }];
+    self.itemCount.hidden = YES;
 }
 
 
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
+    
     // Configure the view for the selected state
 }
 
