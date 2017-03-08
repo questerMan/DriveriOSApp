@@ -59,7 +59,7 @@ static NSTimeInterval acceptIndentCount;
 -(UITableView *)tableView{
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(MATCHSIZE(0), MATCHSIZE(80),SCREEN_W, SCREEN_H - MATCHSIZE(90+44)) style:UITableViewStylePlain];
-        UIView* bgView = [[UIView alloc] initWithFrame:CGRectMake(0,MATCHSIZE(-500), SCREEN_W, MATCHSIZE(500))];
+        UIView* bgView = [[UIView alloc] initWithFrame:CGRectMake(0,- SCREEN_H, SCREEN_W, SCREEN_H)];
         bgView.backgroundColor = COLOR(245, 245, 245, 1);
         [_tableView addSubview:bgView];
         _tableView.delegate = self;
@@ -120,6 +120,15 @@ static NSTimeInterval acceptIndentCount;
         _acceptIndentBtn.hidden = YES;
     }
     return _acceptIndentBtn;
+}
+
+- (UIButton *)setOutBtn{
+    if (!_setOutBtn) {
+        _setOutBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40),SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*2), MATCHSIZE(60)) Title:@"开发出发" backGround:UIColorFromRGB(@"#ff6d00") tintColor:UIColorFromRGB(@"#ff6d00") cornerRadius:MATCHSIZE(40)];
+        [_setOutBtn setTitleColor:UIColorFromRGB(@"#ffffff") forState:UIControlStateNormal];
+        _setOutBtn.hidden = YES;
+    }
+    return _setOutBtn;
 }
 
 -(InstantHeadView *)instantHeadView{
@@ -284,8 +293,6 @@ static NSTimeInterval acceptIndentCount;
 
 #pragma mark - 等单
 - (void)addWaitIndentWithIndent:(UIViewController *)indent{
-    
-    
     
     [indent.view addSubview:self.seachTextF];
     
@@ -544,6 +551,18 @@ static NSTimeInterval acceptIndentCount;
 #pragma mark - 预约单
 -(void)addReservationIndentWithIndent:(UIViewController *)indent{
     
+    [indent.view addSubview:self.setOutBtn];
+    
+    [self.setOutBtn addTarget:self action:@selector(setOutBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    //接单按钮位置布局
+    [self.setOutBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.indentController.view).offset(0);
+        make.bottom.equalTo(self.indentController.view).offset(MATCHSIZE(-75));
+        make.width.offset(MATCHSIZE(600));
+        make.height.offset(MATCHSIZE(80));
+    }];
+    
     //获取预约单table数据
     [self getReservationData];
     
@@ -556,9 +575,38 @@ static NSTimeInterval acceptIndentCount;
     [self.tableView insertSubview:self.reservationImageV atIndex:0];
 }
 
+- (void)setOutBtnClick{
+    //弹出提示：接单成功
+    AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeIndentSucceedAlert];
+    [alert alertViewShow];
+    
+    //延迟3s后执行进入地图”已接单状态“
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //关闭弹出框
+        [alert alertViewCloseWithBlock:nil];
+        //接单后进入地图“已接单”状态
+        [self changeMapStateWithMapIndentState:MapIndentStateGoToPoint];
+        
+        IndentData *model = self.arrayData[0];
+        //起始点地图坐标
+        CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat doubleValue], [model.startLocationLon doubleValue]);
+        //目的地地图坐标
+        CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake([model.endLocationLat doubleValue], [model.endLocationLon doubleValue]);
+        //描绘路径（起始点－－目的地）
+        AMPublicTools *tool = [AMPublicTools shareInstance];
+        [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate:startCoor andDestinationCoordinate:endCoor andStrategy:5 block:nil];
+        //把起点赋值给导航页面的目的地处
+        self.indentController.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.startLocationLat floatValue] longitude:[model.startLocationLon floatValue]];
+
+        
+    });
+
+}
+
 #pragma mark - 预约单tableView代理方法
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
     return self.arrayData.count;
 }
 
@@ -577,7 +625,14 @@ static NSTimeInterval acceptIndentCount;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [self showHint:@"页面未搭建完成"];
+    IndentData *model = self.arrayData[indexPath.row];
+    [self.arrayData removeAllObjects];
+    [self.arrayData addObject:model];
+    [tableView reloadData];
+    self.recevingIndentView.model = model;
+    self.reservationImageV.height = self.arrayData.count * MATCHSIZE(240) + MATCHSIZE(70);
+    [self changeMapStateWithMapIndentState:MapIndentStateHaveIndent];
+//  [self showHint:@"页面未搭建完成"];
 }
 
 #pragma mark - 隐藏预约单页面的view
@@ -682,6 +737,7 @@ static NSTimeInterval acceptIndentCount;
             break;
             
         case MapIndentStateHaveIndent://已接单
+            [self showSetOutBtn];
             break;
             
         case MapIndentStateGoToPoint://去上车点
@@ -736,7 +792,6 @@ static NSTimeInterval acceptIndentCount;
 
 #pragma mark - 去上车点地图状态
 -(void)addGoToPointWithIndent{
-    
     
     //接单乘客信息栏
     [_indentController.view addSubview: self.recevingIndentView];
@@ -853,6 +908,14 @@ static NSTimeInterval acceptIndentCount;
     }];
 }
 
+- (void)showSetOutBtn{
+    self.setOutBtn.hidden = NO;
+}
+
+- (void)hideSetOutBtn{
+    self.setOutBtn.hidden = YES;
+}
+
 - (void)showRecevingIndentView{
     self.recevingIndentView.hidden = NO;
     [UIView animateWithDuration:0.8 animations:^{
@@ -875,6 +938,7 @@ static NSTimeInterval acceptIndentCount;
     [self hidePassengerGetOnBtn];
     [self hideDrivingTipsView];
     [self hideNavigationBtnAndGetToPointBtn];
+    [self hideSetOutBtn];
     [self hideDestinationTipsView];
 }
 
@@ -884,6 +948,7 @@ static NSTimeInterval acceptIndentCount;
     [self hideReservationIndentAllView];
     [self hideNavigationBtnAndDetermineBtn];
     [self hidePassengerGetOnBtn];
+    [self hideSetOutBtn];
     [self hideDrivingTipsView];
     [self hideNavigationBtnAndGetToPointBtn];
     [self hideDestinationTipsView];

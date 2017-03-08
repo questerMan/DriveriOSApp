@@ -48,6 +48,7 @@ typedef void (^IndentPublicViewToolsPusOfClearRouteBlock) (void);
 /** 预约单 */
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayData;
+@property (nonatomic, strong) UIButton *setOutBtn;
 /** 接送机 */
 
 /** 抢单 */

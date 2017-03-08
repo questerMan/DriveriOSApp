@@ -87,14 +87,12 @@
     
     //状态栏变白
     [self changeStatusBarStyleWithFlag:YES];
-    
 }
 
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     
 }
-
 
 -(void)viewWillDisappear:(BOOL)animated{
  
@@ -161,10 +159,7 @@
         make.bottom.equalTo(self.view).offset(0);
         make.top.equalTo(self.view).offset(MATCHSIZE(80));
     }];
-    
 }
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -178,8 +173,8 @@
     self.indentTool.seachTextF.text = nil;
     self.indentTool.startNavigation.hidden = YES;
     self.indentTool.cancelBtn.hidden = YES;
-    
 }
+
 #pragma mark - 获取tab数据
 -(NSMutableArray *)getTabData{
     
