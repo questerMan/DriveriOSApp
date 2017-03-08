@@ -92,9 +92,8 @@
                 if(model.indentState.intValue == 0){
                     self.indentStateIMG.image = [UIImage imageNamed:@"up"];
                 }else{
-                    self.indentStateIMG.image = [UIImage imageNamed:@"indent_down"];
+                    self.indentStateIMG.image = [UIImage imageNamed:@"pull-down"];
                 }
-                
             }
             
         }else{
@@ -102,9 +101,6 @@
             self.indentStateIMG.hidden = YES;
         }
     }
-    
-    
-
 }
 
 

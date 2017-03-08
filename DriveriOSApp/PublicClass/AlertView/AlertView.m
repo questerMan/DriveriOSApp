@@ -186,7 +186,7 @@
     if (!_robIndentCancelAlertBtn) {
         _robIndentCancelAlertBtn = [UIButton buttonWithType:0];
         [_robIndentCancelAlertBtn setImage:[UIImage imageNamed:@"cancel"] forState:0];
-        [_robIndentCancelAlertBtn addTarget:self action:@selector(closeAlertView) forControlEvents:1<<6];
+        [_robIndentCancelAlertBtn addTarget:self action:@selector(robIndentCancelAlertBtnClick) forControlEvents:1<<6];
     }
     return _robIndentCancelAlertBtn;
 }
@@ -549,6 +549,11 @@
         self.centerAlertInfo.contentLabel.textColor = textColor;
     
     }
+}
+
+- (void)robIndentCancelAlertBtnClick{
+    [self closeAlertView];
+    [self.robIndentAlertViewController.robIndentTimer invalidate];
 }
 
 #pragma mark - phoneAlert/IndentAlertDelegate/DeleteIndentAlert代理

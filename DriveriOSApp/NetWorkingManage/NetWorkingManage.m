@@ -79,7 +79,6 @@
 /** 获取tab数据 */
 -(void)getTabDataWithBlock:(void(^)(NSArray *array))block{
     
-  
     NSArray *arrData = [self getShareData];
     
     NSMutableArray *arrDatas = [NSMutableArray array];
@@ -98,7 +97,6 @@
             
             CGFloat witlds = modelTab.witld + MATCHSIZE(40)*2;
             modelTab.size = CGSizeMake(witlds, MATCHSIZE(80));
-            
         }
 
         NSArray *arr = [dict objectForKey:@"indentArr"];
@@ -110,8 +108,8 @@
     }
     
     block(arrDatas);
-
 }
+
 /** 获取即时单数据 */
 -(void)getInstantIndentWithBlock:(void(^)(NSArray *array))block{
 

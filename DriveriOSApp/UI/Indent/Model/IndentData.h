@@ -29,6 +29,8 @@
 
 @property (nonatomic, copy) NSString *endName;
 
+@property (nonatomic, copy) NSString *dateTime;
+
 @property (nonatomic, copy) NSString *time;
 
 @property (nonatomic, copy) NSString *satus;

@@ -15,4 +15,7 @@
 @property (nonatomic, copy) void(^robIndentBtnClick)(void);
 
 @property (nonatomic, copy) void(^robIndentTimerEnd)(void);
+
+@property(nonatomic, weak)NSTimer* robIndentTimer;
+
 @end

@@ -21,6 +21,9 @@
 
 @property (nonatomic, strong) NSMutableArray *arrayData;
 
+@property (nonatomic, strong) TabModel *selectedModel;
+
+@property (nonatomic, strong) TabCell *selectedCell;
 @end
 
 @implementation TabClass
@@ -33,7 +36,7 @@
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];//设置其布局方向
         flowLayout.minimumInteritemSpacing = 0;
         flowLayout.minimumLineSpacing = 0;
-        flowLayout.sectionInset = UIEdgeInsetsMake( 0,0,0,0);//设置其边界
+        flowLayout.sectionInset = UIEdgeInsetsMake(0,0,0,0);//设置其边界
         //确定水平方向
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
@@ -46,7 +49,6 @@
         [_collectionView registerClass:[TabCell class] forCellWithReuseIdentifier:@"cellID"];
     }
     return _collectionView;
-    
 }
 
 -(NSMutableArray *)arrayData{
@@ -67,6 +69,7 @@
 {
     return 1;
 }
+
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     TabCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellID" forIndexPath:indexPath];
@@ -74,6 +77,11 @@
     if (indexPath.row == 0) {
         cell.isSelectItem = YES;
     }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        self.selectedCell = (TabCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    });
+    
     cell.model = self.arrayData[indexPath.row];
     cell.tag = 99 + indexPath.row;
     
@@ -96,6 +104,12 @@
     cell.countLabel.backgroundColor = TAB_SELECT_TEXTCOLOR;
     
     TabModel *model = self.arrayData[indexPath.row];
+    self.selectedModel.indentState = @"0";
+    self.selectedCell.model = self.selectedModel;
+    self.selectedCell = cell;
+    self.selectedModel = model;
+    model.indentState = @"1";
+    cell.model = model;
     
     if (_Block != nil) {
         _Block(model.type);

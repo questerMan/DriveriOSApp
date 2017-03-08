@@ -27,14 +27,18 @@ static NSTimeInterval acceptIndentCount;
 //救援电话
 @property (nonatomic, strong) UIButton* rescueBtn;
 
+//预约单背景图
+@property (nonatomic, strong) UIImageView* reservationImageV;
+
 @property (nonatomic, strong) AlertView* rescueAlert;
 
 @property (nonatomic, strong) AlertView* passengerGetOnAlert;
 
-
 @property (nonatomic, strong) AlertView* receiveOrderAlert;
 
 @property (nonatomic, strong) AlertView* robIndentAlertAlert;
+
+@property (nonatomic, assign) int type;
 
 /** 乘客上车提示*/
 @property (nonatomic, strong) LXQAfterDrivingTipsView* drivingTipsView;
@@ -55,11 +59,14 @@ static NSTimeInterval acceptIndentCount;
 -(UITableView *)tableView{
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(MATCHSIZE(0), MATCHSIZE(80),SCREEN_W, SCREEN_H - MATCHSIZE(90+44)) style:UITableViewStylePlain];
+        UIView* bgView = [[UIView alloc] initWithFrame:CGRectMake(0,- SCREEN_H, SCREEN_W, SCREEN_H)];
+        bgView.backgroundColor = COLOR(245, 245, 245, 1);
+        [_tableView addSubview:bgView];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.hidden = YES;
         _tableView.backgroundColor = [UIColor clearColor];
-
+        _tableView.separatorStyle = 0;
     }
     return _tableView;
 }
@@ -113,6 +120,15 @@ static NSTimeInterval acceptIndentCount;
         _acceptIndentBtn.hidden = YES;
     }
     return _acceptIndentBtn;
+}
+
+- (UIButton *)setOutBtn{
+    if (!_setOutBtn) {
+        _setOutBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40),SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*2), MATCHSIZE(60)) Title:@"开始出发" backGround:UIColorFromRGB(@"#ff6d00") tintColor:UIColorFromRGB(@"#ff6d00") cornerRadius:MATCHSIZE(40)];
+        [_setOutBtn setTitleColor:UIColorFromRGB(@"#ffffff") forState:UIControlStateNormal];
+        _setOutBtn.hidden = YES;
+    }
+    return _setOutBtn;
 }
 
 -(InstantHeadView *)instantHeadView{
@@ -192,6 +208,15 @@ static NSTimeInterval acceptIndentCount;
         [_rescueBtn setImage:[UIImage imageNamed:@"rescue"] forState:0];
     }
     return _rescueBtn;
+}
+
+- (UIImageView *)reservationImageV{
+    if (!_reservationImageV) {
+        UIImage* protectImage = [[UIImage imageNamed:@"baseboard_"] stretchableImageWithLeftCapWidth:MATCHSIZE(374) topCapHeight:MATCHSIZE(149)];
+        _reservationImageV = [[UIImageView alloc] initWithImage:protectImage];
+        
+    }
+    return _reservationImageV;
 }
 
 - (LXQRecevingIndentView *)recevingIndentView
@@ -450,11 +475,9 @@ static NSTimeInterval acceptIndentCount;
         IndentData *model = array[0];
             //起始点地图坐标
             CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat doubleValue], [model.startLocationLon doubleValue]);
-            //目的地地图坐标
-            CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake([model.endLocationLat doubleValue], [model.endLocationLon doubleValue]);
             //描绘路径（起始点－－目的地）
             AMPublicTools *tool = [AMPublicTools shareInstance];
-            [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate:startCoor andDestinationCoordinate:endCoor andStrategy:5 block:nil];
+            [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate:self.indentController.map.userLocation.coordinate  andDestinationCoordinate:startCoor andStrategy:5 block:nil];
             //把起点赋值给导航页面的目的地处
             self.indentController.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.startLocationLat floatValue] longitude:[model.startLocationLon floatValue]];
         }];
@@ -526,19 +549,60 @@ static NSTimeInterval acceptIndentCount;
 #pragma mark - 预约单
 -(void)addReservationIndentWithIndent:(UIViewController *)indent{
     
+    [indent.view addSubview:self.setOutBtn];
+    
+    [self.setOutBtn addTarget:self action:@selector(setOutBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    //接单按钮位置布局
+    [self.setOutBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.indentController.view).offset(0);
+        make.bottom.equalTo(self.indentController.view).offset(MATCHSIZE(-75));
+        make.width.offset(MATCHSIZE(600));
+        make.height.offset(MATCHSIZE(80));
+    }];
+    
     //获取预约单table数据
     [self getReservationData];
     
     [self.tableView reloadData];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.rowHeight = MATCHSIZE(310);
-    [indent.view addSubview:self.tableView];
+    self.tableView.rowHeight = MATCHSIZE(240);
+    [indent.view insertSubview:self.tableView atIndex:1];
+    
+    self.reservationImageV.frame = CGRectMake(0, 0, SCREEN_W, self.arrayData.count * MATCHSIZE(240) + MATCHSIZE(70));
+    [self.tableView insertSubview:self.reservationImageV atIndex:0];
+}
+
+- (void)setOutBtnClick{
+    //弹出提示：接单成功
+    AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeIndentSucceedAlert];
+    [alert alertViewShow];
+    
+    //延迟3s后执行进入地图”已接单状态“
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //关闭弹出框
+        [alert alertViewCloseWithBlock:nil];
+        //接单后进入地图“已接单”状态
+        [self changeMapStateWithMapIndentState:MapIndentStateGoToPoint];
+
+        IndentData *model = self.arrayData[0];
+        //起始点地图坐标
+        CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat doubleValue], [model.startLocationLon doubleValue]);
+        
+        //描绘路径（起始点－－目的地）
+        AMPublicTools *tool = [AMPublicTools shareInstance];
+        [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate:self.indentController.map.userLocation.coordinate andDestinationCoordinate:startCoor andStrategy:5 block:nil];
+        //把起点赋值给导航页面的目的地处
+        self.indentController.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.startLocationLat floatValue] longitude:[model.startLocationLon floatValue]];
+    });
+
 }
 
 #pragma mark - 预约单tableView代理方法
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
     return self.arrayData.count;
 }
 
@@ -557,17 +621,24 @@ static NSTimeInterval acceptIndentCount;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [self showHint:@"页面未搭建完成"];
+    IndentData *model = self.arrayData[indexPath.row];
+    [self.arrayData removeAllObjects];
+    [self.arrayData addObject:model];
+    [tableView reloadData];
+    self.recevingIndentView.model = model;
+    self.reservationImageV.height = self.arrayData.count * MATCHSIZE(240) + MATCHSIZE(70);
+    [self changeMapStateWithMapIndentState:MapIndentStateHaveIndent];
+//  [self showHint:@"页面未搭建完成"];
 }
 
 #pragma mark - 隐藏预约单页面的view
 -(void)hideReservationIndentAllView{
     
     [UIView animateWithDuration:0.8 animations:^{
-        self.tableView.y = -(SCREEN_H - MATCHSIZE(90+44));
+        self.tableView.y = - SCREEN_H;
         
     } completion:^(BOOL finished) {
-        self.tableView.hidden = YES;
+//        self.tableView.hidden = YES;
     }];
 }
 
@@ -577,7 +648,7 @@ static NSTimeInterval acceptIndentCount;
     self.tableView.hidden = NO;
     
     [UIView animateWithDuration:0.8 animations:^{
-        self.tableView.y = MATCHSIZE(90);
+        self.tableView.y = MATCHSIZE(80);
 
     } completion:^(BOOL finished) {
         
@@ -586,6 +657,8 @@ static NSTimeInterval acceptIndentCount;
 
 #pragma mark - tab点击显示相应的View
 -(void)implementAllMethodWithIndent:(int)type andIndent:(UIViewController *)indent{
+    
+    self.type = type;
     
     [self hideMapStateChange];
     // 点击取消第一响应
@@ -662,6 +735,8 @@ static NSTimeInterval acceptIndentCount;
             break;
             
         case MapIndentStateHaveIndent://已接单
+            [self showSetOutBtn];
+            [self showReservationIndentAllView];
             break;
             
         case MapIndentStateGoToPoint://去上车点
@@ -680,7 +755,11 @@ static NSTimeInterval acceptIndentCount;
             [self addWaitingPassengersWithIndent];
             //显示
             [self showRecevingIndentView];
-            [self showRouteBetweenUserAndDetermination];
+            if (self.type == 1) {
+                [self showRouteBetweenUserAndDetermination];
+            }else if(self.type == 2){
+                [self showRouteBetweenUserAndDetermination2];
+            }
             [self showPassengerGetOnBtn];
             [self showDrivingTipsView];
             
@@ -690,10 +769,7 @@ static NSTimeInterval acceptIndentCount;
             [self addGoToDestinationWithIndent];
             [self showRecevingIndentView];
             [self showNavigationBtnAndGetToPointBtn];
-            [self showRouteBetweenUserAndDetermination];
             [self showDestinationTipsView];
-          //[self showNavigationBtnAndDetermineBtn];
-          //[self.determinedBtn setTitle:@"到达目的地" forState:0];
             break;
             
         case MapIndentStateForSettlement://待结算
@@ -716,7 +792,6 @@ static NSTimeInterval acceptIndentCount;
 
 #pragma mark - 去上车点地图状态
 -(void)addGoToPointWithIndent{
-    
     
     //接单乘客信息栏
     [_indentController.view addSubview: self.recevingIndentView];
@@ -815,22 +890,12 @@ static NSTimeInterval acceptIndentCount;
     });
 }
 
-- (void)showRouteBetweenUserAndDestination{
-    //测试------------------->
-    NetWorkingManage *netManage = [NetWorkingManage shareInstance];
-    
-    [netManage getInstantIndentWithBlock:^(NSArray *array) {
-        IndentData *model = array[0];
-        
-      //CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat doubleValue], [model.startLocationLon doubleValue]);
-        
-        CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake([model.endLocationLat doubleValue], [model.endLocationLon doubleValue]);
-        
-        AMPublicTools *tool = [AMPublicTools shareInstance];
-        [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate: self.indentController.map.userLocation.coordinate andDestinationCoordinate:endCoor andStrategy:5 block:nil];
-        
-        self.indentController.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.endLocationLat floatValue] longitude:[model.endLocationLon floatValue]];
-    }];
+- (void)showSetOutBtn{
+    self.setOutBtn.hidden = NO;
+}
+
+- (void)hideSetOutBtn{
+    self.setOutBtn.hidden = YES;
 }
 
 - (void)showRecevingIndentView{
@@ -855,6 +920,7 @@ static NSTimeInterval acceptIndentCount;
     [self hidePassengerGetOnBtn];
     [self hideDrivingTipsView];
     [self hideNavigationBtnAndGetToPointBtn];
+    [self hideSetOutBtn];
     [self hideDestinationTipsView];
 }
 
@@ -864,6 +930,7 @@ static NSTimeInterval acceptIndentCount;
     [self hideReservationIndentAllView];
     [self hideNavigationBtnAndDetermineBtn];
     [self hidePassengerGetOnBtn];
+    [self hideSetOutBtn];
     [self hideDrivingTipsView];
     [self hideNavigationBtnAndGetToPointBtn];
     [self hideDestinationTipsView];
@@ -933,6 +1000,22 @@ static NSTimeInterval acceptIndentCount;
         self.indentController.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.endLocationLat floatValue] longitude:[model.endLocationLon floatValue]];
     }];
 }
+
+//预约单数据
+- (void)showRouteBetweenUserAndDetermination2{
+    //测试------------------->
+    IndentData *model = self.arrayData[0];
+    
+    //      CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat doubleValue], [model.startLocationLon doubleValue]);
+    
+    CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake([model.endLocationLat doubleValue], [model.endLocationLon doubleValue]);
+    
+    AMPublicTools *tool = [AMPublicTools shareInstance];
+    [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate: self.indentController.map.userLocation.coordinate andDestinationCoordinate:endCoor andStrategy:5 block:nil];
+    
+    self.indentController.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.endLocationLat floatValue] longitude:[model.endLocationLon floatValue]];
+}
+
 
 //从当前位置到用户位置
 - (void)showRouteBetweenSelfAndUser{
