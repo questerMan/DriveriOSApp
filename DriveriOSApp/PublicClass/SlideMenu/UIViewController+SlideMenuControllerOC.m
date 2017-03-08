@@ -62,10 +62,11 @@
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
     
     //显示的颜色
-    [self.navigationController.navigationBar setTintColor:UIColorFromRGB(@"#ff6d00")];
+    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
 
     //导航栏字体颜色
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColorFromRGB(@"#ff6d00"),
+                                                                      NSFontAttributeName : [UIFont systemFontOfSize:MATCHSIZE(40)]}];
 }
 #pragma mark - 左侧栏item的模态跳转
 -(void)presentFromViewController:(UIViewController *)selfViewController
@@ -89,7 +90,7 @@
 
 #pragma mark - 创建导航栏返回按钮
 -(void)creatNavigationBackItemBtn{
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(backOnclick:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return-"] style:UIBarButtonItemStyleDone target:self action:@selector(backOnclick:)];
 
 }
 -(void)backOnclick:(UIBarButtonItem *)itemBtn{

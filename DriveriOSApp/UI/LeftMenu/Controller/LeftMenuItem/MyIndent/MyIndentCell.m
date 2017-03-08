@@ -11,7 +11,7 @@
 
 @interface MyIndentCell()
     
-@property (nonatomic, strong) UIView *bgView;
+@property (nonatomic, strong) UIImageView *bgView;
 
 @end
 
@@ -32,50 +32,62 @@
     //选中无色
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     //背景
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = UIColorFromRGB(@"#f5f5f5");
     
-    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(MATCHSIZE(20), MATCHSIZE(0), (SCREEN_W - MATCHSIZE(40)), MATCHSIZE(300))];
-    self.bgView.backgroundColor = [UIColor grayColor];
-    self.bgView.layer.cornerRadius = MATCHSIZE(8);
-    self.bgView.layer.masksToBounds = YES;
+    self.bgView = [[UIImageView alloc] initWithFrame:CGRectMake(MATCHSIZE(26), MATCHSIZE(0), (SCREEN_W - MATCHSIZE(52)), MATCHSIZE(235))];
+    self.bgView.image = [UIImage imageNamed:@"myindentCell"];
     [self.contentView addSubview:self.bgView];
     
-    self.typeLabel = [FactoryClass labelWithFrame:CGRectMake(MATCHSIZE(10), MATCHSIZE(0), MATCHSIZE(300), MATCHSIZE(50)) TextColor:[UIColor blackColor] fontBoldSize:MATCHSIZE(30)];
+    self.typeLabel = [FactoryClass labelWithFrame:CGRectMake(MATCHSIZE(20), MATCHSIZE(20), MATCHSIZE(300), MATCHSIZE(30)) TextColor:UIColorFromRGB(@"#333333") fontBoldSize:MATCHSIZE(32)];
+    self.typeLabel.font = [UIFont systemFontOfSize:MATCHSIZE(32)];
     self.typeLabel.numberOfLines = 1;
     self.typeLabel.textAlignment = NSTextAlignmentLeft;
     [self.bgView addSubview:self.typeLabel];
     
-    //
-    self.stateLabel = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(30) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentRight backGroundColor:[UIColor clearColor]];
-    self.stateLabel.frame = CGRectMake(self.bgView.frame.size.width - MATCHSIZE(300) - MATCHSIZE(50), MATCHSIZE(0), MATCHSIZE(300), MATCHSIZE(50));
-    [self.bgView addSubview:self.stateLabel];
+    UIImageView *stateIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"return-1"]];
+    [self.bgView addSubview:stateIMG];
+    [stateIMG mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.offset(MATCHSIZE(-20));
+        make.top.offset(MATCHSIZE(20));
+        make.width.offset(MATCHSIZE(15));
+        make.height.offset(MATCHSIZE(30));
+    }];
     
-    UIImageView *timeIMG = [[UIImageView alloc] initWithFrame:CGRectMake(MATCHSIZE(10), MATCHSIZE(70), MATCHSIZE(50), MATCHSIZE(50))];
-    timeIMG.image = [UIImage imageNamed:@"item"];
+    //
+    self.stateLabel = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(32) textColor:UIColorFromRGB(@"#cccccc") numberOfLine:1 textAlignment:NSTextAlignmentRight backGroundColor:[UIColor clearColor]];
+    [self.bgView addSubview:self.stateLabel];
+    [self.stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(stateIMG.mas_left).offset(MATCHSIZE(-10));
+        make.top.offset(MATCHSIZE(20));
+        make.width.offset(MATCHSIZE(200));
+        make.height.offset(MATCHSIZE(30));
+    }];
+    
+    UIImageView *timeIMG = [[UIImageView alloc] initWithFrame:CGRectMake(MATCHSIZE(20), MATCHSIZE(80), MATCHSIZE(25), MATCHSIZE(25))];
+    timeIMG.image = [UIImage imageNamed:@"time"];
     [self.bgView addSubview:timeIMG];
     
-    self.timeLabel = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(30) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
-    self.timeLabel.frame = CGRectMake(MATCHSIZE(70), MATCHSIZE(70), SCREEN_W - MATCHSIZE(100), MATCHSIZE(50));
+    self.timeLabel = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(28) textColor:UIColorFromRGB(@"#8c8c8c") numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
+    self.timeLabel.frame = CGRectMake(MATCHSIZE(55), MATCHSIZE(80), MATCHSIZE(500), MATCHSIZE(25));
     [self.bgView addSubview:self.timeLabel];
     
     
-    UIImageView *startIMG = [[UIImageView alloc] initWithFrame:CGRectMake(MATCHSIZE(10), MATCHSIZE(140), MATCHSIZE(50), MATCHSIZE(50))];
-    startIMG.image = [UIImage imageNamed:@"item"];
+    UIImageView *startIMG = [[UIImageView alloc] initWithFrame:CGRectMake(MATCHSIZE(20), MATCHSIZE(135), MATCHSIZE(22), MATCHSIZE(25))];
+    startIMG.image = [UIImage imageNamed:@"position"];
     [self.bgView addSubview:startIMG];
     
-    self.startPalceLabel = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(30) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
-    self.startPalceLabel.frame = CGRectMake(MATCHSIZE(70), MATCHSIZE(140), SCREEN_W - MATCHSIZE(100), MATCHSIZE(50));
+    self.startPalceLabel = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(26) textColor:UIColorFromRGB(@"#8c8c8c") numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
+    self.startPalceLabel.frame = CGRectMake(MATCHSIZE(55), MATCHSIZE(135), MATCHSIZE(500), MATCHSIZE(25));
     [self.bgView addSubview:self.startPalceLabel];
     
-    UIImageView *endIMG = [[UIImageView alloc] initWithFrame:CGRectMake(MATCHSIZE(10), MATCHSIZE(210), MATCHSIZE(50), MATCHSIZE(50))];
-    endIMG.image = [UIImage imageNamed:@"item"];
+    UIImageView *endIMG = [[UIImageView alloc] initWithFrame:CGRectMake(MATCHSIZE(20), MATCHSIZE(190), MATCHSIZE(22), MATCHSIZE(25))];
+    endIMG.image = [UIImage imageNamed:@"location-1"];
     [self.bgView addSubview:endIMG];
     
-    self.endPalceLabel = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(30) textColor:[UIColor blackColor] numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
-    self.endPalceLabel.frame = CGRectMake(MATCHSIZE(70), MATCHSIZE(210), SCREEN_W - MATCHSIZE(100), MATCHSIZE(50));
+    self.endPalceLabel = [FactoryClass labelWithText:@"" fontSize:MATCHSIZE(26) textColor:UIColorFromRGB(@"#8c8c8c") numberOfLine:1 textAlignment:NSTextAlignmentLeft backGroundColor:[UIColor clearColor]];
+    self.endPalceLabel.frame = CGRectMake(MATCHSIZE(55), MATCHSIZE(190), MATCHSIZE(500), MATCHSIZE(25));
     [self.bgView addSubview:self.endPalceLabel];
 
-    
 }
 
 

@@ -30,20 +30,25 @@
 
 -(UILabel *)totalLabel{
     if (!_totalLabel) {
-        _totalLabel = [FactoryClass labelWithFrame:CGRectMake((SCREEN_W/6)+MATCHSIZE(20), 0, SCREEN_W/6, MATCHSIZE(80)) TextColor:[UIColor orangeColor] fontBoldSize:MATCHSIZE(28)];
+        _totalLabel = [FactoryClass labelWithFrame:CGRectMake((SCREEN_W/6)+MATCHSIZE(26), 0, SCREEN_W/6, MATCHSIZE(98)) TextColor:UIColorFromRGB(@"333333") fontBoldSize:MATCHSIZE(28)];
+        _totalLabel.font = [UIFont systemFontOfSize:MATCHSIZE(32)];
     }
     return _totalLabel;
 }
 -(UILabel *)instantLabel{
     if (!_instantLabel) {
-        _instantLabel = [FactoryClass labelWithFrame:CGRectMake((SCREEN_W/6)*3+MATCHSIZE(20), 0, SCREEN_W/6, MATCHSIZE(80)) TextColor:[UIColor orangeColor] fontBoldSize:MATCHSIZE(28)];
+        _instantLabel = [FactoryClass labelWithFrame:CGRectMake((SCREEN_W/6)*3+MATCHSIZE(26), 0, SCREEN_W/6, MATCHSIZE(98)) TextColor:UIColorFromRGB(@"333333") fontBoldSize:MATCHSIZE(28)];
+        _instantLabel.font = [UIFont systemFontOfSize:MATCHSIZE(32)];
+
     }
     return _instantLabel;
 }
 
 -(UILabel *)reservationLabel{
     if (!_reservationLabel) {
-        _reservationLabel = [FactoryClass labelWithFrame:CGRectMake((SCREEN_W/6)*5+MATCHSIZE(20), 0, SCREEN_W/6, MATCHSIZE(80)) TextColor:[UIColor orangeColor] fontBoldSize:MATCHSIZE(28)];
+        _reservationLabel = [FactoryClass labelWithFrame:CGRectMake((SCREEN_W/6)*5+MATCHSIZE(26), 0, SCREEN_W/6, MATCHSIZE(98)) TextColor:UIColorFromRGB(@"333333") fontBoldSize:MATCHSIZE(28)];
+        _reservationLabel.font = [UIFont systemFontOfSize:MATCHSIZE(32)];
+
     }
     return _reservationLabel;
 }
@@ -52,21 +57,24 @@
 
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(MATCHSIZE(0), MATCHSIZE(0), SCREEN_W, SCREEN_H - MATCHSIZE(200)) style:UITableViewStyleGrouped];
-        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(MATCHSIZE(0), MATCHSIZE(0), SCREEN_W, SCREEN_H) style:UITableViewStyleGrouped];
+        _tableView.backgroundColor = UIColorFromRGB(@"#f5f5f5");
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.rowHeight = MATCHSIZE(300);
+        _tableView.rowHeight = MATCHSIZE(235);
+        //设置footer
+        _tableView.sectionFooterHeight = MATCHSIZE(0);
+        //调整inset
         UIEdgeInsets contentInset = self.tableView.contentInset;
         contentInset.top = 0;
         [_tableView setContentInset:contentInset];
         
-        _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-        _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
+//        _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+//        _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
         
         _tableView.tableHeaderView.backgroundColor = [UIColor whiteColor];
         // 设置 tableView 的额外滚动区域，防止被导航条盖住
-        _tableView.contentInset = UIEdgeInsetsMake(-MATCHSIZE(30), 0, -MATCHSIZE(30), 0);
+//        _tableView.contentInset = UIEdgeInsetsMake(-MATCHSIZE(30), 0, -MATCHSIZE(30), 0);
         //去掉分割线
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
@@ -97,22 +105,23 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
 }
-
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-
-    if (self.arrayData.count > 0) {
-        return MATCHSIZE(30);
+    return MATCHSIZE(60);
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellHead"];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cellHead"];
+         UILabel *timeTitle = [FactoryClass labelWithFrame:CGRectMake(MATCHSIZE(26), MATCHSIZE(20), MATCHSIZE(300), MATCHSIZE(20)) TextColor:UIColorFromRGB(@"#b2b2b2") fontBoldSize:MATCHSIZE(28)];
+        [cell addSubview:timeTitle];
+        if (self.arrayData.count > 0) {
+            MyIndentModel *model = self.arrayData[section];
+            timeTitle.text = model.timeHead;
+        }
     }
     
-    return MATCHSIZE(0);
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if (self.arrayData.count > 0) {
-        MyIndentModel *model = self.arrayData[section];
-        return model.state;
-    }
-    return nil;
+    return cell;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -125,11 +134,23 @@
         [self totalCountWithArray:self.arrayData];
     }
     MyIndentModel *model = self.arrayData[indexPath.section];
-
     cell.model = model;
     return cell;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [self changeNavigation];
+    
+    [self creatNavigationBackItemBtn];
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search"] style:UIBarButtonItemStylePlain target:self action:@selector(rightItemOnclick:)];
+
+}
+
+-(void)rightItemOnclick:(UIBarButtonItem *)itemBtn{
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -152,13 +173,17 @@
     for(int i = 0; i < 5; i ++){
         MyIndentModel *model = [[MyIndentModel alloc] init];
         if (i%2 == 0) {
-            model.state = @"未完成订单";
+            model.state = @"未完成";
             model.type = @"预约单";
+            if (i==0) {
+                model.state = @"未付款";
+            }
         }else{
-            model.state = @"已完成订单";
+            model.state = @"已完成";
             model.type = @"即时单";
         }
-        model.timeData = @"2016/12/15  10:00";
+        model.timeHead = [NSString stringWithFormat:@"2016/12/1%d",i];
+        model.timeData = [NSString stringWithFormat:@"2016/12/1%d  10:00",i];
         model.startPlace = @"广州天环广场";
         model.endPlace = @"广州天河区石牌桥";
         [self.arrayData addObject:model];
@@ -170,6 +195,13 @@
 -(void)creatTableView{
     
     [self.view addSubview:self.tableView];
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(MATCHSIZE(0));
+        make.left.offset(MATCHSIZE(0));
+        make.right.offset(MATCHSIZE(0));
+        make.bottom.offset(MATCHSIZE(-98));
+    }];
     
 }
 #pragma mark - 计算总数
@@ -195,30 +227,38 @@
 
 #pragma mark - 创建底部视图
 -(void)creatFootView{
-    self.footView.backgroundColor = [UIColor blackColor];
+    self.footView.backgroundColor = UIColorFromRGB(@"f5f5f5");
     [self.view addSubview:self.footView];
     [self.footView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.view).offset(0);
         make.left.equalTo(self.view).offset(0);
         make.right.equalTo(self.view).offset(0);
-        make.height.offset(MATCHSIZE(80));
+        make.height.offset(MATCHSIZE(98));
     }];
     
-    UILabel *total = [FactoryClass labelWithFrame:CGRectMake(MATCHSIZE(20), 0, SCREEN_W/6, MATCHSIZE(80)) TextColor:[UIColor whiteColor] fontBoldSize:MATCHSIZE(28)];
-    total.text = @"合计订单:";
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, MATCHSIZE(1.5))];
+    line.backgroundColor = [UIColor grayColor];
+    line.alpha = 0.3;
+    [self.footView addSubview:line];
+    
+    UILabel *total = [FactoryClass labelWithFrame:CGRectMake(MATCHSIZE(26), 0, SCREEN_W/6, MATCHSIZE(98)) TextColor:UIColorFromRGB(@"333333") fontBoldSize:MATCHSIZE(28)];
+    total.text = @"合计单:";
+    total.font = [UIFont systemFontOfSize:MATCHSIZE(32)];
     [self.footView addSubview:total];
     
     
     
     [self.footView addSubview:self.totalLabel];
     
-    UILabel *instant = [FactoryClass labelWithFrame:CGRectMake((SCREEN_W/6)*2+MATCHSIZE(20), 0, SCREEN_W/6, MATCHSIZE(80)) TextColor:[UIColor whiteColor] fontBoldSize:MATCHSIZE(28)];
+    UILabel *instant = [FactoryClass labelWithFrame:CGRectMake((SCREEN_W/6)*2+MATCHSIZE(26), 0, SCREEN_W/6, MATCHSIZE(98)) TextColor:UIColorFromRGB(@"333333") fontBoldSize:MATCHSIZE(28)];
+    instant.font = [UIFont systemFontOfSize:MATCHSIZE(32)];
     instant.text = @"即时单:";
     [self.footView addSubview:instant];
     
     [self.footView addSubview:self.instantLabel];
     
-    UILabel *reservation = [FactoryClass labelWithFrame:CGRectMake((SCREEN_W/6)*4+MATCHSIZE(20), 0, SCREEN_W/6, MATCHSIZE(80)) TextColor:[UIColor whiteColor] fontBoldSize:MATCHSIZE(28)];
+    UILabel *reservation = [FactoryClass labelWithFrame:CGRectMake((SCREEN_W/6)*4+MATCHSIZE(26), 0, SCREEN_W/6, MATCHSIZE(98)) TextColor:UIColorFromRGB(@"333333") fontBoldSize:MATCHSIZE(28)];
+    reservation.font = [UIFont systemFontOfSize:MATCHSIZE(32)];
     reservation.text = @"预约单:";
     [self.footView addSubview:reservation];
     
