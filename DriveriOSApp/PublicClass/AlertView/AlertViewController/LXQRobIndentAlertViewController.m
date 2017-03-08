@@ -47,8 +47,6 @@ static NSTimeInterval count = 10;
 
 @property(nonatomic, weak)UIButton* robIndentBtn;
 
-@property(nonatomic, weak)NSTimer* robIndentTimer;
-
 @property(nonatomic, weak)UILabel* secondLabel;
 
 @end
