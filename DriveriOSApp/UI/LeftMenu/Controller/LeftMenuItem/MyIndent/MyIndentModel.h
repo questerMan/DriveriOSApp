@@ -10,6 +10,8 @@
 
 @interface MyIndentModel : NSObject
 
+@property (nonatomic, copy) NSString *timeHead;
+
 @property (nonatomic, copy) NSString *state;
 
 @property (nonatomic, copy) NSString *type;
