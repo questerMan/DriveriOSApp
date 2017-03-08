@@ -247,7 +247,6 @@
     [self.footView addSubview:total];
     
     
-    
     [self.footView addSubview:self.totalLabel];
     
     UILabel *instant = [FactoryClass labelWithFrame:CGRectMake((SCREEN_W/6)*2+MATCHSIZE(26), 0, SCREEN_W/6, MATCHSIZE(98)) TextColor:UIColorFromRGB(@"333333") fontBoldSize:MATCHSIZE(28)];
