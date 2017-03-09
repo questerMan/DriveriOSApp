@@ -142,7 +142,6 @@
 #pragma mark - 右上角聊天按钮
 -(void)rightItemOnclick:(UIBarButtonItem *)itemBtn{
     
-    
     //    Setup *setup = [[Setup alloc] init];
     //    [self.navigationController pushViewController:setup animated:YES];
     [self.navigationController popViewControllerAnimated:YES];

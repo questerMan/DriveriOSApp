@@ -76,6 +76,10 @@
     
     if (indexPath.row == 0) {
         cell.isSelectItem = YES;
+        
+        cell.countLabel.backgroundColor = TAB_SELECT_TEXTCOLOR;
+        
+        cell.lable.textColor = TAB_SELECT_TEXTCOLOR;
     }
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -126,6 +130,7 @@
         cell.lable.textColor = TAB_NOTSELECT_TEXTCOLOR;
         cell.lable.backgroundColor = TAB_NOTSELECT_BG;
         cell.countLabel.backgroundColor = [UIColor grayColor];
+
     }
     
 }
