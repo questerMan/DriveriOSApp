@@ -73,13 +73,6 @@
     }];
     self.lable.text = model.title;
     
-    if (self.isSelectItem == YES) {
-    
-        self.countLabel.backgroundColor = TAB_SELECT_TEXTCOLOR;
-    
-        self.lable.textColor = TAB_SELECT_TEXTCOLOR;
-
-    }
     //在预约单、接机单、送机单有状态标注
     if(model.indentCount != nil){
         if ([model.indentCount intValue] > 0) {
