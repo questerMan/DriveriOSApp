@@ -286,9 +286,9 @@ static NSTimeInterval count = 10;
     }];
     
     [self.robIndentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.offset(0);
         make.left.offset(MATCHSIZE(194));
         make.right.offset(MATCHSIZE(-194));
+        make.height.equalTo(self.robIndentBtn.mas_width);
         make.bottom.offset(MATCHSIZE(-74));
     }];
     
