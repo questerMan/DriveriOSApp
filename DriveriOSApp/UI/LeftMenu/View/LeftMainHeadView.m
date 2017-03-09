@@ -32,6 +32,7 @@
         make.width.offset(MATCHSIZE(114));
         make.height.offset(MATCHSIZE(114));
     }];
+    
     [[self.userIMG rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
        
         if (_block) {
@@ -81,7 +82,7 @@
 
 -(void)getData{
     self.userName.text = @"李师傅";
-   CGFloat lenght = [PublicTool lengthofStr:self.userName.text AndSystemFontOfSize:MATCHSIZE(20)]+MATCHSIZE(2);
+    CGFloat lenght = [PublicTool lengthofStr:self.userName.text AndSystemFontOfSize:MATCHSIZE(20)]+MATCHSIZE(2);
     [self.userName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.userIMG.mas_right).offset(MATCHSIZE(10));
         make.top.equalTo(self).offset(MATCHSIZE(100));

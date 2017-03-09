@@ -83,7 +83,7 @@
     self.navBar = navBar;
     
     UILabel* titleLabel = [[UILabel alloc] init];
-    titleLabel.text = @"吴先生车费";
+    titleLabel.text = [NSString stringWithFormat:@"%@车费",_model.name];
     titleLabel.font = [UIFont systemFontOfSize:MATCHSIZE(28)];
     titleLabel.textColor = UIColorFromRGB(@"333333");
     [self.view addSubview:titleLabel];
@@ -229,6 +229,12 @@
     parkingFeeMinute.backgroundColor = UIColorFromRGB(@"#ff6d00");
     [self.view addSubview:parkingFeeMinute];
     self.parkingFeeMinute = parkingFeeMinute;
+}
+
+- (void)setModel:(IndentData *)model{
+    _model = model;
+    
+    self.titleLabel.text = [NSString stringWithFormat:@"%@车费",_model.name];
 }
 
 - (void)settlementFeeClick{

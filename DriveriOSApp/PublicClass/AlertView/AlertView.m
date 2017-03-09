@@ -22,6 +22,7 @@
 #import "LXQSquareLodingAlertViewController.h"
 #import "LXQRobIndentAlertSuccessedViewController.h"
 #import "LXQRobIndentAlertFailedViewController.h"
+#import "LXQReservationSetOutFailedAlertViewController.h"
 @interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate,LimitLoginAlertDelegate>
 
 @property (nonatomic,strong) UIView *bgView;
@@ -61,6 +62,8 @@
 @property (nonatomic, strong) UIButton *robIndentCancelAlertBtn;
 
 @property (nonatomic, strong) LXQRobIndentAlertFailedViewController *robIndentAlertFailedViewController;
+
+@property (nonatomic, strong) LXQReservationSetOutFailedAlertViewController *setOutFailedAlertViewController;
 @end
 
 @implementation AlertView
@@ -205,6 +208,13 @@
     return _robIndentAlertFailedViewController;
 }
 
+- (LXQReservationSetOutFailedAlertViewController *)setOutFailedAlertViewController{
+    if (!_setOutFailedAlertViewController) {
+        _setOutFailedAlertViewController = [[LXQReservationSetOutFailedAlertViewController alloc] init];
+    }
+    return _setOutFailedAlertViewController;
+}
+
 //直接调用该方法一般用于固定 view 的展示
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
     
@@ -302,6 +312,10 @@
                 [self isCreatTimerWithTimeInterval:1.5];
                 break;
             case AlertViewTypeRobIndentAlertFailed:
+                [self isCloseWithTap:NO];
+                [self isCreatTimerWithTimeInterval:1.5];
+                break;
+            case AlertViewTypeReservationSetOutFailedAlert:
                 [self isCloseWithTap:NO];
                 [self isCreatTimerWithTimeInterval:1.5];
                 break;
@@ -527,6 +541,14 @@
             make.width.offset(MATCHSIZE(400));
             make.height.offset(MATCHSIZE(300));
         }];
+    }else if (_addAlertViewType == AlertViewTypeReservationSetOutFailedAlert){
+        [self initAlertViewWithViewController:self.setOutFailedAlertViewController];
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.offset(0);
+            make.centerY.offset(0);
+            make.width.offset(MATCHSIZE(350));
+            make.height.offset(MATCHSIZE(200));
+        }];
     }
 }
 
@@ -554,6 +576,7 @@
 - (void)robIndentCancelAlertBtnClick{
     [self closeAlertView];
     [self.robIndentAlertViewController.robIndentTimer invalidate];
+    self.robIndentAlertViewController.count = 10;
 }
 
 #pragma mark - phoneAlert/IndentAlertDelegate/DeleteIndentAlert代理

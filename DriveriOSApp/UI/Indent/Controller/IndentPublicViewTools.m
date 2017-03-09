@@ -107,7 +107,8 @@ static NSTimeInterval acceptIndentCount;
 
 -(UIButton *)cancelBtn{
     if (!_cancelBtn) {
-        _cancelBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40)*2 + (SCREEN_W - MATCHSIZE(40)*3)/2,SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*3)/2, MATCHSIZE(60)) Title:@"取消" backGround:[UIColor grayColor] tintColor:[UIColor blackColor] cornerRadius:MATCHSIZE(8)];
+        _cancelBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40)*2 + (SCREEN_W - MATCHSIZE(40)*3)/2,SCREEN_H - MATCHSIZE(60) - MATCHSIZE(40) - StatusBar_H - MATCHSIZE(100), MATCHSIZE(290), MATCHSIZE(80)) Title:@"取消" backGround:UIColorFromRGB(@"#ffffff") tintColor:UIColorFromRGB(@"#ff6d00") cornerRadius:MATCHSIZE(40)];
+        [_cancelBtn setTitleColor:UIColorFromRGB(@"#ff6d00") forState:0];
         _cancelBtn.hidden = YES;
     }
     return _cancelBtn;
@@ -596,7 +597,11 @@ static NSTimeInterval acceptIndentCount;
         //把起点赋值给导航页面的目的地处
         self.indentController.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.startLocationLat floatValue] longitude:[model.startLocationLon floatValue]];
     });
+}
 
+- (void)setOutBtnClickFailed{
+    AlertView* alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeReservationSetOutFailedAlert];
+    [alert alertViewShow];
 }
 
 #pragma mark - 预约单tableView代理方法
@@ -622,13 +627,56 @@ static NSTimeInterval acceptIndentCount;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     IndentData *model = self.arrayData[indexPath.row];
+    NSInteger mouth = [model.dateTime substringWithRange:NSMakeRange(0, 2)].integerValue;
+    NSInteger day = [model.dateTime substringWithRange:NSMakeRange(3, 2)].integerValue;
+    NSInteger hour = model.time.integerValue;
+    NSInteger minute = [model.time substringWithRange:NSMakeRange(3, 2)].integerValue;
+    [self.setOutBtn removeTarget:self action:@selector(setOutBtnClickFailed) forControlEvents:1<<6];
+    [self.setOutBtn addTarget:self action:@selector(setOutBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    for (IndentData *tempModel in self.arrayData) {
+        NSInteger tempMouth = [tempModel.dateTime substringWithRange:NSMakeRange(0, 2)].integerValue;
+        NSInteger tempDay = [tempModel.dateTime substringWithRange:NSMakeRange(3, 2)].integerValue;
+        NSInteger tempHour = tempModel.time.integerValue;
+        NSInteger tempMinute = [tempModel.time substringWithRange:NSMakeRange(3, 2)].integerValue;
+        if (mouth > tempMouth) {
+            [self.setOutBtn removeTarget:self action:@selector(setOutBtnClick) forControlEvents:1<<6];
+            [self.setOutBtn addTarget:self action:@selector(setOutBtnClickFailed) forControlEvents:UIControlEventTouchUpInside];
+            break;
+        }else if(mouth == tempMouth){
+            if (day > tempDay) {
+                [self.setOutBtn removeTarget:self action:@selector(setOutBtnClick) forControlEvents:1<<6];
+                [self.setOutBtn addTarget:self action:@selector(setOutBtnClickFailed) forControlEvents:UIControlEventTouchUpInside];
+                break;
+            }else if (day == tempDay){
+                if (hour > tempHour) {
+                    [self.setOutBtn removeTarget:self action:@selector(setOutBtnClick) forControlEvents:1<<6];
+                    [self.setOutBtn addTarget:self action:@selector(setOutBtnClickFailed) forControlEvents:UIControlEventTouchUpInside];
+                    break;
+                }else if (hour == tempHour){
+                    if (minute > tempMinute) {
+                        [self.setOutBtn removeTarget:self action:@selector(setOutBtnClick) forControlEvents:1<<6];
+                        [self.setOutBtn addTarget:self action:@selector(setOutBtnClickFailed) forControlEvents:UIControlEventTouchUpInside];
+                        break;
+                    }else{
+                        continue;
+                    }
+                }else{
+                    continue;
+                }
+            }else{
+                continue;
+            }
+        }else{
+            continue;
+        }
+    }
+    
     [self.arrayData removeAllObjects];
     [self.arrayData addObject:model];
     [tableView reloadData];
     self.recevingIndentView.model = model;
     self.reservationImageV.height = self.arrayData.count * MATCHSIZE(240) + MATCHSIZE(70);
     [self changeMapStateWithMapIndentState:MapIndentStateHaveIndent];
-//  [self showHint:@"页面未搭建完成"];
 }
 
 #pragma mark - 隐藏预约单页面的view
@@ -701,7 +749,7 @@ static NSTimeInterval acceptIndentCount;
 }
 
 //获取预约单table数据
--(void)getReservationData{
+- (void)getReservationData{
     [self.netWorkingManage getReservationIndentWithBlock:^(NSArray *array) {
         [self.arrayData removeAllObjects];
         [self.arrayData addObjectsFromArray:array];
@@ -709,7 +757,7 @@ static NSTimeInterval acceptIndentCount;
 }
 
 //获取即时单数据
--(void)getstantIndentData{
+- (void)getstantIndentData{
     [self.netWorkingManage getInstantIndentWithBlock:^(NSArray *array) {
         self.instantHeadView.model = array[0];
         self.recevingIndentView.model = array[0];
@@ -982,6 +1030,7 @@ static NSTimeInterval acceptIndentCount;
 - (void)hideDrivingTipsView{
     self.drivingTipsView.hidden = YES;
 }
+
 //从用户位置到用户目的地
 - (void)showRouteBetweenUserAndDetermination{
     //测试------------------->
@@ -1033,6 +1082,7 @@ static NSTimeInterval acceptIndentCount;
         self.indentController.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.endLocationLat floatValue] longitude:[model.endLocationLon floatValue]];
     }];
 }
+
 //隐藏路径
 - (void)hideRouteBetweenSelfAndUser{
     AMPublicTools *tool = [AMPublicTools shareInstance];

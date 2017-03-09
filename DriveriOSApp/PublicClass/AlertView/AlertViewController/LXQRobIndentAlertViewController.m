@@ -5,7 +5,6 @@
 //  Created by mac on 17/3/2.
 //  Copyright © 2017年 陆遗坤. All rights reserved.
 //
-static NSTimeInterval count = 10;
 
 #import "LXQRobIndentAlertViewController.h"
 #import "LXQRobIndentBtn.h"
@@ -57,16 +56,18 @@ static NSTimeInterval count = 10;
     [super viewDidLoad];
     
     [self creatUI];
+    
+    self.count = 10;
 }
 
 - (NSTimer *)robIndentTimer{
 
     if (!_robIndentTimer) {
         NSTimer* robIndentTimer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-            count --;
-            self.secondLabel.text = [NSString stringWithFormat:@"%.0fS",count];
-            if (count <= 0) {
-                count = 10;
+            _count --;
+            self.secondLabel.text = [NSString stringWithFormat:@"%.0fS",_count];
+            if (_count <= 0) {
+                _count = 10;
                 [timer invalidate];
                 
                 AlertView* alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeRobIndentAlertFailed];
@@ -313,7 +314,7 @@ static NSTimeInterval count = 10;
     
     [self.robIndentTimer invalidate];
     
-    count = 10;
+    _count = 10;
     
     AlertView* alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeRobIndentAlertSuccessed];
     [alert alertViewShow];

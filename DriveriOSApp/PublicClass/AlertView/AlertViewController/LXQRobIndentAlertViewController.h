@@ -18,4 +18,6 @@
 
 @property(nonatomic, weak)NSTimer* robIndentTimer;
 
+@property(nonatomic, assign)NSTimeInterval count;
+
 @end

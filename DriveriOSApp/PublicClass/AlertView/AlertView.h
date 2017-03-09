@@ -30,7 +30,8 @@ typedef enum {
     AlertViewTypeSquareLodingAlert,
     AlertViewTypeRobIndentAlert,
     AlertViewTypeRobIndentAlertSuccessed,
-    AlertViewTypeRobIndentAlertFailed
+    AlertViewTypeRobIndentAlertFailed,
+    AlertViewTypeReservationSetOutFailedAlert
 }AlertViewType;
 
 @property (nonatomic, assign) AlertViewType addAlertViewType;
