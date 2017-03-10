@@ -204,5 +204,10 @@
     });
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.topUpTeF resignFirstResponder];
+    [self.noteTeF resignFirstResponder];
+    
+}
 
 @end

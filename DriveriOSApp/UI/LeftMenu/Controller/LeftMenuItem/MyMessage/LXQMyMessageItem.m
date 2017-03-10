@@ -10,4 +10,12 @@
 
 @implementation LXQMyMessageItem
 
++ (instancetype)myMessageItemWithtitleLabel:(NSString*)titleLabel contentLabel :(NSString*)contentLabel : (void(^)(void))arrowBtnClick{
+    LXQMyMessageItem* item = [[LXQMyMessageItem alloc] init];
+    item.titleLabel = titleLabel;
+    item.contentLabel = contentLabel;
+    item.arrowBtnClick = arrowBtnClick;
+    return item;
+}
+
 @end

@@ -27,6 +27,8 @@
 		045E459B1E70F8E500AD773A /* LXQReservationSetOutFailedAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E459A1E70F8E500AD773A /* LXQReservationSetOutFailedAlertViewController.m */; };
 		045E459E1E71458100AD773A /* LXQMyMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E459D1E71458100AD773A /* LXQMyMessageTableViewCell.m */; };
 		045E45A11E7147C200AD773A /* LXQMyMessageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E45A01E7147C200AD773A /* LXQMyMessageItem.m */; };
+		045E45A41E714A3500AD773A /* LXQHeadImgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E45A31E714A3500AD773A /* LXQHeadImgTableViewCell.m */; };
+		045E45A71E7244BB00AD773A /* LXQMyMessageGroupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E45A61E7244BB00AD773A /* LXQMyMessageGroupItem.m */; };
 		04C1841E1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */; };
 		820555C11E00D30C0095BB47 /* PhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C01E00D30C0095BB47 /* PhoneNumber.m */; };
 		820555C41E00D33D0095BB47 /* ChangeNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C31E00D33D0095BB47 /* ChangeNumber.m */; };
@@ -346,6 +348,10 @@
 		045E459D1E71458100AD773A /* LXQMyMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQMyMessageTableViewCell.m; path = DriveriOSApp/UI/LeftMenu/Controller/LeftMenuItem/MyMessage/LXQMyMessageTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		045E459F1E7147C200AD773A /* LXQMyMessageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQMyMessageItem.h; path = DriveriOSApp/UI/LeftMenu/Controller/LeftMenuItem/MyMessage/LXQMyMessageItem.h; sourceTree = SOURCE_ROOT; };
 		045E45A01E7147C200AD773A /* LXQMyMessageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQMyMessageItem.m; path = DriveriOSApp/UI/LeftMenu/Controller/LeftMenuItem/MyMessage/LXQMyMessageItem.m; sourceTree = SOURCE_ROOT; };
+		045E45A21E714A3500AD773A /* LXQHeadImgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQHeadImgTableViewCell.h; path = DriveriOSApp/UI/LeftMenu/Controller/LeftMenuItem/MyMessage/LXQHeadImgTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		045E45A31E714A3500AD773A /* LXQHeadImgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQHeadImgTableViewCell.m; path = DriveriOSApp/UI/LeftMenu/Controller/LeftMenuItem/MyMessage/LXQHeadImgTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		045E45A51E7244BB00AD773A /* LXQMyMessageGroupItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQMyMessageGroupItem.h; path = DriveriOSApp/UI/LeftMenu/Controller/LeftMenuItem/MyMessage/LXQMyMessageGroupItem.h; sourceTree = SOURCE_ROOT; };
+		045E45A61E7244BB00AD773A /* LXQMyMessageGroupItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQMyMessageGroupItem.m; path = DriveriOSApp/UI/LeftMenu/Controller/LeftMenuItem/MyMessage/LXQMyMessageGroupItem.m; sourceTree = SOURCE_ROOT; };
 		04C1841A1E4BFFB500696D39 /* LXQAfterDrivingTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQAfterDrivingTipsView.h; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.h; sourceTree = SOURCE_ROOT; };
 		04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQAfterDrivingTipsView.m; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.m; sourceTree = SOURCE_ROOT; };
 		21F1B86AACBB7CF6E723DB76 /* Pods_DriveriOSApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveriOSApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2187,6 +2193,8 @@
 			children = (
 				045E459F1E7147C200AD773A /* LXQMyMessageItem.h */,
 				045E45A01E7147C200AD773A /* LXQMyMessageItem.m */,
+				045E45A51E7244BB00AD773A /* LXQMyMessageGroupItem.h */,
+				045E45A61E7244BB00AD773A /* LXQMyMessageGroupItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2196,6 +2204,8 @@
 			children = (
 				045E459C1E71458100AD773A /* LXQMyMessageTableViewCell.h */,
 				045E459D1E71458100AD773A /* LXQMyMessageTableViewCell.m */,
+				045E45A21E714A3500AD773A /* LXQHeadImgTableViewCell.h */,
+				045E45A31E714A3500AD773A /* LXQHeadImgTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2811,6 +2821,7 @@
 				827193F01DF06E6B00327ACB /* UIScrollView+MJRefresh.m in Sources */,
 				827193EB1DF06E6B00327ACB /* MJRefreshNormalHeader.m in Sources */,
 				8274A3ED1E2CB5BF005A5B3A /* ItemIndentModel.m in Sources */,
+				045E45A41E714A3500AD773A /* LXQHeadImgTableViewCell.m in Sources */,
 				82AF40771DE92477001F0066 /* EaseBubbleView+Gif.m in Sources */,
 				82AF40681DE92477001F0066 /* EaseEmotionEscape.m in Sources */,
 				82AF407A1DE92477001F0066 /* EaseBubbleView+Text.m in Sources */,
@@ -2843,6 +2854,7 @@
 				82AF405F1DE92477001F0066 /* NSDateFormatter+Category.m in Sources */,
 				82EAADC11E08DFA600BE8434 /* LXCommonUtility.m in Sources */,
 				82AF40601DE92477001F0066 /* NSString+Valid.m in Sources */,
+				045E45A71E7244BB00AD773A /* LXQMyMessageGroupItem.m in Sources */,
 				82AF40581DE92477001F0066 /* PSTGridLayoutSection.m in Sources */,
 				82A9DF731DFD278300B495FD /* MyIndentModel.m in Sources */,
 				823C31CF1E28A63700D6CAE6 /* RoutPointAnnotation.m in Sources */,

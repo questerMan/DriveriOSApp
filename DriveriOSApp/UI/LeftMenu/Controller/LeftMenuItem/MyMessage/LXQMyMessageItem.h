@@ -10,6 +10,12 @@
 
 @interface LXQMyMessageItem : NSObject
 
+@property(nonatomic, copy)NSString* titleLabel;
 
+@property(nonatomic, copy)NSString* contentLabel;
+
+@property(nonatomic, copy)void(^arrowBtnClick)(void);
+
++ (instancetype)myMessageItemWithtitleLabel:(NSString*)titleLabel contentLabel :(NSString*)contentLabel : (void(^)(void))arrowBtnClick;
 
 @end

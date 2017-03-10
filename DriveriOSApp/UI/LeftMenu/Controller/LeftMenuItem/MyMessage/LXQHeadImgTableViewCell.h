@@ -1,5 +1,5 @@
 //
-//  LXQMyMessageTableViewCell.h
+//  LXQHeadImgTableViewCell.h
 //  DriveriOSApp
 //
 //  Created by mac on 17/3/9.
@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "LXQMyMessageItem.h"
-@interface LXQMyMessageTableViewCell : UITableViewCell
 
-@property(nonatomic, copy)void(^arrowBtnClick)(void);
+@interface LXQHeadImgTableViewCell : UITableViewCell
 
 @property(nonatomic, strong)LXQMyMessageItem* item;
 
