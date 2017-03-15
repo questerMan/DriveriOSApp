@@ -16,6 +16,8 @@
 
 @property(nonatomic, copy)void(^arrowBtnClick)(void);
 
+@property(nonatomic, assign)BOOL isLastCell;
+
 + (instancetype)myMessageItemWithtitleLabel:(NSString*)titleLabel contentLabel :(NSString*)contentLabel : (void(^)(void))arrowBtnClick;
 
 @end

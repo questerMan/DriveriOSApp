@@ -23,6 +23,7 @@
 #import "LXQRobIndentAlertSuccessedViewController.h"
 #import "LXQRobIndentAlertFailedViewController.h"
 #import "LXQReservationSetOutFailedAlertViewController.h"
+#import "LXQInputVerificationViewController.h"
 @interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate,LimitLoginAlertDelegate>
 
 @property (nonatomic,strong) UIView *bgView;
@@ -64,6 +65,9 @@
 @property (nonatomic, strong) LXQRobIndentAlertFailedViewController *robIndentAlertFailedViewController;
 
 @property (nonatomic, strong) LXQReservationSetOutFailedAlertViewController *setOutFailedAlertViewController;
+
+@property (nonatomic, strong) LXQInputVerificationViewController *inputVerificationViewController;
+
 @end
 
 @implementation AlertView
@@ -215,6 +219,20 @@
     return _setOutFailedAlertViewController;
 }
 
+- (LXQConfirmPhoneNumViewController *)confirmPhoneNumViewController{
+    if (!_confirmPhoneNumViewController) {
+        _confirmPhoneNumViewController = [[LXQConfirmPhoneNumViewController alloc] init];
+    }
+    return _confirmPhoneNumViewController;
+}
+
+- (LXQInputVerificationViewController *)inputVerificationViewController{
+    if (!_inputVerificationViewController) {
+        _inputVerificationViewController = [[LXQInputVerificationViewController alloc] init];
+    }
+    return _inputVerificationViewController;
+}
+
 //直接调用该方法一般用于固定 view 的展示
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
     
@@ -318,6 +336,12 @@
             case AlertViewTypeReservationSetOutFailedAlert:
                 [self isCloseWithTap:NO];
                 [self isCreatTimerWithTimeInterval:1.5];
+                break;
+            case AlertViewTypeConfirmPhoneNumAlert:
+                [self isCloseWithTap:NO];
+                break;
+            case AlertViewTypeInputVerificationAlert:
+                [self isCloseWithTap:NO];
                 break;
             default:
                 break;
@@ -548,6 +572,29 @@
             make.centerY.offset(0);
             make.width.offset(MATCHSIZE(350));
             make.height.offset(MATCHSIZE(200));
+        }];
+    }else if (_addAlertViewType == AlertViewTypeConfirmPhoneNumAlert){
+        [self initAlertViewWithViewController:self.confirmPhoneNumViewController];
+        __weak typeof(self) weakSelf = self;
+        self.confirmPhoneNumViewController.cancelBtnClick = ^{[weakSelf alertViewCloseWithBlock:nil];};
+
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.offset(0);
+            make.centerY.offset(0);
+            make.width.offset(MATCHSIZE(447));
+            make.height.offset(MATCHSIZE(316));
+        }];
+    }else if (_addAlertViewType == AlertViewTypeInputVerificationAlert){
+        [self initAlertViewWithViewController:self.inputVerificationViewController];
+        __weak typeof (self) weakSelf = self;
+        self.inputVerificationViewController.fourthNumJump = ^{
+            [weakSelf alertViewCloseWithBlock:nil];
+        };
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.offset(0);
+            make.centerY.offset(0);
+            make.width.offset(MATCHSIZE(398));
+            make.height.offset(MATCHSIZE(280));
         }];
     }
 }

@@ -16,6 +16,10 @@
 
 @property(nonatomic, weak)UIButton* arrowBtn;
 
+@property(nonatomic, weak)UIView* downLine1;
+
+@property(nonatomic, weak)UIView* downLine2;
+
 @end
 
 @implementation LXQMyMessageTableViewCell
@@ -54,6 +58,16 @@
     [arrowBtn addTarget:self action:@selector(arrowBtnClick:) forControlEvents:1<<6];
     [self.contentView addSubview:arrowBtn];
     self.arrowBtn = arrowBtn;
+    
+    UIView* downLine1 = [[UIView alloc] init];
+    downLine1.backgroundColor = UIColorFromRGB(@"#cccccc");
+    [self.contentView addSubview:downLine1];
+    self.downLine1 = downLine1;
+    
+    UIView* downLine2 = [[UIView alloc] init];
+    downLine2.backgroundColor = UIColorFromRGB(@"#cccccc");
+    [self.contentView addSubview:downLine2];
+    self.downLine2 = downLine2;
 }
 
 - (void)arrowBtnClick:(UIButton*)sender{
@@ -70,6 +84,14 @@
     self.contentLabel.text = item.contentLabel;
     
     self.arrowBtnClick = item.arrowBtnClick;
+    
+    if (item.isLastCell == YES) {
+        self.downLine2.hidden = NO;
+        self.downLine1.hidden = YES;
+    }else{
+        self.downLine1.hidden = NO;
+        self.downLine2.hidden = YES;
+    }
 }
 
 - (void)layoutSubviews{
@@ -89,12 +111,21 @@
         make.right.offset(MATCHSIZE(-26));
         make.centerY.offset(0);
     }];
+    
+    [self.downLine1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(MATCHSIZE(26));
+        make.right.offset(0);
+        make.bottom.offset(0);
+        make.height.offset(MATCHSIZE(1));
+    }];
+    
+    [self.downLine2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(MATCHSIZE(0));
+        make.right.offset(0);
+        make.bottom.offset(0);
+        make.height.offset(MATCHSIZE(1));
+    }];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
-}
 
 @end

@@ -76,7 +76,7 @@
     [middleView addSubview:topUpLabel];
     self.topUpLabel = topUpLabel;
     
-    UITextField* topUpTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:@"¥0.00" placeholderColor:UIColorFromRGB(@"#b3b3b3")  textColor:UIColorFromRGB(@"#ff6d00") backgroundColor:nil textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:nil keyboardType:0];
+    UITextField* topUpTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:@"¥0.00" placeholderColor:UIColorFromRGB(@"#b3b3b3")  textColor:UIColorFromRGB(@"#ff6d00") backgroundColor:nil textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:nil keyboardType:UIKeyboardTypeNumberPad];
     topUpTeF.font = [UIFont systemFontOfSize:MATCHSIZE(40)];
     [middleView addSubview:topUpTeF];
     self.topUpTeF = topUpTeF;

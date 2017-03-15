@@ -10,6 +10,7 @@
 #import "LXQPassengerGetOnAlertViewController.h"
 #import "LXQreassignmentIndentAlertViewController.h"
 #import "LXQRobIndentAlertViewController.h"
+#import "LXQConfirmPhoneNumViewController.h"
 @interface AlertView : UIView
 
 typedef enum {
@@ -31,7 +32,9 @@ typedef enum {
     AlertViewTypeRobIndentAlert,
     AlertViewTypeRobIndentAlertSuccessed,
     AlertViewTypeRobIndentAlertFailed,
-    AlertViewTypeReservationSetOutFailedAlert
+    AlertViewTypeReservationSetOutFailedAlert,
+    AlertViewTypeConfirmPhoneNumAlert,
+    AlertViewTypeInputVerificationAlert
 }AlertViewType;
 
 @property (nonatomic, assign) AlertViewType addAlertViewType;
@@ -41,6 +44,8 @@ typedef enum {
 @property (nonatomic, strong) LXQreassignmentIndentAlertViewController *reassignmentIndentAlertViewController;
 
 @property (nonatomic, strong) LXQRobIndentAlertViewController *robIndentAlertViewController;
+
+@property (nonatomic, strong) LXQConfirmPhoneNumViewController *confirmPhoneNumViewController;
 
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType;
 

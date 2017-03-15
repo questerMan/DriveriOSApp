@@ -16,7 +16,6 @@
 @property (nonatomic, strong) NSMutableArray *arrayData;
 @property (nonatomic, strong) NSMutableArray *arrayItemIMG;
 
-
 @end
 
 @implementation LeftMenuMain
@@ -70,9 +69,8 @@
     [self creatTableView];
     
     [self versionInfo];
-    
-    
 }
+
 -(void)creatTableView{
         
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -84,7 +82,6 @@
     self.tableView.rowHeight = MATCHSIZE(90);
     
     [self.view addSubview:self.tableView];
-    
 }
 
 -(void)versionInfo{
@@ -121,7 +118,6 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return self.arrayData.count;
-    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
@@ -176,10 +172,9 @@
         [self presentFromViewController:self andToViewController:myMessage andAnimated:YES];
     }];
     
-    
     return headCell;
-
 }
+
 //点击cell
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -191,7 +186,6 @@
     UINavigationController *notifyNac = [[UINavigationController alloc] initWithRootViewController:[[Notify alloc] init]];
 
     UINavigationController *driverGuideNac = [[UINavigationController alloc] initWithRootViewController:[[DriverGuide alloc] init]];
-
     
     switch (indexPath.row) {
     
@@ -225,7 +219,6 @@
         
     }
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-
 }
 
 @end

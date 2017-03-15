@@ -21,6 +21,8 @@
 
 @property(nonatomic, weak)UIButton* arrowBtn;
 
+@property(nonatomic, weak)UIView* downLine;
+
 @end
 
 
@@ -76,6 +78,10 @@
     self.headIMGBtn.layer.cornerRadius = MATCHSIZE(40);
     self.headIMGBtn.layer.masksToBounds = YES;
     
+    UIView* downLine = [[UIView alloc] init];
+    downLine.backgroundColor = UIColorFromRGB(@"#cccccc");
+    [self.contentView addSubview:downLine];
+    self.downLine = downLine;
 }
 
 - (void)setItem:(LXQMyMessageItem *)item{
@@ -110,6 +116,13 @@
         make.right.equalTo(self.arrowBtn.mas_left).offset(MATCHSIZE(-30));
         make.width.offset(MATCHSIZE(80));
         make.height.offset(MATCHSIZE(80));
+    }];
+    
+    [self.downLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(0);
+        make.right.offset(0);
+        make.bottom.offset(0);
+        make.height.offset(MATCHSIZE(1));
     }];
 }
 

@@ -11,6 +11,7 @@
 #import "LXQMyMessageGroupItem.h"
 #import "LXQMyMessageTableViewCell.h"
 #import "LXQHeadImgTableViewCell.h"
+#import "LXQAccountSafeViewController.h"
 static NSString* headImg = @"HeadImg";
 static NSString* myMessage = @"myMessage";
 @interface MyMessage ()<UITableViewDelegate,UITableViewDataSource>
@@ -19,7 +20,6 @@ static NSString* myMessage = @"myMessage";
 
 @property (nonatomic, strong) UIButton *exitBtn;
 
-@property (nonatomic, strong) UIView *downLine;
 
 @property (nonatomic, weak) UITableView* tableView;
 
@@ -42,15 +42,6 @@ static NSString* myMessage = @"myMessage";
     return _myMessageItemArr;
 }
 
-- (UIView *)downLine{
-    if (!_downLine) {
-        _downLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, MATCHSIZE(20))];
-        _downLine.backgroundColor = UIColorFromRGB(@"#cccccc");
-//        _downLine.backgroundColor = [UIColor redColor];
-    }
-    return _downLine;
-}
-
 - (void)setMessageItemArr{
     [self setGroup0];
     [self setGroup1];
@@ -68,7 +59,9 @@ static NSString* myMessage = @"myMessage";
 - (void)setGroup1{
     LXQMyMessageGroupItem* groupItem1 = [[LXQMyMessageGroupItem alloc] init];
     LXQMyMessageItem* item0 = [LXQMyMessageItem myMessageItemWithtitleLabel:@"我的车辆" contentLabel:@"广汽丰田雷凌双擎" :nil];
-    LXQMyMessageItem* item1 = [LXQMyMessageItem myMessageItemWithtitleLabel:@"账号安全" contentLabel:nil :nil];
+    item0.isLastCell = NO;
+    LXQMyMessageItem* item1 = [LXQMyMessageItem myMessageItemWithtitleLabel:@"账号安全" contentLabel:nil :^{[self.navigationController pushViewController:[[LXQAccountSafeViewController alloc] init] animated:YES];}];
+    item1.isLastCell = YES;
     groupItem1.groupItemArr = @[item0,item1];
     groupItem1.cellHeight = MATCHSIZE(20);
     [self.myMessageItemArr addObject:groupItem1];
@@ -77,7 +70,9 @@ static NSString* myMessage = @"myMessage";
 - (void)setGroup2{
     LXQMyMessageGroupItem* groupItem2 = [[LXQMyMessageGroupItem alloc] init];
     LXQMyMessageItem* item0 = [LXQMyMessageItem myMessageItemWithtitleLabel:@"给丽新好评" contentLabel:nil :nil];
+    item0.isLastCell = NO;
     LXQMyMessageItem* item1 = [LXQMyMessageItem myMessageItemWithtitleLabel:@"关于丽新" contentLabel:nil :nil];
+    item1.isLastCell = YES;
     groupItem2.groupItemArr = @[item0,item1];
     groupItem2.cellHeight = MATCHSIZE(20);
     [self.myMessageItemArr addObject:groupItem2];
@@ -115,6 +110,7 @@ static NSString* myMessage = @"myMessage";
 }
 
 -(void)creatUI{
+    
     UITableView* tableView = [[UITableView alloc] init];
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -186,6 +182,7 @@ static NSString* myMessage = @"myMessage";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     if (indexPath.section == 0) {
         
         [self.tool putAlertViewWithViewController:self andPicBlock:^(UIImage *image) {
@@ -197,15 +194,14 @@ static NSString* myMessage = @"myMessage";
             [[NSNotificationCenter defaultCenter] postNotificationName:@"headIMG" object:nil userInfo:@{@"headIMG":dataIMG}];
             [[NSNotificationCenter defaultCenter] postNotificationName:headImg object:nil];
         }];
+        
+    }else{
+        
+        LXQMyMessageTableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+        if (cell.arrowBtnClick) {
+            cell.arrowBtnClick();
+        }
     }
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    return self.downLine;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return MATCHSIZE(1);
 }
 
 @end

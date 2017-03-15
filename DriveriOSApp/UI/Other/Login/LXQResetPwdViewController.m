@@ -83,7 +83,7 @@
     [self.phoneNumView addSubview:phoneNumline];
     self.phoneNumline = phoneNumline;
     
-    UITextField* phoneNumTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:nil placeholderColor:nil textColor:UIColorFromRGB(@"#333333") backgroundColor:nil textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:nil keyboardType:0];
+    UITextField* phoneNumTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:nil placeholderColor:nil textColor:UIColorFromRGB(@"#333333") backgroundColor:nil textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:nil keyboardType:UIKeyboardTypeNumberPad];
     phoneNumTeF.delegate = self;
     [self.phoneNumView addSubview:phoneNumTeF];
     self.phoneNumTeF = phoneNumTeF;
@@ -109,7 +109,7 @@
     [self.pwdNumView addSubview:pwdNumEyeBtn];
     self.pwdNumEyeBtn = pwdNumEyeBtn;
     
-    UITextField* pwdNumTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:nil placeholderColor:nil textColor:UIColorFromRGB(@"#333333") backgroundColor:nil textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:nil keyboardType:0];
+    UITextField* pwdNumTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:nil placeholderColor:nil textColor:UIColorFromRGB(@"#333333") backgroundColor:nil textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:nil keyboardType:UIKeyboardTypeNumberPad];
     pwdNumTeF.secureTextEntry = YES;
     pwdNumTeF.delegate = self;
     [self.pwdNumView addSubview:pwdNumTeF];
@@ -131,7 +131,7 @@
     [self.confirmPwdNumView addSubview:confirmPwdNumEyeBtn];
     self.confirmPwdNumEyeBtn = confirmPwdNumEyeBtn;
     
-    UITextField* confirmNumTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:nil placeholderColor:nil textColor:UIColorFromRGB(@"#333333") backgroundColor:nil textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:nil keyboardType:0];
+    UITextField* confirmNumTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:nil placeholderColor:nil textColor:UIColorFromRGB(@"#333333") backgroundColor:nil textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:nil keyboardType:UIKeyboardTypeNumberPad];
     confirmNumTeF.secureTextEntry = YES;
     confirmNumTeF.delegate = self;
     [self.confirmPwdNumView addSubview:confirmNumTeF];
@@ -296,6 +296,7 @@
 }
 
 - (void)finishBtnClick{
+    
     //测试加载弹窗
     AlertView* alertV = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeLoadingAlert];
     [alertV alertViewShow];

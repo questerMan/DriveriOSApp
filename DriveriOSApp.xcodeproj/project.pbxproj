@@ -29,6 +29,10 @@
 		045E45A11E7147C200AD773A /* LXQMyMessageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E45A01E7147C200AD773A /* LXQMyMessageItem.m */; };
 		045E45A41E714A3500AD773A /* LXQHeadImgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E45A31E714A3500AD773A /* LXQHeadImgTableViewCell.m */; };
 		045E45A71E7244BB00AD773A /* LXQMyMessageGroupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E45A61E7244BB00AD773A /* LXQMyMessageGroupItem.m */; };
+		045E45AA1E7648C800AD773A /* LXQAccountSafeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E45A91E7648C700AD773A /* LXQAccountSafeViewController.m */; };
+		045E45AD1E767CAA00AD773A /* LXQChangePhoneNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E45AC1E767CAA00AD773A /* LXQChangePhoneNumViewController.m */; };
+		045E45B11E778E1300AD773A /* LXQConfirmPhoneNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E45B01E778E1300AD773A /* LXQConfirmPhoneNumViewController.m */; };
+		045E45B41E77CC2000AD773A /* LXQInputVerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E45B31E77CC2000AD773A /* LXQInputVerificationViewController.m */; };
 		04C1841E1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */; };
 		820555C11E00D30C0095BB47 /* PhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C01E00D30C0095BB47 /* PhoneNumber.m */; };
 		820555C41E00D33D0095BB47 /* ChangeNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C31E00D33D0095BB47 /* ChangeNumber.m */; };
@@ -352,6 +356,14 @@
 		045E45A31E714A3500AD773A /* LXQHeadImgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQHeadImgTableViewCell.m; path = DriveriOSApp/UI/LeftMenu/Controller/LeftMenuItem/MyMessage/LXQHeadImgTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		045E45A51E7244BB00AD773A /* LXQMyMessageGroupItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQMyMessageGroupItem.h; path = DriveriOSApp/UI/LeftMenu/Controller/LeftMenuItem/MyMessage/LXQMyMessageGroupItem.h; sourceTree = SOURCE_ROOT; };
 		045E45A61E7244BB00AD773A /* LXQMyMessageGroupItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQMyMessageGroupItem.m; path = DriveriOSApp/UI/LeftMenu/Controller/LeftMenuItem/MyMessage/LXQMyMessageGroupItem.m; sourceTree = SOURCE_ROOT; };
+		045E45A81E7648C700AD773A /* LXQAccountSafeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQAccountSafeViewController.h; sourceTree = "<group>"; };
+		045E45A91E7648C700AD773A /* LXQAccountSafeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQAccountSafeViewController.m; sourceTree = "<group>"; };
+		045E45AB1E767CAA00AD773A /* LXQChangePhoneNumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQChangePhoneNumViewController.h; sourceTree = "<group>"; };
+		045E45AC1E767CAA00AD773A /* LXQChangePhoneNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQChangePhoneNumViewController.m; sourceTree = "<group>"; };
+		045E45AF1E778E1300AD773A /* LXQConfirmPhoneNumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQConfirmPhoneNumViewController.h; sourceTree = "<group>"; };
+		045E45B01E778E1300AD773A /* LXQConfirmPhoneNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQConfirmPhoneNumViewController.m; sourceTree = "<group>"; };
+		045E45B21E77CC2000AD773A /* LXQInputVerificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQInputVerificationViewController.h; sourceTree = "<group>"; };
+		045E45B31E77CC2000AD773A /* LXQInputVerificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQInputVerificationViewController.m; sourceTree = "<group>"; };
 		04C1841A1E4BFFB500696D39 /* LXQAfterDrivingTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQAfterDrivingTipsView.h; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.h; sourceTree = SOURCE_ROOT; };
 		04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQAfterDrivingTipsView.m; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.m; sourceTree = SOURCE_ROOT; };
 		21F1B86AACBB7CF6E723DB76 /* Pods_DriveriOSApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveriOSApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -996,6 +1008,17 @@
 				045E459A1E70F8E500AD773A /* LXQReservationSetOutFailedAlertViewController.m */,
 			);
 			name = ReservationSetOutFailedAlert;
+			sourceTree = "<group>";
+		};
+		045E45AE1E77894B00AD773A /* changePhoneNumAlert */ = {
+			isa = PBXGroup;
+			children = (
+				045E45AF1E778E1300AD773A /* LXQConfirmPhoneNumViewController.h */,
+				045E45B01E778E1300AD773A /* LXQConfirmPhoneNumViewController.m */,
+				045E45B21E77CC2000AD773A /* LXQInputVerificationViewController.h */,
+				045E45B31E77CC2000AD773A /* LXQInputVerificationViewController.m */,
+			);
+			name = changePhoneNumAlert;
 			sourceTree = "<group>";
 		};
 		776A8E4F0C4A409C901C8D0D /* Pods */ = {
@@ -2184,6 +2207,10 @@
 			children = (
 				82D4B00B1DEBBAA900FDA730 /* MyMessage.h */,
 				82D4B00C1DEBBAA900FDA730 /* MyMessage.m */,
+				045E45A81E7648C700AD773A /* LXQAccountSafeViewController.h */,
+				045E45A91E7648C700AD773A /* LXQAccountSafeViewController.m */,
+				045E45AB1E767CAA00AD773A /* LXQChangePhoneNumViewController.h */,
+				045E45AC1E767CAA00AD773A /* LXQChangePhoneNumViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2225,6 +2252,7 @@
 		82D4B01F1DEBCDB500FDA730 /* AlertViewController */ = {
 			isa = PBXGroup;
 			children = (
+				045E45AE1E77894B00AD773A /* changePhoneNumAlert */,
 				045E45981E70F79700AD773A /* ReservationSetOutFailedAlert */,
 				04513DEF1E67FB1800E84DDC /* RobIndentAlert */,
 				0400509C1E641B8100448108 /* reassignmentIndentAlert */,
@@ -2786,6 +2814,7 @@
 				82AF40711DE92477001F0066 /* EaseUserCell.m in Sources */,
 				82AF40131DE92477001F0066 /* EMAudioRecorderUtil.m in Sources */,
 				827193F11DF06E6B00327ACB /* UIView+MJExtension.m in Sources */,
+				045E45AD1E767CAA00AD773A /* LXQChangePhoneNumViewController.m in Sources */,
 				82D4B0251DEBCDB500FDA730 /* UIView+Frame.m in Sources */,
 				827193901DF0629300327ACB /* AMPublicTools.m in Sources */,
 				82A9DF701DFD228E00B495FD /* MyIndent.m in Sources */,
@@ -2827,6 +2856,7 @@
 				82AF407A1DE92477001F0066 /* EaseBubbleView+Text.m in Sources */,
 				82AF40801DE92477001F0066 /* EaseImageView.m in Sources */,
 				82E11E971DED58B200FED9C0 /* IndentPublicViewTools.m in Sources */,
+				045E45B41E77CC2000AD773A /* LXQInputVerificationViewController.m in Sources */,
 				82AF40731DE92477001F0066 /* EaseCustomMessageCell.m in Sources */,
 				82DBFAB51DFFA75B00CBE7C3 /* LoadAlert.m in Sources */,
 				82DBFAB21DFFA74B00CBE7C3 /* CodeAlert.m in Sources */,
@@ -2850,6 +2880,7 @@
 				827193E71DF06E6B00327ACB /* MJRefreshBackGifFooter.m in Sources */,
 				82E11E7F1DED2C6400FED9C0 /* InstantHeadView.m in Sources */,
 				82AF403A1DE92477001F0066 /* MWZoomingScrollView.m in Sources */,
+				045E45B11E778E1300AD773A /* LXQConfirmPhoneNumViewController.m in Sources */,
 				82620A6E1E1CEF1300219C5D /* UserAnnotationView.m in Sources */,
 				82AF405F1DE92477001F0066 /* NSDateFormatter+Category.m in Sources */,
 				82EAADC11E08DFA600BE8434 /* LXCommonUtility.m in Sources */,
@@ -2861,6 +2892,7 @@
 				82AF40741DE92477001F0066 /* EaseMessageCell.m in Sources */,
 				82620A6B1E1CEEEF00219C5D /* UserCalloutView.m in Sources */,
 				82AF405C1DE92477001F0066 /* EaseMessageModel.m in Sources */,
+				045E45AA1E7648C800AD773A /* LXQAccountSafeViewController.m in Sources */,
 				82E11E7E1DED2C6400FED9C0 /* Indent.m in Sources */,
 				82AF405A1DE92477001F0066 /* EaseSDKHelper.m in Sources */,
 				82EAADB81E08DAA600BE8434 /* LXObj.m in Sources */,
