@@ -23,7 +23,7 @@
 #import "LXQRobIndentAlertSuccessedViewController.h"
 #import "LXQRobIndentAlertFailedViewController.h"
 #import "LXQReservationSetOutFailedAlertViewController.h"
-#import "LXQInputVerificationViewController.h"
+#import "LXQSucceedChangeViewController.h"
 @interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate,LimitLoginAlertDelegate>
 
 @property (nonatomic,strong) UIView *bgView;
@@ -66,7 +66,7 @@
 
 @property (nonatomic, strong) LXQReservationSetOutFailedAlertViewController *setOutFailedAlertViewController;
 
-@property (nonatomic, strong) LXQInputVerificationViewController *inputVerificationViewController;
+@property (nonatomic, strong) LXQSucceedChangeViewController *succeedChangeViewController;
 
 @end
 
@@ -233,6 +233,13 @@
     return _inputVerificationViewController;
 }
 
+- (LXQSucceedChangeViewController *)succeedChangeViewController{
+    if (!_succeedChangeViewController) {
+        _succeedChangeViewController = [[LXQSucceedChangeViewController alloc] init];
+    }
+    return _succeedChangeViewController;
+}
+
 //直接调用该方法一般用于固定 view 的展示
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
     
@@ -307,7 +314,7 @@
                 break;
             case AlertViewTypeLoadingAlert:
                 [self isCloseWithTap:NO];
-                
+                [self isCreatTimerWithTimeInterval:1.5];
                 break;
             case AlertViewTypePassengerGetOnAlert:
                 [self isCloseWithTap:NO];
@@ -343,6 +350,10 @@
             case AlertViewTypeInputVerificationAlert:
                 [self isCloseWithTap:NO];
                 break;
+            case AlertViewTypeSucceedChangeAlert:
+                [self isCloseWithTap:NO];
+                [self isCreatTimerWithTimeInterval:3];
+                break;
             default:
                 break;
         }
@@ -351,6 +362,7 @@
     
     return self;
 }
+
 #pragma mark - 添加背景膜层，是否需要点击模糊层关闭弹出框:YES为可以点击模糊层关闭alertView
 -(void)isCloseWithTap:(BOOL)isClose{
     
@@ -373,10 +385,12 @@
     [self alertViewClose];
     
 }
+
 -(void)isCreatTimerWithTimeInterval:(NSTimeInterval)timeInterval{
     //不重复，只调用一次。timer运行一次就会自动停止运行
     self.timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(scrollTimer) userInfo:nil repeats:NO];
 }
+
 -(void)scrollTimer{
     [self alertViewClose];
     //关闭定时器
@@ -471,7 +485,6 @@
             make.right.equalTo(self).offset(-MATCHSIZE(26));
             make.bottom.equalTo(self).offset(-MATCHSIZE(74));
         }];
-        
     }else if (_addAlertViewType == AlertViewTypeLimitLoginAlert){
         [self initAlertViewWithViewController:self.limitLoginAlert];
         self.alertView.frame = CGRectMake(MATCHSIZE(130), MATCHSIZE(400), SCREEN_W - MATCHSIZE(260), MATCHSIZE(370));
@@ -573,28 +586,36 @@
             make.width.offset(MATCHSIZE(350));
             make.height.offset(MATCHSIZE(200));
         }];
+        
     }else if (_addAlertViewType == AlertViewTypeConfirmPhoneNumAlert){
         [self initAlertViewWithViewController:self.confirmPhoneNumViewController];
         __weak typeof(self) weakSelf = self;
         self.confirmPhoneNumViewController.cancelBtnClick = ^{[weakSelf alertViewCloseWithBlock:nil];};
-
         [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.offset(0);
-            make.centerY.offset(0);
+            make.top.offset(MATCHSIZE(350));
             make.width.offset(MATCHSIZE(447));
             make.height.offset(MATCHSIZE(316));
         }];
+        
     }else if (_addAlertViewType == AlertViewTypeInputVerificationAlert){
+        
         [self initAlertViewWithViewController:self.inputVerificationViewController];
-        __weak typeof (self) weakSelf = self;
-        self.inputVerificationViewController.fourthNumJump = ^{
-            [weakSelf alertViewCloseWithBlock:nil];
-        };
         [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.offset(0);
-            make.centerY.offset(0);
+            make.top.offset(MATCHSIZE(350));
             make.width.offset(MATCHSIZE(398));
             make.height.offset(MATCHSIZE(280));
+        }];
+        
+    }else if (_addAlertViewType == AlertViewTypeSucceedChangeAlert){
+        
+        [self initAlertViewWithViewController:self.succeedChangeViewController];
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.offset(0);
+            make.top.offset(MATCHSIZE(400));
+            make.width.offset(MATCHSIZE(400));
+            make.height.offset(MATCHSIZE(246));
         }];
     }
 }
@@ -616,7 +637,6 @@
         //计算文字高度
         self.centerAlertInfo.contentLabel.text = title;
         self.centerAlertInfo.contentLabel.textColor = textColor;
-    
     }
 }
 
@@ -634,6 +654,7 @@
 -(void)alertViewCloseWithBlock:(void (^) ())block{
     [self alertViewClose];
 }
+
 -(void)alertViewClose{
     [UIView animateWithDuration:0.5 animations:^{
         self.alertView.alpha = 0;
@@ -672,7 +693,5 @@
         }
     }];
 }
-
-
 
 @end

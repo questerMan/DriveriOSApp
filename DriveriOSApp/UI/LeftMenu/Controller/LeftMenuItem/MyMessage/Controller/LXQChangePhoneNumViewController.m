@@ -115,13 +115,26 @@
 }
 
 - (void)nextBtnClick{
+    
     AlertView* alertV = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeConfirmPhoneNumAlert];
     __weak typeof(AlertView*) weakSelf = alertV;
     alertV.confirmPhoneNumViewController.confirmBtnClick = ^{
         [weakSelf alertViewCloseWithBlock:nil];
-        AlertView* alertView = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeInputVerificationAlert];
         
-        [alertView alertViewShow];
+        AlertView* alertV2 = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeInputVerificationAlert];
+        __weak typeof(AlertView*) weakSelf = alertV2;
+        alertV2.inputVerificationViewController.fourthNumJump = ^{
+            [weakSelf alertViewCloseWithBlock:nil];
+            
+            AlertView* alertV3 = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeLoadingAlert];
+            [alertV3 alertViewShow];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                AlertView* alertV4 = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeSucceedChangeAlert];
+                [alertV4 alertViewShow];
+            });
+        };
+        [alertV2 alertViewShow];
     };
     [alertV alertViewShow];
     [self.numTeF resignFirstResponder];

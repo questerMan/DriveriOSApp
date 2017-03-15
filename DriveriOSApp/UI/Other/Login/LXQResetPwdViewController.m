@@ -298,12 +298,7 @@
 - (void)finishBtnClick{
     
     //测试加载弹窗
-    AlertView* alertV = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeLoadingAlert];
-    [alertV alertViewShow];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [alertV alertViewCloseWithBlock:nil];
-    });
+ 
 }
 
 @end
