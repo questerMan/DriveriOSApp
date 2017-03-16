@@ -55,6 +55,7 @@ static NSString* myMessage = @"myMessage";
     self.title = @"账号安全";
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return_"] style:0 target:self action:@selector(leftBtnClick)];
+    self.navigationItem.leftBarButtonItem.tintColor = COLOR(154, 151, 151, 1);
 }
 
 - (void)leftBtnClick{

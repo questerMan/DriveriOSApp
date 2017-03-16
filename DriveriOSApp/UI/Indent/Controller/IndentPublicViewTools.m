@@ -12,9 +12,12 @@
 #import "LXQDestinationTipsView.h"
 #import "LXQDisposingLoadAlertViewController.h"
 #import "LXQFinalSettlementViewController.h"
+
 static NSTimeInterval acceptIndentCount;
 
 @interface IndentPublicViewTools()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic, strong) UIImageView* searchImg;
+
 @property (nonatomic, strong) NetWorkingManage *netWorkingManage;
 
 @property (nonatomic, weak) NSTimer* acceptIndentTimer;
@@ -78,19 +81,30 @@ static NSTimeInterval acceptIndentCount;
     return _arrayData;
 }
 
+- (UIImageView *)searchImg{
+    if (!_searchImg) {
+        _searchImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"搜索"]];
+        _searchImg.frame = CGRectMake(MATCHSIZE(180), MATCHSIZE(25), MATCHSIZE(30), MATCHSIZE(30));
+    }
+    return _searchImg;
+}
+
 -(UITextField *)seachTextF{
     if (!_seachTextF) {
         _seachTextF = [[UITextField alloc] init];
         _seachTextF.delegate = self;
         _seachTextF.text = nil;
-        _seachTextF.frame = CGRectMake(MATCHSIZE(60), MATCHSIZE(100), SCREEN_W - MATCHSIZE(120), MATCHSIZE(60));
+        _seachTextF.frame = CGRectMake(MATCHSIZE(20), MATCHSIZE(100), SCREEN_W - MATCHSIZE(20) * 2, MATCHSIZE(80));
         _seachTextF.placeholder = @"查询地点、公交、地铁";
-        [_seachTextF setValue:[UIColor orangeColor] forKeyPath:@"_placeholderLabel.textColor"];//修改颜色
+        [_seachTextF setValue:UIColorFromRGB(@"#acabab") forKeyPath:@"_placeholderLabel.textColor"];//修改颜色
         _seachTextF.textAlignment = NSTextAlignmentCenter;
-        _seachTextF.textColor = [UIColor orangeColor];
-        _seachTextF.backgroundColor = [UIColor whiteColor];
-        _seachTextF.layer.cornerRadius = MATCHSIZE(5);
-        _seachTextF.layer.masksToBounds = YES;
+        _seachTextF.font = [UIFont systemFontOfSize:MATCHSIZE(26)];
+        _seachTextF.textColor = UIColorFromRGB(@"#ff6d00");
+        _seachTextF.backgroundColor = UIColorFromRGB(@"#f0f0f0");
+        _seachTextF.layer.cornerRadius = MATCHSIZE(10);
+        _seachTextF.layer.shadowColor = UIColorFromRGB(@"#c7c7c7").CGColor;
+        _seachTextF.layer.shadowOffset = CGSizeMake(0, 0);
+        _seachTextF.layer.shadowOpacity = 1;
         _seachTextF.hidden = YES;
 
     }
@@ -225,7 +239,6 @@ static NSTimeInterval acceptIndentCount;
     if (!_recevingIndentView) {
         
         _recevingIndentView = [[LXQRecevingIndentView alloc] initWithFrame:CGRectMake(MATCHSIZE(26), MATCHSIZE(90), SCREEN_W - 2 * MATCHSIZE(26), MATCHSIZE(242))];
-//        _recevingIndentView.backgroundColor = COLOR(1, 1, 1, 1);
         _recevingIndentView.hidden = YES;
     }
     return _recevingIndentView;
@@ -296,6 +309,7 @@ static NSTimeInterval acceptIndentCount;
 - (void)addWaitIndentWithIndent:(UIViewController *)indent{
     
     [indent.view addSubview:self.seachTextF];
+    [self.seachTextF addSubview:self.searchImg];
     
     //创建导航按钮
     [indent.view addSubview:self.startNavigation];
@@ -696,7 +710,7 @@ static NSTimeInterval acceptIndentCount;
             //显示
             [self addInstantIndentWithIndent:indent];
             [self showInstantIndentAllView];
-//            [self loadInstantIndentView]; //加载即时单控件
+            
             //非正确监听位置
             self.indentController.map.MapIndentState = MapIndentStateWaitingList;
             //隐藏
@@ -735,7 +749,6 @@ static NSTimeInterval acceptIndentCount;
     }];
 }
 
-
 - (void)changeMapStateWithMapIndentState: (MapIndentState)mapIndentState{
     
     [self hideIndentClassAndMapStateChange];
@@ -750,12 +763,17 @@ static NSTimeInterval acceptIndentCount;
             break;
             
         case MapIndentStateWaitingList://待接单
+            
+            //隐藏
+            [self hideDrivingTipsView];
             [self hideRecevingIndentView];
             break;
             
         case MapIndentStateHaveIndent://已接单
             [self showSetOutBtn];
             [self showReservationIndentAllView];
+            //隐藏
+            [self hideDrivingTipsView];
             break;
             
         case MapIndentStateGoToPoint://去上车点
@@ -765,6 +783,8 @@ static NSTimeInterval acceptIndentCount;
           
             //显示导航/去目的地按钮
             [self showNavigationBtnAndDetermineBtn];
+            //隐藏
+            [self hideDrivingTipsView];
             
             break;
             
@@ -789,6 +809,8 @@ static NSTimeInterval acceptIndentCount;
             [self showRecevingIndentView];
             [self showNavigationBtnAndGetToPointBtn];
             [self showDestinationTipsView];
+            //隐藏
+            [self hideDrivingTipsView];
             break;
             
         case MapIndentStateForSettlement://待结算
@@ -815,9 +837,7 @@ static NSTimeInterval acceptIndentCount;
     //接单乘客信息栏
     [_indentController.view addSubview: self.recevingIndentView];
     //上车点按钮确认
-    [[self.determinedBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        [self changeMapStateWithMapIndentState:MapIndentStateWaitingPassengers];
-    }];
+    [self.determinedBtn addTarget:self action:@selector(determinedBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.indentController.view addSubview:self.determinedBtn];
     
     //标题修改
@@ -827,6 +847,10 @@ static NSTimeInterval acceptIndentCount;
     self.recevingIndentView.hidenView = self.recevingIndentView.bCarView;
     self.recevingIndentView.scalingBtn.selected = !self.recevingIndentView.scalingBtn.selected;
     [self.recevingIndentView scalingBtnClick:self.recevingIndentView.scalingBtn];
+}
+
+- (void)determinedBtnClick{
+    [self changeMapStateWithMapIndentState:MapIndentStateWaitingPassengers];
 }
 
 //免费or收费等候乘客上车
@@ -856,7 +880,7 @@ static NSTimeInterval acceptIndentCount;
         };
         
         [self.passengerGetOnAlert alertViewShow];
-
+        
     }];
     [_indentController.view addSubview:self.passengerGetOn];
     //标题修改
@@ -950,7 +974,6 @@ static NSTimeInterval acceptIndentCount;
     [self hideNavigationBtnAndDetermineBtn];
     [self hidePassengerGetOnBtn];
     [self hideSetOutBtn];
-    [self hideDrivingTipsView];
     [self hideNavigationBtnAndGetToPointBtn];
     [self hideDestinationTipsView];
 }
@@ -995,11 +1018,20 @@ static NSTimeInterval acceptIndentCount;
 //等车弹窗提示显示
 - (void)showDrivingTipsView{
     self.drivingTipsView.hidden = NO;
+
+    if (self.drivingTipsView.showTipsView) {
+        self.drivingTipsView.showTipsView();
+    }
+    
     
 }
 //等车弹窗提示隐藏
 - (void)hideDrivingTipsView{
     self.drivingTipsView.hidden = YES;
+  
+    if (self.drivingTipsView.hideTipsView) {
+        self.drivingTipsView.hideTipsView();
+    }
 }
 
 //从用户位置到用户目的地

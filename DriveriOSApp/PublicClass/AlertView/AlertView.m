@@ -541,6 +541,7 @@
             make.height.offset(MATCHSIZE(300));
         }];
     }else if (_addAlertViewType == AlertViewTypeSquareLodingAlert){
+        
         [self initAlertViewWithViewController:self.squareLodingAlertViewController];
         [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.offset(0);
@@ -579,6 +580,7 @@
             make.height.offset(MATCHSIZE(300));
         }];
     }else if (_addAlertViewType == AlertViewTypeReservationSetOutFailedAlert){
+        
         [self initAlertViewWithViewController:self.setOutFailedAlertViewController];
         [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.offset(0);
@@ -588,6 +590,7 @@
         }];
         
     }else if (_addAlertViewType == AlertViewTypeConfirmPhoneNumAlert){
+        
         [self initAlertViewWithViewController:self.confirmPhoneNumViewController];
         __weak typeof(self) weakSelf = self;
         self.confirmPhoneNumViewController.cancelBtnClick = ^{[weakSelf alertViewCloseWithBlock:nil];};

@@ -8,7 +8,7 @@
 
 #import "LXQAfterDrivingTipsView.h"
 
-static NSTimeInterval countTime = 240;
+static NSTimeInterval countTime = 300;
 
 @interface LXQAfterDrivingTipsView()
 
@@ -35,6 +35,16 @@ static NSTimeInterval countTime = 240;
 
 /** 倒计时定时器 */
 @property (nonatomic, weak) NSTimer *countTimer;
+//同步锁
+@property (nonatomic, strong) id token;
+
+/** 分钟 */
+@property (nonatomic, assign) NSTimeInterval minute;
+
+/** 秒 */
+@property (nonatomic, assign) NSTimeInterval second;
+
+@property (nonatomic, assign) BOOL isFireTimer;
 
 @end
 
@@ -44,8 +54,32 @@ static NSTimeInterval countTime = 240;
 {
     if (self = [super initWithFrame:frame]) {
         [self creatUI];
+        [self setShowAndHideBlock];
     }
     return self;
+}
+
+- (void)setShowAndHideBlock{
+    __weak typeof(self)weakSelf = self;
+    self.showTipsView = ^{
+        @synchronized (weakSelf.token) {
+            if (weakSelf.isFireTimer == NO) {
+                weakSelf.minute = countTime / 60;
+                weakSelf.second = (int)countTime % 60;
+                
+                [weakSelf.countTimer fire];
+                
+                weakSelf.isFireTimer = YES;
+            }
+        }
+    };
+    
+    self.hideTipsView = ^{
+        if (weakSelf.isFireTimer == YES) {
+            [weakSelf.countTimer invalidate];
+            weakSelf.isFireTimer = NO;
+        }
+    };
 }
 
 -(void)creatUI{
@@ -93,22 +127,25 @@ static NSTimeInterval countTime = 240;
     [waitLabelBg addSubview:countLabel];
     self.countLabel = countLabel;
     
-    [self.countTimer fire];
+    
 }
 
 - (NSTimer *)countTimer
 {
     if (! _countTimer) {
-        NSTimer* countTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
             
-            countTime --;
-            NSTimeInterval minute = countTime/60;
-            NSTimeInterval second = (int)countTime%60;
-            
-//            NSLog(@"%.0f,%.0f",hour,minute);
-            if (countTime >= 0) {
-                self.countLabel.text = [NSString stringWithFormat:@"0%.0f:%.0f分",minute,second];
-                if (countTime <= 10) {
+            // 减一秒
+            self.second--;
+            // 判断秒数
+            if (self.second == -1) {
+                self.second = 59;
+                self.minute--;
+            }
+
+            if (self.minute >= 0 && self.second >= 0) {
+                self.countLabel.text = [NSString stringWithFormat:@"0%.0f:%.0f分",self.minute,self.second];
+                if (self.second <= 10 && self.minute <= 0) {
                     self.waitLabel.text = @"计费等候";
                     self.waitLabel.textColor = UIColorFromRGB(@"#ff0000");
                     self.countLabel.textColor = UIColorFromRGB(@"#ff0000");
@@ -122,7 +159,6 @@ static NSTimeInterval countTime = 240;
             else
             {
                 [timer invalidate];
-                countTime = 300;
             }
             _countTimer = timer;
         }];

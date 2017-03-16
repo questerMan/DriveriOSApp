@@ -10,6 +10,8 @@
 
 @interface LXQAfterDrivingTipsView : UIView
 
+@property(nonatomic, copy)void(^showTipsView)(void);
 
+@property(nonatomic, copy)void(^hideTipsView)(void);
 
 @end

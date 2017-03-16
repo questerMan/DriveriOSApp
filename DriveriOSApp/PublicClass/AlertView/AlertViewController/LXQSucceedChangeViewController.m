@@ -50,7 +50,7 @@
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleImg.mas_bottom).offset(MATCHSIZE(15));
         make.centerX.offset(0);
-        make.width.offset(MATCHSIZE(370));
+        make.width.offset(MATCHSIZE(375));
     }];
 }
 

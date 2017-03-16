@@ -66,10 +66,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"司机指南";
+    self.view.backgroundColor = UIColorFromRGB(@"#f0f0f0");
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return_"] style:0 target:self action:@selector(leftBtnClick)];
+    self.navigationItem.leftBarButtonItem.tintColor = COLOR(154, 151, 151, 1);
     
     [self creatTableView];
     
 }
+
+- (void)leftBtnClick{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 -(void)creatTableView{
     [self.view addSubview:self.tableView];
 }

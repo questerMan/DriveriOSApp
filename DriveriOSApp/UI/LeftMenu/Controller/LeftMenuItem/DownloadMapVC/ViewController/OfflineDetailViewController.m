@@ -675,6 +675,8 @@ NSString const *DownloadStageInfoKey2      = @"DownloadStageInfoKey";
 - (void)initNavigationBar
 {
     
+    self.title = @"离线地图";
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Pause"] style:UIBarButtonItemStyleBordered target:self action:@selector(cancelAllAction)];
 }
 
@@ -788,7 +790,8 @@ NSString const *DownloadStageInfoKey2      = @"DownloadStageInfoKey";
     [self changeNavigation];
     
     //创建左上角返回按钮
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(leftOnclick)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return_"] style:UIBarButtonItemStyleDone target:self action:@selector(leftOnclick)];
+    self.navigationItem.leftBarButtonItem.tintColor = COLOR(154, 151, 151, 1);
     
 }
 

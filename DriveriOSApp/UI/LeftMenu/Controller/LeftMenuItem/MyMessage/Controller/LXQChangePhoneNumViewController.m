@@ -105,7 +105,7 @@
     
     self.title = @"更换手机号";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:0 target:self action:@selector(leftBtnClick)];
-    self.navigationItem.leftBarButtonItem.tintColor = UIColorFromRGB(@"#333333");
+    self.navigationItem.leftBarButtonItem.tintColor = UIColorFromRGB(@"#aba9a9");
     
     UIBarButtonItem* nextItem = [[UIBarButtonItem alloc] initWithTitle:@"下一步" style:0 target:self action:@selector(nextBtnClick)];
     nextItem.tintColor = UIColorFromRGB(@"#cccccc");

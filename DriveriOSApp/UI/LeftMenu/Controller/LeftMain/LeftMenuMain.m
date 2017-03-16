@@ -9,7 +9,7 @@
 #import "LeftMenuMain.h"
 #import "LeftMainHeadView.h"
 #import "LeftMainItemCell.h"
-
+#import "LXQFeedbackViewController.h"
 @interface LeftMenuMain ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -53,7 +53,7 @@
 }
 -(void)loadData{
     
-    [self.arrayData addObjectsFromArray:@[@"我的订单",@"消息通知",@"司机指南",@"离线地图",@"客服热线"]];
+    [self.arrayData addObjectsFromArray:@[@"我的订单",@"司机指南",@"离线地图",@"意见反馈",@"客服热线"]];
 
     [self.arrayItemIMG addObjectsFromArray:@[@"orders",@"guide",@"map",@"feedback",@"hot-line"]];
 
@@ -178,14 +178,14 @@
 //点击cell
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    UINavigationController *myIndentNac = [[UINavigationController alloc] initWithRootViewController:[[MyIndent alloc] init]];
+    
+    UINavigationController *driverGuideNac = [[UINavigationController alloc] initWithRootViewController:[[DriverGuide alloc] init]];
     
     UINavigationController *offlineNac = [[UINavigationController alloc] initWithRootViewController:[[OfflineDetailViewController alloc] init]];
 
-    UINavigationController *myIndentNac = [[UINavigationController alloc] initWithRootViewController:[[MyIndent alloc] init]];
-    
-    UINavigationController *notifyNac = [[UINavigationController alloc] initWithRootViewController:[[Notify alloc] init]];
+    UINavigationController *feedback = [[UINavigationController alloc] initWithRootViewController:[[LXQFeedbackViewController alloc] init]];
 
-    UINavigationController *driverGuideNac = [[UINavigationController alloc] initWithRootViewController:[[DriverGuide alloc] init]];
     
     switch (indexPath.row) {
     
@@ -193,32 +193,22 @@
             [self presentFromViewController:self andToViewController:myIndentNac andAnimated:YES];
             break;
         case 1:
-            [self presentFromViewController:self andToViewController:notifyNac andAnimated:YES];
+            [self presentFromViewController:self andToViewController:driverGuideNac andAnimated:YES];
             break;
             
         case 2:
-            [self presentFromViewController:self andToViewController:driverGuideNac andAnimated:YES];
-            break;
-        case 3:
             [self presentFromViewController:self andToViewController:offlineNac andAnimated:YES];
             break;
+        case 3:
+            [self presentFromViewController:self andToViewController:feedback andAnimated:YES];
+            break;
         case 4:
-            NSLog(@"-------------4");
             
             break;
             
         default:
             break;
     }
-    
-   //测试**********
-    if (indexPath.row == 4) {
-        
-        AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeInstantIndentCommingAlert];
-        [alert alertViewShow];
-        
-    }
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 @end

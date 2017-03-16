@@ -84,6 +84,7 @@ static NSString* myMessage = @"myMessage";
     [self changeNavigation];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return_"] style:0 target:self action:@selector(leftBarButtonClick)];
+    self.navigationItem.leftBarButtonItem.tintColor = COLOR(154, 151, 151, 1);
 }
 
 - (void)leftBarButtonClick{
@@ -106,7 +107,7 @@ static NSString* myMessage = @"myMessage";
 -(void)initData{
     
     self.view.backgroundColor = [UIColor blackColor];
-    self.title = @"我的";
+    
 }
 
 -(void)creatUI{
