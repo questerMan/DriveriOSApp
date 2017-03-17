@@ -29,7 +29,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 @property (retain, nonatomic) MAPointAnnotation *pointAnnotation;
 @property (nonatomic, strong) UserPointAnnotation *userPointAnnotation;
 
-
 @property (nonatomic, strong) UIImageView *centerLocationIMG;
 
 //搜索
@@ -56,6 +55,7 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 
 -(MAMapView *)mapView{
     if (!_mapView) {
+        
         _mapView = [[MAMapView alloc] initWithFrame:self.bounds];
         _mapView.delegate = self;
        

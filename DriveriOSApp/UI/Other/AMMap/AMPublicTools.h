@@ -57,7 +57,7 @@ typedef void (^OnReGeocodeSearchBlock) (id request, id response, NSError *error)
  * @param coordinate  经纬度
  *
  */
-+(void)addPointAnnocationWithMap:(MAMapView *)mapView
++ (void)addPointAnnocationWithMap:(MAMapView *)mapView
                       Coordinate:(CLLocationCoordinate2D)coordinate;
 /**
  *   绘制路径

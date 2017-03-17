@@ -85,6 +85,7 @@
     
     UITextField* phoneNumTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:nil placeholderColor:nil textColor:UIColorFromRGB(@"#333333") backgroundColor:nil textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:nil keyboardType:UIKeyboardTypeNumberPad];
     phoneNumTeF.delegate = self;
+    phoneNumTeF.tintColor = UIColorFromRGB(@"#ff6d00");
     [self.phoneNumView addSubview:phoneNumTeF];
     self.phoneNumTeF = phoneNumTeF;
     
@@ -112,6 +113,7 @@
     UITextField* pwdNumTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:nil placeholderColor:nil textColor:UIColorFromRGB(@"#333333") backgroundColor:nil textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:nil keyboardType:UIKeyboardTypeNumberPad];
     pwdNumTeF.secureTextEntry = YES;
     pwdNumTeF.delegate = self;
+    pwdNumTeF.tintColor = UIColorFromRGB(@"#ff6d00");
     [self.pwdNumView addSubview:pwdNumTeF];
     self.pwdNumTeF = pwdNumTeF;
     
@@ -134,6 +136,7 @@
     UITextField* confirmNumTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:nil placeholderColor:nil textColor:UIColorFromRGB(@"#333333") backgroundColor:nil textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:nil keyboardType:UIKeyboardTypeNumberPad];
     confirmNumTeF.secureTextEntry = YES;
     confirmNumTeF.delegate = self;
+    confirmNumTeF.tintColor = UIColorFromRGB(@"#ff6d00");
     [self.confirmPwdNumView addSubview:confirmNumTeF];
     self.confirmNumTeF = confirmNumTeF;
 }

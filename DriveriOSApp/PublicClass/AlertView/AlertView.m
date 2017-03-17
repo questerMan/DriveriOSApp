@@ -24,6 +24,7 @@
 #import "LXQRobIndentAlertFailedViewController.h"
 #import "LXQReservationSetOutFailedAlertViewController.h"
 #import "LXQSucceedChangeViewController.h"
+#import "LXQFeedbackSucceedAlertViewController.h"
 @interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate,LimitLoginAlertDelegate>
 
 @property (nonatomic,strong) UIView *bgView;
@@ -67,6 +68,10 @@
 @property (nonatomic, strong) LXQReservationSetOutFailedAlertViewController *setOutFailedAlertViewController;
 
 @property (nonatomic, strong) LXQSucceedChangeViewController *succeedChangeViewController;
+
+@property (nonatomic, strong) LXQFeedbackSucceedAlertViewController *feedbackSucceedAlertViewController;
+
+@property (nonatomic, strong) UIButton *feedbackViewAlertBtn;
 
 @end
 
@@ -240,6 +245,22 @@
     return _succeedChangeViewController;
 }
 
+- (LXQFeedbackSucceedAlertViewController *)feedbackSucceedAlertViewController{
+    if (!_feedbackSucceedAlertViewController) {
+        _feedbackSucceedAlertViewController = [[LXQFeedbackSucceedAlertViewController alloc] init];
+    }
+    return _feedbackSucceedAlertViewController;
+}
+
+- (UIButton *)feedbackViewAlertBtn{
+    if (!_feedbackViewAlertBtn) {
+        _feedbackViewAlertBtn = [UIButton buttonWithType:0];
+        [_feedbackViewAlertBtn setImage:[UIImage imageNamed:@"call-off"] forState:0];
+        [_feedbackViewAlertBtn addTarget:self action:@selector(feedbackViewAlertClick) forControlEvents:1<<6];
+    }
+    return _feedbackViewAlertBtn;
+}
+
 //直接调用该方法一般用于固定 view 的展示
 -(instancetype)initWithFrame:(CGRect)frame AndAddAlertViewType:(AlertViewType)alertViewType{
     
@@ -353,6 +374,10 @@
             case AlertViewTypeSucceedChangeAlert:
                 [self isCloseWithTap:NO];
                 [self isCreatTimerWithTimeInterval:3];
+                break;
+            case AlertViewTypeFeedbackSucceedAlert:
+                [self isCloseWithTap:NO];
+                
                 break;
             default:
                 break;
@@ -620,6 +645,21 @@
             make.width.offset(MATCHSIZE(400));
             make.height.offset(MATCHSIZE(246));
         }];
+    }else if (_addAlertViewType == AlertViewTypeFeedbackSucceedAlert){
+        
+        [self addSubview:self.feedbackViewAlertBtn];
+        [self.feedbackViewAlertBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.offset(MATCHSIZE(472));
+            make.right.offset(MATCHSIZE(-152));
+        }];
+        
+        [self initAlertViewWithViewController:self.feedbackSucceedAlertViewController];
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.offset(MATCHSIZE(164));
+            make.top.equalTo(self.feedbackViewAlertBtn.mas_bottom).offset(MATCHSIZE(5));
+            make.width.offset(MATCHSIZE(400));
+            make.height.offset(MATCHSIZE(300));
+        }];
     }
 }
 
@@ -647,6 +687,11 @@
     [self closeAlertView];
     [self.robIndentAlertViewController.robIndentTimer invalidate];
     self.robIndentAlertViewController.count = 10;
+}
+
+- (void)feedbackViewAlertClick{
+    
+    [self closeAlertView];
 }
 
 #pragma mark - phoneAlert/IndentAlertDelegate/DeleteIndentAlert代理

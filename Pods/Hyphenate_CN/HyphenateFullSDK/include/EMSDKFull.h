@@ -19,8 +19,8 @@
 
 #import "EMClient.h"
 #import "EMClientDelegate.h"
-#import "EMClient+Call.h"
 
+#import "EMClient+Call.h"
 #import "EMCallOptions.h"
 #import "EMCallSession.h"
 
@@ -30,7 +30,6 @@
 #import <Hyphenate_CN/EMClientDelegate.h>
 #import <Hyphenate_CN/EMClient+Call.h>
 
-#import <Hyphenate_CN/EMCallOptions.h>
 #import <Hyphenate_CN/EMCallSession.h>
 
 #endif

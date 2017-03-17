@@ -37,7 +37,8 @@ typedef enum {
     AlertViewTypeReservationSetOutFailedAlert,
     AlertViewTypeConfirmPhoneNumAlert,
     AlertViewTypeInputVerificationAlert,
-    AlertViewTypeSucceedChangeAlert
+    AlertViewTypeSucceedChangeAlert,
+    AlertViewTypeFeedbackSucceedAlert
 }AlertViewType;
 
 @property (nonatomic, assign) AlertViewType addAlertViewType;

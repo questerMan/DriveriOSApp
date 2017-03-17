@@ -35,6 +35,8 @@
 		045E45B41E77CC2000AD773A /* LXQInputVerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E45B31E77CC2000AD773A /* LXQInputVerificationViewController.m */; };
 		045E45B71E78EED400AD773A /* LXQSucceedChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E45B61E78EED300AD773A /* LXQSucceedChangeViewController.m */; };
 		045E45BB1E7A835400AD773A /* LXQFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E45BA1E7A835300AD773A /* LXQFeedbackViewController.m */; };
+		045E45BF1E7B6FFB00AD773A /* LXQFeedbackSucceedAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E45BE1E7B6FFB00AD773A /* LXQFeedbackSucceedAlertViewController.m */; };
+		045E45C31E7B8B8000AD773A /* LXQCustomerServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E45C21E7B8B8000AD773A /* LXQCustomerServiceViewController.m */; };
 		04C1841E1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */; };
 		820555C11E00D30C0095BB47 /* PhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C01E00D30C0095BB47 /* PhoneNumber.m */; };
 		820555C41E00D33D0095BB47 /* ChangeNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C31E00D33D0095BB47 /* ChangeNumber.m */; };
@@ -370,6 +372,10 @@
 		045E45B61E78EED300AD773A /* LXQSucceedChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQSucceedChangeViewController.m; sourceTree = "<group>"; };
 		045E45B91E7A835300AD773A /* LXQFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQFeedbackViewController.h; sourceTree = "<group>"; };
 		045E45BA1E7A835300AD773A /* LXQFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQFeedbackViewController.m; sourceTree = "<group>"; };
+		045E45BD1E7B6FFB00AD773A /* LXQFeedbackSucceedAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQFeedbackSucceedAlertViewController.h; sourceTree = "<group>"; };
+		045E45BE1E7B6FFB00AD773A /* LXQFeedbackSucceedAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQFeedbackSucceedAlertViewController.m; sourceTree = "<group>"; };
+		045E45C11E7B8B8000AD773A /* LXQCustomerServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQCustomerServiceViewController.h; sourceTree = "<group>"; };
+		045E45C21E7B8B8000AD773A /* LXQCustomerServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQCustomerServiceViewController.m; sourceTree = "<group>"; };
 		04C1841A1E4BFFB500696D39 /* LXQAfterDrivingTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXQAfterDrivingTipsView.h; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.h; sourceTree = SOURCE_ROOT; };
 		04C1841B1E4BFFB500696D39 /* LXQAfterDrivingTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXQAfterDrivingTipsView.m; path = DriveriOSApp/UI/Indent/LXQAfterDrivingTipsView.m; sourceTree = SOURCE_ROOT; };
 		21F1B86AACBB7CF6E723DB76 /* Pods_DriveriOSApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveriOSApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1038,6 +1044,24 @@
 			name = Feedback;
 			sourceTree = "<group>";
 		};
+		045E45BC1E7B6FC400AD773A /* FeedbackSucceedAlert */ = {
+			isa = PBXGroup;
+			children = (
+				045E45BD1E7B6FFB00AD773A /* LXQFeedbackSucceedAlertViewController.h */,
+				045E45BE1E7B6FFB00AD773A /* LXQFeedbackSucceedAlertViewController.m */,
+			);
+			name = FeedbackSucceedAlert;
+			sourceTree = "<group>";
+		};
+		045E45C01E7B8A9E00AD773A /* CustomerService */ = {
+			isa = PBXGroup;
+			children = (
+				045E45C11E7B8B8000AD773A /* LXQCustomerServiceViewController.h */,
+				045E45C21E7B8B8000AD773A /* LXQCustomerServiceViewController.m */,
+			);
+			name = CustomerService;
+			sourceTree = "<group>";
+		};
 		776A8E4F0C4A409C901C8D0D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1658,6 +1682,7 @@
 		82AF3EC81DE91354001F0066 /* LeftMenuItem */ = {
 			isa = PBXGroup;
 			children = (
+				045E45C01E7B8A9E00AD773A /* CustomerService */,
 				045E45B81E7A832100AD773A /* Feedback */,
 				828D7ECC1DFE90D4004F1BA5 /* DriverGuide */,
 				828D7EB51DFE302F004F1BA5 /* Notify */,
@@ -2270,6 +2295,7 @@
 		82D4B01F1DEBCDB500FDA730 /* AlertViewController */ = {
 			isa = PBXGroup;
 			children = (
+				045E45BC1E7B6FC400AD773A /* FeedbackSucceedAlert */,
 				045E45AE1E77894B00AD773A /* changePhoneNumAlert */,
 				045E45981E70F79700AD773A /* ReservationSetOutFailedAlert */,
 				04513DEF1E67FB1800E84DDC /* RobIndentAlert */,
@@ -2854,6 +2880,7 @@
 				82AF40541DE92477001F0066 /* PSTCollectionViewUpdateItem.m in Sources */,
 				045E45B71E78EED400AD773A /* LXQSucceedChangeViewController.m in Sources */,
 				82AF403D1DE92477001F0066 /* EMSDWebImageCompat.m in Sources */,
+				045E45BF1E7B6FFB00AD773A /* LXQFeedbackSucceedAlertViewController.m in Sources */,
 				82999EBC1E2DB0B100193FE1 /* NetWorkingManage.m in Sources */,
 				8241521C1DF5192800FAB385 /* AMNavigationMap.m in Sources */,
 				827193EE1DF06E6B00327ACB /* MJRefreshConst.m in Sources */,
@@ -2947,6 +2974,7 @@
 				82AF40511DE92477001F0066 /* PSTCollectionViewFlowLayout.m in Sources */,
 				827193E11DF06E6B00327ACB /* MJRefreshComponent.m in Sources */,
 				821ADD761DF80D8C00BB0CF8 /* ReservationCell.m in Sources */,
+				045E45C31E7B8B8000AD773A /* LXQCustomerServiceViewController.m in Sources */,
 				829546071E2385A7009D9C62 /* LimitLoginAlert.m in Sources */,
 				82AF40531DE92477001F0066 /* PSTCollectionViewLayout.m in Sources */,
 				82620A711E1CF01F00219C5D /* UserPointAnnotation.m in Sources */,

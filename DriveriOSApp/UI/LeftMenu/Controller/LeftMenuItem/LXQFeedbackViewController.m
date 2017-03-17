@@ -82,11 +82,19 @@
     
     UIButton *confirmBtn = [UIButton buttonWithType:0];
     [confirmBtn setAttributedTitle:[[NSAttributedString alloc] initWithString:@"提交" attributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],NSFontAttributeName : [UIFont systemFontOfSize:MATCHSIZE(32)]}] forState:0];
+    [confirmBtn addTarget:self action:@selector(confirmBtnClick) forControlEvents:1<<6];
     confirmBtn.backgroundColor = UIColorFromRGB(@"#e5e5e5");
     confirmBtn.layer.cornerRadius = MATCHSIZE(18);
     confirmBtn.layer.masksToBounds = YES;
+    confirmBtn.enabled = NO;
     [self.view addSubview:confirmBtn];
     self.confirmBtn = confirmBtn;
+}
+
+- (void)confirmBtnClick{
+    AlertView* alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeFeedbackSucceedAlert];
+    [alert alertViewShow];
+    [self.textView resignFirstResponder];
 }
 
 - (void)viewDidLayoutSubviews{
@@ -141,10 +149,12 @@
         
         self.placeHolderLabel.text = @"您的宝贵意见是我们努力奋斗的目标，感谢您的支持";
         self.confirmBtn.backgroundColor = UIColorFromRGB(@"#e5e5e5");
+        self.confirmBtn.enabled = NO;
     }else{
         
         self.placeHolderLabel.text = @"";//这里给空
         self.confirmBtn.backgroundColor = UIColorFromRGB(@"#ff6d00");
+        self.confirmBtn.enabled = YES;
     }
     
     //计算剩余字数   不需要的也可不写

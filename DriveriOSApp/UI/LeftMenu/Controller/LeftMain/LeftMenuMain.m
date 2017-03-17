@@ -10,6 +10,7 @@
 #import "LeftMainHeadView.h"
 #import "LeftMainItemCell.h"
 #import "LXQFeedbackViewController.h"
+#import "LXQCustomerServiceViewController.h"
 @interface LeftMenuMain ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -185,7 +186,8 @@
     UINavigationController *offlineNac = [[UINavigationController alloc] initWithRootViewController:[[OfflineDetailViewController alloc] init]];
 
     UINavigationController *feedback = [[UINavigationController alloc] initWithRootViewController:[[LXQFeedbackViewController alloc] init]];
-
+    
+    UINavigationController *customerService = [[UINavigationController alloc] initWithRootViewController:[[LXQCustomerServiceViewController alloc] init]];
     
     switch (indexPath.row) {
     
@@ -203,7 +205,7 @@
             [self presentFromViewController:self andToViewController:feedback andAnimated:YES];
             break;
         case 4:
-            
+            [self presentFromViewController:self andToViewController:customerService andAnimated:YES];
             break;
             
         default:

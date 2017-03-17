@@ -78,6 +78,7 @@
     
     UITextField* topUpTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:@"¥0.00" placeholderColor:UIColorFromRGB(@"#b3b3b3")  textColor:UIColorFromRGB(@"#ff6d00") backgroundColor:nil textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:nil keyboardType:UIKeyboardTypeNumberPad];
     topUpTeF.font = [UIFont systemFontOfSize:MATCHSIZE(40)];
+    topUpTeF.tintColor = UIColorFromRGB(@"#ff6d00");
     [middleView addSubview:topUpTeF];
     self.topUpTeF = topUpTeF;
     
@@ -86,8 +87,9 @@
     [middleView addSubview:downLineView];
     self.downLineView = downLineView;
     
-    UITextField* noteTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:@"添加备注(20字以内)" placeholderColor:UIColorFromRGB(@"#b3b3b3")  textColor:UIColorFromRGB(@"#000000") backgroundColor:nil textAlignment:NSTextAlignmentLeft cornerRadius:0 itemImage:nil keyboardType:0];
+    UITextField* noteTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:@"添加备注(20字以内)" placeholderColor:UIColorFromRGB(@"#b3b3b3")  textColor:UIColorFromRGB(@"#666666") backgroundColor:nil textAlignment:NSTextAlignmentLeft cornerRadius:0 itemImage:nil keyboardType:0];
     noteTeF.font = [UIFont systemFontOfSize:MATCHSIZE(24)];
+    noteTeF.tintColor = UIColorFromRGB(@"#ff6d00");
     [middleView addSubview:noteTeF];
     self.noteTeF = noteTeF;
     

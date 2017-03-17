@@ -61,6 +61,7 @@
     
     UITextField* numTeF = [FactoryClass textFieldWithFrame:CGRectZero placeholder:@"请输入手机号" placeholderColor:UIColorFromRGB(@"#cccccc") textColor:UIColorFromRGB(@"#333333") backgroundColor:nil textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:nil keyboardType:UIKeyboardTypeNumberPad];
     numTeF.delegate = self;
+    numTeF.tintColor = UIColorFromRGB(@"#ff6d00");
     [numBg addSubview:numTeF];
     self.numTeF = numTeF;
 }

@@ -41,6 +41,7 @@
     if (!_usersF) {
         _usersF = [FactoryClass textFieldWithFrame:CGRectMake(MATCHSIZE(60), MATCHSIZE(80), SCREEN_W - MATCHSIZE(340), MATCHSIZE(40)) placeholder:@"  " placeholderColor:[UIColor grayColor] textColor:[UIColor blackColor] backgroundColor:[UIColor whiteColor] textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:[UIImage imageNamed:@""] keyboardType:UIKeyboardTypeNumberPad];
         _usersF.tag = 1000;
+        _usersF.tintColor = UIColorFromRGB(@"#ff6d00");
     }
     return _usersF;
 }
@@ -50,6 +51,7 @@
         _passWordF = [FactoryClass textFieldWithFrame:CGRectMake(MATCHSIZE(60), MATCHSIZE(183), SCREEN_W - MATCHSIZE(340), MATCHSIZE(40)) placeholder:@"  " placeholderColor:[UIColor grayColor] textColor:[UIColor blackColor] backgroundColor:[UIColor whiteColor] textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:[UIImage imageNamed:@""] keyboardType:UIKeyboardTypeNumberPad];
         _passWordF.secureTextEntry = YES;
         _passWordF.tag = 1001;
+        _passWordF.tintColor = UIColorFromRGB(@"#ff6d00");
     }
     return _passWordF;
 }
@@ -58,6 +60,7 @@
     if (!_codeF) {
         _codeF = [FactoryClass textFieldWithFrame:CGRectMake(MATCHSIZE(60), MATCHSIZE(284), MATCHSIZE(180), MATCHSIZE(40)) placeholder:@"  " placeholderColor:[UIColor grayColor] textColor:[UIColor blackColor] backgroundColor:[UIColor whiteColor] textAlignment:NSTextAlignmentCenter cornerRadius:0 itemImage:[UIImage imageNamed:@""] keyboardType:UIKeyboardTypeNumberPad];
         _codeF.tag = 1002;
+        _codeF.tintColor = UIColorFromRGB(@"#ff6d00");
     }
     return _codeF;
 }
@@ -101,8 +104,6 @@
     }
     return _lookPassWordBtn;
 }
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
