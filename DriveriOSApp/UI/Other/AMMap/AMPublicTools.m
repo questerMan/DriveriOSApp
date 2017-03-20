@@ -38,7 +38,7 @@
 
 @implementation AMPublicTools
 
--(AMapLocationManager *)locationManager{//定位
+- (AMapLocationManager *)locationManager{//定位
     
     if (!_locationManager) {
         
@@ -50,21 +50,21 @@
     return _locationManager;
 }
 
--(MAPointAnnotation *)pointAnnotation{
+- (MAPointAnnotation *)pointAnnotation{
     if (!_pointAnnotation) {
         _pointAnnotation = [[MAPointAnnotation alloc] init];
     }
     return _pointAnnotation;
 }
 
--(RoutPointAnnotation *)startAnnotation{
+- (RoutPointAnnotation *)startAnnotation{
     if (!_startAnnotation) {
         _startAnnotation = [[RoutPointAnnotation alloc] init];
     }
     return _startAnnotation;
 }
 
--(RoutPointAnnotation *)endAnnotation{
+- (RoutPointAnnotation *)endAnnotation{
     if (!_endAnnotation) {
         _endAnnotation = [[RoutPointAnnotation alloc] init];
     }
