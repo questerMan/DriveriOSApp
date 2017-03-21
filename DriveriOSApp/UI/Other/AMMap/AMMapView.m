@@ -6,7 +6,6 @@
 //  Copyright © 2016年 陆遗坤. All rights reserved.
 //
 
-
 static const NSString *RoutePlanningViewControllerStartTitle       = @"起点";
 static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 
@@ -41,7 +40,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 /* 终点经纬度. */
 @property (nonatomic) CLLocationCoordinate2D destinationCoordinate;
 
-
 @property (nonatomic, strong) LXObjManage *objManage;
 //汽车
 @property (nonatomic, copy) NSArray *carAnnoArray;
@@ -53,7 +51,8 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 
 
 
--(MAMapView *)mapView{
+- (MAMapView *)mapView{
+    
     if (!_mapView) {
         
         _mapView = [[MAMapView alloc] initWithFrame:self.bounds];
@@ -99,6 +98,7 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
     }
     return _mapView;
 }
+
 -(UIImageView *)centerLocationIMG{
     if (!_centerLocationIMG) {
         UIImage *image = [UIImage imageNamed:@"map60"];
@@ -114,7 +114,7 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
     return _pointAnnotation;
 }
 
--(UserPointAnnotation *)userPointAnnotation{
+- (UserPointAnnotation *)userPointAnnotation{
     if (!_userPointAnnotation) {
         _userPointAnnotation = [[UserPointAnnotation alloc] init];
     }
@@ -146,9 +146,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
         [self creatCenterLocationIMG];
        
         [self location];
-
-
-      
     }
     return self;
 }
@@ -184,8 +181,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
     _carAnnoArray = currDrivers;
     
 }
-
-
 
 //创建地图
 -(void)creatMap{
@@ -241,8 +236,9 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
         
     }];
 }
+
 #pragma mark - 定位
--(void)location{
+- (void)location{
     __weak typeof(self) weakSelf = self;
     
     [self.tool locationWithLocationBlock:^(AMapLocationManager *manager, CLLocation *location, AMapLocationReGeocode *reGeocode) {
@@ -256,11 +252,9 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 
         //地图的缩放
         [strongSelf.mapView setZoomLevel:16.2 animated:YES];
-
+        
     }];
-    
 }
-
 
 /** -------------------------------------------------------- */
 /** -------------------MAMapViewDelegate-------------------- */
@@ -268,19 +262,19 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 
 - (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id <MAOverlay>)overlay
 {
-
+    
     if ([overlay isKindOfClass:[MAPolyline class]])
     {
+        
         MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:overlay];
         
         polylineRenderer.lineWidth    = 8.f;
-        polylineRenderer.strokeColor  = [[UIColor purpleColor]colorWithAlphaComponent:0.9];
+        polylineRenderer.strokeColor  = [UIColorFromRGB(@"#ff6d00") colorWithAlphaComponent:0.9];
         polylineRenderer.lineJoinType = kMALineJoinRound;
         polylineRenderer.lineCapType  = kMALineCapRound;
         
         return polylineRenderer;
     }
-    
     
     //热力图
     if ([overlay isKindOfClass:[MATileOverlay class]])
@@ -302,7 +296,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 - (void)mapView:(MAMapView *)mapView regionWillChangeAnimated:(BOOL)animated{
     
 }
-
 
 /**
  * @brief 地图区域改变完成后会调用此接口
@@ -326,7 +319,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
     if (mapView.annotations.count > 0) {
         [mapView removeAnnotation:self.userPointAnnotation];
     }
-    
 }
 
 
@@ -346,7 +338,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 //    dispatch_once(&onceToken, ^{
 //        [self.tool creatHotMapWittMapView:mapView];
 //    });
-    
 }
 
 /**
@@ -404,6 +395,7 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
         return annotationView;
         
     }
+    
     //当前用户位置
     if ([annotation isKindOfClass:[UserPointAnnotation class]]) {
         
@@ -632,7 +624,7 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
         
         regeo.location                    = [AMapGeoPoint locationWithLatitude:coordinate.latitude longitude:coordinate.longitude];
         regeo.requireExtension            = YES;
-        
+
         __weak typeof(self) weakSelf = self;
         
         [self.tool onReGeocodeSearchDoneWithRequest:regeo andBlock:^(id request, id response, NSError *error) {
@@ -640,6 +632,9 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
             AMapReGeocodeSearchResponse *responseNew = (AMapReGeocodeSearchResponse *)response;
             
             __strong __typeof(weakSelf)strongSelf = weakSelf;//防止多次weakSelf会把之前方法置空而崩溃
+            if ([responseNew isKindOfClass:[AMapRouteSearchResponse class]]) {
+                return;
+            }
             
             if (responseNew.regeocode != nil) {
                 //注意这里，如果数据为空会出错，可以做字符串判断

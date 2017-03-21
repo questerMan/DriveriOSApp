@@ -116,11 +116,13 @@
     //停止定位
     [self.locationManager stopUpdatingLocation];
 }
+
 - (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error{
     DLog(@"---> 错误(code ＝ 0 ,没有打开定位功能) %@",error);
     //停止定位
     [self.locationManager stopUpdatingLocation];
 }
+
 /**========================搜  索==============================*/
 #pragma mark - 搜索
 -(void)onReGeocodeSearchDoneWithRequest:(id)request
