@@ -30,6 +30,6 @@ typedef enum MapIndentState{
 //** 地图订单状态 */
 @property (nonatomic, assign) MapIndentState MapIndentState;
 
-
+@property (nonatomic, assign) NSString* notificationId;
 
 @end

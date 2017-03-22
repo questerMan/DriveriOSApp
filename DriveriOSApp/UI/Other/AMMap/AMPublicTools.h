@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+
+
 //定位
 typedef void (^LocationBlock) (AMapLocationManager *manager ,CLLocation *location ,AMapLocationReGeocode *reGeocode);
 //地理搜索
@@ -26,6 +28,18 @@ typedef void (^OnReGeocodeSearchBlock) (id request, id response, NSError *error)
 
 //定位
 @property (nonatomic, copy) LocationBlock locationBlock;
+
+//地图
+@property (nonatomic, strong) MAMapView *mapView;
+
+@property (nonatomic,retain) NSArray *pathPolylines;
+
+//路线解析
+- (NSArray *)polylinesForPath:(AMapPath *)path;
+
+- (MAMapRect)mapRectForOverlays:(NSArray *)overlays;
+
+
 /**
  *   定位
  * @param locationBlock  代码块回调

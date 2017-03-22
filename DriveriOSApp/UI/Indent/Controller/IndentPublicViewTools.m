@@ -301,6 +301,8 @@ static NSTimeInterval acceptIndentCount;
         
         [self buttonOfIndent];
         
+  
+        
     }
     return self;
 }
@@ -391,9 +393,7 @@ static NSTimeInterval acceptIndentCount;
         self.cancelBtn.hidden = YES;
     }];
     
-    [[self.determinedBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        [self changeMapStateWithMapIndentState:MapIndentStateWaitingPassengers];
-    }];
+    [self.determinedBtn addTarget:self action:@selector(determinedBtnClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -478,6 +478,9 @@ static NSTimeInterval acceptIndentCount;
     
     //关闭计时器
     [self.acceptIndentTimer invalidate];
+    
+
+    
     //延迟3s后执行进入地图”已接单状态“
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //关闭弹出框
@@ -498,6 +501,7 @@ static NSTimeInterval acceptIndentCount;
         }];
     });
 }
+
 
 - (void)presentRefuseIndent
 {
@@ -565,6 +569,8 @@ static NSTimeInterval acceptIndentCount;
     AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeIndentSucceedAlert];
     [alert alertViewShow];
     
+    
+    
     //延迟3s后执行进入地图”已接单状态“
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //关闭弹出框
@@ -583,6 +589,7 @@ static NSTimeInterval acceptIndentCount;
         self.indentController.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.startLocationLat floatValue] longitude:[model.startLocationLon floatValue]];
     });
 }
+
 
 - (void)setOutBtnClickFailed{
     AlertView* alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeReservationSetOutFailedAlert];
@@ -797,6 +804,7 @@ static NSTimeInterval acceptIndentCount;
             if (self.type == 1) {
                 [self showRouteBetweenUserAndDetermination];
             }else if(self.type == 2){
+                
                 [self showRouteBetweenUserAndDetermination2];
             }
             [self showPassengerGetOnBtn];
@@ -1066,24 +1074,6 @@ static NSTimeInterval acceptIndentCount;
     [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate: self.indentController.map.userLocation.coordinate andDestinationCoordinate:endCoor andStrategy:5 block:nil];
     
     self.indentController.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.endLocationLat floatValue] longitude:[model.endLocationLon floatValue]];
-}
-
-
-//从当前位置到用户位置
-- (void)showRouteBetweenSelfAndUser{
-    //测试------------------->
-    NetWorkingManage *netManage = [NetWorkingManage shareInstance];
-    
-    [netManage getInstantIndentWithBlock:^(NSArray *array) {
-        IndentData *model = array[0];
-        
-        CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat doubleValue], [model.startLocationLon doubleValue]);
-        
-        AMPublicTools *tool = [AMPublicTools shareInstance];
-        [tool showRouteWithMap:self.indentController.map.mapView StartCoordinate: self.indentController.map.userLocation.coordinate andDestinationCoordinate:startCoor andStrategy:5 block:nil];
-        
-        self.indentController.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.endLocationLat floatValue] longitude:[model.endLocationLon floatValue]];
-    }];
 }
 
 //隐藏路径

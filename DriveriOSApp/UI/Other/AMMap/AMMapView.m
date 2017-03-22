@@ -633,6 +633,29 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
             
             __strong __typeof(weakSelf)strongSelf = weakSelf;//防止多次weakSelf会把之前方法置空而崩溃
             if ([responseNew isKindOfClass:[AMapRouteSearchResponse class]]) {
+                
+                AMapRouteSearchResponse *newRespone = (AMapRouteSearchResponse *)responseNew;
+                
+                AMapPath *path = newRespone.route.paths[0]; //选择一条路径
+                AMapStep *step = path.steps[0]; //这个路径上的导航路段数组
+                DLog(@"step.polyline %@",step.polyline);   //此路段坐标点字符串
+                
+                if (newRespone.count > 0)
+                {
+                    //移除地图原本的遮盖
+                    [self.tool.mapView removeOverlays:self.tool.pathPolylines];
+                    self.tool.pathPolylines = nil;
+                    // 只显⽰示第⼀条 规划的路径
+                    self.tool.pathPolylines = [self.tool polylinesForPath:newRespone.route.paths[0]];
+                    DLog(@"%@",newRespone.route.paths[0]);
+                    //添加新的遮盖，然后会触发代理方法进行绘制
+                    [self.tool.mapView addOverlays:self.tool.pathPolylines];
+                    
+                    //展示路径
+                    [self.tool.mapView setVisibleMapRect:[self.tool mapRectForOverlays:self.tool.pathPolylines] edgePadding:UIEdgeInsetsMake(RoutePlanningPaddingEdge, RoutePlanningPaddingEdge, RoutePlanningPaddingEdge, RoutePlanningPaddingEdge) animated:YES];
+                    
+                }
+
                 return;
             }
             

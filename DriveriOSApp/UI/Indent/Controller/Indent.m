@@ -34,6 +34,8 @@
 
 @property (nonatomic, strong) NetWorkingManage *netManage;
 
+@property (nonatomic, strong) AMLocationModel *model;
+
 @end
 
 @implementation Indent
@@ -172,6 +174,7 @@
     self.indentTool.seachTextF.text = nil;
     self.indentTool.startNavigation.hidden = YES;
     self.indentTool.cancelBtn.hidden = YES;
+    
 }
 
 #pragma mark - 获取tab数据
@@ -251,8 +254,11 @@
         
         AMSearch *amSearch = [[AMSearch alloc] init];
     
+//        self.map.notificationId = @"searchReset";
+        
         //搜索框回调
         [amSearch getSearchResultWithAMSearchBlock:^(AMLocationModel *model) {
+            self.model = model;
             NSLog(@"搜索结果%@",model);
             strongSelf.destinationPoint = [AMapNaviPoint locationWithLatitude:[model.latitude floatValue] longitude:[model.longitude floatValue]];
             
@@ -274,6 +280,7 @@
         [strongSelf.navigationController pushViewController:amSearch animated:YES];
     }];
 }
+
 
 #pragma mark - 等单页面导航页跳转
 -(void)pusToNavigationMap{

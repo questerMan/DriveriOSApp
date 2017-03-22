@@ -22,8 +22,7 @@
 
 @property (nonatomic, strong) LXObjManage *objManage;
 
-//地图
-@property (nonatomic, strong) MAMapView *mapView;
+
 
 /** 起点大头针 */
 @property (retain, nonatomic) RoutPointAnnotation *startAnnotation;
@@ -31,7 +30,7 @@
 /** 终点大头针 */
 @property (retain, nonatomic) RoutPointAnnotation *endAnnotation;
 
-@property (nonatomic,retain) NSArray *pathPolylines;
+
 
 
 @end
@@ -329,7 +328,7 @@ andDestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinat
 }
 
 #pragma mark - 添加终点和起点大头针
--(void)addAnnotationWithMap:(MAMapView *)mapView
+- (void)addAnnotationWithMap:(MAMapView *)mapView
             StartCoordinate:(CLLocationCoordinate2D)startCoordinate
            andEndCoordinate:(CLLocationCoordinate2D)endCoordinat{
     self.startAnnotation.coordinate = startCoordinate;
