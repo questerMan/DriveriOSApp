@@ -20,7 +20,7 @@ typedef enum MapIndentState{
 
 
 #import <UIKit/UIKit.h>
-
+#import "UserPointAnnotation.h"
 @interface AMMapView : UIView
 //地图
 @property (nonatomic, strong) MAMapView *mapView;
@@ -31,5 +31,7 @@ typedef enum MapIndentState{
 @property (nonatomic, assign) MapIndentState MapIndentState;
 
 @property (nonatomic, assign) NSString* notificationId;
+
+@property (nonatomic, strong) UserPointAnnotation *userPointAnnotation;
 
 @end

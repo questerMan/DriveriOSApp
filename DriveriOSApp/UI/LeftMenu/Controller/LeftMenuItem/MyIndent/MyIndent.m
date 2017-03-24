@@ -142,11 +142,19 @@
     
     [self changeNavigation];
     
-    [self creatNavigationBackItemBtn];
+//    [self creatNavigationBackItemBtn];
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search"] style:UIBarButtonItemStylePlain target:self action:@selector(rightItemOnclick:)];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return_"] style:0 target:self action:@selector(leftBarButtonClick)];
+    self.navigationItem.leftBarButtonItem.tintColor = COLOR(154, 151, 151, 1);
 
 }
+
+- (void)leftBarButtonClick{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 -(void)rightItemOnclick:(UIBarButtonItem *)itemBtn{
     

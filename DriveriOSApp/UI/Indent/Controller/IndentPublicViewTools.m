@@ -301,8 +301,6 @@ static NSTimeInterval acceptIndentCount;
         
         [self buttonOfIndent];
         
-  
-        
     }
     return self;
 }
@@ -565,19 +563,18 @@ static NSTimeInterval acceptIndentCount;
 }
 
 - (void)setOutBtnClick{
+    
     //弹出提示：接单成功
     AlertView *alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeIndentSucceedAlert];
     [alert alertViewShow];
-    
-    
     
     //延迟3s后执行进入地图”已接单状态“
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //关闭弹出框
         [alert alertViewCloseWithBlock:nil];
-        //接单后进入地图“已接单”状态
-        [self changeMapStateWithMapIndentState:MapIndentStateGoToPoint];
 
+        [self changeMapStateWithMapIndentState:MapIndentStateGoToPoint];
+        
         IndentData *model = self.arrayData[0];
         //起始点地图坐标
         CLLocationCoordinate2D startCoor = CLLocationCoordinate2DMake([model.startLocationLat doubleValue], [model.startLocationLon doubleValue]);
@@ -802,6 +799,7 @@ static NSTimeInterval acceptIndentCount;
             //显示
             [self showRecevingIndentView];
             if (self.type == 1) {
+                
                 [self showRouteBetweenUserAndDetermination];
             }else if(self.type == 2){
                 

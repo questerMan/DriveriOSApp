@@ -144,7 +144,7 @@ static NSTimeInterval countTime = 300;
             }
 
             if (self.minute >= 0 && self.second >= 0) {
-                self.countLabel.text = [NSString stringWithFormat:@"0%.0f:%.0f分",self.minute,self.second];
+                self.countLabel.text = [NSString stringWithFormat:@"%02.0f:%02.0f分",self.minute,self.second];
                 if (self.second <= 10 && self.minute <= 0) {
                     self.waitLabel.text = @"计费等候";
                     self.waitLabel.textColor = UIColorFromRGB(@"#ff0000");

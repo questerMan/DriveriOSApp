@@ -301,7 +301,31 @@ andDestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinat
     
     [self onReGeocodeSearchDoneWithRequest:navi andBlock:^(id request, id response, NSError *error) {
         AMapRouteSearchResponse *newRespone = (AMapRouteSearchResponse *)response;
-        
+        if ([newRespone isKindOfClass:[AMapReGeocodeSearchResponse class]]) {
+            AMapReGeocodeSearchResponse* responseNew = (AMapReGeocodeSearchResponse *)newRespone;
+            if (responseNew.regeocode != nil) {
+                //注意这里，如果数据为空会出错，可以做字符串判断
+                //通知主线程刷新
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    //回调或者说是通知主线程刷新
+                    //头标题
+                    self.aMapView.userPointAnnotation.title = [NSString stringWithFormat:@"%@%@",responseNew.regeocode.addressComponent.streetNumber.street,responseNew.regeocode.addressComponent.building];
+                    
+                    //副标题
+                    self.aMapView.userPointAnnotation.subtitle = [NSString stringWithFormat:@"%@%@%@",responseNew.regeocode.addressComponent.township,responseNew.regeocode.addressComponent.streetNumber.street,responseNew.regeocode.addressComponent.streetNumber.number];
+                    
+                    //大头针坐标
+                    self.aMapView.userPointAnnotation.coordinate = CLLocationCoordinate2DMake(self.mapView.centerCoordinate.latitude, self.mapView.centerCoordinate.longitude);
+                    
+                    [self.aMapView.mapView addAnnotation:self.aMapView.userPointAnnotation];
+                    
+                    //自动显示气泡信息
+                    [self.aMapView.mapView selectAnnotation:self.aMapView.userPointAnnotation animated:YES];
+                    
+                });
+            }
+            return;
+        }
         AMapPath *path = newRespone.route.paths[0]; //选择一条路径
         AMapStep *step = path.steps[0]; //这个路径上的导航路段数组
         DLog(@"step.polyline %@",step.polyline);   //此路段坐标点字符串
