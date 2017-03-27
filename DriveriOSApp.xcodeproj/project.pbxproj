@@ -42,7 +42,6 @@
 		820555C41E00D33D0095BB47 /* ChangeNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C31E00D33D0095BB47 /* ChangeNumber.m */; };
 		820555C81E0139BA0095BB47 /* IndentAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 820555C71E0139BA0095BB47 /* IndentAlert.m */; };
 		821ADD761DF80D8C00BB0CF8 /* ReservationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 821ADD751DF80D8B00BB0CF8 /* ReservationCell.m */; };
-		821B7C951DEEA98B006DFBF8 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 821B7C941DEEA98B006DFBF8 /* location@2x.png */; };
 		8228913E1DEDB802001F6E57 /* MAHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8228913A1DEDB802001F6E57 /* MAHeaderView.m */; };
 		8228913F1DEDB802001F6E57 /* OfflineDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8228913D1DEDB802001F6E57 /* OfflineDetailViewController.m */; };
 		822891461DEDBDD4001F6E57 /* Bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 822891401DEDBDD4001F6E57 /* Bottom@2x.png */; };
@@ -388,7 +387,6 @@
 		820555C71E0139BA0095BB47 /* IndentAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndentAlert.m; sourceTree = "<group>"; };
 		821ADD741DF80D8B00BB0CF8 /* ReservationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationCell.h; sourceTree = "<group>"; };
 		821ADD751DF80D8B00BB0CF8 /* ReservationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationCell.m; sourceTree = "<group>"; };
-		821B7C941DEEA98B006DFBF8 /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
 		822891391DEDB802001F6E57 /* MAHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAHeaderView.h; sourceTree = "<group>"; };
 		8228913A1DEDB802001F6E57 /* MAHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAHeaderView.m; sourceTree = "<group>"; };
 		8228913C1DEDB802001F6E57 /* OfflineDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineDetailViewController.h; sourceTree = "<group>"; };
@@ -2212,7 +2210,6 @@
 				826E7B1A1DF9B33400CB3AFE /* start@2x.png */,
 				828778BC1DF5C3DF00DCADBF /* history@2x.png */,
 				828BF64E1DF15A37004D6946 /* centerLocation@2x.png */,
-				821B7C941DEEA98B006DFBF8 /* location@2x.png */,
 				822891401DEDBDD4001F6E57 /* Bottom@2x.png */,
 				822891411DEDBDD4001F6E57 /* Deletes@2x.png */,
 				822891421DEDBDD4001F6E57 /* down@2x.png */,
@@ -2748,7 +2745,6 @@
 				827320C31E2726F50040AC2B /* logo.png in Resources */,
 				827320BF1E2713410040AC2B /* loginBG.png in Resources */,
 				827CA10C1E1DD54100F908C2 /* timeAnno.png in Resources */,
-				821B7C951DEEA98B006DFBF8 /* location@2x.png in Resources */,
 				82E465F51DE90B9F00432E88 /* Main.storyboard in Resources */,
 				82EAADAE1E08D4E100BE8434 /* man@2xpng.png in Resources */,
 				8297EC991E0A83A100D59413 /* guides@2x.png in Resources */,

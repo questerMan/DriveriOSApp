@@ -18,7 +18,7 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 #import "LXRequest.h"
 #import "LXLocatiion.h"
 
-#import "UserPointAnnotation.h"
+
 #import "UserAnnotationView.h"
 
 @interface AMMapView()<MAMapViewDelegate,AMapSearchDelegate,LXObjManagerDelegate>
@@ -26,7 +26,7 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 @property (nonatomic, strong) AMPublicTools *tool;
 //大头针
 @property (retain, nonatomic) MAPointAnnotation *pointAnnotation;
-@property (nonatomic, strong) UserPointAnnotation *userPointAnnotation;
+
 
 @property (nonatomic, strong) UIImageView *centerLocationIMG;
 
@@ -206,7 +206,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
     [self.centerLocationIMG mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.offset(0);
         make.centerY.offset(MATCHSIZE(-50));
-
     }];
 }
 
@@ -219,15 +218,13 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
     
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.mapView).offset(MATCHSIZE(-260));
-        make.right.equalTo(self.mapView).offset(MATCHSIZE(-30));
-        make.height.offset(MATCHSIZE(80));
-        make.width.offset(MATCHSIZE(80));
+        make.left.equalTo(self.mapView).offset(MATCHSIZE(22));
     }];
     
     @weakify(self);
     
     self.tool = [AMPublicTools shareInstance];
-    
+    self.tool.aMapView = self;
     //点击事件
     [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify(self)

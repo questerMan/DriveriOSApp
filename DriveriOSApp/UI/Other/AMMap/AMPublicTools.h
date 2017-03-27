@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "AMMapView.h"
 
 
 //定位
@@ -33,6 +33,9 @@ typedef void (^OnReGeocodeSearchBlock) (id request, id response, NSError *error)
 @property (nonatomic, strong) MAMapView *mapView;
 
 @property (nonatomic,retain) NSArray *pathPolylines;
+//地图
+@property (nonatomic, strong) AMMapView *aMapView;
+
 
 //路线解析
 - (NSArray *)polylinesForPath:(AMapPath *)path;
