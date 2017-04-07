@@ -25,6 +25,7 @@
 #import "LXQReservationSetOutFailedAlertViewController.h"
 #import "LXQSucceedChangeViewController.h"
 #import "LXQFeedbackSucceedAlertViewController.h"
+#import "LXQBanLoginViewController.h"
 @interface AlertView()<PhoneAlertDelegate,IndentAlertDelegate,DeleteIndentAlertDelegate,LimitLoginAlertDelegate>
 
 @property (nonatomic,strong) UIView *bgView;
@@ -72,6 +73,8 @@
 @property (nonatomic, strong) LXQFeedbackSucceedAlertViewController *feedbackSucceedAlertViewController;
 
 @property (nonatomic, strong) UIButton *feedbackViewAlertBtn;
+
+@property (nonatomic, strong) LXQBanLoginViewController *banLoginViewController;
 
 @end
 
@@ -259,6 +262,13 @@
         [_feedbackViewAlertBtn addTarget:self action:@selector(feedbackViewAlertClick) forControlEvents:1<<6];
     }
     return _feedbackViewAlertBtn;
+}
+
+- (LXQBanLoginViewController *)banLoginViewController{
+    if (!_banLoginViewController) {
+        _banLoginViewController = [[LXQBanLoginViewController alloc] init];
+    }
+    return _banLoginViewController;
 }
 
 //直接调用该方法一般用于固定 view 的展示
@@ -659,6 +669,19 @@
             make.top.equalTo(self.feedbackViewAlertBtn.mas_bottom).offset(MATCHSIZE(5));
             make.width.offset(MATCHSIZE(400));
             make.height.offset(MATCHSIZE(300));
+        }];
+    }else if (_addAlertViewType == AlertViewTypeBanLoginAlert){
+        
+        [self initAlertViewWithViewController:self.banLoginViewController];
+        __weak typeof(self) weakSelf = self;
+        self.banLoginViewController.closeBtnClick = ^{
+            [weakSelf alertViewClose];
+        };
+        [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.offset(0);
+            make.right.offset(0);
+            make.top.offset(0);
+            make.bottom.offset(0);
         }];
     }
 }

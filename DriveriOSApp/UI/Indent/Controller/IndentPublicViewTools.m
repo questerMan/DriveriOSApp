@@ -767,7 +767,6 @@ static NSTimeInterval acceptIndentCount;
             break;
             
         case MapIndentStateWaitingList://待接单
-            
             //隐藏
             [self hideDrivingTipsView];
             [self hideRecevingIndentView];
@@ -799,10 +798,8 @@ static NSTimeInterval acceptIndentCount;
             //显示
             [self showRecevingIndentView];
             if (self.type == 1) {
-                
                 [self showRouteBetweenUserAndDetermination];
             }else if(self.type == 2){
-                
                 [self showRouteBetweenUserAndDetermination2];
             }
             [self showPassengerGetOnBtn];
@@ -920,7 +917,9 @@ static NSTimeInterval acceptIndentCount;
 }
 
 - (void)getToPointClick{
+    
    [self changeMapStateWithMapIndentState:MapIndentStateForSettlement];
+    
 }
 
 //正在处理加载弹窗

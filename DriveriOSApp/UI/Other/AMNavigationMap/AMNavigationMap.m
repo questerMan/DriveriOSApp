@@ -19,14 +19,14 @@
 
 @implementation AMNavigationMap
 
--(VoiceClass *)voiceSpeech{
+- (VoiceClass *)voiceSpeech{
     if (!_voiceSpeech) {
         _voiceSpeech = [VoiceClass shareInstance];
     }
     return _voiceSpeech;
 }
 
--(AMapNaviDriveManager *)driveManager{
+- (AMapNaviDriveManager *)driveManager{
     if (!_driveManager) {
         _driveManager = [[AMapNaviDriveManager alloc] init];
         [_driveManager setDelegate:self];

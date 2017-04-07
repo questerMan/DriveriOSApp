@@ -45,11 +45,42 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 @property (nonatomic, copy) NSArray *carAnnoArray;
 @property (retain, nonatomic) DriverPointAnnotation *carAnnotation;
 
+//定位大头针阴影路径
+@property (nonatomic, strong)UIBezierPath* ellipse;
+//定位大头针阴影图层
+@property (nonatomic, strong)CAShapeLayer* ellipsisLayer;
+
 @end
 
 @implementation AMMapView
 
+- (UIBezierPath *)ellipse{
+    if (!_ellipse) {
+        _ellipse = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, self.centerLocationIMG.width * 0.5 * 0.8, self.centerLocationIMG.height * 0.3 * 0.8)];
+        return _ellipse;
+    }
+    return _ellipse;
+}
 
+- (CAShapeLayer *)ellipsisLayer{
+    if (!_ellipsisLayer) {
+        _ellipsisLayer = [CAShapeLayer layer];
+        _ellipsisLayer.bounds = CGRectMake(0, 0, self.centerLocationIMG.width * 0.5 * 0.8, self.centerLocationIMG.height * 0.3 * 0.8);
+        _ellipsisLayer.path = self.ellipse.CGPath;
+        _ellipsisLayer.fillColor = [UIColor grayColor].CGColor;
+        _ellipsisLayer.fillRule = kCAFillRuleNonZero;
+        _ellipsisLayer.lineCap = kCALineCapButt;
+        _ellipsisLayer.lineDashPattern = nil;
+        _ellipsisLayer.lineDashPhase = 0.0;
+        _ellipsisLayer.lineJoin = kCALineJoinMiter;
+        _ellipsisLayer.lineWidth = 1.0;
+        _ellipsisLayer.miterLimit = 10.0;
+        _ellipsisLayer.strokeColor = [UIColor grayColor].CGColor;
+
+        return _ellipsisLayer;
+    }
+    return _ellipsisLayer;
+}
 
 - (MAMapView *)mapView{
     
@@ -207,6 +238,11 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
         make.centerX.offset(0);
         make.centerY.offset(MATCHSIZE(-50));
     }];
+    
+    [self.mapView.layer insertSublayer:self.ellipsisLayer below:self.centerLocationIMG.layer];
+    
+    self.ellipsisLayer.position = CGPointMake(self.mapView.center.x, self.mapView.center.y - MATCHSIZE(100));
+
 }
 
 -(void)creatLocationBtn{
@@ -265,10 +301,11 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
         
         MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:overlay];
         
-        polylineRenderer.lineWidth    = 8.f;
-        polylineRenderer.strokeColor  = [UIColorFromRGB(@"#ff6d00") colorWithAlphaComponent:0.9];
+        polylineRenderer.lineWidth    = 18.f;
+        polylineRenderer.strokeColor  = [[UIColor greenColor]colorWithAlphaComponent:0.9];
         polylineRenderer.lineJoinType = kMALineJoinRound;
         polylineRenderer.lineCapType  = kMALineCapRound;
+        [polylineRenderer loadStrokeTextureImage:[UIImage imageNamed:@"custtexture_green"]];
         
         return polylineRenderer;
     }
@@ -291,7 +328,10 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
  * @param animated 是否动画
  */
 - (void)mapView:(MAMapView *)mapView regionWillChangeAnimated:(BOOL)animated{
-    
+    self.ellipsisLayer.transform = CATransform3DMakeScale(0.5, 0.5, 1);
+    [UIView animateWithDuration:0.2 animations:^{
+        self.centerLocationIMG.center = CGPointMake(self.mapView.center.x, self.mapView.center.y - 35);
+    }];
 }
 
 /**
@@ -303,6 +343,11 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
     
     //逆地理编码
     [self searchReGeocodeWithCoordinate:CLLocationCoordinate2DMake(mapView.centerCoordinate.latitude, mapView.centerCoordinate.longitude)];
+    self.ellipsisLayer.transform = CATransform3DIdentity;
+    [UIView animateWithDuration:0.2 animations:^{
+        self.centerLocationIMG.center = CGPointMake(self.mapView.center.x, self.mapView.center.y - 25);
+    }];
+
 }
 
 /**
