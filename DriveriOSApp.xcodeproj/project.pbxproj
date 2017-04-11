@@ -23,6 +23,7 @@
 		04513DFC1E695A2D00E84DDC /* LXQRobIndentBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 04513DFB1E695A2D00E84DDC /* LXQRobIndentBtn.m */; };
 		04513E011E69651B00E84DDC /* LXQRobIndentAlertSuccessedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04513E001E69651B00E84DDC /* LXQRobIndentAlertSuccessedViewController.m */; };
 		04513E041E696CB200E84DDC /* LXQRobIndentAlertFailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04513E031E696CB200E84DDC /* LXQRobIndentAlertFailedViewController.m */; };
+		0453AA111E88ED27001DF854 /* LXQBanLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453AA101E88ED27001DF854 /* LXQBanLoginViewController.m */; };
 		0454371E1E4D5896008602A0 /* tips.png in Resources */ = {isa = PBXBuildFile; fileRef = 0454371D1E4D5896008602A0 /* tips.png */; };
 		045E459B1E70F8E500AD773A /* LXQReservationSetOutFailedAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E459A1E70F8E500AD773A /* LXQReservationSetOutFailedAlertViewController.m */; };
 		045E459E1E71458100AD773A /* LXQMyMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E459D1E71458100AD773A /* LXQMyMessageTableViewCell.m */; };
@@ -348,6 +349,8 @@
 		04513E001E69651B00E84DDC /* LXQRobIndentAlertSuccessedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQRobIndentAlertSuccessedViewController.m; sourceTree = "<group>"; };
 		04513E021E696CB200E84DDC /* LXQRobIndentAlertFailedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQRobIndentAlertFailedViewController.h; sourceTree = "<group>"; };
 		04513E031E696CB200E84DDC /* LXQRobIndentAlertFailedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQRobIndentAlertFailedViewController.m; sourceTree = "<group>"; };
+		0453AA0F1E88ED26001DF854 /* LXQBanLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQBanLoginViewController.h; sourceTree = "<group>"; };
+		0453AA101E88ED27001DF854 /* LXQBanLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQBanLoginViewController.m; sourceTree = "<group>"; };
 		0454371D1E4D5896008602A0 /* tips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tips.png; sourceTree = "<group>"; };
 		045E45991E70F8E500AD773A /* LXQReservationSetOutFailedAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXQReservationSetOutFailedAlertViewController.h; sourceTree = "<group>"; };
 		045E459A1E70F8E500AD773A /* LXQReservationSetOutFailedAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXQReservationSetOutFailedAlertViewController.m; sourceTree = "<group>"; };
@@ -1491,6 +1494,8 @@
 			children = (
 				829546021E238591009D9C62 /* LoginView.h */,
 				829546031E238591009D9C62 /* LoginView.m */,
+				0453AA0F1E88ED26001DF854 /* LXQBanLoginViewController.h */,
+				0453AA101E88ED27001DF854 /* LXQBanLoginViewController.m */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";
@@ -3046,6 +3051,7 @@
 				82E11E841DED2C6400FED9C0 /* Setup.m in Sources */,
 				045E45A11E7147C200AD773A /* LXQMyMessageItem.m in Sources */,
 				827193911DF0629300327ACB /* AMSearch.m in Sources */,
+				0453AA111E88ED27001DF854 /* LXQBanLoginViewController.m in Sources */,
 				827015741E35A0AC00030C2F /* EmergencyRescueAlert.m in Sources */,
 				827193E21DF06E6B00327ACB /* MJRefreshFooter.m in Sources */,
 				82D4B0281DEBCE9500FDA730 /* CenterAlertInfo.m in Sources */,

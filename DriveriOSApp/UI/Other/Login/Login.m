@@ -261,9 +261,7 @@
         
         UIButton *btn = (UIButton *)x;
         [btn countDownFromTime:60 title:@"获取验证码" unitTitle:@"s后重新获取" mainColor:[UIColor clearColor] countColor:[UIColor clearColor]];
-        
     }];
-    
     
     //登录
     [bgView addSubview:self.loginBtn];
@@ -274,13 +272,19 @@
         make.centerX.offset(0);
     }];
     
-    
-    
     [[self.loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 //        //跳到主页面，移除当前登录页面
 //        [self.view removeFromSuperview];
-        self.loginClick();
         
+        if ([_usersF.text isEqualToString:@""]) {
+            
+            self.loginClick();
+            
+        }else{
+            //测试禁止登陆弹窗
+            AlertView* alert = [[AlertView alloc] initWithFrame:[UIScreen mainScreen].bounds AndAddAlertViewType:AlertViewTypeBanLoginAlert];
+            [alert alertViewShow];
+        }
     }];
     
     //忘记密码
@@ -314,8 +318,6 @@
     [[self.eyeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         self.passWordF.secureTextEntry = YES;
     }];
-
-    
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

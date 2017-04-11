@@ -247,8 +247,8 @@
     self.heatMapTileOverlay.radius = 20.0;
     //将热力图添加到地图上
     [mapView addOverlay: self.heatMapTileOverlay];
-    
 }
+
 #pragma mark - Utility
 - (CLLocationCoordinate2D)randomPointInMapRect:(MAMapRect)mapRect
 {
@@ -343,7 +343,6 @@ andDestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinat
             
             //展示路径
             [mapView setVisibleMapRect:[self mapRectForOverlays:self.pathPolylines] edgePadding:UIEdgeInsetsMake(RoutePlanningPaddingEdge, RoutePlanningPaddingEdge, RoutePlanningPaddingEdge, RoutePlanningPaddingEdge) animated:YES];
-
         }
     }];
     
@@ -367,6 +366,7 @@ andDestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinat
     //自动显示气泡信息
     [mapView selectAnnotation:self.endAnnotation animated:YES];
 }
+
 #pragma mark - 移除地图上的行驶绘制路线
 -(void)clearRouteWithBlock:(void(^)())block{
 
@@ -447,7 +447,6 @@ andDestinationCoordinate:(CLLocationCoordinate2D)destinationCoordinat
     
     return MAMapRectMake(unionRect.origin.x, unionRect.origin.y, unionRect.size.width, unionRect.size.height);
 }
-
 
 //解析经纬度
 - (CLLocationCoordinate2D *)coordinatesForString:(NSString *)string
