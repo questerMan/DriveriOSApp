@@ -274,18 +274,22 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 - (void)location{
     __weak typeof(self) weakSelf = self;
     
-    [self.tool locationWithLocationBlock:^(AMapLocationManager *manager, CLLocation *location, AMapLocationReGeocode *reGeocode) {
+    [self.tool locationWithLocationBlock:^(AMapLocationManager *manager, CLLocation *location, AMapLocationReGeocode *reGeocode, NSError *error){
         __strong __typeof(weakSelf)strongSelf = weakSelf;
-        //定位获取到的数据
-        DLog(@"location:{lat:%f; lon:%f; accuracy:%f}", location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy);
         
-        CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-        
-        strongSelf.mapView.centerCoordinate = coordinate2D;
-
-        //地图的缩放
-        [strongSelf.mapView setZoomLevel:16.2 animated:YES];
-        
+        if (error != nil) {
+            [self showHint:@"定位功能尚未打开"];
+        }else{
+            //定位获取到的数据
+            DLog(@"location:{lat:%f; lon:%f; accuracy:%f}", location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy);
+            
+            CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+            
+            strongSelf.mapView.centerCoordinate = coordinate2D;
+            
+            //地图的缩放
+            [strongSelf.mapView setZoomLevel:16.2 animated:YES];
+        }
     }];
 }
 

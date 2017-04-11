@@ -11,7 +11,7 @@
 
 
 //定位
-typedef void (^LocationBlock) (AMapLocationManager *manager ,CLLocation *location ,AMapLocationReGeocode *reGeocode);
+typedef void (^LocationBlock) (AMapLocationManager *manager ,CLLocation *location ,AMapLocationReGeocode *reGeocode,NSError *error);
 //地理搜索
 typedef void (^OnReGeocodeSearchBlock) (id request, id response, NSError *error);
 

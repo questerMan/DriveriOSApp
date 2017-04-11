@@ -197,7 +197,6 @@
         self.contentLabel.text = [NSString stringWithFormat:@"验证码发送至:%@",phoneNumber];
         CGFloat height = [PublicTool heightOfStr:_contentLabel.text andTextWidth:SCREEN_W-MATCHSIZE(200) andFont:[UIFont systemFontOfSize:MATCHSIZE(25)]];
         self.contentLabel.frame = CGRectMake(MATCHSIZE(10), MATCHSIZE(80), SCREEN_W-MATCHSIZE(200) - MATCHSIZE(20), height);
-
     }else if(state == State_remind){
         self.okBtn.hidden = YES;
         self.cancleBtn.hidden = YES;
@@ -205,12 +204,10 @@
         self.timeBtn.hidden = YES;
         self.titleLabel.hidden = YES;
         self.confirmCodeBtn.hidden = YES;
-
         self.contentLabel.text = @"您已成功更换手机号码，记得下次登录使用新号码";
         self.contentLabel.textColor = [UIColor blueColor];
         CGFloat height = [PublicTool heightOfStr:_contentLabel.text andTextWidth:SCREEN_W-MATCHSIZE(200) andFont:[UIFont systemFontOfSize:MATCHSIZE(30)]];
         self.contentLabel.frame = CGRectMake(MATCHSIZE(10), MATCHSIZE(80), SCREEN_W-MATCHSIZE(200)- MATCHSIZE(20), height);
-
     }
     
 }

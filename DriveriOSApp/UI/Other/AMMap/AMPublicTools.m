@@ -109,7 +109,7 @@
 - (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location reGeocode:(AMapLocationReGeocode *)reGeocode
 {
     if (_locationBlock != nil) {
-        _locationBlock(manager,location,reGeocode);
+        _locationBlock(manager,location,reGeocode,nil);
     }
     
     //停止定位
@@ -118,6 +118,9 @@
 
 - (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error{
     DLog(@"---> 错误(code ＝ 0 ,没有打开定位功能) %@",error);
+    if (_locationBlock != nil) {
+        _locationBlock(manager,nil,nil,error);
+    }
     //停止定位
     [self.locationManager stopUpdatingLocation];
 }

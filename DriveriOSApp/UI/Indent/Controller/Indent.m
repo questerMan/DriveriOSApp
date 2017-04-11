@@ -265,7 +265,7 @@
             //在搜索文本框显示
             strongSelf.indentTool.seachTextF.text = model.name;
             if (strongSelf.map.userLocation == nil || model.address == nil) {
-                [strongSelf showHint:@"本地定位功能尚未开启"];
+                [strongSelf showHint:@"定位功能尚未打开"];
             }else{
                 //显示导航按钮 / 取消按钮
                 strongSelf.indentTool.startNavigation.hidden = NO;
@@ -299,7 +299,7 @@
         if (navigationMap.startLocatoin != nil && navigationMap.description != nil) {
             [strongSelf.navigationController pushViewController:navigationMap animated:YES];
         }else{
-            [strongSelf showHint:@"导航信息有误！"];
+            [strongSelf showHint:@"定位功能尚未打开，无法导航"];
         }
     }];
 }
