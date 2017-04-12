@@ -241,7 +241,7 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
     
     [self.mapView.layer insertSublayer:self.ellipsisLayer below:self.centerLocationIMG.layer];
     
-    self.ellipsisLayer.position = CGPointMake(self.mapView.center.x, self.mapView.center.y - MATCHSIZE(100));
+    self.ellipsisLayer.position = CGPointMake(self.mapView.center.x, self.mapView.center.y - MATCHSIZE(115));
 
 }
 
