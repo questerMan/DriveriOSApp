@@ -458,7 +458,7 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
             label.text = [annotation title];
         }];
         
-        annotationView.image = [UIImage imageNamed:@"map60"];
+        annotationView.image = [UIImage imageNamed:@"map60BG"];
         
         [UIView animateWithDuration:0.3 animations:^{
             //设置中心点偏移，使得标注底部中间点成为经纬度对应点

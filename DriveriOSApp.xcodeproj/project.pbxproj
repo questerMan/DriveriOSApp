@@ -66,6 +66,7 @@
 		82620A6B1E1CEEEF00219C5D /* UserCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82620A6A1E1CEEEF00219C5D /* UserCalloutView.m */; };
 		82620A6E1E1CEF1300219C5D /* UserAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82620A6D1E1CEF1300219C5D /* UserAnnotationView.m */; };
 		82620A711E1CF01F00219C5D /* UserPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 82620A701E1CF01F00219C5D /* UserPointAnnotation.m */; };
+		8266E7981E9DCA5000ED44C6 /* map60BG.png in Resources */ = {isa = PBXBuildFile; fileRef = 8266E7971E9DCA5000ED44C6 /* map60BG.png */; };
 		8268A50C1DF7007F00293A75 /* NSObject+EasyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8268A50B1DF7007F00293A75 /* NSObject+EasyModel.m */; };
 		826E7B1B1DF9B33400CB3AFE /* end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 826E7B191DF9B33400CB3AFE /* end@2x.png */; };
 		826E7B1C1DF9B33400CB3AFE /* start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 826E7B1A1DF9B33400CB3AFE /* start@2x.png */; };
@@ -427,6 +428,7 @@
 		82620A6D1E1CEF1300219C5D /* UserAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnnotationView.m; sourceTree = "<group>"; };
 		82620A6F1E1CF01F00219C5D /* UserPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPointAnnotation.h; sourceTree = "<group>"; };
 		82620A701E1CF01F00219C5D /* UserPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPointAnnotation.m; sourceTree = "<group>"; };
+		8266E7971E9DCA5000ED44C6 /* map60BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map60BG.png; sourceTree = "<group>"; };
 		8268A50A1DF7007F00293A75 /* NSObject+EasyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+EasyModel.h"; sourceTree = "<group>"; };
 		8268A50B1DF7007F00293A75 /* NSObject+EasyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+EasyModel.m"; sourceTree = "<group>"; };
 		826E7B191DF9B33400CB3AFE /* end@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "end@2x.png"; sourceTree = "<group>"; };
@@ -2220,6 +2222,7 @@
 				822891421DEDBDD4001F6E57 /* down@2x.png */,
 				822891431DEDBDD4001F6E57 /* Pause@2x.png */,
 				822891441DEDBDD4001F6E57 /* Right.png */,
+				8266E7971E9DCA5000ED44C6 /* map60BG.png */,
 				822891451DEDBDD4001F6E57 /* Updata@2x.png */,
 				824F5EAD1E077B99004B33EE /* driver_car@2x.png */,
 				82D4B0341DEC11DA00FDA730 /* bg@2x.png */,
@@ -2749,6 +2752,7 @@
 				82E7CCE51E0230350072E874 /* pwdIMG@2x.png in Resources */,
 				827320C31E2726F50040AC2B /* logo.png in Resources */,
 				827320BF1E2713410040AC2B /* loginBG.png in Resources */,
+				8266E7981E9DCA5000ED44C6 /* map60BG.png in Resources */,
 				827CA10C1E1DD54100F908C2 /* timeAnno.png in Resources */,
 				82E465F51DE90B9F00432E88 /* Main.storyboard in Resources */,
 				82EAADAE1E08D4E100BE8434 /* man@2xpng.png in Resources */,
