@@ -298,6 +298,9 @@
 		82EAADBE1E08DF4100BE8434 /* LXRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EAADBD1E08DF4100BE8434 /* LXRoute.m */; };
 		82EAADC11E08DFA600BE8434 /* LXCommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EAADC01E08DFA600BE8434 /* LXCommonUtility.m */; };
 		82F76A331DFA5F8A007B50CE /* UIControl+BtnOnclickNum.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F76A321DFA5F8A007B50CE /* UIControl+BtnOnclickNum.m */; };
+		CC17F30B1EA9E9B300FC0648 /* wendu_yuan2.m in Sources */ = {isa = PBXBuildFile; fileRef = CC17F3061EA9E9B300FC0648 /* wendu_yuan2.m */; };
+		CC17F30C1EA9E9B300FC0648 /* yuan2_sc.m in Sources */ = {isa = PBXBuildFile; fileRef = CC17F3081EA9E9B300FC0648 /* yuan2_sc.m */; };
+		CC17F30D1EA9E9B300FC0648 /* yuan2_zj.m in Sources */ = {isa = PBXBuildFile; fileRef = CC17F30A1EA9E9B300FC0648 /* yuan2_zj.m */; };
 		D7136AACA3BAE12BEFE45275 /* Pods_DriveriOSApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F1B86AACBB7CF6E723DB76 /* Pods_DriveriOSApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -870,6 +873,12 @@
 		82EAADC01E08DFA600BE8434 /* LXCommonUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCommonUtility.m; sourceTree = "<group>"; };
 		82F76A311DFA5F8A007B50CE /* UIControl+BtnOnclickNum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+BtnOnclickNum.h"; sourceTree = "<group>"; };
 		82F76A321DFA5F8A007B50CE /* UIControl+BtnOnclickNum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+BtnOnclickNum.m"; sourceTree = "<group>"; };
+		CC17F3051EA9E9B300FC0648 /* wendu_yuan2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wendu_yuan2.h; sourceTree = "<group>"; };
+		CC17F3061EA9E9B300FC0648 /* wendu_yuan2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wendu_yuan2.m; sourceTree = "<group>"; };
+		CC17F3071EA9E9B300FC0648 /* yuan2_sc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yuan2_sc.h; sourceTree = "<group>"; };
+		CC17F3081EA9E9B300FC0648 /* yuan2_sc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = yuan2_sc.m; sourceTree = "<group>"; };
+		CC17F3091EA9E9B300FC0648 /* yuan2_zj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yuan2_zj.h; sourceTree = "<group>"; };
+		CC17F30A1EA9E9B300FC0648 /* yuan2_zj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = yuan2_zj.m; sourceTree = "<group>"; };
 		E9AC3AF39E5EDE1AAE047F8B /* Pods-DriveriOSApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveriOSApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-DriveriOSApp/Pods-DriveriOSApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -988,6 +997,7 @@
 		04513DEF1E67FB1800E84DDC /* RobIndentAlert */ = {
 			isa = PBXGroup;
 			children = (
+				CC17F2FB1EA9E95F00FC0648 /* progressView */,
 				04513DFE1E69632600E84DDC /* RobIndentAlertFailed */,
 				04513DFD1E6961F900E84DDC /* RobIndentAlertSuccessed */,
 				04513DF01E67FB3C00E84DDC /* LXQRobIndentAlertViewController.h */,
@@ -2587,6 +2597,19 @@
 			path = DriverManage;
 			sourceTree = "<group>";
 		};
+		CC17F2FB1EA9E95F00FC0648 /* progressView */ = {
+			isa = PBXGroup;
+			children = (
+				CC17F3051EA9E9B300FC0648 /* wendu_yuan2.h */,
+				CC17F3061EA9E9B300FC0648 /* wendu_yuan2.m */,
+				CC17F3071EA9E9B300FC0648 /* yuan2_sc.h */,
+				CC17F3081EA9E9B300FC0648 /* yuan2_sc.m */,
+				CC17F3091EA9E9B300FC0648 /* yuan2_zj.h */,
+				CC17F30A1EA9E9B300FC0648 /* yuan2_zj.m */,
+			);
+			name = progressView;
+			sourceTree = "<group>";
+		};
 		DEC8B6D52BF53A56A6C24855 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2928,6 +2951,7 @@
 				827193EA1DF06E6B00327ACB /* MJRefreshGifHeader.m in Sources */,
 				82AF404F1DE92477001F0066 /* PSTCollectionViewController.m in Sources */,
 				045E45BB1E7A835400AD773A /* LXQFeedbackViewController.m in Sources */,
+				CC17F30D1EA9E9B300FC0648 /* yuan2_zj.m in Sources */,
 				82E6F1691DF6AAED0099A7CE /* UsersClass.m in Sources */,
 				827193E71DF06E6B00327ACB /* MJRefreshBackGifFooter.m in Sources */,
 				82E11E7F1DED2C6400FED9C0 /* InstantHeadView.m in Sources */,
@@ -3062,8 +3086,10 @@
 				82AF405B1DE92477001F0066 /* EaseConversationModel.m in Sources */,
 				82E6F1651DF6A51F0099A7CE /* CacheClass.m in Sources */,
 				82E11E931DED354900FED9C0 /* TabClass.m in Sources */,
+				CC17F30C1EA9E9B300FC0648 /* yuan2_sc.m in Sources */,
 				828D7EC11DFE307B004F1BA5 /* NotifyCell.m in Sources */,
 				0411326A1E519A07005A1096 /* LXQDisposingLoadAlertViewController.m in Sources */,
+				CC17F30B1EA9E9B300FC0648 /* wendu_yuan2.m in Sources */,
 				82AF407E1DE92477001F0066 /* EaseChatToolbar.m in Sources */,
 				827C3C011DEB396D002B64D0 /* LeftMainHeadView.m in Sources */,
 				827193E31DF06E6B00327ACB /* MJRefreshHeader.m in Sources */,

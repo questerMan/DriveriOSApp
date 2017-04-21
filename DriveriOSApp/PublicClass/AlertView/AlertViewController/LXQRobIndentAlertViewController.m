@@ -8,6 +8,9 @@
 
 #import "LXQRobIndentAlertViewController.h"
 #import "LXQRobIndentBtn.h"
+#import "UIColor+Hex.h"
+#import "wendu_yuan2.h"
+
 @interface LXQRobIndentAlertViewController ()
 
 @property(nonatomic, weak)UIImageView* nameIMG;
@@ -48,6 +51,8 @@
 
 @property(nonatomic, weak)UILabel* secondLabel;
 
+@property (nonatomic,strong) wendu_yuan2 *progressView;
+
 @end
 
 @implementation LXQRobIndentAlertViewController
@@ -59,6 +64,17 @@
     
     self.count = 10;
 }
+
+- (wendu_yuan2*)progressView
+{
+    if (_progressView  == nil) {
+        _progressView = [[wendu_yuan2 alloc] init];
+        _progressView.backgroundColor = [UIColor clearColor];
+        ;
+    }
+    return _progressView;
+}
+
 
 - (NSTimer *)robIndentTimer{
 
@@ -87,6 +103,9 @@
     [super viewWillAppear:animated];
     
     [self.robIndentTimer fire];
+    
+    [self.progressView start];
+    
 }
 
 - (void)creatUI{
@@ -174,13 +193,24 @@
     [appointmentView addSubview:aCarLabel];
     self.aCarLabel = aCarLabel;
     
+
+    
     LXQRobIndentBtn* robIndentBtn = [[LXQRobIndentBtn alloc] init];
-    [robIndentBtn setBackgroundImage:[UIImage imageNamed:@"button"] forState:0];
+//    [robIndentBtn setBackgroundImage:[UIImage imageNamed:@"button"] forState:0];
+    robIndentBtn.backgroundColor = [UIColor whiteColor];
+    robIndentBtn.layer.cornerRadius = MATCHSIZE(100);
     [robIndentBtn setAttributedTitle:[[NSAttributedString alloc] initWithString:@"抢单" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:MATCHSIZE(40)],NSForegroundColorAttributeName : UIColorFromRGB(@"#ff6d00")}] forState:0];
     robIndentBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, MATCHSIZE(30), 0);
     [robIndentBtn addTarget:self action:@selector(robIndentBtnClick:) forControlEvents: 1<<6];
     [self.view addSubview:robIndentBtn];
     self.robIndentBtn = robIndentBtn;
+    
+    wendu_yuan2* progressView = [[wendu_yuan2 alloc] init];
+    progressView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:progressView];
+    progressView.progress = (800.0-300)/(850-300.0);
+    progressView.userInteractionEnabled = NO;
+    self.progressView = progressView;
     
     UILabel* secondLabel = [FactoryClass labelWithTextColor:UIColorFromRGB(@"#ff6d00") fontSize:MATCHSIZE(28)];
     secondLabel.text = @"10S";
@@ -284,6 +314,14 @@
     [self.aCarLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.aCarIMG.mas_right).offset(MATCHSIZE(10));
         make.top.offset(0);
+    }];
+    
+    [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
+        //        make.size.mas_equalTo(CGSizeMake(AUTO_3PX(980), AUTO_3PX(980)));
+        make.centerY.equalTo(self.robIndentBtn);
+        make.left.offset(MATCHSIZE(170));
+        make.right.offset(MATCHSIZE(-170));
+        make.height.equalTo(self.progressView.mas_width);
     }];
     
     [self.robIndentBtn mas_makeConstraints:^(MASConstraintMaker *make) {

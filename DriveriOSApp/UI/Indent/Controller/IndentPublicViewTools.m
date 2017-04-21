@@ -139,14 +139,14 @@ static NSTimeInterval acceptIndentCount;
 
 - (UIButton *)setOutBtn{
     if (!_setOutBtn) {
-        _setOutBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40),SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40)*2), MATCHSIZE(60)) Title:@"开始出发" backGround:UIColorFromRGB(@"#ff6d00") tintColor:UIColorFromRGB(@"#ff6d00") cornerRadius:MATCHSIZE(40)];
+        _setOutBtn = [FactoryClass buttonWithFrame:CGRectMake(MATCHSIZE(40),SCREEN_H - MATCHSIZE(60) - MATCHSIZE(20) - StatusBar_H -MATCHSIZE(100), (SCREEN_W - MATCHSIZE(40) * 2), MATCHSIZE(60)) Title:@"开始出发" backGround:UIColorFromRGB(@"#ff6d00") tintColor:UIColorFromRGB(@"#ff6d00") cornerRadius:MATCHSIZE(40)];
         [_setOutBtn setTitleColor:UIColorFromRGB(@"#ffffff") forState:UIControlStateNormal];
         _setOutBtn.hidden = YES;
     }
     return _setOutBtn;
 }
 
--(InstantHeadView *)instantHeadView{
+- (InstantHeadView *)instantHeadView{
     if (!_instantHeadView) {
         _instantHeadView = [[InstantHeadView alloc] initWithFrame:CGRectMake(MATCHSIZE(20), MATCHSIZE(90), SCREEN_W - MATCHSIZE(40), MATCHSIZE(136))];
         _instantHeadView.layer.cornerRadius = MATCHSIZE(8);
