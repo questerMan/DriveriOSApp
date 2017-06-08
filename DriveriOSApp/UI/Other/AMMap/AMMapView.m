@@ -215,7 +215,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
 
 //创建地图
 -(void)creatMap{
-    
     //显示地图
     [self addSubview:self.mapView];
     //接收通知
@@ -228,7 +227,6 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
             _mapView.showTraffic = NO;
         }
     }];
-    
 }
 
 -(void)creatCenterLocationIMG{
@@ -238,10 +236,10 @@ static const NSString *RoutePlanningViewControllerEndTitle         = @"终点";
         make.centerX.offset(0);
         make.centerY.offset(MATCHSIZE(-50));
     }];
-    
+//添加中心坐标阴影
     [self.mapView.layer insertSublayer:self.ellipsisLayer below:self.centerLocationIMG.layer];
     
-    self.ellipsisLayer.position = CGPointMake(self.mapView.center.x, self.mapView.center.y - MATCHSIZE(115));
+    self.ellipsisLayer.position = CGPointMake(self.mapView.center.x, self.mapView.center.y - MATCHSIZE(105));
 
 }
 
