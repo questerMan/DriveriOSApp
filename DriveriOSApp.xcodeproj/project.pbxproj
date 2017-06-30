@@ -2701,7 +2701,7 @@
 				TargetAttributes = {
 					82E465E61DE90B9F00432E88 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 83RB65GC8D;
+						DevelopmentTeam = AL7U972ETU;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -3248,7 +3248,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 83RB65GC8D;
+				DEVELOPMENT_TEAM = AL7U972ETU;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = ./DriveriOSApp/LiXin.pch;
 				INFOPLIST_FILE = DriveriOSApp/Info.plist;
@@ -3275,7 +3275,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 83RB65GC8D;
+				DEVELOPMENT_TEAM = AL7U972ETU;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = ./DriveriOSApp/LiXin.pch;
 				INFOPLIST_FILE = DriveriOSApp/Info.plist;
